@@ -345,6 +345,7 @@
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\PayrollController.cs" />
     <Compile Include="Controllers\UserBaseController.cs" />
+    <Compile Include="Controllers\WebAPIController.cs" />
     <Compile Include="Filters\SimpleAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -358,6 +359,7 @@
     <Compile Include="Models\EmployeeLogin.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Master.cs" />
+    <Compile Include="Models\WebAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -443,6 +445,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\ProfilePic\" />
+    <Folder Include="Views\WebAPI\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
