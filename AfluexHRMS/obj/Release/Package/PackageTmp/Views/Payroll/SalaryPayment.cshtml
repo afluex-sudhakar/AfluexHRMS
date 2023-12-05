@@ -1,0 +1,281 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "SalaryPayment";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("SalaryPayment", "Payroll", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Salary Payment</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Salary Payment</h3>
+                                    <p style="color: #ff0000">
+                                        @TempData["EmpSalary"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrEmpSalary"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5> Date<span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.SalaryDate, new { @class = "form-control", @Placeholder = " Date", @onchange = "hidedata();" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                                    </div>
+
+
+                                    <div class="col-md-3 mt-4">
+                                        <input type="submit" class="btn btn-info" name="Search" value="Search" onclick="return validateSearch();" style="margin-top:20px"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="box_body p-4">
+                                        <div class="table-responsive">
+                                            <div class="QA_table mb_30">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SNo.</th>
+                                                            <th>Emp Code</th>
+                                                            <th>Name</th>
+                                                            <th>Net Salary</th>
+                                                            <th>Pay Amount</th>
+                                                            <th>Balance</th>
+                                                            <th>Payment Mode</th>
+                                                            <th><input type="checkbox" id="select-all" /></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model != null)
+                                                        {
+                                                            if (Model.lstList != null)
+                                                            {
+                                                                int i = 1;
+                                                                foreach (var Item in Model.lstList)
+                                                                {
+                                                                    <tr class="text-left">
+                                                                        <td>@i</td>
+                                                                        <td>@Item.EmployeeCode <input type='hidden' value='@Item.EmployeeID' id='empid @i' name='empid @i'></td>
+                                                                        <td>@Item.EmployeeName</td>
+                                                                        <td>@Item.SalaryAmount <input type='hidden' value='@Item.SalaryAmount' id='salamt @i' name='salamt @i'></td>
+                                                                        <td><input type="text" id="paidamt @i" name="paidamt @i" onchange="getdata(@Item.SalaryAmount,this,@i)" /></td>
+                                                                        <td><input type="text" id="balance @i" name="balance @i" onchange="getdata1(this)" /></td>
+                                                                        <td>
+                                                                            <select id="PaymentMode @i" name="PaymentMode @i">
+                                                                                <option>Cash</option>
+                                                                                <option>Bank Transfer</option>
+                                                                                <option>Cheque</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="checkbox" id="Chk_ @i" name="Chk_ @i" /></td>
+                                                                    </tr>
+
+                                                                    i++;
+                                                                }
+                                                                <input type='hidden' value='@i' id='hdrows' name='hdrows' />
+                                                            }
+                                                        }
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-3">
+                                                    <label class="form-label" for="inputEmail4"><h5>Payment Date<span class="text-danger">*</span></h5></label>
+                                                    @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", @Placeholder = "Payment Date" })
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-3">
+                                                    <input type="submit" name="Save" id="Save" value="Save" class="btn btn-success" onclick="return validateSave();" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="txtpaidamt" />
+}
+
+
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+<script>
+
+
+    $('#select-all').click(function (event) {
+        if (this.checked) {
+            // Iterate each checkbox
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    });
+
+    function hidedata() {
+        $("#divdata").hide();
+    }
+
+    function getdata(SalaryAmount, paidamt, i) {
+        var pdamt = paidamt.value;
+       // $('#txtpaidamt').val(paidamt.value);
+        var bal = ((Number)(SalaryAmount) - (Number)(pdamt)).toString();
+        document.getElementById("balance " + i).value = bal;
+    }
+
+
+
+
+
+
+    function validateSearch() {
+        $("#divdata").show();
+
+        $(".errortext").removeClass("errortext");
+
+        if ($('#SalaryDate').val() == '') {
+            $("#SalaryDate").addClass('errortext');
+            $('#SalaryDate').focus();
+
+            return false;
+        }
+
+        return true;
+    }
+    function validateSave() {
+
+        $(".errortext").removeClass("errortext");
+
+        if ($('#PaymentDate').val() == '') {
+            $("#PaymentDate").addClass('errortext');
+            $('#PaymentDate').focus();
+
+            return false;
+        }
+
+        if (($("input[name*='Chk_']:checked").length) <= 0) {
+            alert("You must check at least 1 box");
+            return false;
+        }
+        return true;
+    }
+
+    function isNumberOrDecimal(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function onlyAlphabets(e, t) {
+        try {
+            if (window.event) {
+                var charCode = window.event.keyCode;
+            }
+            else if (e) {
+                var charCode = e.which;
+            }
+            else { return true; }
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                return true;
+            else
+                return false;
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+
+    $('#SalaryDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true,
+
+    });
+    $('#PaymentDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true,
+        minMonth: 0
+    });
+
+
+</script>
+
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

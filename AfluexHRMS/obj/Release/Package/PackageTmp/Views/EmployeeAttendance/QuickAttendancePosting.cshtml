@@ -1,0 +1,224 @@
+﻿@model AfluexHRMS.Models.EmployeeAttendance
+
+@{
+    ViewBag.Title = "QuickAttendancePosting";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("QuickAttendancePosting", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Quick Attendance Posting</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Employee Quick Attendance</h3>
+                                    <p style="color: #ff0000">
+                                        @TempData["Attendancemsg"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrAttendancemsg"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Department Name</h5></label>
+                                        @Html.DropDownListFor(m => m.DepartmentName, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Designation Name</h5></label>
+                                        @Html.DropDownListFor(m => m.DesignationtName, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
+                                        @Html.DropDownListFor(m => m.EmployeeName, new SelectList(ViewBag.ddlEmployee, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-3 mt-4">
+                                        <input type="submit" class="btn btn-info" id="Getdetails" name="Getdetails" onclick="return OnchangeEvent();" value="Search" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                                @if (Model != null)
+                                {
+                                    if (Model.listAttendance != null)
+                                    {
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="inputEmail4"><h5>Attendance Date</h5></label>
+                                                @Html.TextBoxFor(m => m.AttendanceDate, new { @class = "form-control", @Placeholder = "Attendance Date", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="box_body p-4">
+                                                    <div class="table-responsive">
+                                                        <div class="QA_table mb_30">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr.No</th>
+                                                                        <th>Employee Code</th>
+                                                                        <th>Employee Name</th>
+                                                                        <th>
+                                                                            Select All&nbsp;&nbsp; <input type="checkbox" name="checkedAll" id="checkedAll" style="margin-top:3px;" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @if (Model != null)
+                                                                    {
+                                                                        if (Model.listAttendance != null)
+                                                                        {
+                                                                            int i = 1;
+                                                                            foreach (var item in Model.listAttendance)
+                                                                            {
+
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        @i
+                                                                                        @Html.HiddenFor(m => m.Pk_EmployeeID)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @item.EmployeeLoginId
+                                                                                    </td>
+
+                                                                                    <td>
+                                                                                        @item.EmployeeName
+                                                                                    </td>
+                                                                                    <td>
+
+                                                                                        <input type="checkbox" id="checkBoxId_ @i" name="checkBoxId_ @i" class="chkclass" />
+                                                                                        <input type="hidden" name="Pk_EmployeeID_ @i" id="Pk_EmployeeID_ @i" value="@item.Pk_EmployeeID" />
+                                                                                    </td>
+
+                                                                                </tr>
+                                                                                i++;
+                                                                            }
+                                                                            <input type="hidden" id="hdRows" name="hdRows" value="@i" />
+                                                                        }
+                                                                    }
+                                                                </tbody>
+
+                                                            </table>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-3">
+                                                                <input type="submit" class="btn btn-success" id="btnAttendance" name="btnAttendance" onclick="return validateform();" value="Save " />
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+<script>
+
+    $('#AttendanceDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeMonth: true,
+        changeYear: true,
+        maxDate: 0
+        //yearRange: '1950:2029'
+    });
+
+
+
+    $('#checkedAll').click(function () {
+        if ($(this).prop("checked")) {
+            //$('input:checkbox[name=checkBoxId_]').attr('checked', true);
+            $('.chkclass').prop("checked", true);
+        } else {
+            //$('input:checkbox[name=checkBoxId_]').attr('checked', false);
+            $('.chkclass').prop("checked", false);
+        }
+    });
+
+
+
+
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#AttendanceDate').val() == '') {
+            $("#AttendanceDate").addClass('errortext');
+            $('#AttendanceDate').focus();
+            return false;
+        }
+        if (($("input[name*='checkBoxId_']:checked").length) <= 0) {
+            alert("You must check at least 1 box");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

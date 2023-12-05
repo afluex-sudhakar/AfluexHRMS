@@ -1,0 +1,194 @@
+﻿@model AfluexHRMS.Models.EmployeeAttendance
+
+@{
+    ViewBag.Title = "AttendanceSummaryReport";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("AttendanceSummaryReport", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Attendance Summary Report</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Attendance Summary Report</h3>
+                                    @*<p style="color: #ff0000">
+                                        @TempData["EmpSalary"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrEmpSalary"]
+                                    </p>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>From Date <span style="color:red">*</span>  </h5></label>
+                                        @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "FromDate", @readonly = "readonly" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>To Date  <span style="color:red">*</span> </h5></label>
+                                        @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "ToDate", @readonly = "readonly" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Code   </h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Name   </h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                                    </div>
+
+
+                                    <div class="col-md-3 mt-4">
+                                        <input type="submit" name="Search" id="Search" value="Search" class="btn btn-success" onclick="return validateform();" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="box_body p-4">
+                                        <div class="table-responsive">
+                                            <div class="QA_table mb_30">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SNo.</th>
+                                                            <th>Employee Name</th>
+                                                            <th>PresentDay</th>
+                                                            <th>AbsentDay</th>
+                                                            <th>OverTime</th>
+                                                            <th>LeaveDays</th>
+                                                            <th>HalfDays</th>
+                                                            <th>FullDays</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model != null)
+                                                        {
+                                                            if (Model.lstList != null)
+                                                            {
+                                                                int i = 1;
+                                                                foreach (var Item in Model.lstList)
+                                                                {
+                                                                    <tr class="text-left">
+                                                                        <td>@i</td>
+                                                                        <td>@Item.EmployeeName (@Item.EmployeeLoginId)</td>
+                                                                        <td>@Item.PresentDay</td>
+                                                                        <td>@Item.AbsentDay</td>
+                                                                        <td>@Item.OverTime</td>
+                                                                        <td>@Item.LeaveDays</td>
+                                                                        <td>@Item.HalfDays</td>
+                                                                        <td>@Item.FullDays</td>
+                                                                    </tr>
+
+                                                                    i++;
+                                                                }
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="~/files/bower_components/jquery/js/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+
+<script>
+
+    $('#FromDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+    $('#ToDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+    function validateform() {
+
+        $(".errortext").removeClass("errortext");
+
+        if ($('#FromDate').val() == '') {
+            $("#FromDate").addClass('errortext');
+            $('#FromDate').focus();
+            //   alert("Please Select Branch .")
+            return false;
+        }
+        if ($('#ToDate').val() == '') {
+            $("#ToDate").addClass('errortext');
+            $('#ToDate').focus();
+            $('#ToDate').val('');
+            //   alert("Please Fill Sponsor ID .")
+            return false;
+        }
+
+
+
+        return true;
+    }
+
+</script>
+
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

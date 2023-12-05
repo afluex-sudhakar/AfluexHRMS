@@ -1,0 +1,249 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "EmployeeLeave";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("EmployeeLeave", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Employee Leave</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="/Master/EmployeeLeave" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Employee Leave</h3>
+                                    <p style="color: #ff0000">
+                                        @TempData["EmployeeLeave"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrEmployeeLeave"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+                                <div class="row mb-3">
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Employee Code</h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code " ,@onchange= "return FilterEmployeeLeave();" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Employee Name </h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name",@onchange= "return FilterEmployeeNLeave();" })
+                                        @Html.HiddenFor(m => m.EmployeeID)
+                                    </div>
+
+                                    <div class="col-md-3" style="margin-top:43px">
+                                        <input type="submit" name="Search" id="Search" value="Search" class="btn btn-primary" onclick="return validateform();" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            @if (Model != null)
+            {
+                if (Model.lstListEmployee != null)
+                {
+                    foreach (var Items in Model.lstListEmployee)
+                    {
+                     <div class="container-fluid p-0">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="white_card card_height_100 mb_30">
+                                    <div class="white_card_body">
+                                        <div class="card-body">
+                                            <div class="row mb-3">
+                                                <div class="col-md-3">
+                                                    <b>Employee Name:</b>
+                                                    @Items.EmployeeName
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <b>Employee Code:</b>
+                                                    @*@Html.DisplayFor(m => m.EmployeeCode)*@
+                                                    @Items.EmployeeCode
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <b>Father Name:</b>
+                                                    @*@Html.DisplayFor(m => m.FatherName)*@
+                                                    @Items.FatherName
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <b>Contact:</b>
+                                                    @*@Html.DisplayFor(m => m.Contact)*@
+                                                    @Items.Contact
+                                                    <input type="hidden" value="@Items.EmployeeID" id="EmployeeID" name="EmployeeID1" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="card_box box_shadow mb_30 border_radius_0">
+                                                        <div class="white_card_header">
+                                                            <div class="box_header m-0">
+                                                                <div class="main-title">
+                                                                    <h3 class="m-0">Leave</h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="box_body p-4">
+                                                            <div class="QA_table mb_30">
+
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>SNo.</th>
+                                                                            <th>Leave Name</th>
+                                                                            <th>Limit</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @if (Model != null)
+                                                                        {
+                                                                            if (Model.lstList != null)
+                                                                            {
+                                                                                int i = 1;
+                                                                                foreach (var Item in Model.lstList)
+                                                                                {
+                                                                                    <tr class="text-left">
+                                                                                        <td>@i</td>
+                                                                                        <td>@Item.LeaveName</td>
+                                                                                        <td>@Item.LeaveLimit</td>
+
+                                                                                    </tr>
+
+                                                                                    i++;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-3">
+                                                        <input type="submit" name="Save" id="Save" value="Save" class="btn btn-success" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    }
+                }
+            }
+
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+ function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#EmployeeName').val() == '' && $('#EmployeeCode').val() == '') {
+            alert("Please fill any of one of the fields  .")
+            return false;
+        }
+        return true;
+ }
+
+
+ function FilterEmployeeLeave() {
+     debugger
+     var employeeCode = $('#EmployeeCode').val();
+     $.ajax({
+         url: '/Master/FilterEmployeeCodeLeave', type: 'post', dataType: 'json',
+         data: { 'EmployeeCode': employeeCode},
+         success: function (data) {
+             if (data.Result == "yes") {
+                 $("#EmployeeCode").val(data.EmployeeCode);
+                 $("#EmployeeName").val(data.EmployeeName);
+             }
+             else {
+                 alert("Invalid Employee Code");
+                 //location.reload('/Master/');
+                 window.location.href = '/Master/EmployeeLeave';
+                 $("#EmployeeCode").val('');
+                 $("#EmployeeName").val('');
+             }
+         }
+
+     });
+ }
+ function FilterEmployeeNLeave() {
+     debugger
+     var employeeName = $('#EmployeeName').val();
+     $.ajax({
+         url: '/Master/FilterEmployeeNameLeave', type: 'post', dataType: 'json',
+         data: { 'EmployeeName': employeeName },
+         success: function (data) {
+             if (data.Result == "yes") {
+                 $("#EmployeeCode").val(data.EmployeeCode);
+                 $("#EmployeeName").val(data.EmployeeName);
+             }
+             else {
+                 alert("Invalid Employee Name");
+                 //location.reload('/Master/');
+                 window.location.href = '/Master/EmployeeLeave';
+                 $("#EmployeeCode").val('');
+                 $("#EmployeeName").val('');
+             }
+         }
+
+     });
+ }
+
+</script>
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

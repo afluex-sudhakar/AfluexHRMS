@@ -1,0 +1,151 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "SalaryHead";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("SalaryHead", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Salary Head</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="/Master/SalaryHeadList" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Salary Head</h3>
+                                    <p style="color: #ff0000">
+                                        @TempData["SallaryHeadtmsg"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrSallaryHeadtmsg"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label"><h5>Salary Head Code <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.SalaryHeadCode, new { @class = "form-control", @Placeholder = "Salary Head Code" })
+                                        @Html.HiddenFor(m => m.PK_SalaryHeadID)
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><h5>Salary Head Name<span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.SalaryHeadName, new { @class = "form-control", @Placeholder = "Salary Head Name" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="inputEmail4"><h5>Head Nature <span class="text-danger">*</span></h5></label>
+                                        @Html.DropDownListFor(m => m.HeadNature, new SelectList(ViewBag.ddlHeadNature, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="inputPassword4"><h5>Amount And Persent<span class="text-danger">*</span></h5></label>
+                                        @Html.DropDownListFor(m => m.AmountPersent, new SelectList(ViewBag.ddlAmtPer, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="inputEmail4"><h5>Remark</h5></label>
+                                       @Html.TextAreaFor(m => m.RemarkSalaryHead, new { @class = "form-control", @Placeholder = "Remark", @rows = "5", @cols = "10" })
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        @if (Model.PK_SalaryHeadID == null)
+                                        {
+                                            <input type="submit" class="btn btn-success" id="btnsave" onclick="return validateform();" name="btnsave" value="save" />
+                                        }
+                                        else
+                                        {
+
+                                            <input type="submit" class="btn btn-success" onclick="return validateform();" id="btnupdate" name="btnupdate" value="update" />
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<script>
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#SalaryHeadCode').val() == '') {
+            $("#SalaryHeadCode").addClass('errortext');
+            $('#SalaryHeadCode').focus();
+            return false;
+        }
+
+        if ($('#SalaryHeadName').val() == '') {
+            $("#SalaryHeadName").addClass('errortext');
+            $('#SalaryHeadName').focus();
+            return false;
+        }
+
+        $(".errortext").removeClass("errortext");
+        if ($('#HeadNature').val() == '0') {
+            $("#HeadNature").addClass('errortext');
+            $('#HeadNature').focus();
+            return false;
+        }
+
+        if ($('#AmountPersent').val() == '0') {
+            $("#AmountPersent").addClass('errortext');
+            $('#AmountPersent').focus();
+            return false;
+        }
+
+
+        return true;
+    }
+</script>
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

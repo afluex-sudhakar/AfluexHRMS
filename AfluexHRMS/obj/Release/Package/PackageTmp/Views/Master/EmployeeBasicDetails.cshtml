@@ -1,0 +1,1027 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "EmployeeBasicDetails";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("EmployeeBasicDetails", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Employee Basic Details</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="/Master/EditEmployeeBasicInfo" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Employee Information</h3>
+                                    <p style="color: red">
+                                        @TempData["Emp"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Company <span class="text-danger">*</span></h5></label>
+                                        @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Department <span class="text-danger">*</span></h5></label>
+                                        @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control", @onchange = "return GetDesignation();" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Designation <span class="text-danger">*</span></h5></label>
+                                        @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Name <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "EmployeeName  " })
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Father's Name <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @Placeholder = "Father Name " })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>DOB <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @Placeholder = "DOB", @readonly = "read" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Gender<span class="text-danger">*</span> </h5></label>
+                                        @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Mobile<span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", @Placeholder = "Mobile", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Phone No.</h5></label>
+                                        @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", @Placeholder = "PhoneNo", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Email<span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Profile <span class="text-danger">*</span></h5></label>
+                                        <img src="@Model.ProfilePic" style="width: 150px; height: 100px;" />
+
+                                        <input type="file" id="postedFile" name="postedFile">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="card_box box_shadow mb_30 border_radius_0">
+                                            <div class="white_card_header">
+                                                <div class="box_header m-0">
+                                                    <div class="main-title">
+                                                        <h3 class="m-0">Permanent Address</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="box_body p-4">
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <label class="form-label"><h5>Address <span class="text-danger">*</span></h5></label>
+                                                        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @Placeholder = "Address" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label"><h5>PinCode <span class="text-danger">*</span></h5></label>
+                                                        @Html.TextBoxFor(m => m.PinCode, new { @class = "form-control", @Placeholder = "Pin Code", @onchange = "return getStateCity();", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "6" })
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <label class="form-label"><h5>State <span class="text-danger">*</span></h5></label>
+                                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", @Placeholder = "State  ", @readonly = "dd" })
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <label class="form-label"><h5>City <span class="text-danger">*</span></h5></label>
+                                                      @Html.TextBoxFor(m => m.City, new { @class = "form-control", @Placeholder = "City  ", @readonly = "dd" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="card_box box_shadow mb_30 border_radius_0">
+                                            <div class="white_card_header">
+                                                <div class="box_header m-0">
+                                                    <div class="main-title">
+                                                        <h3 class="m-0">Local Address</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="box_body p-4">
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <input type="checkbox" id="sameadd" style="margin-left:5px;" />
+                                                        <span> * Check if Permanent and local address is same.</span>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <label class="form-label"><h5>Address <span class="text-danger">*</span></h5></label>
+                                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control", @Placeholder = "Address" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-4">
+                                                        <label class="form-label"><h5>PinCode <span class="text-danger">*</span></h5></label>
+                                                        @Html.TextBoxFor(m => m.Pincode2, new { @class = "form-control", @Placeholder = "Pin Code", @onchange = "return getStateCity1();", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "6" })
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <label class="form-label"><h5>State <span class="text-danger">*</span></h5></label>
+                                                        @Html.TextBoxFor(m => m.State2, new { @class = "form-control", @Placeholder = "State  ", @readonly = "dd" })
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <label class="form-label"><h5>City <span class="text-danger">*</span></h5></label>
+                                                        @Html.TextBoxFor(m => m.City2, new { @class = "form-control", @Placeholder = "City  ", @readonly = "dd" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Date Of Joining <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form-control", @Placeholder = "Date Of Joining", @readonly = "read" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>PF No </h5></label>
+                                        @Html.TextBoxFor(m => m.PFNo, new { @class = "form-control", @Placeholder = "PFNo  " })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>PAN</h5></label>
+                                        @Html.TextBoxFor(m => m.PAN, new { @class = "form-control", @Placeholder = "PAN  ", @onchange = "return validatePan();" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Bank Account No <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.BankAccountNo, new { @class = "form-control", @Placeholder = "Bank Account No " })
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Bank Name <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.BankName, new { @class = "form-control", @Placeholder = "Bank Name " })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Bank Branch <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.BankBranch, new { @class = "form-control", @Placeholder = "Bank Branch" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>IFSC Code <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.IFSCCOde, new { @class = "form-control", @Placeholder = "IFSC Code" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Qualification</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Degree  </h5></label>
+                                        @Html.TextBoxFor(m => m.DegreeCourse, new { @class = "form-control", @Placeholder = "Degree" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Board/University  </h5></label>
+                                        @Html.TextBoxFor(m => m.Board, new { @class = "form-control", @Placeholder = "Board  " })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Year Of Passing  </h5></label>
+                                        @Html.TextBoxFor(m => m.YearOfPassing, new { @class = "form-control", @Placeholder = "Year Of Passing", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "4" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <input type="button" value="Add" id="btnaddqual" onclick="return addQualifiation();" class="btn btn-info" style="margin-top:44px;"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="QA_table mb_30">
+                                <table class="table lms_table_active">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.No.</th>
+                                            <th>Degree</th>
+                                            <th>Board</th>
+                                            <th>Year Of Passing</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblQualification"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Work Experience</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Company Name </h5></label>
+                                        @Html.TextBoxFor(m => m.PreviousCompany, new { @class = "form-control", @Placeholder = "Previous Company" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>From Date  </h5></label>
+                                        @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "FromDate  ", @readonly = "read" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>To Date  </h5></label>
+                                        @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "ToDate", @readonly = "read" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Post  </h5></label>
+                                        @Html.TextBoxFor(m => m.Post, new { @class = "form-control", @Placeholder = "Post" })
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <h5>Certificate Submitted  </h5>
+                                    <div class="col-md-3">
+                                        @Html.DropDownListFor(m => m.CertificateSubmitted, new SelectList(ViewBag.CertificateSubmitted, "Value", "Text"), new { @class = "form-control" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <br />
+                                        <input type="button" value="Add" id="btnaddwork" onclick="return addWorkExperience();" class="btn btn-info" style="margin-top:-25px;" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="QA_table mb_30">
+                                <table class="table lms_table_active">
+                                    <thead>
+                                        <tr>
+                                            <th>SNo.</th>
+                                            <th>Company</th>
+                                            <th>FromDate</th>
+                                            <th>ToDate</th>
+                                            <th>Post</th>
+                                            <th>Submitted</th>
+                                            @*<th>Status</th>
+                                            <th>Verified By</th>
+                                            <th>Remark</th>*@
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblWorkExperience"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        @if (Model.EmployeeID == null)
+                        {
+                            <input type="submit" class="btn btn-success" name="Save" value="Save" onclick="return validateform();" />
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(m => m.EmployeeID, new { @Value = @Model.EmployeeID })
+                            <input type="submit" class="btn btn-success" name="Update" value="Update" onclick="return validateform();" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+}
+
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+ <script>
+    $('#DOB').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+    $('#DateOfJoining').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+    $('#FromDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+    $('#ToDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+
+ </script>
+
+<script>
+    $(document).ready(function () {
+ //      alert("wgsfd");
+        if($("#Result").val()=="Edit")
+        {
+            var tr = [];
+            var tr1 = [];
+            var status = "";
+            var j = 1;
+            var EmployeeID = $('#EmployeeID').val();
+            $.ajax({
+                url: '/Master/UpdateEmployee', type: 'post', dataType: 'json',
+                data: { 'EmployeeID': EmployeeID },
+                success: function (data) {
+                    $('#Gender').val(data.Gender);
+                    $("#ContentPlaceHolder1_imgProductImage").attr("src",data.ProfilePic);
+                    $('#tblQualification').empty();
+                    for (var i = 0; i < data.lstQualification.length; i++) {
+                        if (data.lstQualification[i].Status == "T")
+                        {
+                            status = 0;
+                        }
+                        else
+                        {
+                            status = 1;
+                        }
+
+                        tr.push('<tr>');
+                        tr.push("<td>" + j + "</td>");
+
+                        tr.push("<td><label id='txtdrree_ " + i + "' name='txtdrgee_" + i + "'>" + data.lstQualification[i].DegreeCourse + "  </label></td>");
+                        tr.push("<td><label id='txtbard_ " + i + "' name='txtbord_" + i + "' >" + data.lstQualification[i].Board + " </label></td>");
+                        tr.push("<td><label id='txtyar_ " + i + "' name='txtyer_" + i + "'>" + data.lstQualification[i].YearOfPassing + "  </label></td>");
+                        tr.push("<td><input type='button' value='Delete' class='btn btn-danger' onclick='return deleteRow(" + j + "," + data.lstQualification[i].QualificationID + "," + status + ");' /></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstQualification[i].DegreeCourse + "' id='txtdrgree_ " + i + "' name='txtdrgree_" + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstQualification[i].Board + "' id='txtboard_ " + i + "' name='txtboard_" + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstQualification[i].YearOfPassing + "' id='txtyear_ " + i + "' name='txtyear_" + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstQualification[i].QualificationID + "' id='QualificationID " + i + "' name='QualificationID" + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstQualification[i].Status + "' id='hdStatusQ_" + i + "' name='hdStatusQ_" + i + "'></td>");
+                        tr.push('</tr>');
+                        j++;
+                    }
+                    tr.push('<tr style="display:none">');
+                    tr.push("<td><input type='hidden' value='" + j + "' id='hdrows' name='hdrows'></td>");
+                    tr.push('</tr>');
+                    $('#tblQualification').append($(tr.join('')));
+
+                    j = 1;
+                    $('#tblWorkExperience').empty();
+                    for (var i = 0; i < data.lstWorkExperience.length; i++) {
+                        if (data.lstWorkExperience[i].Status == "T") {
+                            status = 0;
+                        }
+                        else {
+                            status = 1;
+                        }
+                        tr1.push('<tr>');
+                        tr1.push("<td>" + j + "</td>");
+
+                        tr1.push("<td><label id='ttprevcomp_ " + i + "' name='txtrevcomp_ " + i + "'>" + data.lstWorkExperience[i].PreviousCompany + "  </label></td>");
+                        tr1.push("<td><label id='fomdt_ " + i + "' name='frmdt_ " + i + "' >" + data.lstWorkExperience[i].FromDate + " </label></td>");
+                        tr1.push("<td><label id='txtodt_ " + i + "' name='txtodt_ " + i + "'>" + data.lstWorkExperience[i].ToDate + "  </label></td>");
+                        tr1.push("<td><label id='txtost_ " + i + "' name='txtost_ " + i + "' >" + data.lstWorkExperience[i].Post + " </label></td>");
+                        tr1.push("<td><label id='txtcrtsub_ " + i + "' name='ttcertsub_ " + i + "'>" + data.lstWorkExperience[i].CertificateSubmitted + "  </label></td>");
+                        tr1.push("<td><input type='button' value='Delete' class='btn btn-danger' onclick='return deleteRow1(" + j + "," + data.lstWorkExperience[i].WorkID + "," + status + ");' /></td>");
+                        tr1.push("<td style='display:none'><input type='hidden' value='" + data.lstWorkExperience[i].PreviousCompany + "' id='txtprevcomp_ " + i + "' name='txtprevcomp_ " + i + "'></td>");
+                        tr1.push("<td style='display:none'><input type='hidden' value='" + data.lstWorkExperience[i].FromDate + "' id='fromdt_ " + i + "' name='fromdt_ " + i + "'></td>");
+                        tr1.push("<td style='display:none'><input type='hidden' value='" + data.lstWorkExperience[i].ToDate + "' id='txttodt_ " + i + "' name='txttodt_ " + i + "'></td>");
+                        tr1.push("<td style='display:none'><input type='hidden' value='" + data.lstWorkExperience[i].Post + "' id='txtpost_ " + i + "' name='txtpost_ " + i + "'></td>");
+                        tr1.push("<td style='display:none'><input type='hidden' value='" + data.lstWorkExperience[i].CertificateSubmitted + "' id='txtcertsub_ " + i + "' name='txtcertsub_ " + i + "'></td>");
+                        tr1.push("<td style='display:none'><input type='hidden' value='" + data.lstWorkExperience[i].Status + "' id='hdStatusW_" + i + "' name='hdStatusW_" + i + "'></td>");
+                        tr1.push("<td style='display:none'><input type='hidden' value='" + data.lstWorkExperience[i].WorkID + "' id='WorkID " + i + "' name='WorkID" + i + "'></td>");
+                        tr1.push('</tr>');
+                        j++;
+                    }
+                    tr1.push('<tr style="display:none">');
+                    tr1.push("<td><input type='hidden' value='" + j + "' id='hdrows1' name='hdrows1'></td>");
+                    tr1.push('</tr>');
+                    $('#tblWorkExperience').append($(tr1.join('')));
+
+                }
+
+            });
+        }
+    });
+
+    function validatePan() {
+        var panVal = $('#PAN').val();
+        var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+
+        if (regpan.test(panVal)) {
+            $("#PAN").removeClass('errortext');
+        } else {
+            alert("Invalid PAN Number");
+            $("#PAN").val('');
+            $("#PAN").addClass('errortext');
+        }
+    }
+
+    function getStateCity() {
+
+        var pincode = $('#PinCode').val();
+        $.ajax({
+            url: '/Master/GetStateCity', type: 'post', dataType: 'json',
+            data: { 'Pincode': pincode },
+            success: function (data) {
+                if (data.Result == "yes") {
+                    $("#State").val(data.State);
+                    $("#City").val(data.City);
+                    $("#State").removeClass('errortext');
+                    $("#City").removeClass('errortext');
+                    $("#Pincode").removeClass('errortext');
+                }
+                else if (data.Result == "no") {
+                    $("#State").val('');
+                    $("#City").val('');
+                    $("#State").addClass('errortext');
+                    $("#City").addClass('errortext');
+                    $("#Pincode").addClass('errortext');
+                    $('#Pincode').focus();
+                    $('#Pincode').val('');
+                    alert("Enter Valid Pin Code")
+                }
+            }
+
+        });
+    }
+
+    function getStateCity1() {
+
+        var pincode = $('#Pincode2').val();
+        $.ajax({
+            url: '/Master/GetStateCity1', type: 'post', dataType: 'json',
+            data: { 'Pincode2': pincode },
+            success: function (data) {
+                if (data.Result == "yes") {
+                    $("#State2").val(data.State2);
+                    $("#City2").val(data.City2);
+                    $("#State2").removeClass('errortext');
+                    $("#City2").removeClass('errortext');
+                    $("#Pincode2").removeClass('errortext');
+                }
+                else if (data.Result == "no") {
+                    $("#State2").val('');
+                    $("#City2").val('');
+                    $("#State2").addClass('errortext');
+                    $("#City2").addClass('errortext');
+                    $("#Pincode2").addClass('errortext');
+                    $('#Pincode2').focus();
+                    $('#Pincode2').val('');
+                    alert("Enter Valid Pin Code")
+                }
+            }
+
+        });
+    }
+
+
+
+
+
+
+    function addQualifiation() {
+        debugger;
+
+        if ($('#DegreeCourse').val() == '') {
+            $("#DegreeCourse").addClass('errortext');
+            $('#DegreeCourse').focus();
+            return false;
+        }
+        if ($('#Board').val() == '') {
+            $("#Board").addClass('errortext');
+            $('#Board').focus();
+            return false;
+        }
+
+        if ($('#YearOfPassing').val() == '') {
+            $("#YearOfPassing").addClass('errortext');
+            $('#YearOfPassing').focus();
+            return false;
+        }
+
+        var degree = $('#DegreeCourse').val();
+        var board = $('#Board').val();
+        var yrofpass = $('#YearOfPassing').val();
+
+
+        var tr = [];
+        var j = 1;
+        $.ajax({
+            url: '/Master/saveQualification', type: 'post', dataType: 'json',
+            data: { 'degree': degree, 'board': board, 'yrofpass': yrofpass },
+            success: function (data) {
+
+                $('#tblQualification').empty();
+
+                for (var i = 0; i < data.lstList.length; i++) {
+                    if (data.lstList[i].Status == "T") {
+                        status = 0;
+                    }
+                    else {
+                        status = 1;
+                    }
+
+                    tr.push('<tr>');
+                    tr.push("<td>" + j + "</td>");
+
+                    tr.push("<td><label id='txtdrree_ " + i + "' name='txtdrgee_" + i + "'>" + data.lstList[i].DegreeCourse + "  </label></td>");
+                    tr.push("<td><label id='txtbard_ " + i + "' name='txtbord_" + i + "' >" + data.lstList[i].Board + " </label></td>");
+                    tr.push("<td><label id='txtyar_ " + i + "' name='txtyer_" + i + "'>" + data.lstList[i].YearOfPassing + "  </label></td>");
+                    tr.push("<td><input type='button' value='Delete' class='btn btn-danger' onclick='return deleteRow(" + j + "," + data.lstList[i].QualificationID + "," + status + ");' /></td>");
+                    tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].DegreeCourse + "' id='txtdrgree_ " + i + "' name='txtdrgree_" + i + "'></td>");
+                    tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Board + "' id='txtboard_ " + i + "' name='txtboard_" + i + "'></td>");
+                    tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].YearOfPassing + "' id='txtyear_ " + i + "' name='txtyear_" + i + "'></td>");
+                    tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Status + "' id='hdStatusQ_ " + i + "' name='hdStatusQ_" + i + "'></td>");
+                    tr.push('</tr>');
+                    j++;
+                }
+                tr.push('<tr style="display:none">');
+                tr.push("<td><input type='hidden' value='" + j + "' id='hdrows' name='hdrows'></td>");
+                tr.push('</tr>');
+                $('#tblQualification').append($(tr.join('')));
+
+            }
+
+        });
+
+
+    }
+
+    function addWorkExperience() {
+
+        if ($('#PreviousCompany').val() == '') {
+            $("#PreviousCompany").addClass('errortext');
+            $('#PreviousCompany').focus();
+            return false;
+        }
+        if ($('#FromDate').val() == '') {
+            $("#FromDate").addClass('errortext');
+            $('#FromDate').focus();
+            return false;
+        }
+
+        if ($('#ToDate').val() == '') {
+            $("#ToDate").addClass('errortext');
+            $('#ToDate').focus();
+            return false;
+        }
+        if ($('#Post').val() == '') {
+            $("#Post").addClass('errortext');
+            $('#Post').focus();
+            return false;
+        }
+
+        else {
+
+            var prevcomp = $('#PreviousCompany').val();
+            var fromdt = $('#FromDate').val();
+            var todt = $('#ToDate').val();
+            var post = $('#Post').val();
+            var certsub = $('#CertificateSubmitted').val();
+
+            var tr = [];
+            var j = 1;
+            $.ajax({
+                url: '/Master/saveWorkExperience', type: 'post', dataType: 'json',
+                data: { 'prevcomp': prevcomp, 'fromdt': fromdt, 'todt': todt, 'post': post, 'certsub': certsub },
+                success: function (data) {
+
+                    $('#tblWorkExperience').empty();
+                    for (var i = 0; i < data.lstList.length; i++) {
+                        if (data.lstList[i].Status == "T") {
+                            status = 0;
+                        }
+                        else {
+                            status = 1;
+                        }
+                        tr.push('<tr>');
+                        tr.push("<td>" + j + "</td>");
+
+                        tr.push("<td><label id='ttprevcomp_ " + i + "' name='txtrevcomp_ " + i + "'>" + data.lstList[i].PreviousCompany + "  </label></td>");
+                        tr.push("<td><label id='fomdt_ " + i + "' name='frmdt_ " + i + "' >" + data.lstList[i].FromDate + " </label></td>");
+                        tr.push("<td><label id='txtodt_ " + i + "' name='txtodt_ " + i + "'>" + data.lstList[i].ToDate + "  </label></td>");
+                        tr.push("<td><label id='txtost_ " + i + "' name='txtost_ " + i + "' >" + data.lstList[i].Post + " </label></td>");
+                        tr.push("<td><label id='txtcrtsub_ " + i + "' name='ttcertsub_ " + i + "'>" + data.lstList[i].CertificateSubmitted + "  </label></td>");
+                        tr.push("<td><input type='button' value='Delete' class='btn btn-danger' onclick='return deleteRow1(" + j + "," + data.lstList[i].WorkID + "," + status + ");' /></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].PreviousCompany + "' id='txtprevcomp_ " + i + "' name='txtprevcomp_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].FromDate + "' id='fromdt_ " + i + "' name='fromdt_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].ToDate + "' id='txttodt_ " + i + "' name='txttodt_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Post + "' id='txtpost_ " + i + "' name='txtpost_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].CertificateSubmitted + "' id='txtcertsub_ " + i + "' name='txtcertsub_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Status + "' id='hdStatusW_ " + i + "' name='hdStatusW_" + i + "'></td>");
+
+                        tr.push('</tr>');
+                        j++;
+                    }
+                    tr.push('<tr style="display:none">');
+                    tr.push("<td><input type='hidden' value='" + j + "' id='hdrows1' name='hdrows1'></td>");
+                    tr.push('</tr>');
+                    $('#tblWorkExperience').append($(tr.join('')));
+
+                }
+
+            });
+        }
+    }
+
+    function GetDesignation() {
+
+        var value = $('#DepartmentID').val();
+        var values = $('#DesignationID').val();
+        var tr = [];
+        $.ajax({
+            url: "/Master/GetDesignation",
+            Type: "Get",
+            DataType: "JSON",
+            data: { DepartmentID: value },
+            success: function (data) {
+
+                var j = 1;
+                if (data.Result == "yes") {
+
+                    $("#DesignationID").html(""); // clear before appending new list
+                    $("#DesignationID").empty();
+                    $("#DesignationID").append(
+                          $('<option></option>').val(0).html('Select Designation'));
+                    $.each(data.ddlDesignation, function (index, Sectorcount) {
+                        $("#DesignationID").append(
+                              $('<option></option>').val(Sectorcount.Value).html(Sectorcount.Text));
+                    });
+                }
+                else {
+                    $("#DesignationID").empty();
+
+                }
+            }
+
+        });
+
+    }
+
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#CompanyID').val() == '0') {
+            $("#CompanyID").addClass('errortext');
+            $('#CompanyID').focus();
+            return false;
+        }
+        if ($('#DepartmentID').val() == '0') {
+            $("#DepartmentID").addClass('errortext');
+            $('#DepartmentID').focus();
+            return false;
+        }
+        if ($('#DesignationID').val() == '0') {
+            $("#DesignationID").addClass('errortext');
+            $('#DesignationID').focus();
+            return false;
+        }
+        if ($('#EmployeeName').val() == '') {
+            $("#EmployeeName").addClass('errortext');
+            $('#EmployeeName').focus();
+            return false;
+        }
+        if ($('#FatherName').val() == '') {
+            $("#FatherName").addClass('errortext');
+            $('#FatherName').focus();
+            return false;
+        }
+        if ($('#DOB').val() == '') {
+            $("#DOB").addClass('errortext');
+            $('#DOB').focus();
+            return false;
+        }
+        if ($('#Gender').val() == '') {
+            $("#Gender").addClass('errortext');
+            $('#Gender').focus();
+            return false;
+        }
+        if ($('#Contact').val() == '') {
+            $("#Contact").addClass('errortext');
+            $('#Contact').focus();
+            return false;
+        }
+        if ($('#Email').val() == '') {
+            $("#Email").addClass('errortext');
+            $('#Email').focus();
+            return false;
+        }
+      
+        if ($('#Address').val() == '') {
+            $("#Address").addClass('errortext');
+            $('#Address').focus();
+            return false;
+        }
+        if ($('#Pincode').val() == '') {
+            $("#Pincode").addClass('errortext');
+            $('#Pincode').focus();
+            return false;
+        }
+        if ($('#State').val() == '') {
+            $("#State").addClass('errortext');
+            $('#State').focus();
+            return false;
+        }
+        if ($('#City').val() == '') {
+            $("#City").addClass('errortext');
+            $('#City').focus();
+            return false;
+        }
+        if ($('#Address2').val() == '') {
+            $("#Address2").addClass('errortext');
+            $('#Address2').focus();
+            return false;
+        }
+        if ($('#Pincode2').val() == '') {
+            $("#Pincode2").addClass('errortext');
+            $('#Pincode2').focus();
+            return false;
+        }
+        if ($('#State2').val() == '') {
+            $("#State2").addClass('errortext');
+            $('#State2').focus();
+            return false;
+        }
+        if ($('#City2').val() == '') {
+            $("#City2").addClass('errortext');
+            $('#City2').focus();
+            return false;
+        }
+        if ($('#DateOfJoining').val() == '') {
+            $("#DateOfJoining").addClass('errortext');
+            $('#DateOfJoining').focus();
+            return false;
+        }
+
+
+        if ($('#BankAccountNo').val() == '') {
+            $("#BankAccountNo").addClass('errortext');
+            $('#BankAccountNo').focus();
+            return false;
+        }
+        if ($('#BankName').val() == '') {
+            $("#BankName").addClass('errortext');
+            $('#BankName').focus();
+            return false;
+        }
+        if ($('#BankBranch').val() == '') {
+            $("#BankBranch").addClass('errortext');
+            $('#BankBranch').focus();
+            return false;
+        }
+        if ($('#IFSCCOde').val() == '') {
+            $("#IFSCCOde").addClass('errortext');
+            $('#IFSCCOde').focus();
+            return false;
+        }
+        return true;
+    }
+
+    $('#sameadd').click(function (event) {
+        debugger;
+        if (this.checked) {
+            var add = document.getElementById('Address').value;
+            var pincode = document.getElementById('PinCode').value;
+            var state = document.getElementById('State').value;
+            var city = document.getElementById('City').value;
+            $("#Address2").val(add);
+            $("#Pincode2").val(pincode);
+            $("#State2").val(state);
+            $("#City2").val(city);
+        }
+        else {
+            $("#Address2").val("");
+            $("#Pincode2").val("");
+            $("#State2").val("");
+            $("#City2").val("");
+
+        }
+    });
+
+    function isNumberOrDecimal(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function deleteRow(i, Qualid, status) {
+
+        var result = confirm("Are you sure you want to delete this details? ");
+        if(result == true)
+        {
+            if (status == 1) {
+                status = "P";
+            }
+            else {
+                status = "T";
+            }
+            var tr = [];
+            var j = 1;
+
+            $.ajax({
+                url: '/Master/DeleteQual', type: 'post', dataType: 'json',
+                data: { 'rowid': i, 'Qualid': Qualid, 'status': status },
+                success: function (data) {
+
+                    $('#tblQualification').empty();
+                    for (var i = 0; i < data.lstList.length; i++) {
+                        tr.push('<tr>');
+                        tr.push("<td>" + j + "</td>");
+
+                        tr.push("<td><label id='txtdrree_ " + i + "' name='txtdrgee_" + i + "'>" + data.lstList[i].DegreeCourse + "  </label></td>");
+                        tr.push("<td><label id='txtbard_ " + i + "' name='txtbord_" + i + "' >" + data.lstList[i].Board + " </label></td>");
+                        tr.push("<td><label id='txtyar_ " + i + "' name='txtyer_" + i + "'>" + data.lstList[i].YearOfPassing + "  </label></td>");
+                        tr.push("<td><input type='button' value='Delete' class='btn btn-danger' onclick='return deleteRow(" + j + ");' /></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].DegreeCourse + "' id='txtdrgree_ " + i + "' name='txtdrgree_" + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Board + "' id='txtboard_ " + i + "' name='txtboard_" + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].YearOfPassing + "' id='txtyear_ " + i + "' name='txtyear_" + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Status + "' id='hdStatusQ_" + i + "' name='hdStatusQ_" + i + "'></td>");
+                        tr.push('</tr>');
+                        j++;
+                    }
+                    tr.push('<tr style="display:none">');
+                    tr.push("<td><input type='hidden' value='" + j + "' id='hdrows' name='hdrows'></td>");
+                    tr.push('</tr>');
+                    $('#tblQualification').append($(tr.join('')));
+
+                }
+
+            });
+        }
+
+
+
+
+    }
+
+    function deleteRow1(i, Workid, status) {
+        var result = confirm("Are you sure you want to delete this ? ");
+        if (result == true) {
+            if (status == 1) {
+                status = "P";
+            }
+            else {
+                status = "T";
+            }
+            var tr = [];
+            var j = 1;
+            $.ajax({
+                url: '/Master/DeleteWork', type: 'post', dataType: 'json',
+                data: { 'rowid': i, 'Workid': Workid, 'status': status },
+                success: function (data) {
+
+                    $('#tblWorkExperience').empty();
+                    for (var i = 0; i < data.lstList.length; i++) {
+                        tr.push('<tr>');
+                        tr.push("<td>" + j + "</td>");
+
+                        tr.push("<td><label id='ttprevcomp_ " + i + "' name='txtrevcomp_ " + i + "'>" + data.lstList[i].PreviousCompany + "  </label></td>");
+                        tr.push("<td><label id='fomdt_ " + i + "' name='frmdt_ " + i + "' >" + data.lstList[i].FromDate + " </label></td>");
+                        tr.push("<td><label id='txtodt_ " + i + "' name='txtodt_ " + i + "'>" + data.lstList[i].ToDate + "  </label></td>");
+                        tr.push("<td><label id='txtost_ " + i + "' name='txtost_ " + i + "' >" + data.lstList[i].Post + " </label></td>");
+                        tr.push("<td><label id='txtcrtsub_ " + i + "' name='ttcertsub_ " + i + "'>" + data.lstList[i].CertificateSubmitted + "  </label></td>");
+                        tr.push("<td><input type='button' value='Delete' class='btn btn-danger' onclick='return deleteRow1(" + j + ");' /></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].PreviousCompany + "' id='txtprevcomp_ " + i + "' name='txtprevcomp_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].FromDate + "' id='fromdt_ " + i + "' name='fromdt_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].ToDate + "' id='txttodt_ " + i + "' name='txttodt_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Post + "' id='txtpost_ " + i + "' name='txtpost_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].CertificateSubmitted + "' id='txtcertsub_ " + i + "' name='txtcertsub_ " + i + "'></td>");
+                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].Status + "' id='hdStatusW_" + i + "' name='hdStatusW_" + i + "'></td>");
+                        tr.push('</tr>');
+                        j++;
+                    }
+                    tr.push('<tr style="display:none">');
+                    tr.push("<td><input type='hidden' value='" + j + "' id='hdrows1' name='hdrows1'></td>");
+                    tr.push('</tr>');
+                    $('#tblWorkExperience').append($(tr.join('')));
+
+                }
+
+            });
+        }
+    }
+
+ 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ContentPlaceHolder1_imgProductImage')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+                    </script>
+
+ <style>
+     .errortext {
+         border: 1px solid red !important;
+         background-color: #fff0f0 !important;
+     }
+ </style>

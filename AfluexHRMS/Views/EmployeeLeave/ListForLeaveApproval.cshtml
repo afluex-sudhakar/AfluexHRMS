@@ -1,0 +1,209 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "ListForLeaveApproval";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("ListForLeaveApproval", "EmployeeLeave", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Leave Approval</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Leave</h3>
+                                    <p style="color: #ff0000">
+                                        @TempData["ApproveLeave"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrApproveLeave"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Name </h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Employee Code </h5></label>
+                                        @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code" })
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <input type="submit" name="Search" id="Search" value="Search" class="btn btn-success"  style="margin-top:42px"/>
+                                    </div>
+                                  
+                                </div>
+
+
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="box_body p-4">
+                                        <div class="table-responsive">
+                                            <div class="QA_table mb_30">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SNo.</th>
+                                                            <th>Employee Name</th>
+                                                            <th>Employee Code</th>
+                                                            <th>Leave Name</th>
+                                                            <th>Applied For Days</th>
+                                                            <th>From Date</th>
+                                                            <th>To Date</th>
+                                                            <th>Status</th>
+                                                            <th>Reason For Leave</th>
+                                                            <th>Remark</th>
+                                                            <th>Approved No.Of Days</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model != null)
+                                                        {
+                                                            if (Model.lstList != null)
+                                                            {
+                                                                int i = 1;
+                                                                foreach (var Item in Model.lstList)
+                                                                {
+                                                                    <tr class="text-left">
+                                                                        <td>@i</td>
+                                                                        <td>@Item.EmployeeName</td>
+                                                                        <td>@Item.EmployeeCode</td>
+                                                                        <td>@Item.LeaveName</td>
+                                                                        <td>@Item.UsedLeave</td>
+                                                                        <td>@Item.FromDate</td>
+                                                                        <td>@Item.ToDate</td>
+                                                                        <td>@Item.Status</td>
+                                                                        <td>@Item.Remark</td>
+                                                                        <td><input type="text" class="form-control" id="txtDesc @i" name="txtRemark @i" onchange="getdata(this)" /></td>
+
+                                                                        <td><input type="text" class="form-control" id="txtDesc @i" name="txtDays @i" onchange="getdata1(this)" /></td>
+                                                                        <td>
+                                                                            <a href="#" class="btn btn-success btn-sm" onclick="Approve('@i','@Item.LeaveApplicationID');">Approve</a>
+                                                                            <a href="#" class="btn btn-danger btn-sm" onclick="Reject('@i','@Item.LeaveApplicationID');">Reject</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    i++;
+                                                                }
+
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="txtremark" />
+    <input type="hidden" id="txtdays" />
+}
+
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="~/files/bower_components/jquery/js/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+<script>
+    function Approve(id, userid) {
+        debugger
+        var r = confirm('Are you sure you want to approve this Leave ?');
+        if (r == true) {
+
+            var Remark = $('#txtremark').val();
+            var UsedLeave = $('#txtdays').val();
+            $.ajax({
+                url: "/EmployeeLeave/ApproveLeave",
+                Type: "Get",
+                DataType: "JSON",
+                data: { LeaveApplicationID: userid, Remark: $('#txtremark').val(), UsedLeave: $('#txtdays').val() },
+                success: function (data) {
+
+                    alert("Leave Approved successfully");
+                    window.location.href = '@Url.Action("ListForLeaveApproval", "EmployeeLeave")';
+
+
+                }
+
+            });
+        }
+    }
+    function Reject(id, userid) {
+        debugger
+        var r = confirm('Are you sure you want to reject this Leave ?');
+        if (r == true) {
+
+            var Remark = $('#txtremark').val();
+            var UsedLeave = $('#txtdays').val();
+            $.ajax({
+                url: "/EmployeeLeave/RejectLeave",
+                Type: "Get",
+                DataType: "JSON",
+                data: { LeaveApplicationID: userid, Remark: $('#txtremark').val(), UsedLeave: $('#txtdays').val() },
+                success: function (data) {
+
+                    alert("Leave declined ");
+                    window.location.href = '@Url.Action("ListForLeaveApproval", "EmployeeLeave")';
+
+
+                }
+
+            });
+        }
+    }
+
+    function getdata(remark) {
+        $('#txtremark').val(remark.value);
+    }
+    function getdata1(days) {
+        $('#txtdays').val(days.value);
+    }
+</script>

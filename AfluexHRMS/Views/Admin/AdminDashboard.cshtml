@@ -1,0 +1,321 @@
+﻿@model AfluexHRMS.Models.AdminDashboard
+
+@{
+    ViewBag.Title = "AdminDashboard";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<style>
+    h4{
+        color:white;
+    }
+</style>   
+
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="white_card card_height_100 mb_30 social_media_card">
+
+                            @*<div class="media_thumb ml_25">
+                                <img src="img/media.svg" alt>
+                            </div>*@
+                            <div class="media_card_body">
+                                <div class="media_card_list">
+                                    <div class="single_media_card">
+                                        <span>TOTAL EMPLOYEES</span>
+                                        <h4>@ViewBag.TotalEmployee</h4>
+                                    </div>
+                                    <div class="single_media_card">
+                                        <span>TOTAL HOLIDAYS</span>
+                                        <h4>@ViewBag.TotalHolidays</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="white_card card_height_100 mb_30 social_media_card">
+                            @*<div class="media_thumb ml_25">
+                                <img src="img/media.svg" alt>
+                            </div>*@
+                            <div class="media_card_body">
+                                <div class="media_card_list">
+                                    <div class="single_media_card">
+                                        <span>DISTRIBUTED SALARY</span>
+                                        <h4>@ViewBag.DistributedSalary</h4>
+                                    </div>
+                                    <div class="single_media_card">
+                                        <span>PENDING SALARY</span>
+                                        <h4>@ViewBag.PendingSalary</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-xl-6">
+                    <div class="white_card mb_30 card_height_100">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Monthly Attendance</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div id="marketchart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="white_card mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0"> <i class="fa fa-calendar-alt"> Calendar</i></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="white_card_body">
+                            <div class="world_list_wraper">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-9">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="single_progressbar">
+                                                    <h6 class="f_s_14 f_w_400">Task #1</h6>
+                                                    <div id="bar4" class="barfiller">
+                                                        <div class="tipWrap">
+                                                            <span class="tip"></span>
+                                                        </div>
+                                                        <span class="fill" data-percentage="81"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="single_progressbar">
+                                                    <h6>Task #2</h6>
+                                                    <div id="bar5" class="barfiller">
+                                                        <div class="tipWrap">
+                                                            <span class="tip"></span>
+                                                        </div>
+                                                        <span class="fill" data-percentage="58"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="single_progressbar">
+                                                    <h6>Task #3</h6>
+                                                    <div id="bar6" class="barfiller">
+                                                        <div class="tipWrap">
+                                                            <span class="tip"></span>
+                                                        </div>
+                                                        <span class="fill" data-percentage="42"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="single_progressbar">
+                                                    <h6>Task #4</h6>
+                                                    <div id="bar7" class="barfiller">
+                                                        <div class="tipWrap">
+                                                            <span class="tip"></span>
+                                                        </div>
+                                                        <span class="fill" data-percentage="55"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //debugger;
+        //google.charts.load("current", { packages: ["ImageBarChart"] });
+        //google.charts.setOnLoadCallback(drawChart);
+        //drawChart();
+
+        window.onload=drawChart();
+    });
+   
+
+    //function drawChart() {
+    //    debugger;
+    //    $.noConflict();
+    //         $.ajax({
+    //             type: 'POST',
+    //             dataType: 'json',
+    //             contentType: 'application/json',
+    //             url: '/Admin/GetJoiningDetails',
+    //             data: JSON.stringify(),
+    //             success:
+    //             function (response) {
+    //                 var datare = response;
+    //                 var data = new google.visualization.DataTable();
+
+    //                 data.addColumn('string', 'Month');
+    //                 data.addColumn('number', 'Present');
+    //                 data.addColumn('number', 'Absent');
+    //                 for (var i = 0; i < datare.length; i++) {
+    //                     data.addRow([datare[i].Month, parseInt(datare[i].TotalUser), parseInt(datare[i].City2)]);
+    //                 }
+
+    //                 var chart = new google.visualization.ImageBarChart(document.getElementById('marketchart'));
+    //                 var options = {
+    //                     pieSliceText: 'value-and-percentage',
+    //                     format: 'decimal',
+    //                     is3D: true,
+    //                     legend: { position: 'bottom' },
+    //                     animation: {
+    //                         startup: true,
+    //                         duration: 1000,
+    //                         easing: 'out',
+    //                     }, chartArea: { width: "100%", height: "100%" }
+    //                 };
+    //                 chart.draw(data, options);
+    //             },
+    //             error: function () {
+    //             }
+    //         });
+    //}
+
+    
+
+    function drawChart() {
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/Admin/GetJoiningDetails',
+            data: JSON.stringify(),
+            success:
+            function (response) {
+                //var datare = response;
+                debugger;
+                var Months = [];
+                var Presents = [];
+                var Absents = [];
+
+                //data.addColumn('string', 'Month');
+                //data.addColumn('number', 'Present');
+                //data.addColumn('number', 'Absent');
+
+                var t = JSON.parse(JSON.stringify(response));
+                for (var i = 0; i < t.length; i++) {
+                    Months.push(t[i].Month);
+                    Presents.push(t[i].TotalUser);
+                    Absents.push(t[i].City2);
+                }
+
+                var options1 = {
+                    chart: { height: 380, type: 'bar', toolbar: { show: false }, },
+                    series: [{
+                        name: 'Present',
+                        data: Presents
+                    }, {
+                        name: 'Absent',
+                        data: Absents
+                    }],
+                    plotOptions: { bar: { horizontal: false, columnWidth: ['30%'], endingShape: 'rounded' }, },
+                    xaxis: {
+                        categories: Months,
+                        axisBorder: { show: false, }, axisTicks: { show: false }, labels: { style: { fontSize: '12px' } }
+                    },
+                    colors: ["#009327", "#F65365"],
+                    markers: {
+                        size: 6, colors: ['#fff'],
+                        strokeColor: "#F65365", strokeWidth: 3,
+                    }, legend: { show: false },
+                    dataLabels: { enabled: false },
+                    stroke: { show: true, width: 2, colors: ['transparent'] },
+                    states: {
+                        normal: { filter: { type: 'none', value: 0 } },
+                        hover: { filter: { type: 'none', value: 0 } }, active: { allowMultipleDataPointsSelection: false, filter: { type: 'none', value: 0 } }
+                    },
+                    grid: { borderColor: "#FFCCD2", strokeDashArray: 4, yaxis: { lines: { show: true } } }
+                }
+                var chart1 = new ApexCharts(document.querySelector("#marketchart"), options1); chart1.render();
+
+            }
+        });
+    }
+</script>
+
+
+@*<script type="text/javascript">
+    debugger;
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(BindAttendanceStatus);
+
+    function BindAttendanceStatus() {
+        debugger;
+        $.noConflict();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/Admin/AttendanceStatus',
+            data: JSON.stringify(),
+            success:
+            function (response) {
+                var datare = response;
+                var data = new google.visualization.DataTable();
+
+                data.addColumn('string', 'Status');
+                data.addColumn('number', 'Total');
+                for (var i = 0; i < datare.length; i++) {
+                    data.addRow([datare[i].Status, parseInt(datare[i].Total)]);
+                }
+
+                var chart = new google.visualization.PieChart(document.getElementById('divpayout'));
+                var options = {
+                    pieSliceText: 'value-and-percentage',
+                    format: 'decimal',
+                    is3D: true,
+                    legend: { position: 'bottom' },
+                    animation: {
+                        startup: true,
+                        duration: 1000,
+                        easing: 'out',
+                    }, chartArea: { width: "100%", height: "80%" }
+                };
+
+                chart.draw(data, options);
+
+
+
+
+            },
+            error: function () {
+            }
+        });
+    }
+
+</script>*@

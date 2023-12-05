@@ -1,0 +1,128 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "LeaveType";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("LeaveType", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Leave Type</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="/Master/LeaveTypeList" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Leave Type</h3>
+                                    <p style="color: #ff0000">
+                                        @TempData["Leavetypemsg"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrLeavetypemsg"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label"><h5>Leave Type <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.LeaveType, new { @class = "form-control", @Placeholder = "Leave Type" })
+
+                                        @Html.HiddenFor(m => m.Pk_LeaveTypeId)
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label"><h5>Leave Limit <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.LeaveLimit, new { @class = "form-control", @Placeholder = "Leave Limit" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="inputEmail4"><h5>Remark</h5></label>
+                                       @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", @Placeholder = "Remark", @rows = "5", @cols = "10" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        @if (Model.Pk_LeaveTypeId == null)
+                                        {
+                                            <input type="submit" class="btn btn-success" id="btnSave" onclick="return validateform();" name="btnSave" value="Save" />
+                                        }
+                                        else
+                                        {
+
+                                            <input type="submit" class="btn btn-success" onclick="return validateform();" id="btnUpdate" name="btnUpdate" value="Update" />
+                                        }
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<script>
+    function validateform() {
+        $(".errortext").removeClass("errortext");
+        if ($('#LeaveType').val() == '') {
+            $("#LeaveType").addClass('errortext');
+            $('#LeaveType').focus();
+            return false;
+        }
+
+        if ($('#LeaveLimit').val() == '') {
+            $("#LeaveLimit").addClass('errortext');
+            $('#LeaveLimit').focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

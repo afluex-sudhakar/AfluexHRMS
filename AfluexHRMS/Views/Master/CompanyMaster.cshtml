@@ -1,0 +1,224 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "CompanyMaster";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("CompanyMaster", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> / Master / Company Master</h5>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="/Master/CompanyList" class="btn btn-success rounded-pill">Go to List</a>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card card_height_100 mb_30">
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="m-0">Company Master</h3>
+                                    <p style="color: #ff0000">
+                                        @TempData["Company"]
+                                    </p>
+                                    <p style="color: red">
+                                        @TempData["ErrCompany"]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="white_card_body">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Company Name <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", @Placeholder = "Company Name" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label"><h5>Contact <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", @Placeholder = "Contact  ", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="inputPassword4"><h5>Address <span class="text-danger">*</span></h5></label>
+                                        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @Placeholder = "Address" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Pincode <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.PinCode, new { @class = "form-control", @Placeholder = "Pincode  ", @onchange = "return getStateCity();", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "6" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputPassword4"><h5>State <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", @Placeholder = "State " })
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>City <span class="text-danger">*</span></h5></label>
+                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", @Placeholder = "City" })
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputPassword4"><h5>Website </h5></label>
+                                        @Html.TextBoxFor(m => m.Website, new { @class = "form-control", @Placeholder = "Website" })
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label" for="inputEmail4"><h5>Email</h5></label>
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email" })
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        @if (Model.CompanyID == null)
+                                        {
+                                            <input type="submit" class="btn btn-success" name="Save" value="Save" onclick="return validateform();" />
+                                        }
+                                        else
+                                        {
+                                            @Html.HiddenFor(m => m.CompanyID, new { @Value = @Model.CompanyID })
+                                            <input type="submit" class="btn btn-success" name="Update" value="Update" onclick="return validateform();" />
+                                        }
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+       
+}
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>
+
+<script>
+
+function validateform() {
+    $(".errortext").removeClass("errortext");
+
+    if ($('#CompanyName').val() == '') {
+        $("#CompanyName").addClass('errortext');
+        $('#CompanyName').focus();
+        //   alert("Please Select Branch .")
+        return false;
+    }
+    if ($('#Contact').val() == '') {
+        $("#Contact").addClass('errortext');
+        $('#Contact').focus();
+        $('#Contact').val('');
+        //   alert("Please Fill Sponsor ID .")
+        return false;
+    }
+    if ($('#Address').val() == '') {
+        $("#Address").addClass('errortext');
+        $('#Address').focus();
+        //   alert("Please Select Designation .")
+        return false;
+    }
+    if ($('#PinCode').val() == '') {
+        $("#PinCode").addClass('errortext');
+        $('#PinCode').focus();
+        //  alert("Please Fill First Name .")
+        return false;
+    }
+    return true;
+}
+
+
+function getStateCity() {
+    debugger
+    var pincode = $('#PinCode').val();
+    $.ajax({
+        url: '/Master/GetStateCity', type: 'post', dataType: 'json',
+        data: { 'Pincode': pincode },
+        success: function (data) {
+            if (data.Result == "yes") {
+                $("#State").val(data.State);
+                $("#City").val(data.City);
+                $("#State").removeClass('errortext');
+                $("#City").removeClass('errortext');
+                $("#Pincode").removeClass('errortext');
+            }
+            else if (data.Result == "no") {
+                $("#State").val('');
+                $("#City").val('');
+                $("#State").addClass('errortext');
+                $("#City").addClass('errortext');
+                $("#Pincode").addClass('errortext');
+                $('#Pincode').focus();
+                $('#Pincode').val('');
+                alert("Enter Valid Pin Code")
+            }
+        }
+
+    });
+}
+
+
+function isNumberOrDecimal(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57))
+        return false;
+
+    return true;
+}
+
+function onlyAlphabets(e, t) {
+    try {
+        if (window.event) {
+            var charCode = window.event.keyCode;
+        }
+        else if (e) {
+            var charCode = e.which;
+        }
+        else { return true; }
+        if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+            return true;
+        else
+            return false;
+    }
+    catch (err) {
+        alert(err.Description);
+    }
+}
+
+</script>

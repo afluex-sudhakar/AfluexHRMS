@@ -1,0 +1,45 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "ConfirmationEmployeeBasicDetails";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("ConfirmationEmployeeBasicDetails", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_card1 card_height_100 mb_30">
+                        <div class="white_card_body1">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="container text-center">
+                                        <img src="img/bak_hovers/sad.png" alt>
+                                        <div class="error_heading  text-center">
+                                            <h3 class="headline font-danger theme_color_6">
+                                                <img src="~/assets/img/Success.gif" height="200"/>
+                                                <h1 style="color:#68d71c">Successfully</h1>
+                                            </h3>
+                                        </div><br/>
+                                        <div class="col-md-8 offset-md-2 text-center">
+                                            <h4>Details are given below -</h4>
+                                            <h4>
+                                             Employee Code = @Session["EmpCode"] , LoginId = @Session["LoginId"] <br /> Password = @Session["Password"];
+                                            </h4>
+                                        </div>
+                                        <div class="error_btn  text-center mt-3">
+                                            <a class="btn btn-info" href="/Master/EmployeeBasicDetails">Back</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

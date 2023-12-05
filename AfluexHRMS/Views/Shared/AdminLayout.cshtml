@@ -1,0 +1,276 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+    <link rel="icon" href="~/assets/img/Mini_logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="~/assets/css/bootstrap1.min.css" />
+    <link rel="stylesheet" href="~/assets/vendors/themefy_icon/themify-icons.css" />
+    <link rel="stylesheet" href="~/assets/vendors/niceselect/css/nice-select.css" />
+    <link rel="stylesheet" href="~/assets/vendors/owl_carousel/css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/assets/vendors/gijgo/gijgo.min.css" />
+    <link rel="stylesheet" href="~/assets/vendors/font_awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/vendors/tagsinput/tagsinput.css" />
+    <link rel="stylesheet" href="~/assets/vendors/datepicker/date-picker.css" />
+    <link rel="stylesheet" href="~/assets/vendors/vectormap-home/vectormap-2.0.2.css" />
+    <link rel="stylesheet" href="~/assets/vendors/scroll/scrollable.css" />
+    <link rel="stylesheet" href="~/assets/vendors/datatable/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/assets/vendors/datatable/css/responsive.dataTables.min.css" />
+    <link rel="stylesheet" href="~/assets/vendors/datatable/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/assets/vendors/text_editor/summernote-bs4.css" />
+    <link rel="stylesheet" href="~/assets/vendors/morris/morris.css">
+    <link rel="stylesheet" href="~/assets/vendors/material_icon/material-icons.css" />
+    <link rel="stylesheet" href="~/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="~/assets/css/style1.css" />
+    <link href="~/assets/css/colors/default.css" rel="stylesheet" id="colorSkinCSS" />
+</head>
+<body class="crm_body_bg">
+
+    <nav class="sidebar">
+        <div class="logo d-flex justify-content-between">
+            <a class="large_logo" href="/Admin/AdminDashBoard"><img src="~/assets/img/logo.png" alt></a>
+            <a class="small_logo" href="/Admin/AdminDashBoard"><img src="~/assets/img/Mini_logo.jpeg" height="30" alt></a>
+            <div class="sidebar_close_icon d-lg-none">
+                <i class="ti-close"></i>
+            </div>
+        </div>
+        <ul id="sidebar_menu">
+            <li>
+                <a href="/Admin/AdminDashBoard" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/dashboard.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+            </li>
+           
+            @*<h4 class="menu-text"><span>CUSTOM</span> <i class="fas fa-ellipsis-h"></i> </h4>*@
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/9.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Masters</span>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href="/Master/CompanyMaster">Company</a></li>
+                    <li><a href="/Master/DepartmentMaster">Department</a></li>
+                    <li><a href="/Master/DesignationMaster">Designation</a></li>
+                    <li><a href="/Master/SkillCategory">Skill</a></li>
+                    <li><a href="/Master/SalaryHead">Salary Head</a></li>
+                    <li><a href="/Master/LeaveType">Leave Type</a></li>
+                </ul>
+            </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/2.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Employee</span>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href="/Master/EmployeeBasicDetails">Basic Details</a></li>
+                    <li><a href="/Master/EmployeeSalary">Salary Details</a></li>
+                    <li><a href="/Master/EmployeeLeave">Leave Details</a></li>
+                    <li><a href="/Master/EditEmployeeBasicInfo">Update Details</a></li>
+                </ul>
+            </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/6.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Leave Management</span>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href="/EmployeeLeave/ListForLeaveApproval">Leave Approvel</a></li>
+                    <li><a href="/Master/HolidayMaster">Holiday Posting</a></li>
+                </ul>
+            </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/5.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Attendance</span>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href="/EmployeeAttendance/QuickAttendancePosting">Quick Attendance</a></li>
+                    <li><a href="/EmployeeAttendance/DailyAttendance">Daily Attendance</a></li>
+                </ul>
+            </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/7.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Payroll</span>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href="/Payroll/SalaryPosting">Salary Posting</a></li>
+                    <li><a href="/Payroll/AdvanceSalaryPayment">Advance Salary Payment</a></li>
+                    <li><a href="/Payroll/SalaryPayment">Salary Payment</a></li>
+                </ul>
+            </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/16.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Reports</span>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href="/EmployeeAttendance/DateWiseAttendanceReport">Date wise Attendance</a></li>
+                    <li><a href="/EmployeeAttendance/AttendanceSummaryReport">Attendance Summary</a></li>
+                    <li><a href="/AdminReports/EmployeeReport">Employee List</a></li>
+                    <li><a href="/AdminReports/SalaryPaymentReport">Salary Payment</a></li>
+                    <li><a href="/EmployeeLeave/LeaveApprovalReport">Leave Approvel Report</a></li>
+                </ul>
+            </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="nav_icon_small">
+                        <img src="~/assets/img/menu-icon/15.svg" alt>
+                    </div>
+                    <div class="nav_title">
+                        <span>Setting</span>
+                    </div>
+                </a>
+                <ul>
+                    <li><a href="/Home/Login">Logout</a></li>
+                </ul>
+            </li>
+           
+        </ul>
+    </nav>
+
+
+    <div class="container-fluid g-0">
+        <div class="row">
+            <div class="col-lg-12 p-0 ">
+                <div class="header_iner d-flex justify-content-between align-items-center">
+                    <div class="sidebar_icon d-lg-none">
+                        <i class="ti-menu"></i>
+                    </div>
+                    <label class="form-label switch_toggle d-none d-lg-block" for="checkbox">
+                        <input type="checkbox" id="checkbox">
+                        <div class="slider round open_miniSide"></div>
+                    </label>
+                    <div class="header_right d-flex justify-content-between align-items-center">
+                        <div class="profile_info">
+                            <img src="~/assets/img/User.jpg" alt="#" />
+                            <div class="profile_info_iner">
+                                <div class="profile_author_name">
+                                    @*<p>@Session["UserType"] </p>
+                                    <h5>@Session["Name"]</h5>*@
+                                    <B style="color:white">Welcome: @Session["Name"] (@Session["LoginID"])</B>
+                                </div>
+                                <div class="profile_info_details">
+                                    @*<a href="#">My Profile </a>
+                                    <a href="#">Settings</a>*@
+                                    <a href="/Home/Login">Log Out </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="main_content dashboard_part large_header_bg">
+        @RenderBody()
+
+        <div class="footer_part">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer_iner text-center">
+                            <p>
+                                2023 © Designed by <a href="#!">afluex multiservices</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+
+        
+    @* go to top *@
+    <div id="back-top" style="display: none;">
+        <a title="Go to Top" href="#">
+            <i class="ti-angle-up"></i>
+        </a>
+    </div>
+
+    <script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+    <script src="~/assets/js/popper1.min.js"></script>
+    <script src="~/assets/js/bootstrap1.min.js"></script>
+    <script src="~/assets/js/metisMenu.js"></script>
+    <script src="~/assets/vendors/count_up/jquery.waypoints.min.js"></script>
+    <script src="~/assets/vendors/chartlist/Chart.min.js"></script>
+    <script src="~/assets/vendors/count_up/jquery.counterup.min.js"></script>
+    <script src="~/assets/vendors/niceselect/js/jquery.nice-select.min.js"></script>
+    <script src="~/assets/vendors/owl_carousel/js/owl.carousel.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/dataTables.responsive.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/buttons.flash.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/jszip.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/pdfmake.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/vfs_fonts.js"></script>
+    <script src="~/assets/vendors/datatable/js/buttons.html5.min.js"></script>
+    <script src="~/assets/vendors/datatable/js/buttons.print.min.js"></script>
+    <script src="~/assets/vendors/datepicker/datepicker.js"></script>
+    <script src="~/assets/vendors/datepicker/datepicker.en.js"></script>
+    <script src="~/assets/vendors/datepicker/datepicker.custom.js"></script>
+    <script src="~/assets/vendors/chartjs/chartjs_init.js"></script>
+    <script src="~/assets/js/chart.min.js"></script>
+    <script src="~/assets/vendors/chartjs/roundedBar.min.js"></script>
+    <script src="~/assets/vendors/progressbar/jquery.barfiller.js"></script>
+    <script src="~/assets/vendors/tagsinput/tagsinput.js"></script>
+    <script src="~/assets/vendors/text_editor/summernote-bs4.js"></script>
+    <script src="~/assets/vendors/am_chart/amcharts.js"></script>
+    <script src="~/assets/vendors/scroll/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/vendors/scroll/scrollable-custom.js"></script>
+    <script src="~/assets/vendors/vectormap-home/vectormap-2.0.2.min.js"></script>
+    <script src="~/assets/vendors/vectormap-home/vectormap-world-mill-en.js"></script>
+    <script src="~/assets/vendors/apex_chart/apex-chart2.js"></script>
+    <script src="~/assets/vendors/apex_chart/apex_dashboard.js"></script>
+    <script src="~/assets/vendors/echart/echarts.min.js"></script>
+    <script src="~/assets/vendors/chart_am/core.js"></script>
+    <script src="~/assets/vendors/chart_am/charts.js"></script>
+    <script src="~/assets/vendors/chart_am/animated.js"></script>
+    <script src="~/assets/vendors/chart_am/kelly.js"></script>
+    <script src="~/assets/vendors/chart_am/chart-custom.js"></script>
+    <script src="~/assets/js/dashboard_init.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+</body>
+</html>
