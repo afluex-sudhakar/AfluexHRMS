@@ -12,14 +12,11 @@ namespace AfluexHRMS.Models
     {
     }
 
-
-
     public class Response
     {
         public string Status { get; set; }
         public string Message { get; set; }
     }
-
 
     public class LoginRequest
     {
@@ -44,7 +41,6 @@ namespace AfluexHRMS.Models
         public string UserType { get; set; }
         public string EmployeeName { get; set; }
         public string ProfilePic { get; set; }
-
     }
     
     public class LeaveApplicationRequest
@@ -62,19 +58,16 @@ namespace AfluexHRMS.Models
                             {
                      new SqlParameter("@Pk_LeaveTypeId",LeaveID),
                       new SqlParameter("@FK_EmpID",EmployeeID),
-
                             };
             DataSet ds = DBHelper.ExecuteQuery("GetLeaveTypeForEmployee", para);
             return ds;
         }
-
 
         public DataSet LeaveTypeListOfEmployee()
         {
             SqlParameter[] para =
                             {
                      new SqlParameter("@FK_EmpID",EmployeeID),
-
                             };
             DataSet ds = DBHelper.ExecuteQuery("GetLeaveOfEmployee", para);
             return ds;
@@ -88,7 +81,6 @@ namespace AfluexHRMS.Models
         public string LeaveLimit { get; set; }
         public string RemainingLeave { get; set; }
     }
-
 
     public class SaveEmployeeLeaveRequest
     {
@@ -116,8 +108,6 @@ namespace AfluexHRMS.Models
         }
     }
 
-
-
     public class LeaveReportForEmployeeRequest
     {
         public string Status { get; set; }
@@ -137,7 +127,6 @@ namespace AfluexHRMS.Models
                             {
                      new SqlParameter("@Pk_LeaveTypeId",LeaveID),
                       new SqlParameter("@FK_EmpID",EmployeeID),
-
                             };
             DataSet ds = DBHelper.ExecuteQuery("GetLeaveTypeForEmployee", para);
             return ds;
@@ -175,8 +164,6 @@ namespace AfluexHRMS.Models
         public string Name { get; set; }
     }
 
-
-
     public class LeaveCountRequest
     {
         public string Status { get; set; }
@@ -189,7 +176,6 @@ namespace AfluexHRMS.Models
             SqlParameter[] para =
                             {
                            new SqlParameter("@FK_EmpID",EmployeeID),
-
                             };
             DataSet ds = DBHelper.ExecuteQuery("GetEmployeeLeaveReport", para);
             return ds;
@@ -206,8 +192,6 @@ namespace AfluexHRMS.Models
         public string RemainingLeave { get; set; }
     }
 
-
-
     public class SalaryPaymentReportByRequest
     {
         public string Status { get; set; }
@@ -218,7 +202,6 @@ namespace AfluexHRMS.Models
         public string ToDate { get; set; }
         public string PaymentMode { get; set; }
         public List<SalaryPaymentReportByResponse> lstSalaryPaymentRepor { get; set; }
-
 
         public DataSet SalaryPaymentReportBy()
         {
@@ -247,13 +230,6 @@ namespace AfluexHRMS.Models
         public string PaymentMode { get; set; }
     }
 
-
-
-
-
-
-
-
     public class DateWiseAttendanceReportRequest
     {
         public string Status { get; set; }
@@ -281,7 +257,6 @@ namespace AfluexHRMS.Models
                             };
             DataSet ds = DBHelper.ExecuteQuery("DateWiseAttendanceReport", para);
             return ds;
-
         }
     }
 
@@ -294,7 +269,6 @@ namespace AfluexHRMS.Models
         public string Attendance { get; set; }
         public string AttendanceDate { get; set; }
     }
-
 
     public class MessageRequest
     {
@@ -317,11 +291,7 @@ namespace AfluexHRMS.Models
             return ds;
         }
     }
-
-
-
-    
-    
+ 
     public class MessagesListRequest
     {
         public string Status { get; set; }
@@ -349,16 +319,6 @@ namespace AfluexHRMS.Models
         public string MessageDate { get; set; }
         public string MessageStatus { get; set; }          
     }
-
-
-
-
-
-  
-
-
-
-
 
 
 }
