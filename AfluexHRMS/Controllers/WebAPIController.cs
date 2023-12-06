@@ -34,7 +34,6 @@ namespace AfluexHRMS.Controllers
                         Response.UserType = ds.Tables[0].Rows[0]["UserType"].ToString();
                         Response.EmployeeName = ds.Tables[0].Rows[0]["Name"].ToString();
                         Response.ProfilePic = ds.Tables[0].Rows[0]["ProfilePic"].ToString();
-
                         Response.Status = "1";
                         Response.Message = "Login Successfully";
                     }
@@ -53,7 +52,6 @@ namespace AfluexHRMS.Controllers
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
 
-
         [HttpPost]
         public ActionResult LeaveApplication(LeaveApplicationRequest model)
         {
@@ -65,7 +63,6 @@ namespace AfluexHRMS.Controllers
             DataSet ds = model.LeaveTypeListForEmp();
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
-
                 model.Status = "1";
                 model.Message = "Record Found";
 
@@ -147,7 +144,6 @@ namespace AfluexHRMS.Controllers
             }
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
-
 
         [HttpPost]
         public ActionResult LeaveReportForEmployeeBy(LeaveReportForEmployeeRequest model)
@@ -249,8 +245,6 @@ namespace AfluexHRMS.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-
-
         [HttpPost]
         public ActionResult SalaryPaymentReport(SalaryPaymentReportByRequest model)
         {
@@ -287,8 +281,6 @@ namespace AfluexHRMS.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-
-
         [HttpPost]
         public ActionResult DateWiseAttendanceReport(DateWiseAttendanceReportRequest model)
         {
@@ -320,7 +312,6 @@ namespace AfluexHRMS.Controllers
                 model.Message = "Record Not Found";
             }
 
-
             #region HAlfFullDay
             List<SelectListItem> AttendType = Common.AttendanceStatus();
             model.AttendType = AttendType;
@@ -333,8 +324,6 @@ namespace AfluexHRMS.Controllers
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-
 
         [HttpPost]
         public ActionResult Message(MessageRequest model)
@@ -369,8 +358,6 @@ namespace AfluexHRMS.Controllers
             }
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
-
-
 
 
         public ActionResult MessagesList(MessagesListRequest model)
@@ -409,16 +396,6 @@ namespace AfluexHRMS.Controllers
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-
-
-
-
-
-
 
 
     }
