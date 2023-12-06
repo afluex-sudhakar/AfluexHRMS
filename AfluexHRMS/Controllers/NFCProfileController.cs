@@ -15,6 +15,7 @@ namespace AfluexHRMS.Controllers
         {
             return View();
         }
+        
 
         public ActionResult NFCDevice()
         {
@@ -57,9 +58,18 @@ namespace AfluexHRMS.Controllers
             }
             catch (Exception ex)
             {
-
+            
             }
             return View(model);
         }
     }
 }
+
+
+
+
+
+
+
+
+
