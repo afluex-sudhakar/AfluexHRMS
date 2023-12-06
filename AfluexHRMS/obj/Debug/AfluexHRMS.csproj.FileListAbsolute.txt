@@ -51,7 +51,6 @@ F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.xml
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
-F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
 E:\Repository\AfluexHRMS\AfluexHRMS\bin\ApplicationInsights.config
 E:\Repository\AfluexHRMS\AfluexHRMS\bin\roslyn\csc.exe
 E:\Repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll

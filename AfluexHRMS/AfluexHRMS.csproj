@@ -330,6 +330,14 @@
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +351,7 @@
     <Compile Include="Controllers\EmployeeLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Controllers\NFCProfileController.cs" />
     <Compile Include="Controllers\PayrollController.cs" />
     <Compile Include="Controllers\UserBaseController.cs" />
     <Compile Include="Controllers\WebAPIController.cs" />
@@ -435,6 +444,8 @@
     <Content Include="Views\EmployeeLogin\DateWiseAttendanceReport.cshtml" />
     <Content Include="Views\EmployeeLogin\Message.cshtml" />
     <None Include="Properties\PublishProfiles\Afluexhrms.pubxml" />
+    <Content Include="Views\NFCProfile\NFCDevice.cshtml" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
