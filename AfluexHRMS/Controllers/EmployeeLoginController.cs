@@ -17,6 +17,7 @@ namespace AfluexHRMS.Controllers
             return View();
         }
 
+        #region Employee DashBoard
         public ActionResult EmployeeDashboard()
         {
             return View();
@@ -54,7 +55,7 @@ namespace AfluexHRMS.Controllers
             return View(model);
         }
 
-
+        #endregion
 
         #region LeaveApplication
         public ActionResult LeaveApplication(EmployeeLogin model)
