@@ -40,6 +40,11 @@ namespace AfluexHRMS.Models
         public string ReplyPerson { get; internal set; }
         public string ReplyDate { get; internal set; }
 
+        public string AddedBy { get; set; }
+        public string emailto { get; set; }
+        public string subject { get; set; }
+        
+
         public DataSet LeaveTypeListForEmp()
         {
             SqlParameter[] para = {
@@ -120,6 +125,19 @@ namespace AfluexHRMS.Models
             SqlParameter[] para = { new SqlParameter("@PK_MessageID", MessageID),
             };
             DataSet ds = DBHelper.ExecuteQuery("GetMessageResponse", para);
+            return ds;
+        }
+        
+        public DataSet SendEmail()
+        {
+            SqlParameter[] para =
+            {
+                new SqlParameter("@AddedBy",AddedBy),
+                new SqlParameter("@EmailTo",emailto),
+                new SqlParameter("@Subject",subject),
+                new SqlParameter("@Message",Message)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("SaveEmail", para);
             return ds;
         }
     }

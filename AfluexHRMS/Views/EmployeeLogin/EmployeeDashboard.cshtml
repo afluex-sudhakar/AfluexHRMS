@@ -5,46 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="main_content_iner ">
-    <div class="container-fluid p-0 sm_padding_15px">
-        <div class="row">
-            <div class="col-12 col-lg-12 col-md-12">
-                <div class="dashboard_header white_card mb_50">
-                    <div class="white_card_body py-2">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="dashboard_header_title">
-                                    <h5 class="mb-0"> Employee Dashboard</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-12">
-                <div class="card_box box_shadow position-relative mb_30 bg-white">
-                    <div class="box_body p-4">
-                        <div class="box-body box-profile">
-
-
-                            <img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg" alt="User profile picture">
-
-                            @*<img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="@Model.ProfilePic" alt="User profile picture">*@
-
-
-                            @*<h3 class="profile-username text-center">@Model.EmployeeName (@Model.EmployeeCode)</h3>
-
-                            <p class="text-muted text-center">@Model.CompanyName</p>
-
-                            <p class="text-muted text-center">Designation :  @Model.DesignationName  </p>
-
-                            <p class="text-muted text-center">Department : @Model.DepartmentName  </p>*@
+@using (Html.BeginForm("EmployeeDashboard", "EmployeeLogin", FormMethod.Post, new { @id = "Profile", @enctype = "multipart/form-data", @autocomplete = "off" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="profile-user-info">
-                                        
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0"> Employee Dashboard</h5>
                                     </div>
                                 </div>
                             </div>
@@ -52,53 +24,88 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-12">
-                <div class="card_box box_shadow position-relative mb_30 bg-white">
-                    <div class="box_body p-4">
-                        <div class="white_card mb_30 ">                          
-                            <div class="white_card_body p-0">
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade active show" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="white_card card_height_100 mb_30">
-                                                        <div class="white_card_header py-2">
-                                                            <div class="box_header m-0">
-                                                                <div class="main-title">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-12">
+                    <div class="card_box box_shadow position-relative mb_30 bg-white">
+                        <div class="box_body p-4">
+                            <div class="box-body box-profile">
+
+
+                                <img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg" alt="User profile picture">
+
+                                @*<img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="@Model.ProfilePic" alt="User profile picture">*@
+
+
+                                @*<h3 class="profile-username text-center">@Model.EmployeeName (@Model.EmployeeCode)</h3>
+
+                                <p class="text-muted text-center">@Model.CompanyName</p>
+
+                                <p class="text-muted text-center">Designation :  @Model.DesignationName  </p>
+
+                                <p class="text-muted text-center">Department : @Model.DepartmentName  </p>*@
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="profile-user-info">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-12">
+                    <div class="card_box box_shadow position-relative mb_30 bg-white">
+                        <div class="box_body p-4">
+                            <div class="white_card mb_30 ">                          
+                                <div class="white_card_body p-0">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade active show" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
+                                            <div class="builder_select">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="white_card card_height_100 mb_30">
+                                                            <div class="white_card_header py-2">
+                                                                <div class="box_header m-0">
+                                                                    <div class="main-title">
                                                                    
-                                                                    <h3 class="m-0"><i class="fa fa-envelope"></i> Quick Email</h3>
+                                                                        <h3 class="m-0"><i class="fa fa-envelope"></i> Quick Email</h3>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <p style="color:#017801;">@TempData["SendEmailSuccess"]</p>
+                                                                    <p style="color:red;">@TempData["SendEmailError"]</p>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="white_card_body">
-                                                            <div class="card-body">
+                                                            <div class="white_card_body">
+                                                                <div class="card-body">
 
-                                                                <div class="row mb-3">
-                                                                    <div class="col-md-12">
-                                                                        @*<label class="form-label" for="inputEmail4"><h5>Salary Date<span class="text-danger">*</span></h5></label>*@
-                                                                        @*@Html.TextBoxFor(m => m.emailto, new { @class = "form-control", @Placeholder = "Salary Date", @onchange = "hidedata();" })*@
-                                                                        <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-12">
+                                                                            @*<label class="form-label" for="inputEmail4"><h5>Salary Date<span class="text-danger">*</span></h5></label>*@
+                                                                            @*@Html.TextBoxFor(m => m.emailto, new { @class = "form-control", @Placeholder = "Salary Date", @onchange = "hidedata();" })*@
+                                                                            <input type="email" class="form-control" id="emailto" name="emailto" placeholder="Email to:">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="row mb-3">
-                                                                    <div class="col-md-12">
-                                                                        @*<label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>*@
-                                                                        @*@Html.TextBoxFor(m => m.subject, new { @class = "form-control", @Placeholder = "Employee Code" })*@
-                                                                        <input type="text" class="form-control" name="subject" placeholder="Subject">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-12">
+                                                                            @*<label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>*@
+                                                                            @*@Html.TextBoxFor(m => m.subject, new { @class = "form-control", @Placeholder = "Employee Code" })*@
+                                                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="row mb-3">
-                                                                    <div class="col-md-12">
-                                                                        <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #b6b6b6; padding: 10px;"></textarea>
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-12">
+                                                                            <textarea class="textarea" id="Message" name="Message" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #b6b6b6; padding: 10px;"></textarea>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="row mb-3">
-                                                                    <div class="col-md-3 mt-4">
-                                                                        <button type="button" class="pull-right btn btn-success" id="sendEmail"> Send <i class="fa fa-paper-plane-o"></i></button>
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-3 mt-3">
+                                                                            <input type="submit" value="Send" class="pull-right btn btn-success" id="sendEmail" name="sendEmail" onclick="return ValidateForm()" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -116,5 +123,36 @@
             </div>
         </div>
     </div>
-</div>
+}
 
+<script>
+    function ValidateForm() {
+        debugger;
+
+        $('#divload').css({ 'display': 'none' });
+        $(".errortext").removeClass('errortext');
+
+        if ($("#emailto").val() == "") {
+            $("#emailto").addClass('errortext');
+            $("#emailto").focus();
+            return false;
+        }
+        if ($("#subject").val() == "") {
+            $("#subject").addClass('errortext');
+            $("#subject").focus();
+            return false;
+        }
+        if ($("#Message").val() == "") {
+            $("#Message").addClass('errortext');
+            $("#Message").focus();
+            return false;
+        }
+    }
+</script>
+
+<style>
+    .errortext{
+        border:1px solid red !important;
+        background-color:#fbc3c3;
+    }
+</style>
