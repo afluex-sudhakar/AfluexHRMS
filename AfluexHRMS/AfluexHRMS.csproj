@@ -455,6 +455,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="EmployeePunching\" />
     <Folder Include="images\ProfilePic\" />
     <Folder Include="Views\WebAPI\" />
   </ItemGroup>
