@@ -68,11 +68,11 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label class="form-label" for="inputEmail4"><h5>Head Nature <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.HeadNature, new SelectList(ViewBag.ddlHeadNature, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.HeadNature, new SelectList(ViewBag.ddlHeadNature, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label" for="inputPassword4"><h5>Amount And Persent<span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.AmountPersent, new SelectList(ViewBag.ddlAmtPer, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.AmountPersent, new SelectList(ViewBag.ddlAmtPer, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
                                 </div>
 
