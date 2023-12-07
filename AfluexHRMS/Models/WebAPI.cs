@@ -321,4 +321,31 @@ namespace AfluexHRMS.Models
     }
 
 
+
+    public class EmployeeDashboardRequest
+    {
+        public string EmployeeID { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+        public string FileUpload { get; set; }
+        public string AddedBy { get; set; }
+
+        public DataSet SaveQuickEmail()
+        {
+            SqlParameter[] para ={
+                            new SqlParameter("@Email",Email),
+                                new SqlParameter("@Subject",Subject),
+                            new SqlParameter("@Message",Message),
+                                new SqlParameter("@FileUpload",FileUpload),
+                               new SqlParameter("@AddedBy",AddedBy)
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("SaveQuickEmail", para);
+            return ds;
+        }
+
+    }
+    
+
+
 }

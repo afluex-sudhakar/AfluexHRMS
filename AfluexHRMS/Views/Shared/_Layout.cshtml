@@ -141,7 +141,7 @@
                         </label>
                         <div class="header_right d-flex justify-content-between align-items-center">
                             <div class="profile_info">
-                                <img src="~/assets/img/User.jpg" alt="#"/>
+                                <img src="@Session["ProfilePic"]" alt="#"/>
                                 <div class="profile_info_iner">
                                     <div class="profile_author_name">
                                         <B style="color:white">Hello: @Session["Name"] (@Session["LoginID"])</B>

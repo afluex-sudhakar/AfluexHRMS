@@ -398,5 +398,44 @@ namespace AfluexHRMS.Controllers
         }
 
 
+
+        [HttpPost]
+        public ActionResult EmployeeDashboard(EmployeeDashboardRequest model)
+        {
+            Response Response = new Response();
+            try
+            {
+                DataSet ds = model.SaveQuickEmail();
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["MSG"].ToString() == "1")
+                    {
+                        Response.Status = "1";
+                        Response.Message = "Your Message has been submitted successfully. ";
+                    }
+                    else if (ds.Tables[0].Rows[0]["MSG"].ToString() == "0")
+                    {
+                        Response.Status = "0";
+                        Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+                else
+                {
+                    Response.Status = "0";
+                    Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Status = "0";
+                Response.Message = ex.Message;
+            }
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
     }
 }
