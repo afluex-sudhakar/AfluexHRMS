@@ -151,6 +151,13 @@ namespace AfluexHRMS.Models
         }
 
 
+        public static string EnryptString(string strEncrypted)
+        {
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(strEncrypted);
+            string encrypted = Convert.ToBase64String(b);
+            return encrypted;
+        }
+
 
         public DataSet GetSiteNameFromCrm()
         {
