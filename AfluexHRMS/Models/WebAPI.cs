@@ -162,6 +162,7 @@ namespace AfluexHRMS.Models
         public string EmployeeName { get; set; }
         public string LeaveName { get; set; }
         public string Name { get; set; }
+        public string RequestRemark { get; set; }
     }
 
     public class LeaveCountRequest
@@ -336,6 +337,160 @@ namespace AfluexHRMS.Models
 
 
     }
+
+
+
+    public class EmployeeDashboardRequest
+    {
+        public string EmployeeID { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+        public string FileUpload { get; set; }
+        public string AddedBy { get; set; }
+
+        public DataSet SaveQuickEmail()
+        {
+            SqlParameter[] para ={
+                            new SqlParameter("@Email",Email),
+                                new SqlParameter("@Subject",Subject),
+                            new SqlParameter("@Message",Message),
+                                new SqlParameter("@FileUpload",FileUpload),
+                               new SqlParameter("@AddedBy",AddedBy)
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("SaveQuickEmail", para);
+            return ds;
+        }
+
+    }
+
+
+    public class SaveEmployeeAttendanceRequest
+    {
+        public string InTime { get; set; }
+        public string OutTime { get; set; }
+        public string AttendanceDate { get; set; }
+        public string EmployeeID { get; set; }
+        public string AddedBy { get; set; }
+        public string EmployeePhoto { get; set; }
+        public string LatiTude { get; set; }
+        public string LongiTude { get; set; }
+        public string Activity { get; set; }
+
+        public DataSet SaveEmployeeAttendance()
+        {
+            SqlParameter[] para ={
+                                       //new SqlParameter ("@Intime",InTime),
+                                       //new SqlParameter ("@OutTime",OutTime),
+                                       //new SqlParameter ("@AttendanceDate",AttendanceDate),
+                                       new SqlParameter ("@FK_EmpID",EmployeeID),
+                                       new SqlParameter ("@AddedBy",AddedBy),
+                                       new SqlParameter ("@UploadFile",EmployeePhoto),
+                                       new SqlParameter ("@LatiTude",LatiTude),
+                                       new SqlParameter ("@LongiTude",LongiTude)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("PunchingEmployee", para);
+            return ds;
+        }
+    }
+
+
+
+    public class SaveEmployeeAttendanceResponse
+    {
+        public string status { get; set; }
+        public string Message { get; set; }
+        public string PunchInDate { get; set; }
+        public string PunchInTime { get; set; }
+
+    }
+
+
+
+    public class SaveEmployeeAttendancePunchoutRequest
+    {
+
+        public string OutTime { get; set; }
+        public string AttendanceDate { get; set; }
+        public string EmployeeID { get; set; }
+        public string OutLongitude { get; set; }
+        public string OutLatiTude { get; set; }
+
+        public DataSet SaveEmployeePunchoutAttendance()
+        {
+            SqlParameter[] para ={
+                                       //new SqlParameter ("@OutTime",OutTime),
+                                       //new SqlParameter ("@AttendanceDate",AttendanceDate),
+                                       new SqlParameter ("@FK_EmpID",EmployeeID),
+                                       new SqlParameter ("@OutLongitude",OutLongitude),
+                                       new SqlParameter ("@OutLatiTude",OutLatiTude)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("PunchoutEmployee", para);
+            return ds;
+        }
+    }
+
+
+
+    public class SaveEmployeeAttendancePunchoutResponse
+    {
+        public string status { get; set; }
+        public string Message { get; set; }
+        public string PunchOutDate { get; set; }
+        public string PunchOutTime { get; set; }
+
+    }
+
+
+
+
+
+    public class GetAttenndaceListReqst
+    {
+        public string Status { get; set; }
+        public string Message { get; set; }
+        public string FK_EmpID { get; set; }
+        public string FromDate { get; set; }
+        public string ToDate { get; set; }
+      
+        public List<GetAttenndaceListRespons> listAttenndace { get; set; }
+
+        public DataSet GetAttenndaceList()
+        {
+            SqlParameter[] para ={
+                new SqlParameter("@FK_EmpID",FK_EmpID),
+                  new SqlParameter("@FromDate",FromDate),
+                    new SqlParameter("@ToDate",ToDate)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("GetAttenndaceList", para);
+            return ds;
+        }
+    }
+    public class GetAttenndaceListRespons
+    {
+        public string LoginID { get; set; }
+        public string Name { get; set; }
+        public string FatherName { get; set; }
+        public string DOB { get; set; }
+        public string Gender { get; set; }
+        public string MobileNo { get; set; }
+        public string EmailID { get; set; }
+        public string PerAddress { get; set; }
+        public string LocAddress { get; set; }
+        public string AttendanceDate { get; set; }
+        public string InTime { get; set; }
+        public string OutTime { get; set; }
+        public string UploadFile { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string PunchIn { get; set; }
+        public string PunchOut { get; set; }
+        public string OutLatitude { get; set; }
+        public string OutLongitude { get; set; }
+    }
+
+
+
 
 
 }

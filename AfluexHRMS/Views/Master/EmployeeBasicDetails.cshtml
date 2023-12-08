@@ -52,17 +52,17 @@
                                 <div class="row mb-3">
                                     <div class="col-md-3">
                                         <label class="form-label"><h5>Company <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
 
                                     <div class="col-md-3">
                                         <label class="form-label"><h5>Department <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control", @onchange = "return GetDesignation();" })
+                                        @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control form-select", @onchange = "return GetDesignation();" })
                                     </div>
 
                                     <div class="col-md-3">
                                         <label class="form-label"><h5>Designation <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
 
                                     <div class="col-md-3">
@@ -85,7 +85,7 @@
 
                                     <div class="col-md-3">
                                         <label class="form-label"><h5>Gender<span class="text-danger">*</span> </h5></label>
-                                        @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
 
                                     <div class="col-md-3">
@@ -342,7 +342,7 @@
                                 <div class="row mb-3">
                                     <h5>Certificate Submitted  </h5>
                                     <div class="col-md-3">
-                                        @Html.DropDownListFor(m => m.CertificateSubmitted, new SelectList(ViewBag.CertificateSubmitted, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.CertificateSubmitted, new SelectList(ViewBag.CertificateSubmitted, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
 
                                     <div class="col-md-3">

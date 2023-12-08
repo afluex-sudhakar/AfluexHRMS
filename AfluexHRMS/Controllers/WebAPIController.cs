@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -151,6 +152,8 @@ namespace AfluexHRMS.Controllers
             List<LeaveReportForEmployeeResponse> lst = new List<LeaveReportForEmployeeResponse>();
 
             model.LeaveID = model.LeaveID == "0" ? null : model.LeaveID;
+            model.EmployeeID = model.EmployeeID == "0" ? null : model.EmployeeID;
+            model.LeaveStatus = model.LeaveStatus == "" ? null : model.LeaveStatus;
             model.FromDate = string.IsNullOrEmpty(model.FromDate) ? null : Common.ConvertToSystemDate(model.FromDate, "dd/MM/yyyy");
             model.ToDate = string.IsNullOrEmpty(model.ToDate) ? null : Common.ConvertToSystemDate(model.ToDate, "dd/MM/yyyy");
             DataSet ds1 = model.LeaveList();
@@ -174,7 +177,7 @@ namespace AfluexHRMS.Controllers
                     obj.EmployeeName = r["EmployeeName"].ToString();
                     obj.LeaveName = r["LeaveType"].ToString();
                     obj.Name = r["ApprovedByName"].ToString();
-
+                    obj.RequestRemark = r["Remark"].ToString();
                     lst.Add(obj);
                 }
                 model.lstleavereports = lst;
@@ -396,6 +399,162 @@ namespace AfluexHRMS.Controllers
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+
+
+        [HttpPost]
+        public ActionResult EmployeeDashboard(EmployeeDashboardRequest model)
+        {
+            Response Response = new Response();
+            try
+            {
+                DataSet ds = model.SaveQuickEmail();
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["MSG"].ToString() == "1")
+                    {
+                        Response.Status = "1";
+                        Response.Message = "Your Message has been submitted successfully. ";
+                    }
+                    else if (ds.Tables[0].Rows[0]["MSG"].ToString() == "0")
+                    {
+                        Response.Status = "0";
+                        Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+                else
+                {
+                    Response.Status = "0";
+                    Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Status = "0";
+                Response.Message = ex.Message;
+            }
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult SaveAttendance(SaveEmployeeAttendanceRequest Request, HttpPostedFileBase TeacherPhoto)
+        {
+            SaveEmployeeAttendanceResponse Response = new SaveEmployeeAttendanceResponse();
+            //Request.AttendanceDate = string.IsNullOrEmpty(Request.AttendanceDate) ? null : Common.ConvertToSystemDate(Request.AttendanceDate, "dd/MM/yyyy");
+            try
+            {
+                if (TeacherPhoto != null)
+                {
+                    Request.EmployeePhoto = "/EmployeePunching/" + Guid.NewGuid() + Path.GetExtension(TeacherPhoto.FileName);
+                    TeacherPhoto.SaveAs(Path.Combine(Server.MapPath(Request.EmployeePhoto)));
+                }
+                DataSet ds = Request.SaveEmployeeAttendance();
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                    {
+                        Response.status = "0";
+                        Response.Message = "   Punching Successfully !";
+                        Response.PunchInDate = ds.Tables[0].Rows[0]["PunchInDate"].ToString();
+                        Response.PunchInTime = ds.Tables[0].Rows[0]["PunchInTime"].ToString();
+                    }
+                    else
+                    {
+                        Response.status = "1";
+                        Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.status = "1";
+                Response.Message = ex.Message;
+            }
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult SavePunchOutAttendance(SaveEmployeeAttendancePunchoutRequest Request)
+        {
+            SaveEmployeeAttendancePunchoutResponse Response = new SaveEmployeeAttendancePunchoutResponse();
+            Request.AttendanceDate = string.IsNullOrEmpty(Request.AttendanceDate) ? null : Common.ConvertToSystemDate(Request.AttendanceDate, "dd/MM/yyyy");
+            try
+            {
+                DataSet ds = Request.SaveEmployeePunchoutAttendance();
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                    {
+                        Response.status = "0";
+                        Response.Message = "   PunchOut Successfully !";
+                        Response.PunchOutDate = ds.Tables[0].Rows[0]["PunchOutDate"].ToString();
+                        Response.PunchOutTime = ds.Tables[0].Rows[0]["PunchOutTime"].ToString();
+
+                    }
+                    else
+                    {
+                        Response.status = "1";
+                        Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.status = "1";
+                Response.Message = ex.Message;
+            }
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult GetAttenndaceList(GetAttenndaceListReqst model)
+        {
+            List<GetAttenndaceListRespons> lst = new List<GetAttenndaceListRespons>();
+            model.FromDate = string.IsNullOrEmpty(model.FromDate) ? null : Common.ConvertToSystemDate(model.FromDate, "dd/MM/yyyy");
+            model.ToDate = string.IsNullOrEmpty(model.ToDate) ? null : Common.ConvertToSystemDate(model.ToDate, "dd/MM/yyyy");
+            DataSet ds0 = model.GetAttenndaceList();
+            if (ds0 != null && ds0.Tables.Count > 0 && ds0.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow r in ds0.Tables[0].Rows)
+                {
+                    GetAttenndaceListRespons obj = new GetAttenndaceListRespons();
+                    obj.LoginID = r["LoginID"].ToString();
+                    obj.Name = r["EmployeeName"].ToString();
+                    obj.FatherName = r["FatherName"].ToString();
+                    obj.DOB = r["DOB"].ToString();
+                    obj.Gender = r["Gender"].ToString();
+                    obj.MobileNo = r["MobileNo"].ToString();
+                    obj.EmailID = r["Email"].ToString();
+                    obj.PerAddress = r["PerAddress"].ToString();
+                    obj.LocAddress = r["LocAddress"].ToString();
+                    obj.AttendanceDate = r["AttendanceDate"].ToString();
+                    obj.InTime = r["InTime"].ToString();
+                    obj.OutTime = r["OutTime"].ToString();
+                    obj.UploadFile = r["UploadFile"].ToString();
+                    obj.Latitude = r["Latitude"].ToString();
+                    obj.Longitude = r["Longitude"].ToString();
+                    obj.PunchIn = r["PunchIn"].ToString();
+                    obj.PunchOut = r["PunchOut"].ToString();
+                    obj.OutLatitude = r["OutLatitude"].ToString();
+                    obj.OutLongitude = r["OutLongitude"].ToString();
+                    lst.Add(obj);
+                }
+                model.listAttenndace = lst;
+
+                model.Status = "0";
+                model.Message = "Record Found.";
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                model.Status = "1";
+                model.Message = "Record Not Found.";
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
 
 
     }

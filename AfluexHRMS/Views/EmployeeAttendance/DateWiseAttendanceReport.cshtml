@@ -68,12 +68,12 @@
 
                                     <div class="col-md-3">
                                         <label class="form-label" for="inputEmail4"><h5>IS Half Day </h5></label>
-                                        @Html.DropDownListFor(m => m.ISHalfDay, new SelectList(ViewBag.ISHalfFullDay, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.ISHalfDay, new SelectList(ViewBag.ISHalfFullDay, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
 
                                     <div class="col-md-3">
                                         <label class="form-label" for="inputEmail4"><h5>Attendance </h5></label>
-                                        @Html.DropDownListFor(m => m.Attendance, new SelectList(ViewBag.AttendType, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.Attendance, new SelectList(ViewBag.AttendType, "Value", "Text"), new { @class = "form-control form-select" })
                                     </div>
 
                                     <div class="col-md-3">
