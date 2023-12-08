@@ -11,6 +11,7 @@ namespace AfluexHRMS.Models
     {
         public string Password { get; set; }
         public string Loginid { get; set; }
+        public string Code { get; set; }
 
 
         public DataSet Login()
@@ -21,5 +22,12 @@ namespace AfluexHRMS.Models
             return ds;
         }
 
+
+        public DataSet GetNFCAllotmentStatus()
+        {
+            SqlParameter[] para = { new SqlParameter("@Code", Code) };
+            DataSet ds = DBHelper.ExecuteQuery("GetNFCAllotmentStatus", para);
+            return ds;
+        }
     }
 }
