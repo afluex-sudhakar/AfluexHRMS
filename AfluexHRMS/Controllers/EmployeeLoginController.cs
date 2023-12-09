@@ -17,11 +17,45 @@ namespace AfluexHRMS.Controllers
             return View();
         }
 
+        #region Employee DashBoard
         public ActionResult EmployeeDashboard()
         {
             return View();
         }
 
+        [HttpPost]
+        [ActionName("EmployeeDashboard")]
+        [OnAction(ButtonName = "sendEmail")]
+        public ActionResult SendEmail(EmployeeLogin model)
+        {
+            try
+            {
+                model.AddedBy = Session["PK_EmployeeID"].ToString();
+                DataSet ds = model.SendEmail();
+                if(ds != null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    if(ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                    {
+                        TempData["SendEmailSuccess"] = "Your Data Saved Successfully.";
+                    }
+                    else
+                    {
+                        TempData["SendEmailError"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+                else
+                {
+                    TempData["SendEmailError"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                TempData["SendEmailError"] = ex.Message;
+            }
+            return View(model);
+        }
+
+        #endregion
 
         #region LeaveApplication
         public ActionResult LeaveApplication(EmployeeLogin model)

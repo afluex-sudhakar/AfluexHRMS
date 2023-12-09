@@ -846,5 +846,30 @@ namespace AfluexHRMS.Models
             DataSet ds = DBHelper.ExecuteQuery("SalaryPaymentReport", para);
             return ds;
         }
+
+
+
+        public string Fk_MainServiceTypeId { get; set; }
+        public string Color { get; set; }
+        public string EncCode { get; set; }
+        public string Pk_ServiceId { get; set; }
+        public string ServiceIcon { get; set; }
+        public string Service { get; set; }
+        public string ServiceUrl { get; set; }
+        public string Category { get; set; }
+        public string IsActive { get; set; }
+        public string IsActiveDeactiveDate { get; set; }
+        public List<Master> lst { get; set; }
+
+
+        public DataSet GetService()
+        {
+            SqlParameter[] para ={
+                                   new SqlParameter("@Fk_MainServiceTypeId",Fk_MainServiceTypeId),
+                                   new SqlParameter("@FK_UserId",Fk_UserId),};
+            DataSet ds = DBHelper.ExecuteQuery("GetService", para);
+            return ds;
+        }
+
     }
 }

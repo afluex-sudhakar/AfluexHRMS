@@ -7,87 +7,58 @@
 
 @using (Html.BeginForm("DesignationMaster", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
-
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Designation Master</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="/Master/DesignationList" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Master</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Designation Master</a></li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Designation Master</h4>
+                        <p style="color: #ff0000">
+                            @TempData["Designationmsg"]
+                        </p>
+                        <p style="color: red">
+                            @TempData["ErrDesignationmsg"]
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Department Name <span class="text-danger">*</span></h5></label>
+                                @Html.DropDownListFor(m => m.Fk_DepartmentId, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
+                                @Html.HiddenFor(m => m.Pk_DesignationID)
                             </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Designation Name <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.DesignationName, new { @class = "form-control", @Placeholder = "Designation" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label d-block">&nbsp;</label>
+                                @if (Model.Pk_DesignationID == null)
+                                {
+                                    <input type="submit" class="btn btn-success" id="btnSave" onclick="return validateform();" name="btnSave" value="Save" />
+                                }
+                                else
+                                {
+
+                                    <input type="submit" class="btn btn-success" onclick="return validateform();" id="btnUpdate" name="btnUpdate" value="Update" />
+                                }
+
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
+
         </div>
-
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Designation Master</h3>
-                                    <p style="color: #ff0000">
-                                        @TempData["Designationmsg"]
-                                    </p>
-                                    <p style="color: red">
-                                        @TempData["ErrDesignationmsg"]
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Department Name <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.Fk_DepartmentId, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control" })
-                                        @Html.HiddenFor(m => m.Pk_DesignationID)
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Designation Name <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.DesignationName, new { @class = "form-control", @Placeholder = "Designation" })
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        @if (Model.Pk_DesignationID == null)
-                                        {
-                                            <input type="submit" class="btn btn-success" id="btnSave" onclick="return validateform();" name="btnSave" value="Save" />
-                                        }
-                                        else
-                                        {
-
-                                            <input type="submit" class="btn btn-success" onclick="return validateform();" id="btnUpdate" name="btnUpdate" value="Update" />
-                                        }
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </div>
 
 }
