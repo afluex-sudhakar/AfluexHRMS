@@ -64,6 +64,7 @@ namespace AfluexHRMS
 
         }
 
+
         public static object Decrypt(object p)
         {
             throw new NotImplementedException();

@@ -419,6 +419,7 @@
     <Content Include="assets\img\progress\design-progress-yellow.html" />
     <Content Include="assets\img\progress\progress-bg.html" />
     <Content Include="assets\img\pro_complete.png" />
+    <Content Include="assets\img\QrCode892773.jpg" />
     <Content Include="assets\img\safari.png" />
     <Content Include="assets\img\shape_2.svg" />
     <Content Include="assets\img\staf\1.png" />
@@ -563,6 +564,8 @@
     <Content Include="assets\vendors\verctorMap\map-vector.js" />
     <Content Include="assets\vendors\verctorMap\vector-map.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\Afluex-loader.gif" />
+    <Content Include="images\nfc_logo.png" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="assetsAdmin\icons\flaticon\Flaticon.eot" />
@@ -644,6 +647,8 @@
     </Compile>
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AdminDashboard.cs" />
+    <Compile Include="Models\BLMail.cs" />
+    <Compile Include="Models\BLSMS.cs" />
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\Crypto.cs" />
     <Compile Include="Models\DBHelper.cs" />
@@ -651,6 +656,8 @@
     <Compile Include="Models\EmployeeLogin.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\Master.cs" />
+    <Compile Include="Models\NFC.cs" />
+    <Compile Include="Models\NFCModel.cs" />
     <Compile Include="Models\WebAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -729,6 +736,8 @@
     <None Include="Properties\PublishProfiles\Afluexhrms.pubxml" />
     <Content Include="Views\NFCProfile\NFCDevice.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\NFCProfile\SetActionDashboard.cshtml" />
+    <Content Include="Views\Home\NFCActivation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
