@@ -864,12 +864,21 @@ namespace AfluexHRMS.Models
 
         public DataSet GetService()
         {
-            SqlParameter[] para ={
-                                   new SqlParameter("@Fk_MainServiceTypeId",Fk_MainServiceTypeId),
+            SqlParameter[] para ={ new SqlParameter("@Fk_MainServiceTypeId",Fk_MainServiceTypeId),
                                    new SqlParameter("@FK_UserId",Fk_UserId),};
             DataSet ds = DBHelper.ExecuteQuery("GetService", para);
             return ds;
         }
 
+
+        public int? PK_NFcId { get; set; }
+        public string DecCode { get; set; }
+
+        public DataSet GetActivatedNFC()
+        {
+            SqlParameter[] para = {new SqlParameter("@Fk_UserId", Fk_UserId)};
+            DataSet ds = DBHelper.ExecuteQuery("GetActivatedNFC", para);
+            return ds;
+        }
     }
 }
