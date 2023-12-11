@@ -216,34 +216,31 @@ namespace AfluexHRMS.Controllers
                             //NFC Activated
                             Session["NFCActivated"] = "true";
                             Session["UserNFCCode"] = Session["NFCCode"].ToString();
-                            if (Session["FullName"] != null)
-                            {
-                                try
-                                {
-                                    //string msg = "Dear " + Session["FullName"].ToString() + " you have successfully activated your DOST Business Card, You can now start managing your Information on card " + Session["FullName"].ToString() + " Be Limitless. Team -DOST INC";
-                                    //BLSMS.sendSMSUpdated(msg, obj1.LoginId);
-                                }
-                                catch (Exception ex)
-                                {
+                            //if (Session["FullName"] != null)
+                            //{
+                            //    try
+                            //    {
+                            //        //string msg = "Dear " + Session["FullName"].ToString() + " you have successfully activated your DOST Business Card, You can now start managing your Information on card " + Session["FullName"].ToString() + " Be Limitless. Team -DOST INC";
+                            //        //BLSMS.sendSMSUpdated(msg, obj1.LoginId);
+                            //    }
+                            //    catch (Exception ex)
+                            //    {
 
-                                }
-                                //send mail
-                                try
-                                {
-                                    string Subject = "Afluex HRMS Card Activation";
-                                    //string mail = "Welcome to the DOST network, your DOST business card is successfully activated now your business and personal profile is in your full control, share whatever you wish to, whoever you wish to & switch off any time.<br><br>Manage your profile <a href='https://dost.click/'>Click Here</a><br><br>For any issue please reach us through email or through DOST helpline.";
-                                    //BLMail.SendNFCActivationMail(Session["FullName"].ToString(), mail, Subject, obj1.Email);
-                                }
-                                catch (Exception ex)
-                                {
+                            //    }
+                            //    //send mail
+                            //    try
+                            //    {
+                            //        string Subject = "Afluex HRMS Card Activation";
+                            //        //string mail = "Welcome to the DOST network, your DOST business card is successfully activated now your business and personal profile is in your full control, share whatever you wish to, whoever you wish to & switch off any time.<br><br>Manage your profile <a href='https://dost.click/'>Click Here</a><br><br>For any issue please reach us through email or through DOST helpline.";
+                            //        //BLMail.SendNFCActivationMail(Session["FullName"].ToString(), mail, Subject, obj1.Email);
+                            //    }
+                            //    catch (Exception ex)
+                            //    {
 
-                                }
-                                return Json("NFC Code Activated successfully", JsonRequestBehavior.AllowGet);
-                            }
-                            else
-                            {
-                                return Json("Error occurred", JsonRequestBehavior.AllowGet);
-                            }
+                            //    }
+                               
+                            //}
+                            return Json("NFC Code Activated successfully", JsonRequestBehavior.AllowGet);
                         }
                         else if (ds1.Tables[0].Rows[0][0].ToString() == "5")
                         {

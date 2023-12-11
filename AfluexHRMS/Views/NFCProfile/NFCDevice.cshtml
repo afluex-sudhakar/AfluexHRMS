@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <style>
     h4 {
         color: white;
@@ -18,19 +16,22 @@
         <div class="row">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-3">
                         <div class="white_card card_height_100 mb_30 social_media_card">
                             <div class="media_card_body">
-                                <div class="media_card_list">
+                                <div class="media_card_list" style="grid-template-columns:repeat(1, 1fr);">
                                     <div class="single_media_card">
-                                        <span>TOTAL EMPLOYEES</span>
-                                        <h4>@ViewBag.TotalEmployee</h4>
+
+                                        <div class="d-flex justify-content-end">
+                                            <p style="font-size:50px; color:white">
+                                                <i class="far fa-credit-card"></i>
+                                                <a href="" class="badge_active2" data-toggle="modal" data-target="#ModalCenter">ACTIVATE</a>
+                                            </p>
+                                        </div>
+                                        <span class="d-flex justify-content-end">BUSINESS CARD</span>
+                                        @*<h4>@ViewBag.TotalEmployee</h4>*@
                                     </div>
 
-                                    <div class="single_media_card">
-                                        <span>TOTAL HOLIDAYS</span>
-                                        <h4>@ViewBag.TotalHolidays</h4>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -41,3 +42,51 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="ModalCenter">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Business Card</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-left">
+                <div class="form-row ">
+                    <div class="col-xl-6 col-lg-6 form-group">
+                        <div class="mb-1">
+                            <label>I Already have a Card</label>
+                            @if (Session["UserNFCCode"].ToString() != "" && Session["UserNFCCode"].ToString() != null && Session["UserNFCCode"].ToString() != "na")
+                            {
+                                <a href="/NFC/Profile?id=@Session["UserNFCCode"].ToString()" class="btn btn-primary">Go</a>
+                            }
+                            else
+                            {
+                                <a href="/Home/NFCActivation" class="btn btn-primary">Go</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                @*<div class="form-row ">
+                        <div class="col-xl-6 col-lg-6 form-group">
+                            <div class="mb-1">
+                                <label>I want to buy</label>
+                                <a href="/Shop/Product" class="btn btn-primary">Buy</a>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
