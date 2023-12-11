@@ -159,6 +159,59 @@ D:\Devendra\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
 D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
 D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\ApplicationInsights.config
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\csc.exe
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\System.Collections.Immutable.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\System.Reflection.Metadata.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\vbc.exe
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\VBCSCompiler.exe
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\roslyn\VBCSCompiler.exe.config
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\AfluexHRMS.dll.config
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\AfluexHRMS.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\AfluexHRMS.pdb
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.Agent.Intercept.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.DependencyCollector.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.Web.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.WindowsServer.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.ApplicationInsights.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.Web.Infrastructure.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Newtonsoft.Json.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Net.Http.Formatting.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Helpers.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Mvc.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Razor.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Webpages.Deployment.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Webpages.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Webpages.Razor.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.DependencyCollector.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.Web.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.AI.WindowsServer.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.ApplicationInsights.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Razor.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Webpages.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Webpages.Deployment.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Webpages.Razor.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Helpers.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Mvc.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\Newtonsoft.Json.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Net.Http.Formatting.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\ApplicationInsights.config
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\roslyn\csc.exe
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -212,4 +265,3 @@ E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.xml
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
-E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
