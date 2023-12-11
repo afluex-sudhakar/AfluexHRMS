@@ -49,36 +49,8 @@
                             {
                                 foreach (var Item in Model.lst)
                                 {
-                                <div class="col-xl-3 col-xxl-4 col-lg-6">
-                                    <div class="col-xl-8">
-                                         <div class="widget-stat card mb-3" style="border-radius:25px;background-color:@Item.Color">
-                                                            <div class="card-body">
-                                                                <div class="media">
-                                                                    <span class="mr-3">
-                                                                        <i class="fa fa-credit-card-alt"></i>
-                                                                    </span>
-                                                                    <div class="media-body text-white text-right">
-                                                                        @if (Item.IsActive == "True")
-                                                                        {
-                                                                            <p class="mb-1"><a href="/NFCProfile/ProfileUpdate?EncCode=@Item.EncCode" class="text-white text-activate">Set Action</a></p>
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            <p class="mb-1"><a href="/Home/NFCActivation?C=@Item.EncCode" class="text-white text-activate">Activate</a></p>
-                                                                        }
-                                                                        <h4 class="text-white">@Item.Service</h4>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                    @*<div class="widget-stat card mb-3" style="border-radius:25px;background-color:@Item.Color">
+                                <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+                                    <div class="widget-stat card mb-3" style="border-radius:25px;background-color:@Item.Color">
                                         <div class="card-body  p-4">
                                             <div class="media">
                                                 <span class="mr-3">
@@ -97,7 +69,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>*@
+                                    </div>
                                 </div>
 
                             }
@@ -114,8 +86,7 @@
                                             <div class="text-center m-3">
                                                 <h2 class="swal2-title"> You don't have any NFC Device!! </h2>
                                                 <p>Please buy any NFC Device.</p>
-                                                @*<a href="/Shop/Product" class="btn btn-secondary btn-lg mt-2">Buy Now</a>*@
-                                                <a href="#" class="btn btn-secondary btn-lg mt-2">Buy Now</a>
+                                                <a href="/Shop/Product" class="btn btn-secondary btn-lg mt-2">Buy Now</a>
                                             </div>
                                         </div>
                                     </div>

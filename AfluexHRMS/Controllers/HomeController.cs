@@ -133,7 +133,7 @@ namespace AfluexHRMS.Controllers
             {
 
                 Modal.Code = Session["NFCCode"].ToString();
-                model.DecryptedCode = Crypto.Decrypt(Session["NFCCode"].ToString());
+                model.DecryptedCode = Crypto.DecryptNFC(Session["NFCCode"].ToString());
                 DataSet ds = Modal.GetNFCAllotmentStatus();
                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
@@ -194,8 +194,7 @@ namespace AfluexHRMS.Controllers
                 //NFC Activation Method
                 if (Session["NFCCode"] != null && Session["NFCCode"].ToString() != "" && Session["NFCActivated"] != null && Session["NFCActivated"].ToString() == "false")
                 {
-
-                    var desc = Crypto.Decrypt(Session["NFCCode"].ToString());
+                    var desc = Crypto.DecryptNFC(Session["NFCCode"].ToString());
                     obj1.Code = desc;
                     if (obj1.Code != NFCCode)
                     {
@@ -216,7 +215,7 @@ namespace AfluexHRMS.Controllers
                             //NFC Activated
                             Session["NFCActivated"] = "true";
                             Session["UserNFCCode"] = Session["NFCCode"].ToString();
-                            if (Session["FullName"] != null)
+                            if (Session["Name"] != null)
                             {
                                 try
                                 {
