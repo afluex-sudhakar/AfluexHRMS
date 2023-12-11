@@ -358,7 +358,7 @@ namespace AfluexHRMS.Controllers
                 List<SelectListItem> ddlgender = Common.BindGender();
                 ViewBag.ddlgender = ddlgender;
                 #endregion ddlgender
-                model.PK_UserId = Session["Pk_userId"].ToString();
+                model.PK_UserId = Session["PK_EmployeeID"].ToString();
 
                 if (model.IsRedirectWeb == true)
                 {

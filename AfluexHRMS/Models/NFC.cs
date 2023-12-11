@@ -94,6 +94,8 @@ namespace AfluexHRMS.Models
         public List<UserLanguage> lstLanguage { get; set; }
         public List<UserAchievement> lstAchievement { get; set; }
 
+        public string CompanyName { get; set; }
+        public string Remarks { get; set; }
 
 
         public DataSet GetmailList()
@@ -157,7 +159,7 @@ namespace AfluexHRMS.Models
         public DataSet GetNFCProfileData()
         {
             SqlParameter[] para ={
-                new SqlParameter ("@Fk_UerId",PK_UserId),
+                new SqlParameter ("@Fk_UserId",PK_UserId),
                  new SqlParameter ("@NFCCode",DecryptedCode),
             };
             DataSet ds = DBHelper.ExecuteQuery("GetNFCProfileData_New", para);
