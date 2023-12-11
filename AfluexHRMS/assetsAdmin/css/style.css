@@ -22928,8 +22928,8 @@ code {
     display: inline-block;
     transform: scale(1.5); }
   .default-tab .nav-link:focus, .default-tab .nav-link:hover, .default-tab .nav-link.active {
-    color: #495057;
-    background-color: #fff;
+    color: #fff !important;
+    background-color: #b999f6;
     border-color: #dee2e6 #dee2e6 #fff #ebeef6;
     border-radius: 0.625rem 0.625rem 0 0;
     color: var(--primary); }
