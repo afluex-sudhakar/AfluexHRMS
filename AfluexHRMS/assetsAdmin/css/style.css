@@ -333,7 +333,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --bs-body-font-size: 0.875rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #9da1a5;
+  --bs-body-color:#000;
   --bs-body-color-rgb: 157, 161, 165;
   --bs-body-bg: #fff;
   --bs-body-bg-rgb: 255, 255, 255;
@@ -1934,8 +1934,8 @@ progress {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1.5;
   color: var(--bs-body-color);
   appearance: none;
@@ -24077,7 +24077,7 @@ code {
   background-color: transparent; }
 
 .table tbody tr td:last-child, .table thead tr th:last-child {
-  text-align: right; }
+  text-align: start; }
 
 .bootgrid-header {
   padding: 0 !important;
