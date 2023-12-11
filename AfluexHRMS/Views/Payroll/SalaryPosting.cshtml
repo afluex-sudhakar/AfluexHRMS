@@ -10,189 +10,168 @@
 
 @using (Html.BeginForm("SalaryPosting", "Payroll", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete="off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
+    
 
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Salary Posting</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Payroll</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Salary Posting</a></li>
+                </ol>
             </div>
-        </div>
-
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Salary</h3>
-                                    <p style="color: #ff0000">
-                                        @TempData["Salary"]
-                                    </p>
-                                    <p style="color: red">
-                                        @TempData["ErrSalary"]
-                                    </p>
-                                </div>
-                            </div>
+                    <div class="card">
+                        <div class="card-header d-lg-flex justify-content-between">
+                            <h4 class="card-title">Salary</h4>
+                            <p style="color: #ff0000">
+                                @TempData["Salary"]
+                            </p>
+                            <p style="color: red">
+                                @TempData["ErrSalary"]
+                            </p>
                         </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
 
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Salary Date<span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.SalaryDate, new { @class = "form-control", @Placeholder = "Salary Date", @onchange = "hidedata();" })
-                                    </div>
+                        <div class="card-body">
 
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code" })
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label" for="inputEmail4"><h5>Salary Date<span class="text-danger">*</span></h5></label>
+                                    @Html.TextBoxFor(m => m.SalaryDate, new { @class = "form-control", @Placeholder = "Salary Date", @onchange = "hidedata();" })
+                                </div>
 
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
-                                    </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
+                                    @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code" })
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
+                                    @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                                </div>
 
 
-                                    <div class="col-md-3 mt-4">
-                                        <input type="submit" class="btn btn-info" name="Search" value="Search" onclick="return validateSearch();"  style="margin-top:20px"/>
-                                    </div>
+                                <div class="col-md-3 mt-4">
+                                    <input type="submit" class="btn btn-info" name="Search" value="Search" onclick="return validateSearch();" style="margin-top:15px" />
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <div class="QA_table mb_30">
+                                            <table class="table display" id="example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>SNo.</th>
+                                                        <th>Emp Code</th>
+                                                        <th>Name</th>
+                                                        <th>No.Of Days</th>
+                                                        <th>BS</th>
+                                                        <th>HRA</th>
+                                                        <th>CONY</th>
+                                                        <th>DA</th>
+                                                        <th>BN</th>
+                                                        <th>OtherMed</th>
+                                                        <th>Misc</th>
+                                                        <th>Gross</th>
+                                                        <th>EPF</th>
+                                                        <th>ESIC-E</th>
+                                                        <th>PF</th>
+                                                        <th>ESIC</th>
+                                                        <th>E-Fund</th>
+                                                        <th>MED</th>
+                                                        <th>GIP</th>
+                                                        <th>Other</th>
+
+                                                        <th>Loan</th>
+                                                        <th>Deduction</th>
+                                                        <th>Net Payable</th>
+                                                        <th>Total Overtime</th>
+                                                        <th>OverTime Salary</th>
+                                                        <th>Signature</th>
+                                                        <th><input type="checkbox" id="select-all" /></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model != null)
+                                                    {
+                                                        if (Model.lstList != null)
+                                                        {
+                                                            int i = 1;
+                                                            foreach (var Item in Model.lstList)
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td style="min-width:100px">@Item.EmployeeCode <input type='hidden' value='@Item.EmployeeID' id='empid @i' name='empid @i'></td>
+                                                                    <td style="min-width:150px">@Item.EmployeeName</td>
+                                                                    <td style="min-width:100px">@Item.Noofdays <input type='hidden' value='@Item.Noofdays' id='days @i' name='days @i'></td>
+                                                                    <td>@Item.Basic <input type='hidden' value='@Item.Basic' id='basic @i' name='basic @i'></td>
+                                                                    <td>@Item.HRA <input type='hidden' value='@Item.HRA' id='hra @i' name='hra @i'></td>
+                                                                    <td>@Item.Conveyance <input type='hidden' value='@Item.Conveyance' id='cony @i' name='cony @i'></td>
+                                                                    <td>@Item.DA <input type='hidden' value='@Item.DA' id='da @i' name='da @i'></td>
+                                                                    <td>@Item.Bonus <input type='hidden' value='@Item.Bonus' id='bonus @i' name='bonus @i'></td>
+                                                                    <td>@Item.OtherMed <input type='hidden' value='@Item.OtherMed' id='otherMed @i' name='otherMed @i'></td>
+                                                                    <td>@Item.Misce <input type='hidden' value='@Item.Misce' id='misce @i' name='misce @i'></td>
+                                                                    <td>@Item.TotalEarning <input type='hidden' value='@Item.TotalEarning' id='ttlearn @i' name='ttlearn @i'></td>
+                                                                    <td>@Item.EPF <input type='hidden' value='@Item.EPF' id='epf @i' name='epf @i'></td>
+                                                                    <td style="min-width:100px">@Item.ESICE <input type='hidden' value='@Item.ESICE' id='esice @i' name='esice @i'></td>
+                                                                    <td>@Item.PF <input type='hidden' value='@Item.PF' id='pf @i' name='pf @i'></td>
+                                                                    <td>@Item.ESIC <input type='hidden' value='@Item.ESIC' id='esic @i' name='esic @i'></td>
+                                                                    <td style="min-width:100px">@Item.EFund <input type='hidden' value='@Item.EFund' id='efund @i' name='efund @i'></td>
+                                                                    <td>@Item.Medical <input type='hidden' value='@Item.Medical' id='medical @i' name='medical @i'></td>
+                                                                    <td>@Item.GIP <input type='hidden' value='@Item.GIP' id='gip @i' name='gip @i'></td>
+                                                                    <td>@Item.Other <input type='hidden' value='@Item.Other' id='other @i' name='other @i'></td>
+
+                                                                    <td>@Item.Loan <input type='hidden' value='@Item.Loan' id='loan @i' name='loan @i'></td>
+                                                                    <td>@Item.TotalDeduction</td>
+                                                                    <td style="min-width:150px">@Item.NetSalary <input type='hidden' value='@Item.NetSalary' id='netsalary @i' name='netsalary @i'></td>
+                                                                    <td style="min-width:150px">@Item.OverTime <input type='hidden' value='@Item.OverTime' id='overtime @i' name='overtime @i'></td>
+                                                                    <td style="min-width:150px">@Item.OverTimeSalary <input type='hidden' value='@Item.OverTimeSalary' id='overtimesal @i' name='overtimesal @i'></td>
+                                                                    <td><input type="text" id="txtSig_ @i" name="txtSig_ @i" onchange="getdata(this)" /></td>
+                                                                    <td><input type="checkbox" id="Chk_ @i" name="Chk_ @i" /></td>
+                                                                </tr>
+
+                                                                i++;
+                                                            }
+                                                            <input type='hidden' value='@i' id='hdrows' name='hdrows' />
+                                                        }
+                                                    }
+                                                </tbody>
+
+                                            </table>
+                                        </div>
 
 
-                                   
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="inputEmail4"><h5>Payment Date<span class="text-danger">*</span></h5></label>
+                                                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", @Placeholder = "Payment Date" })
+                                            </div>
+                                        </div>
 
-
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="box_body p-4">
-                                                    <div class="table-responsive">
-                                                        <div class="QA_table mb_30">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>SNo.</th>
-                                                                        <th>Emp Code</th>
-                                                                        <th>Name</th>
-                                                                        <th>No.Of Days</th>
-                                                                        <th>BS</th>
-                                                                        <th>HRA</th>
-                                                                        <th>CONY</th>
-                                                                        <th>DA</th>
-                                                                        <th>BN</th>
-                                                                        <th>OtherMed</th>
-                                                                        <th>Misc</th>
-                                                                        <th>Gross</th>
-                                                                        <th>EPF</th>
-                                                                        <th>ESIC-E</th>
-                                                                        <th>PF</th>
-                                                                        <th>ESIC</th>
-                                                                        <th>E-Fund</th>
-                                                                        <th>MED</th>
-                                                                        <th>GIP</th>
-                                                                        <th>Other</th>
-
-                                                                        <th>Loan</th>
-                                                                        <th>Deduction</th>
-                                                                        <th>Net Payable</th>
-                                                                        <th>Total Overtime</th>
-                                                                        <th>OverTime Salary</th>
-                                                                        <th>Signature</th>
-                                                                        <th><input type="checkbox" id="select-all" /></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    @if (Model != null)
-                                                                    {
-                                                                        if (Model.lstList != null)
-                                                                        {
-                                                                            int i = 1;
-                                                                            foreach (var Item in Model.lstList)
-                                                                            {
-                                                                                <tr class="text-left">
-                                                                                    <td>@i</td>
-                                                                                    <td style="min-width:100px">@Item.EmployeeCode <input type='hidden' value='@Item.EmployeeID' id='empid @i' name='empid @i'></td>
-                                                                                    <td style="min-width:150px">@Item.EmployeeName</td>
-                                                                                    <td style="min-width:100px">@Item.Noofdays <input type='hidden' value='@Item.Noofdays' id='days @i' name='days @i'></td>
-                                                                                    <td>@Item.Basic <input type='hidden' value='@Item.Basic' id='basic @i' name='basic @i'></td>
-                                                                                    <td>@Item.HRA <input type='hidden' value='@Item.HRA' id='hra @i' name='hra @i'></td>
-                                                                                    <td>@Item.Conveyance <input type='hidden' value='@Item.Conveyance' id='cony @i' name='cony @i'></td>
-                                                                                    <td>@Item.DA <input type='hidden' value='@Item.DA' id='da @i' name='da @i'></td>
-                                                                                    <td>@Item.Bonus <input type='hidden' value='@Item.Bonus' id='bonus @i' name='bonus @i'></td>
-                                                                                    <td>@Item.OtherMed <input type='hidden' value='@Item.OtherMed' id='otherMed @i' name='otherMed @i'></td>
-                                                                                    <td>@Item.Misce <input type='hidden' value='@Item.Misce' id='misce @i' name='misce @i'></td>
-                                                                                    <td>@Item.TotalEarning <input type='hidden' value='@Item.TotalEarning' id='ttlearn @i' name='ttlearn @i'></td>
-                                                                                    <td>@Item.EPF <input type='hidden' value='@Item.EPF' id='epf @i' name='epf @i'></td>
-                                                                                    <td style="min-width:100px">@Item.ESICE <input type='hidden' value='@Item.ESICE' id='esice @i' name='esice @i'></td>
-                                                                                    <td>@Item.PF <input type='hidden' value='@Item.PF' id='pf @i' name='pf @i'></td>
-                                                                                    <td>@Item.ESIC <input type='hidden' value='@Item.ESIC' id='esic @i' name='esic @i'></td>
-                                                                                    <td style="min-width:100px">@Item.EFund <input type='hidden' value='@Item.EFund' id='efund @i' name='efund @i'></td>
-                                                                                    <td>@Item.Medical <input type='hidden' value='@Item.Medical' id='medical @i' name='medical @i'></td>
-                                                                                    <td>@Item.GIP <input type='hidden' value='@Item.GIP' id='gip @i' name='gip @i'></td>
-                                                                                    <td>@Item.Other <input type='hidden' value='@Item.Other' id='other @i' name='other @i'></td>
-
-                                                                                    <td>@Item.Loan <input type='hidden' value='@Item.Loan' id='loan @i' name='loan @i'></td>
-                                                                                    <td>@Item.TotalDeduction</td>
-                                                                                    <td style="min-width:150px">@Item.NetSalary <input type='hidden' value='@Item.NetSalary' id='netsalary @i' name='netsalary @i'></td>
-                                                                                    <td style="min-width:150px">@Item.OverTime <input type='hidden' value='@Item.OverTime' id='overtime @i' name='overtime @i'></td>
-                                                                                    <td style="min-width:150px">@Item.OverTimeSalary <input type='hidden' value='@Item.OverTimeSalary' id='overtimesal @i' name='overtimesal @i'></td>
-                                                                                    <td><input type="text" id="txtSig_ @i" name="txtSig_ @i" onchange="getdata(this)" /></td>
-                                                                                    <td><input type="checkbox" id="Chk_ @i" name="Chk_ @i" /></td>
-                                                                                </tr>
-
-                                                                                i++;
-                                                                            }
-                                                                            <input type='hidden' value='@i' id='hdrows' name='hdrows' />
-                                                                        }
-                                                                    }
-                                                                </tbody>
-
-                                                            </table>
-                                                        </div>
-
-
-                                                        <div class="row mb-3">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label" for="inputEmail4"><h5>Payment Date<span class="text-danger">*</span></h5></label>
-                                                                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", @Placeholder = "Payment Date" })
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row mb-3">
-                                                            <div class="col-md-3">
-                                                                <input type="submit" name="Save" id="Save" value="Save" class="btn btn-success" onclick="return validateSave();" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <input type="submit" name="Save" id="Save" value="Save" class="btn btn-success" onclick="return validateSave();" />
                                             </div>
                                         </div>
                                     </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+               
                 <input type="hidden" id="txtsignature" />
 }
 
