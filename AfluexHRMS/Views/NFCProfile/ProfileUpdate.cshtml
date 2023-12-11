@@ -9,13 +9,16 @@
 <style>
     .errortext {
         border: 1px solid red !important;
-        background-color: #233a50 !important;
+        /*background-color: #233a50 !important;*/
+         background-color: #feb5b5 !important;
     }
 
     .btnAdd {
         border: none;
-        background: transparent;
-        color: #68CF29 !important;
+        /*background: transparent;*/
+        background:#754cd3;
+        /*color: #68CF29 !important;*/
+        color: #fff !important;
     }
 
     select.form-control.btn.btn-primary.dropdown-toggle {
@@ -94,653 +97,419 @@
 </style>
 @using (Html.BeginForm("ProfileUpdate", "NFCProfile", FormMethod.Post, new { @id = "Profile", @enctype = "multipart/form-data", @autocomplete = "off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0">Profile</h5>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="/Home/NFCActivation" class="btn btn-success rounded-pill">View Profile</a>
-                                        <button type="button" class="btn btn-success rounded-pill" data-toggle="modal" data-target="#exampleModalCenter">+ Create New</button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalCenter">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Create a new card</h5>
-                                                        <button type="button" class="close" data-dismiss="modal">
-                                                            <span>&times;</span>
-                                                        </button>
-                                                        <input type="hidden" id="hdfProfile" name="PK_ProfileId" value="@Model.PK_ProfileId" />
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label" style="white-space: nowrap;">Profile Name</label>
-                                                            <div class="col-sm-9">
-                                                                @Html.TextBoxFor(m => m.ProfileName, new { @class = "form-control", @placeholder = "Profile Name" })
-                                                            </div>
-                                                        </div>
-                                                        <fieldset class="form-group">
-                                                            <div class="row">
-                                                                <label class="col-form-label col-sm-3 pt-0">Profile Type</label>
-                                                                <div class="col-sm-9">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" value="Contact Card" name="ProfileType" />
-                                                                        <label class="form-check-label">
-                                                                            Contact Card
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" name="ProfileType" value="Redirection">
-                                                                        <label class="form-check-label">
-                                                                            Redirection
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </fieldset>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" id="btnProfileAdd">Create</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Manage NFC Device</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Profile</a></li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-xl-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media_card_list">
+                            <div class="d-flex justify-content-between ">
+                                <h4>My Profile</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-5 col-md-12">
-                    <div class="card_box box_shadow position-relative mb_30 bg-white">
-                        <div class="box_body p-4">
-                            <div class="box-body box-profile">
-                                <div class="box_header m-0">
-                                    <div class="main-title">
-                                        <h3 class="m-0">My Profile</h3>
+
+         
+            <div class="col-xl-9 col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">My Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Nav tabs -->
+                        <div class="default-tab">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#co_nu"><i class="la la-phone me-2"></i> Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#co_wh"><i class="la la-user me-2"></i> whatsApp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#emails"><i class="la la-envelope me-2"></i> Emails</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#web-urls"><i class="la la-envelope me-2"></i> Web/App Ulr's</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#social"><i class="la la-phone me-2"></i> Social Media</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#location"><i class="fas fa-file-alt me-2"></i> Location</a>
+                                </li>
+                            </ul>
+
+                            <div class="card-body tab-content p-0">
+                                <div class="tab-pane active show fade" id="co_nu">
+                                    <div class="table-responsive">
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" id="tblContact" style="white-space:nowrap">
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect width="63" height="63" rx="14" fill="#625794" />
+                                                                <path d="M25.4813 24.6343L25.4813 24.6343L30.3544 19.7376C30.3571 19.7348 30.3596 19.7323 30.3619 19.7301M25.4813 24.6343L30.7116 20.0875L30.3587 19.7333C30.368 19.7241 30.3756 19.7172 30.3789 19.7143L30.38 19.7133C30.3775 19.7155 30.3709 19.7214 30.3627 19.7293C30.3625 19.7295 30.3622 19.7298 30.3619 19.7301M25.4813 24.6343C24.9214 25.197 24.9234 26.1071 25.4862 26.6672C26.0489 27.2273 26.9591 27.2251 27.5191 26.6624L27.5192 26.6624L29.9377 24.232M25.4813 24.6343L29.9377 24.232M30.3619 19.7301C30.9212 19.1741 31.8279 19.1724 32.389 19.7304C32.3902 19.7316 32.3914 19.7329 32.3927 19.7341L32.3941 19.7356L32.4062 19.7477L37.2691 24.6342L36.9147 24.9869L37.2692 24.6342C37.829 25.1968 37.8271 26.107 37.2642 26.6672C36.7015 27.2272 35.7914 27.225 35.2314 26.6623L35.2313 26.6623L32.8127 24.232L32.8127 42.875C32.8127 43.6689 32.1692 44.3125 31.3752 44.3125C30.5813 44.3125 29.9377 43.6689 29.9377 42.875L29.9377 24.232M30.3619 19.7301C30.3605 19.7315 30.3591 19.7329 30.3577 19.7343L29.9377 24.232M32.3927 19.7342C32.3932 19.7347 32.3937 19.7351 32.3941 19.7356L32.3927 19.7342Z" fill="white" stroke="white" />
+                                                            </svg>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="font-w600 text-black">Contact Number</span>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-12">
+                                                                @Html.TextBoxFor(m => m.Content, new { @class = "form-control input-default ", @placeholder = "Contact Number", @maxlength = "10", @minlength = "10", @onkeypress = "return isNumberKey(event);" })
+                                                                @Html.HiddenFor(x => x.Status)
+                                                                @Html.HiddenFor(x => x.Flag)
+                                                                @Html.HiddenFor(x => x.Pk_NfcProfileId)
+                                                                @Html.HiddenFor(m => m.Code)
+                                                                @Html.HiddenFor(m => m.DecryptedCode)
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><button type="button" class="btn btn-primary btnAdd" id="btnContact">Add</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="header_more_tool">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ti-more-alt"></i>
-                                            </span>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" x-placement="bottom-end" style="position: absolute; transform: translate3d(-148px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a class="dropdown-item" href="javascript:void(0);"> <i class="ti-eye"></i> Details</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"> <i class="ti-close"></i> Cancel</a>
+                                </div>
+                                <div class="tab-pane fade" id="emails">
+                                    <div class="table-responsive">
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" id="tblEmail" style="white-space:nowrap">
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect width="63" height="63" rx="14" fill="#625794" />
+                                                                <path d="M25.4813 24.6343L25.4813 24.6343L30.3544 19.7376C30.3571 19.7348 30.3596 19.7323 30.3619 19.7301M25.4813 24.6343L30.7116 20.0875L30.3587 19.7333C30.368 19.7241 30.3756 19.7172 30.3789 19.7143L30.38 19.7133C30.3775 19.7155 30.3709 19.7214 30.3627 19.7293C30.3625 19.7295 30.3622 19.7298 30.3619 19.7301M25.4813 24.6343C24.9214 25.197 24.9234 26.1071 25.4862 26.6672C26.0489 27.2273 26.9591 27.2251 27.5191 26.6624L27.5192 26.6624L29.9377 24.232M25.4813 24.6343L29.9377 24.232M30.3619 19.7301C30.9212 19.1741 31.8279 19.1724 32.389 19.7304C32.3902 19.7316 32.3914 19.7329 32.3927 19.7341L32.3941 19.7356L32.4062 19.7477L37.2691 24.6342L36.9147 24.9869L37.2692 24.6342C37.829 25.1968 37.8271 26.107 37.2642 26.6672C36.7015 27.2272 35.7914 27.225 35.2314 26.6623L35.2313 26.6623L32.8127 24.232L32.8127 42.875C32.8127 43.6689 32.1692 44.3125 31.3752 44.3125C30.5813 44.3125 29.9377 43.6689 29.9377 42.875L29.9377 24.232M30.3619 19.7301C30.3605 19.7315 30.3591 19.7329 30.3577 19.7343L29.9377 24.232M32.3927 19.7342C32.3932 19.7347 32.3937 19.7351 32.3941 19.7356L32.3927 19.7342Z" fill="white" stroke="white" />
+                                                            </svg>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="font-w600 text-black">Email</span>
+                                                    </td>
+                                                    <td colspan="2">
+
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-12">
+                                                                @Html.TextBoxFor(m => m.ContentEmail, new { @class = "form-control input-default", @placeholder = "Email" })
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><button type="button" class="btn btn-primary btnAdd" id="btnEmail">Add</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="web-urls">
+                                    <div class="table-responsive">
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap" id="tblWebLink">
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect width="63" height="63" rx="14" fill="#625794" />
+                                                                <path d="M25.4813 24.6343L25.4813 24.6343L30.3544 19.7376C30.3571 19.7348 30.3596 19.7323 30.3619 19.7301M25.4813 24.6343L30.7116 20.0875L30.3587 19.7333C30.368 19.7241 30.3756 19.7172 30.3789 19.7143L30.38 19.7133C30.3775 19.7155 30.3709 19.7214 30.3627 19.7293C30.3625 19.7295 30.3622 19.7298 30.3619 19.7301M25.4813 24.6343C24.9214 25.197 24.9234 26.1071 25.4862 26.6672C26.0489 27.2273 26.9591 27.2251 27.5191 26.6624L27.5192 26.6624L29.9377 24.232M25.4813 24.6343L29.9377 24.232M30.3619 19.7301C30.9212 19.1741 31.8279 19.1724 32.389 19.7304C32.3902 19.7316 32.3914 19.7329 32.3927 19.7341L32.3941 19.7356L32.4062 19.7477L37.2691 24.6342L36.9147 24.9869L37.2692 24.6342C37.829 25.1968 37.8271 26.107 37.2642 26.6672C36.7015 27.2272 35.7914 27.225 35.2314 26.6623L35.2313 26.6623L32.8127 24.232L32.8127 42.875C32.8127 43.6689 32.1692 44.3125 31.3752 44.3125C30.5813 44.3125 29.9377 43.6689 29.9377 42.875L29.9377 24.232M30.3619 19.7301C30.3605 19.7315 30.3591 19.7329 30.3577 19.7343L29.9377 24.232M32.3927 19.7342C32.3932 19.7347 32.3937 19.7351 32.3941 19.7356L32.3927 19.7342Z" fill="white" stroke="white" />
+                                                            </svg>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="font-w600 text-black">Web/App URL</span>
+                                                    </td>
+                                                    <td colspan="2">
+
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-12">
+                                                                @Html.TextBoxFor(m => m.ContentWebLinks, new { @class = "form-control input-default", @placeholder = "Web/App URL" })
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><button type="button" class="btn btn-primary btnAdd" id="btnWebLink">Add</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="social">
+                                    <div class="table-responsive">
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap" id="tblSocialMedia">
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect width="63" height="63" rx="14" fill="#625794" />
+                                                                <path d="M25.4813 24.6343L25.4813 24.6343L30.3544 19.7376C30.3571 19.7348 30.3596 19.7323 30.3619 19.7301M25.4813 24.6343L30.7116 20.0875L30.3587 19.7333C30.368 19.7241 30.3756 19.7172 30.3789 19.7143L30.38 19.7133C30.3775 19.7155 30.3709 19.7214 30.3627 19.7293C30.3625 19.7295 30.3622 19.7298 30.3619 19.7301M25.4813 24.6343C24.9214 25.197 24.9234 26.1071 25.4862 26.6672C26.0489 27.2273 26.9591 27.2251 27.5191 26.6624L27.5192 26.6624L29.9377 24.232M25.4813 24.6343L29.9377 24.232M30.3619 19.7301C30.9212 19.1741 31.8279 19.1724 32.389 19.7304C32.3902 19.7316 32.3914 19.7329 32.3927 19.7341L32.3941 19.7356L32.4062 19.7477L37.2691 24.6342L36.9147 24.9869L37.2692 24.6342C37.829 25.1968 37.8271 26.107 37.2642 26.6672C36.7015 27.2272 35.7914 27.225 35.2314 26.6623L35.2313 26.6623L32.8127 24.232L32.8127 42.875C32.8127 43.6689 32.1692 44.3125 31.3752 44.3125C30.5813 44.3125 29.9377 43.6689 29.9377 42.875L29.9377 24.232M30.3619 19.7301C30.3605 19.7315 30.3591 19.7329 30.3577 19.7343L29.9377 24.232M32.3927 19.7342C32.3932 19.7347 32.3937 19.7351 32.3941 19.7356L32.3927 19.7342Z" fill="white" stroke="white" />
+                                                            </svg>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="font-w600 text-black">Social Media</span>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-12">
+                                                                @Html.TextBoxFor(m => m.ContentSocialMedia, new { @class = "form-control input-default", @placeholder = "Social Media" })
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><button type="button" class="btn btn-primary btnAdd" id="btnSocialMedia">Add</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="co_wh">
+                                    <div class="table-responsive">
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap" id="tblWhatsapp">
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect width="63" height="63" rx="14" fill="#625794" />
+                                                                <path d="M25.4813 24.6343L25.4813 24.6343L30.3544 19.7376C30.3571 19.7348 30.3596 19.7323 30.3619 19.7301M25.4813 24.6343L30.7116 20.0875L30.3587 19.7333C30.368 19.7241 30.3756 19.7172 30.3789 19.7143L30.38 19.7133C30.3775 19.7155 30.3709 19.7214 30.3627 19.7293C30.3625 19.7295 30.3622 19.7298 30.3619 19.7301M25.4813 24.6343C24.9214 25.197 24.9234 26.1071 25.4862 26.6672C26.0489 27.2273 26.9591 27.2251 27.5191 26.6624L27.5192 26.6624L29.9377 24.232M25.4813 24.6343L29.9377 24.232M30.3619 19.7301C30.9212 19.1741 31.8279 19.1724 32.389 19.7304C32.3902 19.7316 32.3914 19.7329 32.3927 19.7341L32.3941 19.7356L32.4062 19.7477L37.2691 24.6342L36.9147 24.9869L37.2692 24.6342C37.829 25.1968 37.8271 26.107 37.2642 26.6672C36.7015 27.2272 35.7914 27.225 35.2314 26.6623L35.2313 26.6623L32.8127 24.232L32.8127 42.875C32.8127 43.6689 32.1692 44.3125 31.3752 44.3125C30.5813 44.3125 29.9377 43.6689 29.9377 42.875L29.9377 24.232M30.3619 19.7301C30.3605 19.7315 30.3591 19.7329 30.3577 19.7343L29.9377 24.232M32.3927 19.7342C32.3932 19.7347 32.3937 19.7351 32.3941 19.7356L32.3927 19.7342Z" fill="white" stroke="white" />
+                                                            </svg>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="font-w600 text-black">Whatsapp</span>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-12">
+                                                                @Html.TextBoxFor(m => m.ContentWhatsapp, new { @class = "form-control input-default", @placeholder = "Whatsapp", @maxlength = "10", @minlength = "10", @onkeypress = "return isNumberKey(event);" })
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><button type="button" class="btn btn-primary btnAdd" id="btnWhatsapp">Add</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="location">
+                                    <div class="table-responsive">
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap" id="tblLocation">
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table shadow-hover card-table border-no tbl-btn short-one" style="white-space:nowrap">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect width="63" height="63" rx="14" fill="#625794" />
+                                                                <path d="M25.4813 24.6343L25.4813 24.6343L30.3544 19.7376C30.3571 19.7348 30.3596 19.7323 30.3619 19.7301M25.4813 24.6343L30.7116 20.0875L30.3587 19.7333C30.368 19.7241 30.3756 19.7172 30.3789 19.7143L30.38 19.7133C30.3775 19.7155 30.3709 19.7214 30.3627 19.7293C30.3625 19.7295 30.3622 19.7298 30.3619 19.7301M25.4813 24.6343C24.9214 25.197 24.9234 26.1071 25.4862 26.6672C26.0489 27.2273 26.9591 27.2251 27.5191 26.6624L27.5192 26.6624L29.9377 24.232M25.4813 24.6343L29.9377 24.232M30.3619 19.7301C30.9212 19.1741 31.8279 19.1724 32.389 19.7304C32.3902 19.7316 32.3914 19.7329 32.3927 19.7341L32.3941 19.7356L32.4062 19.7477L37.2691 24.6342L36.9147 24.9869L37.2692 24.6342C37.829 25.1968 37.8271 26.107 37.2642 26.6672C36.7015 27.2272 35.7914 27.225 35.2314 26.6623L35.2313 26.6623L32.8127 24.232L32.8127 42.875C32.8127 43.6689 32.1692 44.3125 31.3752 44.3125C30.5813 44.3125 29.9377 43.6689 29.9377 42.875L29.9377 24.232M30.3619 19.7301C30.3605 19.7315 30.3591 19.7329 30.3577 19.7343L29.9377 24.232M32.3927 19.7342C32.3932 19.7347 32.3937 19.7351 32.3941 19.7356L32.3927 19.7342Z" fill="white" stroke="white" />
+                                                            </svg>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="font-w600 text-black">Location</span>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-12">
+                                                                @Html.TextBoxFor(m => m.ContentLocation, new { @class = "form-control input-default", @placeholder = "Location" })
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                    <button type="button" class="btn btn-primary btnAdd" id="btnLocation">Add</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer border-0 p-0 caret mt-1">
+                                <a href="javascript:void(0)" class="btn-link"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4">
+                <div class="clearfix">
+                    <div class="card card-bx profile-card author-profile m-b30">
+                        <div class="card-body">
+                            <div class="p-3">
+                                <div class="author-profile">
+                                    <div class="author-media">
+                                        @*<img src="@ViewBag.img" alt="">*@
+                                        <img src="~/assets/img/User.jpg" alt="">
+                                        <div class="upload-link" title="" data-toggle="tooltip" data-placement="right" data-original-title="update">
+                                            <input type="file" class="update-flie">
+                                            <i class="fa fa-camera"></i>
+                                        </div>
+                                    </div>
+                                    <div class="author-info">
+                                        <h6 class="title">@Session["Name"]</h6>
+                                    </div>
+
+
+                                    <div class="form-row mb-4">
+                                        <div class="col-lg-2 col-md-2 col-sm-12 my-1">
+                                            <label class="mr-sm-2 mt-1" style="white-space: nowrap;">Link :</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-12 my-1 d-flex">
+                                            <div class="input-group input-group-sm copy">
+                                                @*<input id="txtcopy" type="text" class="form-control input-default" readonly value="https://dost.click/NFC/Profile?id=@Model.Code">*@
+                                                <input id="txtcopy" type="text" class="form-control input-default" readonly value="http://dost.click?id=@Model.enc">
+
+                                                <button type="button" class="close h-100 ml-2">
+                                                    <span><i class="fa fa-files-o"></i></span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                   @*<div class="row">
-                                    <div class="col-12">
-                                        <div class="profile-user-info">
+                            </div>
 
-                                        </div>
+                            <div class="single_media_card">
+                                <div class="text-center">
+                                    <div class="my-profile mb-2">
+                                        <img src="@ViewBag.QRImage" alt="" style="border: 2px solid white; border-radius: 8px; width: 200px; height: 200px;">
                                     </div>
+                                    <p class="text-justify px-3">Anyone can scan this QR to access  your profile as per your settings & send money to your Afluex HRMS wallet.</p>
+                                </div>
+
+                                <div class="text-center">
+                                    <div class="post-input">
+                                        <button type="button" class="btn btn-primary text-center" data-toggle="modal" data-target="#linkModal">Share Profile</button>
+                                        <a href="/NFCProfile/EditProfileSetAction?Id=@Model.Code" class="btn btn-primary text-center">Edit Profile</a>
+                                        <div class="modal fade" id="linkModal">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Social Links</h5>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span>&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @if (Model != null)
+                                                        {
+                                                            if (Model.NfcContentList != null && Model.NfcContentList.Count > 0 && Model.NfcContentList.Where(x => x.Type == "ContactNo").Any())
+                                                            {
+                                                                foreach (var item in Model.NfcContentList.Where(x => x.Type == "ContactNo").ToList())
+                                                                {
+                                                                    if (item.Content.Contains("6") || item.Content.Contains("7") || item.Content.Contains("9") || item.Content.Contains("8"))
+                                                                    {
+                                                                        <a class="btn-social whatsapp" href="https://api.whatsapp.com/send?phone=91+@item.Content&text=https://dost.click?id=@Model.enc" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        @if (Model != null)
+                                                        {
+                                                            if (Model.NfcContentList != null && Model.NfcContentList.Count > 0 && Model.NfcContentList.Where(x => x.Type == "SocialMedia").Any())
+                                                            {
+                                                                foreach (var item in Model.NfcContentList.Where(x => x.Type == "SocialMedia").ToList())
+                                                                {
+                                                                    if (item.Content.Contains("facebook") || item.Content.Contains("fb"))
+                                                                    {
+                                                                        <a class="btn-social facebook" href="@item.Content" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                                    }
+                                                                    if (item.Content.Contains("instagram") || item.Content.Contains("insta"))
+                                                                    {
+                                                                        <a class="btn-social instagram" href="@item.Content" target="_blank"><i class="fa fa-instagram"></i></a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a>
+                                                                    }
+                                                                    if (item.Content.Contains("linkedin") || item.Content.Contains("link"))
+                                                                    {
+                                                                        <a class="btn-social linkedin" href="@item.Content" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                                    }
+                                                                    if (item.Content.Contains("twitter") || item.Content.Contains("tw"))
+                                                                    {
+                                                                        <a class="btn-social twitter" href="@item.Content" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                                    }
+                                                                    if (item.Content.Contains("youtube") || item.Content.Contains("utube"))
+                                                                    {
+                                                                        <a class="btn-social youtube" href="@item.Content" target="_blank"><i class="fa fa-youtube"></i></a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
+                                                                    }
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                                    <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a>
+                                                                    <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                                    <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                                    <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
+                                                            }
+                                                        }
+                                                        @*<div class="input-group input-group-sm copy">
+                                    <input id="txtcopy" type="hidden" class="form-control input-default" readonly value="https://dost.click/NFC/Profile?id=@Model.Code">
+
+                                    <button type="button" class="close h-100 ml-2">
+                                        <span><i class="fa fa-files-o"></i></span>
+                                    </button>
                                 </div>*@
-                                <div class="dropdown custom-dropdown mb-0 tbl-orders-style">
-                                    <div class="btn sharp tp-btn" data-toggle="dropdown">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="javascript:void(0);">Details</a>
-                                        <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card-body">
-                                <div class="swiper-container card-swiper">
-                                    <div class="swiper-wrapper" id="divbindProfile">
-                                        @if (Model != null)
-                                        {
-                                            if (Model.lst != null)
-                                            {
-                                                int i = 1;
-                                                foreach (var Item in Model.lst)
-                                                {
-                                                    if (Item.ProfileType == "Contact Card")
-                                                    {
-                                                        <div class="swiper-slide">
-                                                            <div class="card-bx stacked card">
-                                                                @*<img src="../images/card/card1.jpg" alt="">*@
-                                                                <div class="card-info" style="background-color:@Item.ColorCodeContact">
-                                                                    <p class="mb-1 text-white fs-14">Profile Name</p>
-                                                                    <div class="d-flex justify-content-between">
-                                                                        <h2 class="num-text text-white mb-5 font-w600">@Item.ProfileName</h2>
-                                                                        <div class="text-right" style="margin-top: -45px">
-                                                                            <div class="mt-4 text-white">
-                                                                                <input type="checkbox" class="chkactive massive-checkbox" value="@Item.PK_ProfileId" @Item.ActiveStatus />
-                                                                            </div>
-                                                                            <div class="mt-4 text-white">
-                                                                                <p>Activate</p>
-                                                                                <p><a href="#ShowConctact('@i')" onclick="ShowConctact(@Item.PK_ProfileId,@i);" data-epensedetailsid='@Item.PK_ProfileId' class="text-white"><i class="fa fa-edit"></i> Edit</a></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-flex">
-                                                                        <div class="mb-2">
-                                                                            <button type="button" class="btn btn-secondary" style="background:#e12929;border: 1px solid #e12929">Contact Card</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                            <div class="row Contact_@Item.PK_ProfileId" style="display:none" id="Contact_@Item.PK_ProfileId">
-                                                                <div class="col-xl-12 col-lg-12">
-                                                                    <div class="card">
-                                                                        <div class="card-header">
-                                                                            <h4 class="card-title">@Item.ProfileName</h4>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <div class="basic-form">
-                                                                                <form action="#">
-                                                                                    <div class="form-row">
-                                                                                        <div class="col-xl-6 col-lg-6 form-group ">
-                                                                                            <div class="text-center">
-                                                                                                <div class="text-center">
-                                                                                                    <div class="my-profile">
-                                                                                                        <img src="@Item.ProfilePic" alt="" class="rounded" id="output1">
-                                                                                                        <a class="file_active" onclick="getFile();" for="upfile"><i class="fa fa-pencil" aria-hidden="true"></i><input id="upfile" type="file" value="upload" style="display: none" /></a>
-
-                                                                                                    </div>
-
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <label>First Name</label>
-                                                                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control FirstName_" + @i + "", @Placeholder = "First Name" })
-                                                                                            </div>
-                                                                                            <div class="mb-3">
-                                                                                                <label>Last Name</label>
-                                                                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control LastName_" + @i + "", @Placeholder = "Last Name" })
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <label>Company</label>
-                                                                                                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control CompanyName_" + @i + "", @Placeholder = "Company Name" })
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <label>Designation</label>
-                                                                                                @Html.TextBoxFor(m => m.Designation, new { @class = "form-control Designation_" + @i + "", @Placeholder = "Designation" })
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Gender</label>
-                                                                                                    @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.ddlgender, "Value", "Text"), new { @class = "form-control g Gender_" + @i + "" })
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <label>Date of Birth</label>
-                                                                                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control DOB_" + @i + "", @Placeholder = "DOB", @type = "date" })
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <label>Mobile Number</label>
-                                                                                                @Html.DropDownListFor(m => m.ContactList, new SelectList(ViewBag.Mobile, "Value", "Text"), new { @class = "js-example-placeholder-multiple Mobile_" + @i + "", @multiple = "multiple", })
-                                                                                                @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryContact_');" />Is Primary
-                                                                            <input type="hidden" class="PrimaryNumber_@i" name="PrimaryNumber" />*@
-                                                                                                <div class="selectedMobile" style="display:none">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Emails</label>
-                                                                                                    @Html.DropDownListFor(m => m.EmailList, new SelectList(ViewBag.ddlEmail, "Value", "Text"), new { @class = "js-example-placeholder-multiple Email_" + @i + "", @multiple = "multiple" })
-                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryEmail_');" />Is Primary
-                                                                                <input type="hidden" class="PrimaryEmail__@i" name="PrimaryEmail" />*@
-                                                                                                    <div class="selectedEmail2" style="display:none">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Social Media</label>
-                                                                                                    @Html.DropDownListFor(m => m.SocialLink, new SelectList(ViewBag.SocialMedia, "Value", "Text"), new { @class = "js-example-placeholder-multiple SocialMedia_" + @i + "", @multiple = "multiple" })
-                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimarySocial_');" />Is Primary
-                                                                                <input type="hidden" class="PrimarySocial_@i" name="PrimarySocial" />*@
-                                                                                                    <div class="selectedSocial" style="display:none">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Web/App Urls</label>
-                                                                                                    @Html.DropDownListFor(m => m.WebLink, new SelectList(ViewBag.WebLink, "Value", "Text"), new { @class = "js-example-placeholder-multiple WebLink_" + @i + "", @multiple = "multiple" })
-                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryWebLink_');" />Is Primary
-                                                                                <input type="hidden" class="PrimaryWebLink_@i" name="PrimaryWebLink" />*@
-                                                                                                    <div class="selectedWebLink" style="display:none">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <label>Whatsapp No</label>
-                                                                                                @Html.DropDownListFor(m => m.WhatsappList, new SelectList(ViewBag.ddlWhatsapp, "Value", "Text"), new { @class = "js-example-placeholder-multiple Whatsapp_" + @i + "", @multiple = "multiple" })
-                                                                                                @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryContact_');" />Is Primary
-                                                                            <input type="hidden" class="PrimaryNumber_@i" name="PrimaryNumber" />*@
-                                                                                                <div class="selectedWhatsapp" style="display:none">
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="col-xl-6 col-lg-6 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Location</label>
-                                                                                                    @Html.DropDownListFor(m => m.LocationList, new SelectList(ViewBag.ddlLocation, "Value", "Text"), new { @class = "js-example-placeholder-multiple Location_" + @i + "", @multiple = "multiple" })
-                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryEmail_');" />Is Primary
-                                                                                <input type="hidden" class="PrimaryEmail__@i" name="PrimaryEmail" />*@
-                                                                                                    <div class="selectedLocation" style="display:none">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-12 col-lg-12 form-group">
-                                                                                            <div class="mb-3">
-                                                                                                <label>Notes</label>
-                                                                                                @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control Remarks_" + @i + "", @Placeholder = "Notes" })
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-6 col-lg-6 text-center">
-                                                                                            <input class="btn btn-success mb-2 px-5" type="button" value="UPDATE" onclick="return SaveBusinessContact('@i')" id="btnBusinessContact" name="btnBusinessContact" data-profile="@Item.PK_ProfileId" />
-                                                                                        </div>
-                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center ">
-                                                                                            <button type="button" class="btn btn-danger mb-2 px-5" onclick="UpdateRedirectionUrl('Remove',@i);">REMOVE</button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="swiper-slide">
-                                                            <div class="card-bx stacked card">
-                                                                <div class="card-info" style="background-color:@Item.ColorCodeRedirection">
-                                                                    <p class="mb-1 text-white fs-14">Profile Name</p>
-                                                                    <div class="d-flex justify-content-between">
-                                                                        <h2 class="num-text text-white mb-5 font-w600">@Item.ProfileName</h2>
-                                                                        <div class="text-right" style="margin-top: -45px">
-                                                                            <!-- <div class="num-text text-white mb-3 font-w600" style="border: 2px solid white; border-radius: 8px; width: 50px; height: 50px;"></div> -->
-                                                                            <div class="mt-4 text-white">
-                                                                                <input type="checkbox" class="chkactive massive-checkbox" value="@Item.PK_ProfileId" @Item.ActiveStatus />
-                                                                            </div>
-                                                                            <div class="mt-4 text-white">
-                                                                                <p>Activate</p>
-                                                                                <p><a href="#Redirect('@i')" onclick="Redirect(@Item.PK_ProfileId,@i);" class="text-white"><i class="fa fa-edit"></i> Edit</a></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-flex">
-                                                                        <div class="mb-2">
-                                                                            <button type="button" class="btn btn-secondary">Redirection</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                            <div class="row Redirect_@Item.PK_ProfileId" style="display:none" id="Redirect_@Item.PK_ProfileId">
-                                                                <div class="col-xl-12 col-lg-12">
-                                                                    <div class="card">
-                                                                        <div class="card-header">
-                                                                            <h4 class="card-title">Social</h4>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            <div class="basic-form">
-                                                                                <form action="#">
-                                                                                    <div class="row">
-                                                                                        <div class="col-xl-12 col-lg-12 col-md-12 text-center">
-                                                                                            <div class="input-group mb-3">
-                                                                                                <div class="input-group-prepend">
-                                                                                                    <select class="form-control btn btn-primary dropdown-toggle" onchange="GetUrl(@i)" id="ddlUrl_@i">
-                                                                                                        <option value="0" class="dropdown-toggle">Select</option>
-                                                                                                        <option value="WebLink" class="dropdown-item">Web Link</option>
-                                                                                                        <option value="SocialMedia" class="dropdown-item">Social Media</option>
-                                                                                                    </select>
-                                                                                                </div>
-                                                                                                <select class="form-control" id="ddlWebLink_@i" style="background-color: #42366c;">
-                                                                                                    <option value="0">--Select--</option>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="row mt-5 ">
-                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center">
-                                                                                            <input class="btn btn-success mb-2 px-5" type="submit" value="UPDATE" id="btnRedirct" name="btnRedirct" onclick="UpdateRedirectionUrl('Update',@i);" />
-                                                                                        </div>
-                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center ">
-                                                                                            <button type="button" class="btn btn-danger mb-2 px-5" onclick="UpdateRedirectionUrl('Remove',@i);">REMOVE</button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                    }
-
-                                                    i = i + 1;
-                                                }
-                                            }
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-12">
-                    <div class="card_box box_shadow position-relative mb_30 bg-white">
-                        <div class="box_body p-4">
-                            <div class="white_card mb_30 ">
-                                <div class="white_card_body p-0">
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade active show" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
-                                            <div class="builder_select">
-                                                <div class="row">
-                                                    <div class="col-lg-12 col-md-12">
-                                                        <div class="white_card card_height_100 mb_30">
-                                                            <div class="white_card_header py-2">
-                                                                <div class="box_header m-0">
-                                                                    <div class="main-title">
-
-                                                                        @*<h3 class="m-0"><i class="fa fa-envelope"></i> Quick Email</h3>*@
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mt-1">
-                                                                    <p style="color:#017801;">@TempData["SendEmailSuccess"]</p>
-                                                                    <p style="color:red;">@TempData["SendEmailError"]</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="white_card_body">
-                                                                <div class="card-body">
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-8">
-                        <div class="white_card mb_30 ">
-                            <div class="white_card_header">
-                                <div class="bulder_tab_wrapper">
-                                    <ul class="nav" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="Themes-tab" data-bs-toggle="tab" href="#Themes" role="tab" aria-controls="Themes" aria-selected="false">Contacts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="page-tab" data-bs-toggle="tab" href="#page" role="tab" aria-controls="profile" aria-selected="false">Whatsapp</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="Header-tab" data-bs-toggle="tab" href="#Header" role="tab" aria-controls="Header" aria-selected="false">Emails</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="content-tab" data-bs-toggle="tab" href="#content" role="tab" aria-controls="content" aria-selected="true">Web/App Urls</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="aside-tab" data-bs-toggle="tab" href="#aside" role="tab" aria-controls="aside" aria-selected="false">Social Media</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="footer_tb-tab" data-bs-toggle="tab" href="#footer_tb" role="tab" aria-controls="aside" aria-selected="false">Location</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="white_card_body">
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Contact Number:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Dark</option>
-                                                            <option value="">Lite</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Dark</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Dark</li><li data-value="" class="option">Lite</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Whatsapps:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Dark</option>
-                                                            <option value="">Lite</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Dark</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Dark</li><li data-value="" class="option">Lite</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Logo Bar Theme:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Dark</option>
-                                                            <option value="">Lite</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Dark</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Dark</li><li data-value="" class="option">Lite</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="page" role="tabpanel" aria-labelledby="page-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Page Loader:</label>
-                                                    <div class="common_select">
-                                                        <input type="text" class="form-control"/>
-                                                    </div> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="Header" role="tabpanel" aria-labelledby="Header-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Desktop Fixed Header:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Fixed</option>
-                                                            <option value="">absolute</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fixed</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fixed</li><li data-value="" class="option">absolute</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Header Width:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Fluid</option>
-                                                            <option value="">Fixed</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fluid</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fluid</li><li data-value="" class="option">Fixed</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Menu Arrows:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Yes</option>
-                                                            <option value="">No</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Yes</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Yes</li><li data-value="" class="option">No</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade active show" id="content" role="tabpanel" aria-labelledby="content-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Width: </label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Fixed</option>
-                                                            <option value="">Fluid</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fixed</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fixed</li><li data-value="" class="option">Fluid</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="aside" role="tabpanel" aria-labelledby="aside-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Width</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Mini</option>
-                                                            <option value="">full</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Mini</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Mini</li><li data-value="" class="option">full</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Hoverable:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Yes</option>
-                                                            <option value="">No</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Yes</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Yes</li><li data-value="" class="option">No</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Submenu Toggle:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Accordions</option>
-                                                            <option value="">Dropdown</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Accordions</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Accordions</li><li data-value="" class="option">Dropdown</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="footer_tb" role="tabpanel" aria-labelledby="footer_tb-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Width:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Fluid</option>
-                                                            <option value="">Fixed</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fluid</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fluid</li><li data-value="" class="option">Fixed</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 ">
-                                                    <label class="form-label" for="#">Fixed Footer:</label>
-                                                    <div class="common_select">
-                                                        <select class="nice_Select wide mb_30" style="display: none;">
-                                                            <option value="">Yes</option>
-                                                            <option value="">No</option>
-                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Yes</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Yes</li><li data-value="" class="option">No</li></ul></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="devices_btn justify-content-start">
-                                    <a class="color_button color_button2" href="#">Add</a>
-                                    @*<a class="color_button" href="#">Export</a>
-                                    <a class="color_button color_button3" href="#">Reset</a>*@
-                                </div>                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 }
 
 
