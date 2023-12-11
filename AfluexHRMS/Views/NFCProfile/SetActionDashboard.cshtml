@@ -14,72 +14,16 @@
     <div class="container-fluid p-0 ">
         <div class="row">
             <div class="col-12">
-                @*<div class="row">
-                    <div class="col-xl-4">
-                        <div class="white_card card_height_100 mb_30 social_media_card1">
-                            <div class="media_card_body1">
-                                <div class="media_card_list1">
-                                    <div class="single_media_card1">
-                                        <p class="mb-1"><a href="#" class="text-white">Activate</a></p>
-                                        <h3 class="text-white"><i class="fa fa-credit-card"></i> Business Card</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4">
-                        <div class="white_card card_height_100 mb_30 social_media_card1">
-                            <div class="media_card_body1">
-                                <div class="media_card_list1">
-                                    <div class="single_media_card1">
-                                        <p class="mb-1"><a href="#" class="text-white">Set Action</a></p>
-                                        <h3 class="text-white"><i class="fa fa-credit-card"></i> Business Card</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
-
                 <div class="row">
                     @if (Model != null)
+                    {
+                        if (Model.lst != null)
                         {
-                            if (Model.lst != null)
+                            foreach (var Item in Model.lst)
                             {
-                                foreach (var Item in Model.lst)
-                                {
-                                <div class="col-xl-3 col-xxl-4 col-lg-6">
-                                    <div class="col-xl-8">
-                                         <div class="widget-stat card mb-3" style="border-radius:25px;background-color:@Item.Color">
-                                                            <div class="card-body">
-                                                                <div class="media">
-                                                                    <span class="mr-3">
-                                                                        <i class="fa fa-credit-card-alt"></i>
-                                                                    </span>
-                                                                    <div class="media-body text-white text-right">
-                                                                        @if (Item.IsActive == "True")
-                                                                        {
-                                                                            <p class="mb-1"><a href="/NFCProfile/ProfileUpdate?EncCode=@Item.EncCode" class="text-white text-activate">Set Action</a></p>
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            <p class="mb-1"><a href="/Home/NFCActivation?C=@Item.EncCode" class="text-white text-activate">Activate</a></p>
-                                                                        }
-                                                                        <h4 class="text-white">@Item.Service</h4>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                    @*<div class="widget-stat card mb-3" style="border-radius:25px;background-color:@Item.Color">
-                                        <div class="card-body  p-4">
+                                <div class="col-xl-3 col-lg-3">
+                                    <div class="widget-stat card mb-3" style="border-radius:25px;background-color:@Item.Color">
+                                        <div class="card-body">
                                             <div class="media">
                                                 <span class="mr-3">
                                                     <i class="fa fa-credit-card-alt"></i>
@@ -97,9 +41,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>*@
+                                    </div>
                                 </div>
-
                             }
                         }
                         else

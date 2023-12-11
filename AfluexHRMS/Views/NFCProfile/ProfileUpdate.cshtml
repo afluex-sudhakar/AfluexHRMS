@@ -1,0 +1,1463 @@
+﻿@model AfluexHRMS.Models.NFCProfileModel
+
+@{
+    ViewBag.Title = "ProfileUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #233a50 !important;
+    }
+
+    .btnAdd {
+        border: none;
+        background: transparent;
+        color: #68CF29 !important;
+    }
+
+    select.form-control.btn.btn-primary.dropdown-toggle {
+        background-color: #eb8153;
+    }
+
+    input.chkactive.massive-checkbox {
+        height: 30px;
+        width: 30px;
+    }
+
+    input[type="checkbox"].massive-checkbox:checked:after {
+        width: 2rem;
+        height: 2rem;
+        font-size: 25px;
+        line-height: 1.3;
+    }
+
+    input[type="checkbox"].massive-checkbox:after {
+        height: 30px;
+        width: 30px;
+    }
+
+    .card-bx .card-info {
+        border-radius: 0.35rem;
+    }
+
+    .g option {
+        background: white;
+        color: black;
+    }
+
+    .post-input .btn-social {
+        font-size: 20px;
+        height: 55px;
+        display: inline-block;
+        padding: 0;
+        text-align: center;
+        border-radius: 0.35rem;
+        color: #fff;
+        width: 55px;
+        line-height: 54px;
+    }
+
+        .post-input .btn-social.facebook {
+            background-color: #3B5998;
+        }
+
+        .post-input .btn-social.google-plus {
+            background-color: #DE4E43;
+        }
+
+        .post-input .btn-social.linkedin {
+            background-color: #007BB6;
+        }
+
+        .post-input .btn-social.instagram {
+            background-color: #8A5A4E;
+        }
+
+        .post-input .btn-social.twitter {
+            background-color: #1EA1F3;
+        }
+
+        .post-input .btn-social.youtube {
+            background-color: #CE201F;
+        }
+
+        .post-input .btn-social.whatsapp {
+            background-color: #01C854;
+        }
+
+        .post-input .btn-social i {
+            margin: 0 !important;
+        }
+</style>
+@using (Html.BeginForm("ProfileUpdate", "NFCProfile", FormMethod.Post, new { @id = "Profile", @enctype = "multipart/form-data", @autocomplete = "off" }))
+{
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0 sm_padding_15px">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12">
+                    <div class="dashboard_header white_card mb_50">
+                        <div class="white_card_body py-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="dashboard_header_title">
+                                        <h5 class="mb-0">Profile</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="dashboard_breadcam text-end">
+                                        <a href="/Home/NFCActivation" class="btn btn-success rounded-pill">View Profile</a>
+                                        <button type="button" class="btn btn-success rounded-pill" data-toggle="modal" data-target="#exampleModalCenter">+ Create New</button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalCenter">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Create a new card</h5>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span>&times;</span>
+                                                        </button>
+                                                        <input type="hidden" id="hdfProfile" name="PK_ProfileId" value="@Model.PK_ProfileId" />
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 col-form-label" style="white-space: nowrap;">Profile Name</label>
+                                                            <div class="col-sm-9">
+                                                                @Html.TextBoxFor(m => m.ProfileName, new { @class = "form-control", @placeholder = "Profile Name" })
+                                                            </div>
+                                                        </div>
+                                                        <fieldset class="form-group">
+                                                            <div class="row">
+                                                                <label class="col-form-label col-sm-3 pt-0">Profile Type</label>
+                                                                <div class="col-sm-9">
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="Contact Card" name="ProfileType" />
+                                                                        <label class="form-check-label">
+                                                                            Contact Card
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" name="ProfileType" value="Redirection">
+                                                                        <label class="form-check-label">
+                                                                            Redirection
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" id="btnProfileAdd">Create</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-12">
+                    <div class="card_box box_shadow position-relative mb_30 bg-white">
+                        <div class="box_body p-4">
+                            <div class="box-body box-profile">
+                                <div class="box_header m-0">
+                                    <div class="main-title">
+                                        <h3 class="m-0">My Profile</h3>
+                                    </div>
+                                    <div class="header_more_tool">
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ti-more-alt"></i>
+                                            </span>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" x-placement="bottom-end" style="position: absolute; transform: translate3d(-148px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                <a class="dropdown-item" href="javascript:void(0);"> <i class="ti-eye"></i> Details</a>
+                                                <a class="dropdown-item" href="javascript:void(0);"> <i class="ti-close"></i> Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                   @*<div class="row">
+                                    <div class="col-12">
+                                        <div class="profile-user-info">
+
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="dropdown custom-dropdown mb-0 tbl-orders-style">
+                                    <div class="btn sharp tp-btn" data-toggle="dropdown">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="javascript:void(0);">Details</a>
+                                        <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card-body">
+                                <div class="swiper-container card-swiper">
+                                    <div class="swiper-wrapper" id="divbindProfile">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.lst != null)
+                                            {
+                                                int i = 1;
+                                                foreach (var Item in Model.lst)
+                                                {
+                                                    if (Item.ProfileType == "Contact Card")
+                                                    {
+                                                        <div class="swiper-slide">
+                                                            <div class="card-bx stacked card">
+                                                                @*<img src="../images/card/card1.jpg" alt="">*@
+                                                                <div class="card-info" style="background-color:@Item.ColorCodeContact">
+                                                                    <p class="mb-1 text-white fs-14">Profile Name</p>
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <h2 class="num-text text-white mb-5 font-w600">@Item.ProfileName</h2>
+                                                                        <div class="text-right" style="margin-top: -45px">
+                                                                            <div class="mt-4 text-white">
+                                                                                <input type="checkbox" class="chkactive massive-checkbox" value="@Item.PK_ProfileId" @Item.ActiveStatus />
+                                                                            </div>
+                                                                            <div class="mt-4 text-white">
+                                                                                <p>Activate</p>
+                                                                                <p><a href="#ShowConctact('@i')" onclick="ShowConctact(@Item.PK_ProfileId,@i);" data-epensedetailsid='@Item.PK_ProfileId' class="text-white"><i class="fa fa-edit"></i> Edit</a></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex">
+                                                                        <div class="mb-2">
+                                                                            <button type="button" class="btn btn-secondary" style="background:#e12929;border: 1px solid #e12929">Contact Card</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                            <div class="row Contact_@Item.PK_ProfileId" style="display:none" id="Contact_@Item.PK_ProfileId">
+                                                                <div class="col-xl-12 col-lg-12">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h4 class="card-title">@Item.ProfileName</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="basic-form">
+                                                                                <form action="#">
+                                                                                    <div class="form-row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group ">
+                                                                                            <div class="text-center">
+                                                                                                <div class="text-center">
+                                                                                                    <div class="my-profile">
+                                                                                                        <img src="@Item.ProfilePic" alt="" class="rounded" id="output1">
+                                                                                                        <a class="file_active" onclick="getFile();" for="upfile"><i class="fa fa-pencil" aria-hidden="true"></i><input id="upfile" type="file" value="upload" style="display: none" /></a>
+
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>First Name</label>
+                                                                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control FirstName_" + @i + "", @Placeholder = "First Name" })
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label>Last Name</label>
+                                                                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control LastName_" + @i + "", @Placeholder = "Last Name" })
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Company</label>
+                                                                                                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control CompanyName_" + @i + "", @Placeholder = "Company Name" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Designation</label>
+                                                                                                @Html.TextBoxFor(m => m.Designation, new { @class = "form-control Designation_" + @i + "", @Placeholder = "Designation" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Gender</label>
+                                                                                                    @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.ddlgender, "Value", "Text"), new { @class = "form-control g Gender_" + @i + "" })
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Date of Birth</label>
+                                                                                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control DOB_" + @i + "", @Placeholder = "DOB", @type = "date" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Mobile Number</label>
+                                                                                                @Html.DropDownListFor(m => m.ContactList, new SelectList(ViewBag.Mobile, "Value", "Text"), new { @class = "js-example-placeholder-multiple Mobile_" + @i + "", @multiple = "multiple", })
+                                                                                                @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryContact_');" />Is Primary
+                                                                            <input type="hidden" class="PrimaryNumber_@i" name="PrimaryNumber" />*@
+                                                                                                <div class="selectedMobile" style="display:none">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Emails</label>
+                                                                                                    @Html.DropDownListFor(m => m.EmailList, new SelectList(ViewBag.ddlEmail, "Value", "Text"), new { @class = "js-example-placeholder-multiple Email_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryEmail_');" />Is Primary
+                                                                                <input type="hidden" class="PrimaryEmail__@i" name="PrimaryEmail" />*@
+                                                                                                    <div class="selectedEmail2" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Social Media</label>
+                                                                                                    @Html.DropDownListFor(m => m.SocialLink, new SelectList(ViewBag.SocialMedia, "Value", "Text"), new { @class = "js-example-placeholder-multiple SocialMedia_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimarySocial_');" />Is Primary
+                                                                                <input type="hidden" class="PrimarySocial_@i" name="PrimarySocial" />*@
+                                                                                                    <div class="selectedSocial" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Web/App Urls</label>
+                                                                                                    @Html.DropDownListFor(m => m.WebLink, new SelectList(ViewBag.WebLink, "Value", "Text"), new { @class = "js-example-placeholder-multiple WebLink_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryWebLink_');" />Is Primary
+                                                                                <input type="hidden" class="PrimaryWebLink_@i" name="PrimaryWebLink" />*@
+                                                                                                    <div class="selectedWebLink" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Whatsapp No</label>
+                                                                                                @Html.DropDownListFor(m => m.WhatsappList, new SelectList(ViewBag.ddlWhatsapp, "Value", "Text"), new { @class = "js-example-placeholder-multiple Whatsapp_" + @i + "", @multiple = "multiple" })
+                                                                                                @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryContact_');" />Is Primary
+                                                                            <input type="hidden" class="PrimaryNumber_@i" name="PrimaryNumber" />*@
+                                                                                                <div class="selectedWhatsapp" style="display:none">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Location</label>
+                                                                                                    @Html.DropDownListFor(m => m.LocationList, new SelectList(ViewBag.ddlLocation, "Value", "Text"), new { @class = "js-example-placeholder-multiple Location_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryEmail_');" />Is Primary
+                                                                                <input type="hidden" class="PrimaryEmail__@i" name="PrimaryEmail" />*@
+                                                                                                    <div class="selectedLocation" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-12 col-lg-12 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Notes</label>
+                                                                                                @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control Remarks_" + @i + "", @Placeholder = "Notes" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 text-center">
+                                                                                            <input class="btn btn-success mb-2 px-5" type="button" value="UPDATE" onclick="return SaveBusinessContact('@i')" id="btnBusinessContact" name="btnBusinessContact" data-profile="@Item.PK_ProfileId" />
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center ">
+                                                                                            <button type="button" class="btn btn-danger mb-2 px-5" onclick="UpdateRedirectionUrl('Remove',@i);">REMOVE</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="swiper-slide">
+                                                            <div class="card-bx stacked card">
+                                                                <div class="card-info" style="background-color:@Item.ColorCodeRedirection">
+                                                                    <p class="mb-1 text-white fs-14">Profile Name</p>
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <h2 class="num-text text-white mb-5 font-w600">@Item.ProfileName</h2>
+                                                                        <div class="text-right" style="margin-top: -45px">
+                                                                            <!-- <div class="num-text text-white mb-3 font-w600" style="border: 2px solid white; border-radius: 8px; width: 50px; height: 50px;"></div> -->
+                                                                            <div class="mt-4 text-white">
+                                                                                <input type="checkbox" class="chkactive massive-checkbox" value="@Item.PK_ProfileId" @Item.ActiveStatus />
+                                                                            </div>
+                                                                            <div class="mt-4 text-white">
+                                                                                <p>Activate</p>
+                                                                                <p><a href="#Redirect('@i')" onclick="Redirect(@Item.PK_ProfileId,@i);" class="text-white"><i class="fa fa-edit"></i> Edit</a></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex">
+                                                                        <div class="mb-2">
+                                                                            <button type="button" class="btn btn-secondary">Redirection</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="row Redirect_@Item.PK_ProfileId" style="display:none" id="Redirect_@Item.PK_ProfileId">
+                                                                <div class="col-xl-12 col-lg-12">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h4 class="card-title">Social</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="basic-form">
+                                                                                <form action="#">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-12 col-lg-12 col-md-12 text-center">
+                                                                                            <div class="input-group mb-3">
+                                                                                                <div class="input-group-prepend">
+                                                                                                    <select class="form-control btn btn-primary dropdown-toggle" onchange="GetUrl(@i)" id="ddlUrl_@i">
+                                                                                                        <option value="0" class="dropdown-toggle">Select</option>
+                                                                                                        <option value="WebLink" class="dropdown-item">Web Link</option>
+                                                                                                        <option value="SocialMedia" class="dropdown-item">Social Media</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                                <select class="form-control" id="ddlWebLink_@i" style="background-color: #42366c;">
+                                                                                                    <option value="0">--Select--</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row mt-5 ">
+                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center">
+                                                                                            <input class="btn btn-success mb-2 px-5" type="submit" value="UPDATE" id="btnRedirct" name="btnRedirct" onclick="UpdateRedirectionUrl('Update',@i);" />
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center ">
+                                                                                            <button type="button" class="btn btn-danger mb-2 px-5" onclick="UpdateRedirectionUrl('Remove',@i);">REMOVE</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    }
+
+                                                    i = i + 1;
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-12">
+                    <div class="card_box box_shadow position-relative mb_30 bg-white">
+                        <div class="box_body p-4">
+                            <div class="white_card mb_30 ">
+                                <div class="white_card_body p-0">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade active show" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
+                                            <div class="builder_select">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="white_card card_height_100 mb_30">
+                                                            <div class="white_card_header py-2">
+                                                                <div class="box_header m-0">
+                                                                    <div class="main-title">
+
+                                                                        @*<h3 class="m-0"><i class="fa fa-envelope"></i> Quick Email</h3>*@
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mt-1">
+                                                                    <p style="color:#017801;">@TempData["SendEmailSuccess"]</p>
+                                                                    <p style="color:red;">@TempData["SendEmailError"]</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="white_card_body">
+                                                                <div class="card-body">
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                        <div class="white_card mb_30 ">
+                            <div class="white_card_header">
+                                <div class="bulder_tab_wrapper">
+                                    <ul class="nav" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="Themes-tab" data-bs-toggle="tab" href="#Themes" role="tab" aria-controls="Themes" aria-selected="false">Contacts</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="page-tab" data-bs-toggle="tab" href="#page" role="tab" aria-controls="profile" aria-selected="false">Whatsapp</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="Header-tab" data-bs-toggle="tab" href="#Header" role="tab" aria-controls="Header" aria-selected="false">Emails</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="content-tab" data-bs-toggle="tab" href="#content" role="tab" aria-controls="content" aria-selected="true">Web/App Urls</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="aside-tab" data-bs-toggle="tab" href="#aside" role="tab" aria-controls="aside" aria-selected="false">Social Media</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="footer_tb-tab" data-bs-toggle="tab" href="#footer_tb" role="tab" aria-controls="aside" aria-selected="false">Location</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="white_card_body">
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
+                                        <div class="builder_select">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Contact Number:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Dark</option>
+                                                            <option value="">Lite</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Dark</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Dark</li><li data-value="" class="option">Lite</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Whatsapps:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Dark</option>
+                                                            <option value="">Lite</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Dark</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Dark</li><li data-value="" class="option">Lite</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Logo Bar Theme:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Dark</option>
+                                                            <option value="">Lite</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Dark</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Dark</li><li data-value="" class="option">Lite</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="page" role="tabpanel" aria-labelledby="page-tab">
+                                        <div class="builder_select">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Page Loader:</label>
+                                                    <div class="common_select">
+                                                        <input type="text" class="form-control"/>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="Header" role="tabpanel" aria-labelledby="Header-tab">
+                                        <div class="builder_select">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Desktop Fixed Header:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Fixed</option>
+                                                            <option value="">absolute</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fixed</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fixed</li><li data-value="" class="option">absolute</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Header Width:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Fluid</option>
+                                                            <option value="">Fixed</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fluid</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fluid</li><li data-value="" class="option">Fixed</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Menu Arrows:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Yes</option>
+                                                            <option value="">No</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Yes</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Yes</li><li data-value="" class="option">No</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade active show" id="content" role="tabpanel" aria-labelledby="content-tab">
+                                        <div class="builder_select">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Width: </label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Fixed</option>
+                                                            <option value="">Fluid</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fixed</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fixed</li><li data-value="" class="option">Fluid</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="aside" role="tabpanel" aria-labelledby="aside-tab">
+                                        <div class="builder_select">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Width</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Mini</option>
+                                                            <option value="">full</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Mini</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Mini</li><li data-value="" class="option">full</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Hoverable:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Yes</option>
+                                                            <option value="">No</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Yes</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Yes</li><li data-value="" class="option">No</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Submenu Toggle:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Accordions</option>
+                                                            <option value="">Dropdown</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Accordions</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Accordions</li><li data-value="" class="option">Dropdown</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="footer_tb" role="tabpanel" aria-labelledby="footer_tb-tab">
+                                        <div class="builder_select">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Width:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Fluid</option>
+                                                            <option value="">Fixed</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Fluid</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Fluid</li><li data-value="" class="option">Fixed</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 ">
+                                                    <label class="form-label" for="#">Fixed Footer:</label>
+                                                    <div class="common_select">
+                                                        <select class="nice_Select wide mb_30" style="display: none;">
+                                                            <option value="">Yes</option>
+                                                            <option value="">No</option>
+                                                        </select><div class="nice-select nice_Select wide mb_30" tabindex="0"><span class="current">Yes</span><div class="nice-select-search-box"><input type="text" class="nice-select-search" placeholder="Search..."></div><ul class="list"><li data-value="" class="option selected">Yes</li><li data-value="" class="option">No</li></ul></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="devices_btn justify-content-start">
+                                    <a class="color_button color_button2" href="#">Add</a>
+                                    @*<a class="color_button" href="#">Export</a>
+                                    <a class="color_button color_button3" href="#">Reset</a>*@
+                                </div>                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        // GetProfilePersonalData();
+        GetProfileData("ContactNo", "#tblContact");
+        GetProfileData("Email", "#tblEmail");
+        GetProfileData("WebLink", "#tblWebLink");
+        GetProfileData("SocialMedia", "#tblSocialMedia");
+        GetProfileData("Whatsapp", "#tblWhatsapp");
+        GetProfileData("Location", "#tblLocation");
+        $(".js-example-placeholder-multiple").select2({
+            placeholder: "Select",
+            tokenSeparators: [',', ' '],
+            tags: true,
+        });
+    });
+
+    var ProfileId = "";
+    $('input[name="ProfileType"]').on('change', function () {
+        $('input[name="ProfileType"]').not(this).prop('checked', false);
+    });
+    $("#addBtn").click(function () {
+        $("#hdfProfile").val('');
+    })
+    function OpenDivProfile(ProfileId) {
+        $("#divBindProfile").html('');
+        $("#divProfile").show();
+        $("#hdfProfile").val(ProfileId);
+    }
+
+    $("#btnProfileAdd").click(function () {
+        if (window.FormData !== undefined) {
+            var fileData = new FormData();
+            fileData.append('Flag', 'Profile');
+            fileData.append('ProfileName', $("#ProfileName").val());
+            fileData.append('ProfileType', $('input[name="ProfileType"]:checked').val());
+            fileData.append('DecryptedCode', $('#DecryptedCode').val());
+            $.ajax({
+                url: '/NFCProfile/ProfileUpdate',
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (data) {
+                    var obj = jQuery.parseJSON(data);
+                    $("#Flag").val('');
+                    if (obj == "Success") {
+                        SuccessAlert("New Contact card save Successfully");
+                        $("#ProfileName").val('');
+                        $('input[name="ProfileType"]:checked').val('false');
+                    }
+                    else {
+                        ErrorAlert("Error Occurred");
+                        $("#ProfileName").val('');
+                        $('input[name="ProfileType"]:checked').val('false');
+                    }
+                    //GetProfilePersonalData();
+                    $('#exampleModalCenter').modal('hide');
+                    window.location.href = "/NFCProfile/ProfileUpdate?EncCode=" + $('#Code').val();
+                },
+                error: function (err) {
+                    ErrorAlert("Error while inserting data");
+                    $("#ProfileName").val('');
+                    $('input[name="ProfileType"]:checked').val('false');
+                    // GetProfilePersonalData();
+                    $('#exampleModalCenter').modal('hide');
+                    window.location.href = "/NFCProfile/ProfileUpdate?EncCode=" + $('#Code').val();
+                }
+            });
+
+        }
+        $("#Flag").val("Profile");
+    });
+    $("#btnContact").click(function () {
+        if ($("#Content").val() == '') {
+            $("#Content").addClass('errortext');
+            $('#Content').focus();
+            return false;
+        }
+        $("#Flag").val("Contact");
+        ProfileUpdatePost();
+    });
+    $("#btnEmail").click(function () {
+        debugger;
+        if ($("#ContentEmail").val() == '') {
+            $("#ContentEmail").addClass('errortext');
+            $('#ContentEmail').focus();
+            return false;
+        }
+        $("#Flag").val("Email");
+        ProfileUpdatePost();
+    });
+    $("#btnWebLink").click(function () {
+        debugger;
+        if ($("#ContentWebLinks").val() == '') {
+            $("#ContentWebLinks").addClass('errortext');
+            $('#ContentWebLinks').focus();
+            return false;
+        }
+        $("#Flag").val("WebLink");
+        ProfileUpdatePost();
+    });
+    $("#btnSocialMedia").click(function () {
+        if ($("#ContentSocialMedia").val() == '') {
+            $("#ContentSocialMedia").addClass('errortext');
+            $('#ContentSocialMedia').focus();
+            return false;
+        }
+        $("#Flag").val("SocialMedia");
+        ProfileUpdatePost();
+    });
+    $("#btnWhatsapp").click(function () {
+        debugger;
+        if ($("#ContentWhatsapp").val() == '') {
+            $("#ContentWhatsapp").addClass('errortext');
+            $('#ContentWhatsapp').focus();
+            return false;
+        }
+        $("#Flag").val("Whatsapp");
+        ProfileUpdatePost();
+    });
+    $("#btnLocation").click(function () {
+        debugger;
+        if ($("#ContentLocation").val() == '') {
+            $("#ContentLocation").addClass('errortext');
+            $('#ContentLocation').focus();
+            return false;
+        }
+        $("#Flag").val("Location");
+        ProfileUpdatePost();
+    });
+    function GetProfilePersonalData() {
+        $.ajax({
+            type: 'Get',
+            contentType: "Application/Json",
+            url: '@Url.Action("GetProfilePersonalData", "NFCProfile")',
+            dataType: 'json',
+            success: function (data) {
+                var cl = "";
+                $("#divbindProfile").html('');
+                var obj = jQuery.parseJSON(data);
+                for (var i = 0; i < obj.length; i++) {
+                    if (obj[i].ProfileType == "Redirection") {
+                        cl = "btn-secondary";
+                    }
+                    else {
+                        cl = "btn-danger";
+                    }
+                    $("#divbindProfile").append('<div class="swiper-slide"><div class="card-bx stacked card"><img src=' + obj[i].CardImage + ' alt=""><div class="card-info"><p class="mb-1 text-white fs-14">' + obj[i].ProfileName + '</p><div class="d-flex justify-content-between"><h2 class="num-text text-white mb-5 font-w600">' + obj[i].Name + '</h2><div class="text-center"><span class="num-text text-white mb-5 font-w600"></span><div class="mt-4 text-white"><input type="checkbox" class="chkactive" value=' + obj[i].PK_ProfileId + ' ' + obj[i].IsChecked + '/><p>Activate</p><p><a href="javascript:void(0)" class="text-white" onclick="ShowConctact(' + obj[i].PK_ProfileId + ',' + (i + 1) + ');"><i class="fa fa-edit"></i> Edit</a></p></div></div></div><div class="d-flex"><div class="mb-2"><button type="button" class="btn ' + cl + '" onclick="GetBusinessProfile(' + obj[i].PK_ProfileId + ',' + (i + 1) + ');">' + obj[i].ProfileType + '</button></div></div></div></div></div>')
+                }
+            }
+        });
+    }
+    function ProfileUpdatePost() {
+        $.ajax({
+            url: '@Url.Action("ProfileUpdate", "NFCProfile")',
+            type: 'POST',
+            data: $("#form1").serialize(),
+            success: function (data) {
+                var obj = jQuery.parseJSON(data);
+                $("#Flag").val('');
+                if (obj == "Success") {
+                    SuccessAlert("Profile Updated Successfully");
+                    $("#Content").val('');
+                    $("#ContentEmail").val('');
+                    $("#ContentWebLinks").val('');
+                    $("#ContentSocialMedia").val('');
+                    GetProfileData("ContactNo", "#tblContact");
+                    GetProfileData("Email", "#tblEmail");
+                    GetProfileData("WebLink", "#tblWebLink");
+                    GetProfileData("SocialMedia", "#tblSocialMedia");
+                    GetProfileData("Whatsapp", "#tblWhatsapp");
+                    GetProfileData("Location", "#tblLocation");
+                }
+                else {
+                    ErrorAlert("Error while inserting data");
+                }
+            },
+            error: function () {
+                ErrorAlert("Error while inserting data");
+            }
+        });
+    }
+
+    $("#divbindProfile").on("click", ".chkactive", function (e) {
+        if ($(this).prop("checked") == true) {
+            IsChecked = true;
+        }
+        else if ($(this).prop("checked") == false) {
+            IsChecked = false;
+        }
+        $('#divbindProfile .chkactive input:checkbox').not(this).prop('checked', false);
+        $('#divbindProfile .chkactive').change(function () {
+            ProfileId = $(this).val();
+            $.ajax({
+                type: "GET",
+                dataType: "JSON",
+                contentType: "Application/Json",
+                url: '@Url.Action("UpdateProfileStatus", "NFCProfile")',
+                data: { ProfileId: ProfileId, IsChecked: IsChecked },
+                success: function (data) {
+                    var message = "";
+                    if (data.Result == "Yes") {
+                        if (IsChecked == true) {
+                            message = "Activated successfully";
+                        }
+                        if (IsChecked == false) {
+                            message = "De-activated successfully";
+                        }
+                        SuccessAlert(message);
+                        $("#hdfProfile").val(ProfileId);
+                        window.location.href = "/NFCProfile/ProfileUpdate?EncCode=" + $('#Code').val();
+                        //GetProfilePersonalData();
+                    }
+                    else {
+                        ErrorAlert("Please try again");
+                    }
+                }
+            });
+        });
+    });
+    window.GetBusinessProfile = function (Id, index) {
+        $("#hdfProfile").val(Id);
+        $.ajax({
+            type: "GET",
+            dataType: "JSON",
+            contentType: "Application/Json",
+            url: '@Url.Action("GetBusinessProfile", "NFCProfile")',
+            data: { PK_ProfileId: Id },
+            success: function (data) {
+                debugger
+                var cl = "";
+                if (data != null) {
+                    var obj = jQuery.parseJSON(data);
+                    if (obj[0][0].PK_ProfileId != null) {
+
+                        if (obj[0][0].ProfileType == "Redirection") {
+                            $("#ProfileImage").attr("src", obj[0][0].ProfilePic);
+                            $("#divRedirection").show();
+                            $("#divContactCard").hide();
+                            $('.Redirect_' + Id).toggle('show');
+                            var html = '';
+                            $("#ddlWebLink_" + index).html('');
+                            for (var i = 0; i < obj[1].length; i++) {
+                                if (obj[1][i].IsRedirect == true) {
+                                    $("#ddlUrl" + index + " [value=" + obj[1][i].Type + "]").attr("selected", "true");
+                                    html += "<option value='" + obj[1][i].PK_NFCProfileId + "'>" + obj[1][i].Content + "</option>";
+                                    $("#spUrl").text(obj[1][i].Content);
+                                }
+                                else {
+
+                                }
+                            }
+                            $("#ddlWebLink_" + index).append(html);
+                        }
+                        else {
+
+                            $("#MyProfileImage").attr("src", obj[0][0].ProfilePic);
+                            $("#divContactCard").show();
+                            $("#divRedirection").hide();
+                            $('.Contact_' + Id).toggle('show');
+                            $("#lblName").text(obj[0][0].FirstName);
+                            //$("#joiningDate").text(obj[0].CreatedDate)
+                            $("#hdfProfile").val(obj[0][0].PK_ProfileId);
+                            $(".Designation_" + index).val(obj[0][0].Designation);
+                            $("#ProfileImage" + index).attr("src", obj[0][0].ProfilePic);
+                            $(".Gender_" + index + " [value=' + obj[0][0].Gender + ']").attr("selected", "true");
+                            $(".FirstName_" + index).val(obj[0][0].FirstName);
+                            $(".DOB_" + index).val(obj[0][0].DOB);
+                            $(".LastName_" + index).val(obj[0][0].LastName);
+                            if (obj[1].length > 0) {
+                                for (var i = 0; i < obj[1].length; i++) {
+                                    if (obj[1][i].Type == "Email") {
+                                        $(".selectedEmail2").append("<button type='button' data-emailid='" + obj[1][i].PK_NFCProfileId + "' id='btnSelected2'>" + obj[1][i].Content + "</button>");
+                                    }
+                                    if (obj[1][i].Type == "ContactNo") {
+                                        $(".selectedMobile").append("<button type='button' data-mobileid='" + obj[1][i].PK_NFCProfileId + "'>" + obj[1][i].Content + "</button>");
+                                    }
+                                    if (obj[1][i].Type == "SocialMedia") {
+                                        $(".selectedSocial").append("<button type='button' data-socialid='" + obj[1][i].PK_NFCProfileId + "'>" + obj[1][i].Content + "</button>");
+                                    }
+                                    if (obj[1][i].Type == "WebLink") {
+                                        $(".selectedWebLink").append("<button type='button' data-weblinkid='" + obj[1][i].PK_NFCProfileId + "'>" + obj[1][i].Content + "</button>");
+                                    }
+                                    if (obj[1][i].Type == "Location") {
+                                        $(".selectedLocation").append("<button type='button' data-locationid='" + obj[1][i].PK_NFCProfileId + "'>" + obj[1][i].Content + "</button>");
+                                    }
+                                    if (obj[1][i].Type == "Whatsapp") {
+                                        $(".selectedWhatsapp").append("<button type='button' data-whatsappid='" + obj[1][i].PK_NFCProfileId + "'>" + obj[1][i].Content + "</button>");
+                                    }
+                                }
+                            }
+                            else {
+                                $(".selectedLocation").html("");
+                                $(".selectedWhatsapp").html("");
+                                $(".selectedEmail2").html("");
+                                $(".selectedMobile").html("");
+                                $(".selectedSocial").html("");
+                                $(".selectedWebLink").html("");
+                            }
+                            var selectedEmail2 = new Array();
+                            var selectedMobile = new Array();
+                            var selectedSocial = new Array();
+                            var selectedWebLink = new Array();
+                            var selectedLocation = new Array();
+                            var selectedWhatsapp = new Array();
+                            $.each($('.selectedEmail2 button[type=button]'), function (i, v) {
+                                selectedEmail2[i] = $(this).attr('data-emailid');
+                                $('.Email_' + index).val(selectedEmail2).trigger('change');
+                            });
+                            $.each($('.selectedMobile button[type=button]'), function (i, v) {
+                                selectedMobile[i] = $(this).attr('data-mobileid');
+                                $('.Mobile_' + index).val(selectedMobile).trigger('change');
+                            });
+                            $.each($('.selectedSocial button[type=button]'), function (i, v) {
+                                selectedSocial[i] = $(this).attr('data-socialid');
+                                $('.SocialMedia_' + index).val(selectedSocial).trigger('change');
+                            });
+                            $.each($('.selectedWebLink button[type=button]'), function (i, v) {
+                                selectedWebLink[i] = $(this).attr('data-weblinkid');
+                                $('.WebLink_' + index).val(selectedWebLink).trigger('change');
+                            });
+                            $.each($('.selectedLocation button[type=button]'), function (i, v) {
+                                selectedLocation[i] = $(this).attr('data-locationid');
+                                $('.Location_' + index).val(selectedLocation).trigger('change');
+                            });
+                            $.each($('.selectedWhatsapp button[type=button]'), function (i, v) {
+                                selectedWhatsapp[i] = $(this).attr('data-whatsappid');
+                                $('.Whatsapp_' + index).val(selectedWhatsapp).trigger('change');
+                            });
+                            $(".Remarks_" + index).val(obj[0][0].Description);
+                            $(".CompanyName_" + index).val(obj[0][0].BusinessName);
+                        }
+                    }
+                }
+            }
+        });
+    }
+    window.DeleteProfileData = function (Id) {
+        $.ajax({
+            type: "GET",
+            dataType: "JSON",
+            contentType: "Application/Json",
+            url: '@Url.Action("DeleteNFCProfileData", "NFCProfile")',
+            data: { Pk_NfcProfileId: Id },
+            success: function (data) {
+                if (data.Result == "Yes") {
+                    GetProfilePersonalData();
+                    GetProfileData("ContactNo", "#tblContact");
+                    GetProfileData("Email", "#tblEmail");
+                    GetProfileData("WebLink", "#tblWebLink");
+                    GetProfileData("SocialMedia", "#tblSocialMedia");
+                    GetProfileData("Whatsapp", "#tblWhatsapp");
+                    GetProfileData("Location", "#tblLocation");
+                }
+                else {
+
+                }
+            }
+        });
+    }
+    function GetProfileData(Type, Id) {
+        var mhide = "";
+        var InfoType = "";
+        if (Type == "ContactNo") {
+            InfoType = "Contact Number";
+        }
+        else if (Type == "Email") {
+            InfoType = "Email";
+        }
+        else if (Type == "WebLink") {
+            InfoType = "Web/App URL";
+        }
+        else if (Type == "SocialMedia") {
+            InfoType = "Social Media";
+        }
+        else if (Type == "Whatsapp") {
+            InfoType = "Whatsapp";
+        }
+        else if (Type == "Location") {
+            InfoType = "Location";
+        }
+        else {
+
+        }
+        $.ajax({
+            type: 'Get',
+            contentType: "Application/Json",
+            url: '@Url.Action("GetProfileData", "NFCProfile")',
+            data: { Type: Type, PK_ProfileId: $("hdfProfile").val() },
+            dataType: 'json',
+            success: function (data) {
+                $(Id + " tr td").remove();
+                var obj = jQuery.parseJSON(data);
+                for (var i = 0; i < obj.length; i++) {
+                    if (Type == 'Email' || Type == 'SocialMedia' || Type == 'WebLink') {
+                        mhide = "hideme";
+                    }
+                    $(Id).append('<tr><td> <span><svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="63" height="63" rx="14" fill="#625794" /><path d="M37.2692 38.9908L37.2692 38.9908L32.3961 43.8874C32.3934 43.8902 32.3909 43.8927 32.3885 43.895M37.2692 38.9908L32.0389 43.5375L32.3918 43.8917C32.3825 43.9009 32.3749 43.9078 32.3716 43.9107L32.3705 43.9117C32.373 43.9095 32.3796 43.9036 32.3877 43.8957C32.388 43.8955 32.3883 43.8952 32.3885 43.895M37.2692 38.9908C37.8291 38.4281 37.827 37.5179 37.2643 36.9578C36.7016 36.3978 35.7914 36.3999 35.2314 36.9626L35.2313 36.9627L32.8127 39.393M37.2692 38.9908L32.8127 39.393M32.3885 43.895C31.8292 44.4509 30.9226 44.4526 30.3615 43.8946C30.3603 43.8934 30.3591 43.8922 30.3578 43.8909L30.3563 43.8894L30.3442 43.8773L25.4813 38.9908L25.8357 38.6381L25.4813 38.9908C24.9215 38.4282 24.9234 37.518 25.4862 36.9578C26.049 36.3978 26.9591 36.4 27.5191 36.9627L27.5192 36.9627L29.9377 39.393L29.9377 20.75C29.9377 19.9561 30.5813 19.3125 31.3752 19.3125C32.1692 19.3125 32.8127 19.9561 32.8127 20.75L32.8127 39.393M32.3885 43.895C32.39 43.8935 32.3914 43.8921 32.3928 43.8907L32.8127 39.393M30.3577 43.8908C30.3573 43.8903 30.3568 43.8899 30.3564 43.8894L30.3577 43.8908Z" fill="white" stroke="white" /></svg></span></td><td style="display:none">' + obj[i].Fk_UserId +
+   ' </td><td><span class="font-w600 text-black">' + InfoType + '</span></td><td id="Pk_NfcProfileId' + i + '" style="display:none" >' + obj[i].Pk_NfcProfileId +
+   ' </td><td colspan="2">' + obj[i].Content + '</td><td><a href="javascript:void(0)" id="btnanchor" class="btn-link  text-danger float-right" value=' + obj[i].Pk_NfcProfileId + '" onclick="DeleteProfileData(' + obj[i].Pk_NfcProfileId + ');">Remove</a></td></tr>')
+                }
+            }
+        });
+    }
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+</script>
+<script>
+
+    function getFile() {
+        document.getElementById("upfile").click();
+    }
+    $("#upfile").change(function (event) {
+        var image = document.getElementById('output1');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        $("#MyProfileImage").attr("src", image.src);
+        var fileUpload = $("#upfile").get(0);
+        var files = fileUpload.files;
+        var formData = new FormData();
+        formData.append(files[0].name, files[0]);
+        @*var UserId= @Session["Pk_userId"];*@
+        formData.append("PK_ProfileId", $("#hdfProfile").val())
+        var status = $('#status');
+        var preloader = $('#preloader');
+        var body = $('body');
+        status.fadeIn();
+        preloader.delay(0).fadeIn('fast');
+        body.delay(0).css({ 'overflow': 'visible' });
+        $.ajax({
+            url: "/NFCProfile/UpdateProfilePicForContactCard",
+            type: 'post',
+            datatype: 'json',
+            contentType: false,
+            processData: false,
+            async: false,
+            data: formData,
+            success: function (data) {
+                status.fadeOut();
+                preloader.delay(0).fadeOut('fast');
+                if (data.Result == "true") {
+                    SuccessAlert(data.Message);
+                }
+                else {
+                    ErrorAlert(data.Message);
+                }
+            }
+        })
+    })
+    $("#up1file").change(function (event) {
+        var image = document.getElementById('ProfileImage');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        var fileUpload = $("#up1file").get(0);
+        var files = fileUpload.files;
+        var formData = new FormData();
+        formData.append(files[0].name, files[0]);
+        @*var UserId= @Session["Pk_userId"];*@
+        formData.append("PK_ProfileId", $("#hdfProfile").val())
+        //var status = $('#status');
+        //var preloader = $('#preloader');
+        //var body = $('body');
+        //status.fadeIn();
+        //preloader.delay(0).fadeIn('fast');
+        //body.delay(0).css({ 'overflow': 'visible' });
+        $.ajax({
+            url: "/NFCProfile/UpdateProfilePicForContactCard",
+            type: 'post',
+            datatype: 'json',
+            contentType: false,
+            processData: false,
+            async: false,
+            data: formData,
+            success: function (data) {
+                //status.fadeOut();
+                //preloader.delay(0).fadeOut('fast');
+                if (data.Result == "true") {
+                    SuccessAlert(data.Message);
+                }
+                else {
+                    ErrorAlert(data.Message);
+                }
+                window.location.href = "/NFCProfile/ProfileUpdate?EncCode=" + $('#Code').val();
+            }
+        })
+    })
+    function ShowConctact(ProfileId, index) {
+        GetBusinessProfile(ProfileId, index);
+    }
+    function Redirect(ProfileId, index) {
+
+        GetBusinessProfile(ProfileId, index);
+    }
+    function SaveBusinessContact(index) {
+        var isAllValid = true;
+        if ($('.FirstName_' + index + '').val() == '') {
+            $('.FirstName_' + index + '').addClass('errortext');
+            $('.FirstName_' + index + '').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        if ($('.CompanyName_' + index + '').val() == '') {
+            $('.CompanyName_' + index + '').addClass('errortext');
+            $('.CompanyName_' + index + '').focus();
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+        var list = [];
+        var ContactList = [];
+        var Emaillist = [];
+        var SocialLink = [];
+        var WebLinkList = [];
+        var WhatsappList = [];
+        var LocationList = [];
+        var errorItemCount = 0;
+        $('.Mobile_' + index).find('option:selected').each(function () {
+            list = ContactList.push($(this).val());;
+        });
+        $('.Email_' + index).find('option:selected').each(function () {
+            list = Emaillist.push($(this).val());;
+        });
+        $('.SocialMedia_' + index).find('option:selected').each(function () {
+            list = SocialLink.push($(this).val());;
+        });
+        $('.WebLink_' + index).find('option:selected').each(function () {
+            list = WebLinkList.push($(this).val());;
+        });
+        $('.Whatsapp_' + index).find('option:selected').each(function () {
+            list = WhatsappList.push($(this).val());;
+        });
+        $('.Location_' + index).find('option:selected').each(function () {
+            list = LocationList.push($(this).val());;
+        });
+        console.log(Emaillist)
+        if (Emaillist.length == 0) {
+            alert('At least 1 email id required.');
+            isAllValid = false;
+            $("#divload").css({ 'display': 'none' });
+            return false;
+        }
+
+        if (isAllValid) {
+            var data = {
+                AddData: list,
+            }
+
+            var formData = new FormData();
+            formData.append("ContactList", ContactList);
+            formData.append("Emaillist", Emaillist);
+            formData.append("SocialLink", SocialLink);
+            formData.append("WebLinkList", WebLinkList);
+            formData.append("WhatsappList", WhatsappList);
+            formData.append("LocationList", LocationList);
+            formData.append("FirstName", $('.FirstName_' + index + '').val());
+            formData.append("LastName", $('.LastName_' + index + '').val());
+            formData.append("Gender", $('.Gender_' + index + '').val());
+            formData.append("DOB", $('.DOB_' + index + '').val());
+            formData.append("PK_ProfileId", $('#hdfProfile').val());
+            formData.append("BusinessName", $('.CompanyName_' + index + '').val());
+            formData.append("Designation", $('.Designation_' + index + '').val());
+            formData.append("Description", $('.Remarks_' + index + '').val());
+            //formData.append("PrimaryNumber", $('.PrimaryNumber_' + index + '').val());
+            //formData.append("PrimaryEmail", $('.PrimaryEmail_' + index + '').val());
+            //formData.append("PrimarySocial", $('.PrimarySocial_' + index + '').val());
+            //formData.append("PrimaryWebLink", $('.PrimaryWebLink_' + index + '').val());
+            $.ajax({
+                type: 'POST',
+                url: "ProfileUpdate",
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (response) {
+                    var obj = jQuery.parseJSON(response);
+                    if (obj = "Success") {
+                        SuccessAlert("Profile Updated successfully");
+                    }
+                    else {
+                        ErrorAlert("Error Occurred");
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+
+            });
+        }
+    };
+    function GetUrl(index) {
+        var Type = $("#ddlUrl_" + index + " :selected").val();
+        var PK_ProfileId = $("#hdfProfile").val();
+        $.ajax({
+            cache: false,
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            url: 'GetUrlForRedirection',
+            data: { Type: Type, ProfileId: PK_ProfileId },
+            dataType: "json",
+            aysnc: false,
+            success: function (data) {
+                if (data != null) {
+                    $("#ddlWebLink_" + index).html('');
+                    var obj = jQuery.parseJSON(data)
+                    var html = '';
+                    for (var i = 0; i < obj.length; i++) {
+                        if (obj[i].Type == Type) {
+                            html += "<option value='" + obj[i].Pk_NfcProfileId + "'>" + obj[i].Content + "</option>";
+                        }
+                    }
+                    $("#ddlWebLink_" + index).append(html);
+                }
+            }
+        });
+    }
+    function UpdateRedirectionUrl(func, index) {
+        var PK_NFCProfileId = $("#ddlWebLink_" + index + " :selected").val();
+        var PK_ProfileId = $("#hdfProfile").val();
+        $.ajax({
+            cache: false,
+            type: "get",
+            contentType: "application/json; charset=utf-8",
+            url: 'UpdateRedirectionUrl',
+            data: { PK_ProfileId: PK_ProfileId, PK_NFCProfileId: PK_NFCProfileId, func },
+            dataType: "json",
+            aysnc: false,
+            success: function (data) {
+                if (data != null) {
+                    if (data.Result == "Success") {
+
+                        SuccessAlert(data.Message);
+                        if (func == "Remove") {
+                            window.location.href = "/NFCProfile/ProfileUpdate?EncCode=" + $('#Code').val();
+                        }
+                    }
+                    else {
+                        ErrorAlert(data.Message);
+                    }
+                }
+            }
+        });
+    }
+    function SuccessAlert(Message) {
+        toastr.success(Message, "", {
+            timeOut: 5e3,
+            closeButton: !0,
+            debug: !1,
+            newestOnTop: !0,
+            progressBar: !0,
+            positionClass: "toast-top-right",
+            preventDuplicates: !0,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+            tapToDismiss: !1
+        })
+    }
+    function ErrorAlert(Message) {
+        toastr.error(Message, "", {
+            positionClass: "toast-top-right",
+            timeOut: 5e3,
+            closeButton: !0,
+            debug: !1,
+            newestOnTop: !0,
+            progressBar: !0,
+            preventDuplicates: !0,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+            tapToDismiss: !1
+        })
+    }
+    function setPrimary(Index, Type) {
+        if (Type == "PrimaryContact_") {
+            $(".PrimaryNumber_" + Index).val($("#ContactList option:selected").val());
+        }
+        if (Type == "PrimaryEmail_") {
+            $(".PrimaryEmail_" + Index).val($("#EmailList option:selected").val());
+        }
+        if (Type == "PrimaryWebLink_") {
+            $(".PrimaryWebLink_" + Index).val($("#WebLink option:selected").val());
+        }
+        if (Type == "PrimarySocial_") {
+            $(".PrimarySocial_" + Index).val($("#SocialLink option:selected").val());
+        }
+    }
+    $(".date").datepicker();
+</script>
+<script>
+    (function () {
+        var copyButton = document.querySelector('.copy button');
+        var copyInput = document.querySelector('.copy input');
+        copyButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            var text = copyInput.select();
+            document.execCommand('copy');
+        });
+        copyInput.addEventListener('click', function () {
+            this.select();
+        });
+    })();
+</script>
