@@ -5,124 +5,82 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-@using (Html.BeginForm("EmployeeBasicDetails", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EmployeeBasicDetails", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
-
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Employee Basic Details</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="/Master/EditEmployeeBasicInfo" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Master</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Employee Basic Details</a></li>
+            </ol>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Employee Information</h4>
+                        <p style="color: red">
+                            @TempData["Emp"]
+                        </p>
+                    </div>
 
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Employee Information</h3>
-                                    <p style="color: red">
-                                        @TempData["Emp"]
-                                    </p>
-                                </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Company<span class="text-danger">*</span></h5></label>
+                                @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control default-select wide" })
                             </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Company <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control form-select" })
-                                    </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Department <span class="text-danger">*</span></h5></label>
+                                @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control default-select wide", @onchange = "return GetDesignation();" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Designation <span class="text-danger">*</span></h5></label>
+                                @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control default-select wide" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Name <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "EmployeeName  " })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Father's Name <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @Placeholder = "Father Name " })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>DOB <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @Placeholder = "DOB", @readonly = "read" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Gender <span class="text-danger">*</span></h5></label>
+                                @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control default-select wide" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Mobile <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", @Placeholder = "Mobile", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Phone No.</h5></label>
+                                @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", @Placeholder = "PhoneNo", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Email <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Profile <span class="text-danger">*</span></h5></label>
+                                <img src="@Model.ProfilePic" style="width: 150px; height: 100px;" />
 
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Department <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control form-select", @onchange = "return GetDesignation();" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Designation <span class="text-danger">*</span></h5></label>
-                                        @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control form-select" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Name <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "EmployeeName  " })
-                                    </div>
-                                </div>
-
-
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Father's Name <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @Placeholder = "Father Name " })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>DOB <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @Placeholder = "DOB", @readonly = "read" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Gender<span class="text-danger">*</span> </h5></label>
-                                        @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control form-select" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Mobile<span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", @Placeholder = "Mobile", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Phone No.</h5></label>
-                                        @Html.TextBoxFor(m => m.PhoneNo, new { @class = "form-control", @Placeholder = "PhoneNo", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Email<span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Profile <span class="text-danger">*</span></h5></label>
-                                        <img src="@Model.ProfilePic" style="width: 150px; height: 100px;" />
-
-                                        <input type="file" id="postedFile" name="postedFile">
-                                    </div>
-                                </div>
+                                <input type="file" id="postedFile" name="postedFile">
+                            </div>
 
 
-
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="card_box box_shadow mb_30 border_radius_0">
-                                            <div class="white_card_header">
-                                                <div class="box_header m-0">
-                                                    <div class="main-title">
-                                                        <h3 class="m-0">Permanent Address</h3>
-                                                    </div>
+                              <div class="shadow p-3 mb-5 bg-white rounded">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="card_header">
+                                                <div class="main-title">
+                                                    <h3>Permanent Address</h3>
                                                 </div>
                                             </div>
                                             <div class="box_body p-4">
@@ -141,262 +99,233 @@
 
                                                     <div class="col-md-4">
                                                         <label class="form-label"><h5>State <span class="text-danger">*</span></h5></label>
-                                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", @Placeholder = "State  ", @readonly = "dd" })
+                                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", @Placeholder = "State  ", @readonly = "on" })
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <label class="form-label"><h5>City <span class="text-danger">*</span></h5></label>
-                                                      @Html.TextBoxFor(m => m.City, new { @class = "form-control", @Placeholder = "City  ", @readonly = "dd" })
+                                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", @Placeholder = "City  ", @readonly = "dd" })
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-lg-6">
-                                        <div class="card_box box_shadow mb_30 border_radius_0">
-                                            <div class="white_card_header">
-                                                <div class="box_header m-0">
-                                                    <div class="main-title">
-                                                        <h3 class="m-0">Local Address</h3>
-                                                    </div>
+                                        <div class="col-lg-6">
+                                            <div class="card_header">
+                                                <div class="main-title">
+                                                    <h3 class="m-0">Local Address</h3>
                                                 </div>
                                             </div>
-                                            <div class="box_body p-4">
-
-                                                <div class="row mb-3">
-                                                    <div class="col-md-12">
-                                                        <input type="checkbox" id="sameadd" style="margin-left:5px;" />
-                                                        <span> * Check if Permanent and local address is same.</span>
-                                                    </div>
+                                            <div class="row mb-3 mt-3">
+                                                <div class="col-md-12">
+                                                    <input type="checkbox" id="sameadd" style="margin-left:5px;" />
+                                                    <span> * Check if Permanent and local address is same.</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label class="form-label"><h5>Address <span class="text-danger">*</span></h5></label>
+                                                    @Html.TextAreaFor(m => m.Address2, new { @class = "form-control", @Placeholder = "Address" })
                                                 </div>
 
-
-
-                                                <div class="row mb-3">
-                                                    <div class="col-md-12">
-                                                        <label class="form-label"><h5>Address <span class="text-danger">*</span></h5></label>
-                                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control", @Placeholder = "Address" })
-                                                    </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label class="form-label"><h5>PinCode <span class="text-danger">*</span></h5></label>
+                                                    @Html.TextBoxFor(m => m.Pincode2, new { @class = "form-control", @Placeholder = "Pin Code", @onchange = "return getStateCity1();", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "6" })
                                                 </div>
 
-                                                <div class="row mb-3">
-                                                    <div class="col-md-4">
-                                                        <label class="form-label"><h5>PinCode <span class="text-danger">*</span></h5></label>
-                                                        @Html.TextBoxFor(m => m.Pincode2, new { @class = "form-control", @Placeholder = "Pin Code", @onchange = "return getStateCity1();", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "6" })
-                                                    </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label class="form-label"><h5>State <span class="text-danger">*</span></h5></label>
+                                                    @Html.TextBoxFor(m => m.State2, new { @class = "form-control", @Placeholder = "State  ", @readonly = "dd" })
+                                                </div>
 
-                                                    <div class="col-md-4">
-                                                        <label class="form-label"><h5>State <span class="text-danger">*</span></h5></label>
-                                                        @Html.TextBoxFor(m => m.State2, new { @class = "form-control", @Placeholder = "State  ", @readonly = "dd" })
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <label class="form-label"><h5>City <span class="text-danger">*</span></h5></label>
-                                                        @Html.TextBoxFor(m => m.City2, new { @class = "form-control", @Placeholder = "City  ", @readonly = "dd" })
-                                                    </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <label class="form-label"><h5>City <span class="text-danger">*</span></h5></label>
+                                                    @Html.TextBoxFor(m => m.City2, new { @class = "form-control", @Placeholder = "City  ", @readonly = "dd" })
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                              </div>
+                           
 
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Date Of Joining <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form-control", @Placeholder = "Date Of Joining", @readonly = "read" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>PF No </h5></label>
-                                        @Html.TextBoxFor(m => m.PFNo, new { @class = "form-control", @Placeholder = "PFNo  " })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>PAN</h5></label>
-                                        @Html.TextBoxFor(m => m.PAN, new { @class = "form-control", @Placeholder = "PAN  ", @onchange = "return validatePan();" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Bank Account No <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.BankAccountNo, new { @class = "form-control", @Placeholder = "Bank Account No " })
-                                    </div>
-                                </div>
-
-
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Bank Name <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.BankName, new { @class = "form-control", @Placeholder = "Bank Name " })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Bank Branch <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.BankBranch, new { @class = "form-control", @Placeholder = "Bank Branch" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>IFSC Code <span class="text-danger">*</span></h5></label>
-                                        @Html.TextBoxFor(m => m.IFSCCOde, new { @class = "form-control", @Placeholder = "IFSC Code" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Qualification</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Degree  </h5></label>
-                                        @Html.TextBoxFor(m => m.DegreeCourse, new { @class = "form-control", @Placeholder = "Degree" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Board/University  </h5></label>
-                                        @Html.TextBoxFor(m => m.Board, new { @class = "form-control", @Placeholder = "Board  " })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Year Of Passing  </h5></label>
-                                        @Html.TextBoxFor(m => m.YearOfPassing, new { @class = "form-control", @Placeholder = "Year Of Passing", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "4" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <input type="button" value="Add" id="btnaddqual" onclick="return addQualifiation();" class="btn btn-info" style="margin-top:44px;"/>
-                                    </div>
-                                </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Date Of Joining <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form-control", @Placeholder = "Date Of Joining", @readonly = "read" })
                             </div>
 
-                            <div class="QA_table mb_30">
-                                <table class="table lms_table_active">
-                                    <thead>
-                                        <tr>
-                                            <th>Sr.No.</th>
-                                            <th>Degree</th>
-                                            <th>Board</th>
-                                            <th>Year Of Passing</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tblQualification"></tbody>
-                                </table>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>PF No </h5></label>
+                                @Html.TextBoxFor(m => m.PFNo, new { @class = "form-control", @Placeholder = "PFNo  " })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>PAN</h5></label>
+                                @Html.TextBoxFor(m => m.PAN, new { @class = "form-control", @Placeholder = "PAN  ", @onchange = "return validatePan();" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Bank Account No <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.BankAccountNo, new { @class = "form-control", @Placeholder = "Bank Account No " })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Bank Name <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.BankName, new { @class = "form-control", @Placeholder = "Bank Name " })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Bank Branch <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.BankBranch, new { @class = "form-control", @Placeholder = "Bank Branch" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>IFSC Code <span class="text-danger">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.IFSCCOde, new { @class = "form-control", @Placeholder = "IFSC Code" })
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Work Experience</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Company Name </h5></label>
-                                        @Html.TextBoxFor(m => m.PreviousCompany, new { @class = "form-control", @Placeholder = "Previous Company" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>From Date  </h5></label>
-                                        @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "FromDate  ", @readonly = "read" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>To Date  </h5></label>
-                                        @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "ToDate", @readonly = "read" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Post  </h5></label>
-                                        @Html.TextBoxFor(m => m.Post, new { @class = "form-control", @Placeholder = "Post" })
-                                    </div>
-                                </div>
-
-
-                                <div class="row mb-3">
-                                    <h5>Certificate Submitted  </h5>
-                                    <div class="col-md-3">
-                                        @Html.DropDownListFor(m => m.CertificateSubmitted, new SelectList(ViewBag.CertificateSubmitted, "Value", "Text"), new { @class = "form-control form-select" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <br />
-                                        <input type="button" value="Add" id="btnaddwork" onclick="return addWorkExperience();" class="btn btn-info" style="margin-top:-25px;" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="QA_table mb_30">
-                                <table class="table lms_table_active">
-                                    <thead>
-                                        <tr>
-                                            <th>SNo.</th>
-                                            <th>Company</th>
-                                            <th>FromDate</th>
-                                            <th>ToDate</th>
-                                            <th>Post</th>
-                                            <th>Submitted</th>
-                                            @*<th>Status</th>
-                                            <th>Verified By</th>
-                                            <th>Remark</th>*@
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tblWorkExperience"></tbody>
-                                </table>
-                            </div>
-                        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Qualification</h4>
                     </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Degree</h5></label>
+                                @Html.TextBoxFor(m => m.DegreeCourse, new { @class = "form-control", @Placeholder = "Degree" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Board/University</h5></label>
+                                @Html.TextBoxFor(m => m.Board, new { @class = "form-control", @Placeholder = "Board  " })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Year Of Passing</h5></label>
+                                @Html.TextBoxFor(m => m.YearOfPassing, new { @class = "form-control", @Placeholder = "Year Of Passing", @onkeypress = "return isNumberOrDecimal(event);", @maxlength = "4" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp; </h5></label>
+                                <input type="button" value="Add" id="btnaddqual" onclick="return addQualifiation();" class="btn btn-info d-block"/>
+                            </div>
+                        </div>
+                        <div class="table-responsive mt-2">
+                            <table class="table">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th>Sr.No.</th>
+                                        <th>Degree</th>
+                                        <th>Board</th>
+                                        <th>Year Of Passing</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblQualification"></tbody>
+                            </table>
+                        </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-3">
-                        @if (Model.EmployeeID == null)
-                        {
-                            <input type="submit" class="btn btn-success" name="Save" value="Save" onclick="return validateform();" />
-                        }
-                        else
-                        {
-                            @Html.HiddenFor(m => m.EmployeeID, new { @Value = @Model.EmployeeID })
-                            <input type="submit" class="btn btn-success" name="Update" value="Update" onclick="return validateform();" />
-                        }
-                    </div>
+                    
                 </div>
             </div>
         </div>
-   </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Work Experience</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Company Name </h5></label>
+                                @Html.TextBoxFor(m => m.PreviousCompany, new { @class = "form-control", @Placeholder = "Previous Company" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>From Date  </h5></label>
+                                @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "FromDate  ", @readonly = "read" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>To Date  </h5></label>
+                                @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "ToDate", @readonly = "read" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Post  </h5></label>
+                                @Html.TextBoxFor(m => m.Post, new { @class = "form-control", @Placeholder = "Post" })
+                            </div>
+
+                            <h5>Certificate Submitted</h5>
+                            <div class="col-md-3 mb-3">
+                                @Html.DropDownListFor(m => m.CertificateSubmitted, new SelectList(ViewBag.CertificateSubmitted, "Value", "Text"), new { @class = "form-control default-select wide" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <input type="button" value="Add" id="btnaddwork" onclick="return addWorkExperience();" class="btn btn-info d-block"/>
+                            </div>
+                        </div>
+                        <div class="table-responsive mt-2">
+                            <table class="table lms_table_active">
+                                <thead class="thead-primary">
+                                    <tr>
+                                        <th>SNo.</th>
+                                        <th>Company</th>
+                                        <th>FromDate</th>
+                                        <th>ToDate</th>
+                                        <th>Post</th>
+                                        <th>Submitted</th>
+                                        @*<th>Status</th>
+                                        <th>Verified By</th>
+                                        <th>Remark</th>*@
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblWorkExperience"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    @if (Model.EmployeeID == null)
+                    {
+                        <input type="submit" class="btn btn-success" name="Save" value="Save" onclick="return validateform();" />
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(m => m.EmployeeID, new { @Value = @Model.EmployeeID })
+                        <input type="submit" class="btn btn-success" name="Update" value="Update" onclick="return validateform();" />
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
 }
 
 <script src="~/assets/js/jquery1-3.4.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
- <script>
+<script>
     $('#DOB').datepicker({
         dateFormat: 'dd/mm/yy',
         changeYear: true,
@@ -418,13 +347,12 @@
         changeMonth: true
     });
 
- </script>
+</script>
 
 <script>
     $(document).ready(function () {
- //      alert("wgsfd");
-        if($("#Result").val()=="Edit")
-        {
+        //      alert("wgsfd");
+        if ($("#Result").val() == "Edit") {
             var tr = [];
             var tr1 = [];
             var status = "";
@@ -435,15 +363,13 @@
                 data: { 'EmployeeID': EmployeeID },
                 success: function (data) {
                     $('#Gender').val(data.Gender);
-                    $("#ContentPlaceHolder1_imgProductImage").attr("src",data.ProfilePic);
+                    $("#ContentPlaceHolder1_imgProductImage").attr("src", data.ProfilePic);
                     $('#tblQualification').empty();
                     for (var i = 0; i < data.lstQualification.length; i++) {
-                        if (data.lstQualification[i].Status == "T")
-                        {
+                        if (data.lstQualification[i].Status == "T") {
                             status = 0;
                         }
-                        else
-                        {
+                        else {
                             status = 1;
                         }
 
@@ -808,7 +734,7 @@
             $('#Email').focus();
             return false;
         }
-      
+
         if ($('#Address').val() == '') {
             $("#Address").addClass('errortext');
             $('#Address').focus();
@@ -912,8 +838,7 @@
     function deleteRow(i, Qualid, status) {
 
         var result = confirm("Are you sure you want to delete this details? ");
-        if(result == true)
-        {
+        if (result == true) {
             if (status == 1) {
                 status = "P";
             }
@@ -1006,7 +931,7 @@
         }
     }
 
- 
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -1017,11 +942,11 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-                    </script>
+</script>
 
- <style>
-     .errortext {
-         border: 1px solid red !important;
-         background-color: #fff0f0 !important;
-     }
- </style>
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>

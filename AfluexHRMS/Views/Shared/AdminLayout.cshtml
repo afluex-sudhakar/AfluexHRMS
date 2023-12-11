@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-    <title>Afluex HRMS</title>
+    <title>@ViewBag.Title</title>
 
 
     <!-- MOBILE SPECIFIC -->
@@ -15,11 +15,13 @@
     <link href="~/assetsAdmin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
     <link href="~/assetsAdmin/vendor/nouislider/nouislider.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assetsAdmin/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
-
+    
     <link href="~/assetsAdmin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assetsAdmin/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css" />	
 
     <link href="~/assetsAdmin/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- for Chart -->
+    <link href="~/assetsAdmin/vendor/chartist/css/chartist.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -128,7 +130,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-briefcase"></i>
                             <span class="nav-text">Master</span>
                         </a>
                         <ul aria-expanded="false">
@@ -142,7 +144,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-users"></i>
                             <span class="nav-text">Employee</span>
                         </a>
                         <ul aria-expanded="false">
@@ -154,7 +156,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-bars"></i>
                             <span class="nav-text">Leave Management</span>
                         </a>
                         <ul aria-expanded="false">
@@ -164,7 +166,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-calendar-check"></i>
                             <span class="nav-text">Attendance</span>
                         </a>
                         <ul aria-expanded="false">
@@ -174,7 +176,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-inr"></i>
                             <span class="nav-text">Payroll</span>
                         </a>
                         <ul aria-expanded="false">
@@ -198,7 +200,7 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-cog"></i>
                             <span class="nav-text">Setting</span>
                         </a>
                         <ul aria-expanded="false">
@@ -243,12 +245,11 @@
     <script src="~/assetsAdmin/vendor/counter/counter.min.js"></script>
     <script src="~/assetsAdmin/vendor/counter/waypoint.min.js"></script>
     <script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
-    <script src="~/assetsAdmin/vendor/chart-js/chart.bundle.min.js"></script>
+   
     <script src="~/assetsAdmin/vendor/peity/jquery.peity.min.js"></script>
     <script src="~/assetsAdmin/js/dashboard/dashboard-1.js"></script>
     <script src="~/assetsAdmin/vendor/owl-carousel/owl.carousel.js"></script>
 
-    <script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
     <script src="~/assetsAdmin/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/assetsAdmin/vendor/datatables/responsive/responsive.js"></script>
     <script src="~/assetsAdmin/js/plugins-init/datatables.init.js"></script>
@@ -257,7 +258,10 @@
     <script src="~/assetsAdmin/js/dlabnav-init.js"></script>
     <script src="~/assetsAdmin/js/demo.js"></script>
     <script src="~/assetsAdmin/js/styleSwitcher.js"></script>
-
+    <script src="~/assetsAdmin/vendor/chartist/js/chartist.min.js"></script>
+    <script src="~/assetsAdmin/vendor/chart-js/chart.bundle.min.js"></script>
+    <script src="~/assetsAdmin/js/plugins-init/chartist-init.js"></script>
+    <script src="~/assetsAdmin/vendor/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
     <!--**********************************
         Main wrapper end
