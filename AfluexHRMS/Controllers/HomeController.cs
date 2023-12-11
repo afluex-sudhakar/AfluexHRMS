@@ -271,5 +271,14 @@ namespace AfluexHRMS.Controllers
             //return RedirectToAction(FormName,Controller);
             //return View();
         }
+        public ActionResult SignUp(string PId)
+        {
+            ViewBag.PId = PId;
+            Session["S_MobileNo"] = null;
+            Session["S_OTP"] = null;
+            Session["S_OTPValidity"] = null;
+            Session["S_OTPSendCounter"] = null;
+            return View();
+        }
     }
 }

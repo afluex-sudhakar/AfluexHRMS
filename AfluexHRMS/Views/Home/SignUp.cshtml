@@ -1,0 +1,81 @@
+﻿@model AfluexHRMS.Models.Home
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>SignUp</title>
+    @*<link rel="icon" href="~/assets/img/mini_logo.png" type="image/png">*@
+    <link rel="stylesheet" href="~/assets/css/bootstrap1.min.css" />
+    <link rel="stylesheet" href="~/assets/vendors/themefy_icon/themify-icons.css" />
+    <link rel="stylesheet" href="~/assets/vendors/font_awesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="~/assets/vendors/scroll/scrollable.css" />
+    <link rel="stylesheet" href="~/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="~/assets/css/style1.css" />
+    <link href="~/assets/css/colors/default.css" rel="stylesheet" id="colorSkinCSS" />
+    <style>
+        .card {
+            background-color: #151d50;
+        }
+        #SignUpstyle{
+            background-color:#1c255f;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body style="background-color:#1b2762">
+    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { @id = "form", @autocomplete = "off" }))
+    {
+        <div class="main_content_iner ">
+            <div class="container-fluid mt-5" style="width:60%">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="mb_30">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <h3 class="mb-5 text-white text-center mt-3" id="SignUpstyle">
+                                            Sign Up
+                                        </h3>
+                                        <div class="modal-body">
+                                            <div class="mb-4">
+                                                <label class="ml-4 mb-1 text-white">Mobile Number</label>
+                                                <input placeholder="Mobile No." class="form-control" id="MobileNo" name="MobileNo" required="required" type="text" value="">
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <input type="submit" id="SignUp" class="btn btn-success form-control" name="SignUp" value="Sign Up">
+                                            </div>
+
+                                            <div class="text-center mb-4">
+                                                <a href="/Home/Login" class="btn btn-primary pass_forget_btn">Login</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+    <script src="~/assets/js/popper1.min.js"></script>
+    <script src="~/assets/js/bootstrap1.min.js"></script>
+    <script src="~/assets/js/metisMenu.js"></script>
+    <script src="~/assets/vendors/scroll/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/vendors/scroll/scrollable-custom.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+</body>
+</html>
+
+
