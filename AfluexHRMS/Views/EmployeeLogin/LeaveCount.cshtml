@@ -7,29 +7,12 @@
 
 @using (Html.BeginForm("LeaveCount", "EmployeeLogin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
-
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Leave Count Report</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Leave</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Leave Count Report</a></li>
+            </ol>
         </div>
     </div>
 }
