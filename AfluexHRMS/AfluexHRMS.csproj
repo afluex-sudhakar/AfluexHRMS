@@ -140,6 +140,7 @@
     <Content Include="assets\img\card\card-2.png" />
     <Content Include="assets\img\card\card-5.png" />
     <Content Include="assets\img\client_img.png" />
+    <Content Include="assets\img\cover.jpg" />
     <Content Include="assets\img\crome.png" />
     <Content Include="assets\img\customers\1.png" />
     <Content Include="assets\img\dateBg.png" />
@@ -147,6 +148,7 @@
     <Content Include="assets\img\default-skin\default-skin.svg" />
     <Content Include="assets\img\icon\bell.svg" />
     <Content Include="assets\img\icon\msg.svg" />
+    <Content Include="assets\img\intro.mp4" />
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\img\man.png" />
     <Content Include="assets\img\media.svg" />
@@ -201,6 +203,7 @@
     <Content Include="assets\img\tilt\6.jpg" />
     <Content Include="assets\img\tilt\7.jpg" />
     <Content Include="assets\img\User.jpg" />
+    <Content Include="assets\img\videoplayback.mp4" />
     <Content Include="assets\img\weather_1.png" />
     <Content Include="assets\js\bootstrap1.min.js" />
     <Content Include="assets\js\chart.min.js" />
@@ -354,6 +357,7 @@
     <Compile Include="Controllers\EmployeeLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Controllers\NFCController.cs" />
     <Compile Include="Controllers\NFCProfileController.cs" />
     <Compile Include="Controllers\PayrollController.cs" />
     <Compile Include="Controllers\UserBaseController.cs" />
@@ -455,6 +459,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\NFCProfile\SetActionDashboard.cshtml" />
     <Content Include="Views\Home\NFCActivation.cshtml" />
+    <Content Include="Views\NFC\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
