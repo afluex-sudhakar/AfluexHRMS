@@ -17891,7 +17891,7 @@ label {
   float: none; }
 
 .ct-chart {
-  max-height: 15.7rem; }
+  max-height: 20.7rem; }
 
 .ct-chart .ct-label {
   fill: #a3afb7;
@@ -17911,13 +17911,13 @@ label {
 .ct-chart .ct-series.ct-series-a .ct-line,
 .ct-chart .ct-series.ct-series-a .ct-point,
 .ct-chart .ct-series.ct-series-a .ct-slice-donut {
-  stroke: var(--primary); }
+  stroke: #00bd4d; }
 
 .ct-chart .ct-series.ct-series-b .ct-bar,
 .ct-chart .ct-series.ct-series-b .ct-line,
 .ct-chart .ct-series.ct-series-b .ct-point,
 .ct-chart .ct-series.ct-series-b .ct-slice-donut {
-  stroke: #09BD3C; }
+  stroke: #ff3452; }
 
 .ct-chart .ct-series.ct-series-c .ct-bar,
 .ct-chart .ct-series.ct-series-c .ct-line,

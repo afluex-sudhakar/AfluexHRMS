@@ -101,7 +101,7 @@ namespace AfluexHRMS.Controllers
 
                 else
                 {
-                    TempData["Login"] = "Oops! Something went wrong, please try again later";
+                    TempData["Login"] = "Oops! Invalid LoginID or Password, Please try again later";
                     FormName = "Login";
                     Controller = "Home";
                 }
@@ -269,6 +269,19 @@ namespace AfluexHRMS.Controllers
             }
             //return RedirectToAction(FormName,Controller);
             //return View();
+        }
+        public ActionResult SignUp(string PId)
+        {
+            ViewBag.PId = PId;
+            Session["S_MobileNo"] = null;
+            Session["S_OTP"] = null;
+            Session["S_OTPValidity"] = null;
+            Session["S_OTPSendCounter"] = null;
+            return View();
+        }
+        public ActionResult Registration()
+        {
+            return View();
         }
     }
 }
