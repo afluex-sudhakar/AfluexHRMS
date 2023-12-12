@@ -102,7 +102,6 @@ D:\Devendra\AfluexHRMS\AfluexHRMS\bin\Newtonsoft.Json.xml
 D:\Devendra\AfluexHRMS\AfluexHRMS\bin\System.Net.Http.Formatting.xml
 D:\Devendra\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.xml
 D:\Devendra\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
-D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
 D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
 F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\bin\ApplicationInsights.config
@@ -264,4 +263,5 @@ F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.xml
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
+D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
