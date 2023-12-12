@@ -263,3 +263,4 @@ F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.xml
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
+D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
