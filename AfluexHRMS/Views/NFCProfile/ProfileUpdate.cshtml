@@ -94,6 +94,11 @@
         .post-input .btn-social i {
             margin: 0 !important;
         }
+        .mediaIcons{
+            line-height: 38px!important;
+            width: 38px!important;
+            height: 38px!important;
+        }
 </style>
 @using (Html.BeginForm("ProfileUpdate", "NFCProfile", FormMethod.Post, new { @id = "Profile", @enctype = "multipart/form-data", @autocomplete = "off" }))
 {
@@ -503,11 +508,10 @@
                     </div>
 
                   
-                    <div class="widget-stat card">
-                        <div class="card-header border-0 pb-0">
-                            <div class="card" id="contact" style="display: none;">
-                            @*<div class="card" id="contact" >*@
-                                <div class="card-header border-0">
+                    <div class="widget-stat ">
+                            @*<div id="contact" style="display: none;">*@
+                            <div class="card" id="contact" >
+                                <div class="card-header border-0 pb-0">
                                     <h4 class="mb-0 text-black fs-20">Profile Preview</h4>
                                     <div class="dropdown custom-dropdown mb-0 tbl-orders-style">
                                         <div class="btn sharp tp-btn" data-toggle="dropdown" aria-expanded="false" role="button">
@@ -523,38 +527,38 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="">
-                                    <div class="text-center">
-                                        <div class="my-profile">
-                                            <img src="~/assets/img/User.jpg" alt="" class="rounded" alt="" style="border: 2px solid white; border-radius: 8px; width: 200px; height: 200px;">
-                                            <a href="javascript:void(0);"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <div class="card-body pb-0">
+                                    <div class="text-center position-relative">
+                                        <div class="my-profile ">
+                                            <img src="~/assets/img/User.jpg" alt="" class="rounded" alt="" style="border: 2px solid white; width: 240px; height: 200px;">
+                                            <a class="btn bg-primary light me-1 px-3 close nav-link position-absolute top-0 start-100 translate-middle" href="javascript:void(0);"><i class="fa fa-pencil me-2 text-white"></i></a>
                                         </div>
                                         <h4 class="mt-3 font-w600 text-black mb-0 name-text">Ashwani Mishra</h4>
                                         <span></span>
                                         <p class="mb-0 mt-2">Join on 24 March 2017</p>
                                     </div>
-                                    <ul class="portofolio-social">
-                                        <li><a href="javascript:void(0);"><i class="fa fa-phone"></i></a></li>
-                                        <li><a href="javascript:void(0);"><i class="fa fa-envelope-o"></i></a></li>
-                                        <li><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+                                    <ul class="post-input text-center mt-3">
+                                        <a class="btn-social facebook mediaIcons" href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn-social linkedin mediaIcons" href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                        <a class="btn-social whatsapp mediaIcons" href="javascript:void(0)"><i class="fab fa-whatsapp"></i></a>
                                     </ul>
                                 </div>
                             </div>
-                            @*<div class="card" id="redirect" style="display: none;">*@
-                            <div class="card" id="redirect">
-                                <div class="card-header border-0">
-                                    <h4 class="mb-0 text-black fs-20">Link Preview</h4>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn btn-primary light sharp" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" style="">
-                                            <a class="dropdown-item" href="javascript:void(0);">Details</a>
-                                            <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
+                            <div class="card" id="redirect" style="display: none;">
+                           @*<div  id="redirect">*@
+                                <div class="card-body">
+                                    <div class="card-header border-0 p-0">
+                                        <h4 class="mb-0 text-black fs-20">Link Preview</h4>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-primary light sharp" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end" style="">
+                                                <a class="dropdown-item" href="javascript:void(0);">Details</a>
+                                                <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
                                     <div class="dropdown custom-dropdown mb-0 tbl-orders-style">
                                         <div class="btn sharp tp-btn" data-toggle="dropdown" aria-expanded="false" role="button">
                                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -569,16 +573,15 @@
                                         </div>
                                         <div class="text-center position-relative">
                                             <div class="my-profile">
-                                                <img src="images/profile/port.jpg" alt="" class="rounded" alt="" style="border-radius: 8px; width: 200px; height: 200px;">
+                                                <img src="images/profile/port.jpg" alt="" class="rounded"  style="width: 240px; height: 200px;">
                                                 <a class="btn bg-primary light me-1 px-3 close nav-link position-absolute top-0 start-100 translate-middle" href="javascript:void(0);"><i class="fa fa-pencil me-2 text-white"></i></a>
                                             </div>
-                                            <h4 class="mt-3 font-w600 text-black mb-0 name-text">URL :</h4>
+                                            <h4 class="mt-3 font-w600 text-black mb-0 name-text d-inline-block">URL :</h4>
                                             <span>https://thomasdox</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> 
                     </div>
 
                     <div class="widget-stat card">
