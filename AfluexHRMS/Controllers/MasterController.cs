@@ -1292,7 +1292,7 @@ namespace AfluexHRMS.Controllers
                     model.lstList = lstTmpData;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -1333,7 +1333,7 @@ namespace AfluexHRMS.Controllers
                     model.lstList = lstTmpData;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -1403,7 +1403,7 @@ namespace AfluexHRMS.Controllers
                     model.lstList = lstTmpData;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -1444,7 +1444,7 @@ namespace AfluexHRMS.Controllers
                     model.lstList = lstTmpData;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

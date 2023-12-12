@@ -6,155 +6,129 @@
 }
 
 
-@using (Html.BeginForm("DailyAttendance", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" ,@autocomplete="off"}))
+@using (Html.BeginForm("DailyAttendance", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Attendance</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Daily Attendance</a></li>
+                </ol>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Search Employee</h4>
+                        <p style="color: red">
+                            @TempData["DailyAttendance"]
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
+                            </div>
 
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Daily Attendance</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
+                            <div class="col-md-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label d-none d-lg-block"><h5>&nbsp;</h5></label>
+                                <input type="submit" class="btn btn-info" name="Search" value="Search" onclick="return validateSearch();" />
                             </div>
                         </div>
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h2 class="mb-2">Mark Attendance</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Attendance Date<span style="color:red">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.AttendanceDate, new { @class = "form-control", @Placeholder = "Attendance Date" })
+                            </div>
+
+                            <div class="col-md-9">
+                                <label class="form-label d-none d-lg-block mb-4"><h5>&nbsp;</h5></label>
+                                <b>  [  P - Present , A - Absent , HD - Half Day , FD - Full Day , L - Leave , S - Sunday  ]</b>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box_body p-4">
+                                    <div class="table-responsive">
+                                        <div class="QA_table mb_30">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>SNo.</th>
+                                                        <th>Emp Code</th>
+                                                        <th>Name</th>
+                                                        <th style="min-width:100px">W.H Limit</th>
+                                                        <th style="min-width:150px">Attendance</th>
+                                                        <th>InTime</th>
+                                                        <th>Out Time</th>
+                                                        <th style="min-width:200px">Total Hours Worked</th>
+                                                        <th style="min-width:150px">OverTime</th>
+                                                        <th style="min-width:150px">Is HD</th>
+                                                        @*  <th><input type="checkbox" id="select-all" /></th>*@
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbodyAttd">
+                                                    @if (Model != null)
+                                                    {
+                                                        if (Model.lstList != null)
+                                                        {
+                                                            int i = 1;
+                                                            foreach (var Item in Model.lstList)
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td style="min-width:100px">@Item.EmployeeLoginId <input type='hidden' value='@Item.EmployeeID' id='empid @i' name='empid @i'></td>
+                                                                    <td style="min-width:200px">@Item.EmployeeName</td>
+                                                                    <td>@Item.WHLimit <input type='hidden' value='@Item.WHLimit' id='days @i' name='days @i'></td>
+                                                                    <td><input type='text' id="txtattend @i" maxlength="1" onkeypress="return onlyAlphabets(event);" value='@Item.Attendance' name="txtattend @i" class="form-control"></td>
+                                                                    <td><input type='time' id="txtintime @i" value='@Item.InTime' name="txtintime @i" class="form-control" onchange="getdataintime(this)"></td>
+                                                                    <td><input type='time' id="txtouttime @i" value='@Item.OutTime' name="txtouttime @i" class="form-control" onchange="getdataouttime(this,'@i',@Item.WHLimit)"></td>
+                                                                    <td><input type='text' id="txttotalhrs @i" readonly="readonly" value='@Item.TotalHRWork' name="txttotalhrs @i" class="form-control" onchange="getdata(this,'@i)"></td>
+                                                                    <td><input type='text' id="txtovertime @i" readonly="readonly" value='@Item.OverTime' name="txtovertime @i" class="form-control" onchange="getdata(this)"></td>
+                                                                    <td><input type='text' id="txthd @i" readonly="readonly" value='@Item.ISHalfDay' name="txthd @i" class="form-control" onchange="getdata(this)"></td>
+
+                                                                </tr>
+                                                                i++;
+                                                            }
+                                                            <input type='hidden' value='@i' id='hdrows' name='hdrows' />
+                                                        }
+                                                    }
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <input type="submit" name="Save" id="Save" value="Save" class="btn btn-success" onclick="return validateSave();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Search Employee</h3>
-                                    <p style="color: #ff0000">
-                                        @TempData["DailyAttendance"]
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
-                                       @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <input type="submit" class="btn btn-info" name="Search" value="Search" onclick="return validateSearch();" style="margin-top:42px"/>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                                    <div class="white_card_header">
-                                        <div class="box_header m-0">
-                                            <div class="main-title">
-                                                <h3 class="m-0">Mark Attendance</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                          
-                                    <div class="row mb-3">
-                                        <div class="col-md-3">
-                                            <label class="form-label" for="inputEmail4"><h5>Attendance Date<span style="color:red">*</span></h5></label>
-                                            @Html.TextBoxFor(m => m.AttendanceDate, new { @class = "form-control", @Placeholder = "Attendance Date" })
-                                        </div>
-
-                                        <div class="col-md-9"  style="margin-top:52px">
-                                            <b>  [  P - Present , A - Absent , HD - Half Day , FD - Full Day , L - Leave , S - Sunday  ]</b>
-                                        </div>
-                                    </div>
-                                   
-
-
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="box_body p-4">
-                                                    <div class="table-responsive">
-                                                        <div class="QA_table mb_30">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>SNo.</th>
-                                                                            <th>Emp Code</th>
-                                                                            <th>Name</th>
-                                                                            <th style="min-width:100px">W.H Limit</th>
-                                                                            <th style="min-width:150px">Attendance</th>
-                                                                            <th>InTime</th>
-                                                                            <th>Out Time</th>
-                                                                            <th style="min-width:200px">Total Hours Worked</th>
-                                                                            <th style="min-width:150px">OverTime</th>
-                                                                            <th style="min-width:150px">Is HD</th>
-                                                                            @*  <th><input type="checkbox" id="select-all" /></th>*@
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="tbodyAttd">
-                                                                        @if (Model != null)
-                                                                            {
-                                                                                if (Model.lstList != null)
-                                                                                {
-                                                                                    int i = 1;
-                                                                                    foreach (var Item in Model.lstList)
-                                                                                    {
-                                                                                    <tr class="text-left">
-                                                                                        <td>@i</td>
-                                                                                        <td  style="min-width:100px">@Item.EmployeeLoginId <input type='hidden' value='@Item.EmployeeID' id='empid @i' name='empid @i'></td>
-                                                                                        <td  style="min-width:200px">@Item.EmployeeName</td>
-                                                                                        <td>@Item.WHLimit <input type='hidden' value='@Item.WHLimit' id='days @i' name='days @i'></td>
-                                                                                        <td><input type='text' id="txtattend @i" maxlength="1" onkeypress="return onlyAlphabets(event);" value='@Item.Attendance' name="txtattend @i" class="form-control"></td>
-                                                                                        <td><input type='time' id="txtintime @i" value='@Item.InTime' name="txtintime @i" class="form-control" onchange="getdataintime(this)"></td>
-                                                                                        <td><input type='time' id="txtouttime @i" value='@Item.OutTime' name="txtouttime @i" class="form-control" onchange="getdataouttime(this,'@i',@Item.WHLimit)"></td>
-                                                                                        <td><input type='text' id="txttotalhrs @i" readonly="readonly" value='@Item.TotalHRWork' name="txttotalhrs @i" class="form-control" onchange="getdata(this,'@i)"></td>
-                                                                                        <td><input type='text' id="txtovertime @i" readonly="readonly" value='@Item.OverTime' name="txtovertime @i" class="form-control" onchange="getdata(this)"></td>
-                                                                                        <td><input type='text' id="txthd @i" readonly="readonly" value='@Item.ISHalfDay' name="txthd @i" class="form-control" onchange="getdata(this)"></td>
-
-                                                                                    </tr>
-                                                                                i++;
-                                                                            }
-                                                                                <input type='hidden' value='@i' id='hdrows' name='hdrows' />
-                                                                        }
-                                                                    }
-                                                                    </tbody>
-
-                                                                </table>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <div class="col-md-3">
-                                                                <input type="submit" name="Save" id="Save" value="Save" class="btn btn-success" onclick="return validateSave();" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    </div>
     <input type="hidden" id="txtintime" />
     <input type="hidden" id="txtouttime" />
 }
