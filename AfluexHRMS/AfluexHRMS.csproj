@@ -743,8 +743,7 @@
     <Content Include="Views\NFCProfile\SetActionDashboard.cshtml" />
     <Content Include="Views\Home\NFCActivation.cshtml" />
     <Content Include="Views\NFC\Profile.cshtml" />
-    <Content Include="Views\Home\SignUp.cshtml" />
-    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\NFCProfile\ProfileUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
