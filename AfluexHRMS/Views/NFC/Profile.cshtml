@@ -1,209 +1,45 @@
 ﻿@model AfluexHRMS.Models.NFCProfileModel
 
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <meta name="robots" content="" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="@Model.Summary" />
-    <meta property="og:title" content="@Model.Name" />
-    <meta property="og:description" content="@Model.Designation" />
-    <meta property="og:image" content="https://dost.click/@Model.ProfilePic" />
-    <meta name="format-detection" content="telephone=no">
-    <title>NFC Profile</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    @*<link rel="icon" href="~/assets/img/mini_logo.png" type="image/png">*@
-    <link rel="stylesheet" href="~/assets/css/bootstrap1.min.css" />
-    <link rel="stylesheet" href="~/assets/vendors/themefy_icon/themify-icons.css" />
-    <link rel="stylesheet" href="~/assets/vendors/font_awesome/css/all.min.css" />
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assetsAdmin/images/favicon.png">
+    <link href="~/assetsAdmin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/nouislider/nouislider.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <title>NFC Profile || Afluex HRMS</title>
+    <link href="~/assetsAdmin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="~/assets/vendors/scroll/scrollable.css" />
-    <link rel="stylesheet" href="~/assets/css/metisMenu.css">
-    <link rel="stylesheet" href="~/assets/css/style1.css" />
-    <link href="~/assets/css/colors/default.css" rel="stylesheet" id="colorSkinCSS" />
-    <style type="text/css">
-        .container {
-            padding-right: 0;
-            padding-left: 0;
-            margin-top:100px;
-        }
+    <link href="~/assetsAdmin/css/style.css" rel="stylesheet" type="text/css" />
 
-        .social-graph-wrapper.widget-whatsapp {
-            background-color: #04c165;
-        }
-
-        .social-graph-wrapper.widget-telegram {
-            background-color: #25a3e1;
-        }
-
-        .social-graph-wrapper.widget-instagram {
-            background-image: linear-gradient(to right, #1882e8, #c40866);
-        }
-
-        .social-graph-wrapper.widget-phone {
-            background-color: #2ca9d7;
-        }
-
-        .social-graph-wrapper.widget-email {
-            background-color: #f04336;
-        }
-
-        .social-graph-wrapper.widget-website {
-            background-image: linear-gradient(to right, #29abde, #006cb8);
-        }
-
-        .social-graph-wrapper.widget-map {
-            background-color: #f71c1e;
-        }
-
-        .s-icon a {
-            /*background-color: #eb8153;*/
-            border-radius: 5px;
-            margin: 0px auto;
-            width: 35px;
-            height: 35px;
-            line-height: 33px;
-            display: inline-block;
-            text-align: center;
-            color: white;
-            display: inline-block;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            border: 1px solid transparent;
-        }
-
-        /*@@media (max-width: 575.98px) {*/
-            .profile .profile-photo {
-                width: 100%;
-            }
-
-            .photo-content .cover-photo {
-                min-height: 200px;
-            }
-
-            ul.profile_nav {
-                display: flex;
-                width: 100%;
-                overflow-x: auto;
-                overflow-y: hidden;
-            }
-
-            .profile-tab .nav-item .nav-link {
-                white-space: nowrap;
-                margin-right: 0;
-            }
-
-            ul.nav {
-                flex-wrap: inherit;
-            }
-        /*}*/
-
-        .profile-tab .nav-item .nav-link {
-            margin-right: 0;
-        }
-
-        .col-xl-12.col-xxl-12.col-sm-12.social {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .summary {
-            margin-bottom: -8px;
-            display: -webkit-inline-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 30px;
-        }
-
-        .fa-lg {
-            font-size: 1.58em;
-            line-height: .75em;
-            vertical-align: -15%;
-        }
-
-        .social-graph-wrapper {
-            padding: 20px 0;
-        }
-
-        .card {
-            margin-top:10px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #151d50;
-            background-clip: border-box;
-            border: 1px solid rgba(0, 0, 0, 0.125);
-            border-radius: 0.25rem;
-        }
-        h3{
-            color:#fff;
-        }
-        span{
-            color:#fff;
-        }
-    </style>
 </head>
-<body style="background-color:#1b2762">
+<body>
 
     <!--*******************
         Preloader start
-        ********************-->
+    ********************-->
     <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
         </div>
     </div>
-    <!--*******************
-        Preloader end
-        ********************-->
-    <!--**********************************
-        Main wrapper start
-        ***********************************-->
-    <div class="container" id="divcontainer">
-
-
-        <!--**********************************
-        Content body start
-        ***********************************-->
-        @{
-            if (ViewBag.ISActivated == true)
-            {
-                <div class="content-profile">
-                    <div class="container-fluid">
-
-                        <!-- row -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="profile card card-body px-3 pt-3 pb-0">
+    
+        <div class="container-fluid">
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="profile card card-body shadow px-3 pt-3 pb-0">
                                     <div class="profile-head">
                                         <div class="photo-content">
-                                            @if (Model.BannerImage != null && Model.BannerImage != "")
-                                            {
-                                                <div class="cover-photo" style="background-image:url(@Model.BannerImage)"></div>
-                                            }
-                                            else
-                                            {
-                                                <div class="cover-photo" style="background-image:url(../../assets/img/cover.jpg)"></div>
-                                            }
+                                            <div class="cover-photo rounded"></div>
                                         </div>
                                         <div class="profile-info">
                                             <div class="profile-photo">
@@ -211,875 +47,187 @@
                                                 {
                                                     if (Model.ProfilePic != null && Model.ProfilePic != "")
                                                     {
-                                                        <img src="@Model.ProfilePic" class="img-fluid rounded-circle" alt="" style="width: 115px; height: 100px; object-fit: cover;">
+                                                        <img src="@Model.ProfilePic" class="img-fluid rounded-circle" alt="">
                                                     }
                                                     else
                                                     {
-                                                        <img src="~/assets/img/User.jpg" class="img-fluid rounded-circle" alt="" style="width: 115px; height: 100px; object-fit: cover;">
+                                                        <img src="https://fillow.dexignlab.com/codeigniter/demo/public/assets/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    <img src="~/assets/img/User.jpg" class="img-fluid rounded-circle" alt="" style="width: 115px; height: 100px; object-fit: cover;">
+                                                    <img src="~/images/profile/profile.png" class="img-fluid rounded-circle" alt="" style="width: 115px; height: 100px; object-fit: cover;">
                                                 }
 
                                             </div>
-                                            <div class="profile-details">
-                                                <div class="profile-name px-3 pt-2">
-                                                    <h4 class="text-primary mb-0">@Model.Name</h4>
-                                                    <input type="hidden" id="hdfName" value="@Model.Name" />
-                                                    <p class="mb-0">@Model.Designation</p>
-                                                    <p>@Model.BusinessName</p>
-                                                </div>
-                                                <div class="profile-email px-2 pt-2">
-                                                    @*<h4 class="text-muted mb-0">@Model.Email</h4>
-                                                        <p class="summary">@Model.Summary</p>*@
-                                                </div>
-                                                @*<div class="dropdown ml-auto">
-                                                        <a href="#" class="btn btn-primary light sharp" data-toggle="dropdown" aria-expanded=true><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></a>
-                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View profile</li>
-                                                            <li class="dropdown-item"><i class="fa fa-users text-primary mr-2"></i> Add to close friends</li>
-                                                            <li class="dropdown-item"><i class="fa fa-plus text-primary mr-2"></i> Add to group</li>
-                                                            <li class="dropdown-item"><i class="fa fa-ban text-primary mr-2"></i> Block</li>
-                                                        </ul>
-                                                    </div>*@
-                                                <div class="pt-2 ml-auto">
-                                                    <p class="summary">@Model.Summary</p>
-                                                </div>
 
+                                            
+                                            <div class="profile-details">
+                                                @*<div class="profile-name px-3 pt-2">
+                                    <h4 class="text-primary mb-0">Mitchell C. Shay</h4>
+                                    <p>UX / UI Designer</p>
+                                </div>
+                                <div class="profile-email px-2 pt-2">
+                                    <h4 class="text-muted mb-0">info@example.com</h4>
+                                    <p>Email</p>
+                                </div>*@
+                                                @*<div class="dropdown ms-auto">
+                                    <a href="#" class="btn btn-primary light sharp" data-bs-toggle="dropdown" aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li class="dropdown-item"><a href="javascript:void(0);"><i class="fa fa-user-circle text-primary me-2"></i> View profile</a></li>
+                                        <li class="dropdown-item"><a href="javascript:void(0);"><i class="fa fa-users text-primary me-2"></i> Add to btn-close friends</a></li>
+                                        <li class="dropdown-item"><a href="javascript:void(0);"><i class="fa fa-plus text-primary me-2"></i> Add to group</a></li>
+                                        <li class="dropdown-item"><a href="javascript:void(0);" class="text-danger"><i class="fa fa-ban text-danger me-2"></i> Block</a></li>
+                                    </ul>
+                                </div>*@
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        @*<div class="row">
+
                                 <div class="col-xl-4">
                                     <div class="row">
                                         <div class="col-xl-12">
-                                            <div class="card">
+                                            <div class="card shadow">
                                                 <div class="card-body">
-                                                    <div class="row mt-4">
-                                                        <div class="col-xl-12 col-xxl-12 col-sm-12 social">
-                                                            @if (Model != null)
-                                                            {
-
-                                                                if (Model.NfcContentList != null && Model.NfcContentList.Count > 0 && Model.NfcContentList.Where(x => x.Type == "Email").Any())
-                                                                {
-                                                                    foreach (var item in Model.NfcContentList.Where(x => x.Type == "Email").ToList())
-                                                                    {
-
-                                                                        <div class="col-xl-2 col-xxl-2 col-sm-2">
-                                                                            <div class="card">
-                                                                                <div class="">
-                                                                                    <span class="s-icon"><a href="javascript:void(0)" target="_blank" style="background:#871505"><i class="fa fa-envelope fa-lg"></i></a></span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    }
-                                                                }
-                                                            }
-                                                            <div class="col-xl-2 col-xxl-2 col-sm-2">
-                                                                <div class="card">
-                                                                    <div class="">
-                                                                        <span class="s-icon"><a href="javascript:void(0)" target="_blank" style="background:#6e69f5"><i class="fa fa-address-card fa-lg" id="SaveContactCard"></i></a></span>
-                                                                    </div>
+                                                    <div class="profile-statistics">
+                                                        <div class="text-center">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h3 class="m-b-0">150</h3><span>Sharing</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h3 class="m-b-0">140</h3><span>Location</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h3 class="m-b-0">45</h3><span>Contacts</span>
                                                                 </div>
                                                             </div>
-                                                            @if (Model != null)
-                                                            {
-                                                                if (Model.NfcContentList != null && Model.NfcContentList.Count > 0 && Model.NfcContentList.Where(x => x.Type == "ContactNo").Any())
-                                                                {
-                                                                    foreach (var item in Model.NfcContentList.Where(x => x.Type == "ContactNo").ToList())
-                                                                    {
-                                                                        if (item.Content.Contains("6") || item.Content.Contains("7") || item.Content.Contains("9") || item.Content.Contains("8"))
-                                                                        {
-                                                                            <div class="col-xl-2 col-xxl-2 col-sm-2">
-                                                                                <div class="card">
-                                                                                    <div class="">
-                                                                                        <span class="s-icon"><a href="https://api.whatsapp.com/send?phone=91+@item.Content" target="_blank" style="background:#42f560"><i class="fa fa-whatsapp fa-lg"></i></a></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                            @if (Model != null)
-                                                            {
-                                                                if (Model.NfcContentList != null && Model.NfcContentList.Count > 0 && Model.NfcContentList.Where(x => x.Type == "SocialMedia").Any())
-                                                                {
-                                                                    foreach (var item in Model.NfcContentList.Where(x => x.Type == "SocialMedia").ToList())
-                                                                    {
-
-                                                                        <div class="col-xl-2 col-xxl-2 col-sm-2">
-                                                                            <div class="card">
-                                                                                <div class="">
-                                                                                    @if (item.Content.Contains("facebook") || item.Content.Contains("fb"))
-                                                                                    {
-                                                                                        <span class="s-icon"><a href="@item.Content" target="_blank" style="background:#4267B2"><i class="fa fa-facebook fa-lg"></i></a></span>
-                                                                                    }
-                                                                                    @if (item.Content.Contains("telegram") || item.Content.Contains("telegram"))
-                                                                                    {
-                                                                                        <span class="s-icon"><a href="@item.Content" target="_blank" style="background:#6e69f5"><i class="fa fa-telegram fa-lg"></i></a></span>
-                                                                                    }
-                                                                                    @if (item.Content.Contains("instagram") || item.Content.Contains("insta"))
-                                                                                    {
-                                                                                        <span class="s-icon"><a href="@item.Content" target="_blank" style="background:#E1306C"><i class="fa fa-instagram fa-lg"></i></a></span>
-                                                                                    }
-                                                                                    @if (item.Content.Contains("linkedin") || item.Content.Contains("link"))
-                                                                                    {
-                                                                                        <span class="s-icon"><a href="@item.Content" target="_blank" style="background:#E1306C"><i class="fa fa-instagram fa-lg"></i></a></span>
-                                                                                    }
-                                                                                    @if (item.Content.Contains("twitter") || item.Content.Contains("tw"))
-                                                                                    {
-                                                                                        <span class="s-icon"><a href="@item.Content" target="_blank" style="background:#1DA1F2"><i class="fa fa-twitter fa-lg"></i></a></span>
-                                                                                    }
-                                                                                    @if (item.Content.Contains("youtube") || item.Content.Contains("utube"))
-                                                                                    {
-                                                                                        <span class="s-icon"><a href="@item.Content" target="_blank" style="background:#FF0000"><i class="fa fa-youtube fa-lg"></i></a></span>
-                                                                                    }
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    }
-                                                                }
-                                                            }
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>*@
-                        <div class="row">
-                            <div class="col-xl-4">
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="profile-statistics">
-                                                    <div class="text-center">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h3 class="m-b-0">150</h3><span>Sharing</span>
-                                                            </div>
-                                                            <div class="col">
-                                                                <h3 class="m-b-0">140</h3><span>Location</span>
-                                                            </div>
-                                                            <div class="col">
-                                                                <h3 class="m-b-0">45</h3><span>Contacts</span>
+                                                            <div class="mt-4">
+                                                                <a href="javascript:void(0);" class="btn btn-info mb-1 me-1">Add Contact</a>
+                                                                <a href="/Home/SignUp" class="btn btn-primary mb-1" >Sign-Up</a>
                                                             </div>
                                                         </div>
-                                                        <div class="mt-4">
-                                                            <a href="javascript:void(0);" class="btn btn-danger mb-1 mr-1" id="btnAddToContacts">Add Contact</a>
-                                                            <a href="/Home/Signup?Pid=@Model.UserCode)" class="btn btn-info mb-1" @*data-toggle="modal" data-target="#sendMessageModal"*@>Sign Up</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="sendMessageModal">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Sign</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form class="comment-form">
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="text-black font-w600">Name <span class="required">*</span></label>
-                                                                                    <input type="text" class="form-control" value="Author" name="Author" placeholder="Author">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="text-black font-w600">Email <span class="required">*</span></label>
-                                                                                    <input type="text" class="form-control" value="Email" placeholder="Email" name="Email">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-12">
-                                                                                <div class="form-group">
-                                                                                    <label class="text-black font-w600">Comment</label>
-                                                                                    <textarea rows="8" class="form-control" name="comment" placeholder="Comment"></textarea>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-12">
-                                                                                <div class="form-group mb-0">
-                                                                                    <input type="submit" value="Post Comment" class="submit btn btn-primary" name="submit">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                   
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    @*<div class="col-xl-12">
-                                            <div class="card">
+                                        <div class="col-xl-12">
+                                            <div class="card shadow">
                                                 <div class="card-body">
                                                     <div class="profile-blog">
-                                                        <h5 class="text-primary d-inline">Today Highlights</h5>
-                                                        <img src="" class="mt-4 mb-4 w-100" height="142px" width="500px" onclick="getFile()" id="output" style="cursor: pointer;">
-                                                        <input id="upfile" onchange="loadFile_highlights(event)" type="file" value="upload" style="display: none">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>*@
-                                    <div class="col-xl-12 d-none d-md-block">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="profile-interest">
-                                                    <h5 class="text-primary d-inline">Video</h5>
-                                                    <div class="row mt-4 sp4">
+                                                        <h5 class="text-primary d-inline mb-2">Video</h5>
                                                         <video width="100%" height="170" controls muted autoplay>
                                                             <source src="~/assets/img/videoplayback.mp4" type="video/mp4" />
                                                         </video>
-                                                        @*<div class="embed-responsive embed-responsive-16by9">
-                                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=J0CRgCBDJRw" allowfullscreen></iframe>
-                                                            </div>*@
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-8">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="profile-tab">
-                                            <div class="custom-tab-1">
-                                                <ul class="nav nav-tabs profile_nav">
-                                                    @*<li class="nav-item">
-                                                            <a href="#social-media" data-toggle="tab" class="nav-link active show">Social Media</a>
+                                <div class="col-lg-8">
+                                    <div class="card shadow h-auto">
+                                        <div class="card-body">
+                                            <div class="profile-tab">
+                                                <div class="custom-tab-1">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="nav-item">
+                                                            <a href="#my-posts" data-bs-toggle="tab" class="nav-link active show">Connect with me</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="#about-me" data-bs-toggle="tab" class="nav-link">About Me</a>
+                                                        </li>
+                                                        @*<li class="nav-item">
+                                                            <a href="#profile-settings" data-bs-toggle="tab" class="nav-link">Setting</a>
                                                         </li>*@
-                                                    <li class="nav-item">
-                                                        <a href="#contacts" data-toggle="tab" class="nav-link active show">Connect with me</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="#about-me" data-toggle="tab" class="nav-link" onclick="return aboutme();">About Me</a>
-                                                    </li>
-
-
-                                                    @*<li class="nav-item">
-                                                            <a href="#broadcast" data-toggle="tab" class="nav-link">Broadcast</a>
-                                                        </li>*@
-                                                </ul>
-                                                <div class="tab-content">
-                                                    @*<div id="social-media" class="tab-pane fade active show">
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div id="my-posts" class="tab-pane fade active show">
                                                             <div class="my-post-content pt-3">
                                                                 <div class="post-input">
-                                                                    <textarea name="textarea" id="textarea" cols="30" rows="5" class="form-control bg-transparent" placeholder="Please type what you want...."></textarea>
-                                                                    <a href="javascript:void(0);" class="btn btn-primary light px-3" data-toggle="modal" data-target="#linkModal"><i class="fa fa-link m-0"></i> </a>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="linkModal">
-                                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title">Social Links</h5>
-                                                                                    <button type="button" class="close" data-dismiss="modal">
-                                                                                        <span>&times;</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <a class="btn-social facebook" href="javascript:void(0)"><i class="fa fa-facebook"></i></a>
-                                                                                    <a class="btn-social google-plus" href="javascript:void(0)"><i class="fa fa-google-plus"></i></a>
-                                                                                    <a class="btn-social linkedin" href="javascript:void(0)"><i class="fa fa-linkedin"></i></a>
-                                                                                    <a class="btn-social instagram" href="javascript:void(0)"><i class="fa fa-instagram"></i></a>
-                                                                                    <a class="btn-social twitter" href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
-                                                                                    <a class="btn-social youtube" href="javascript:void(0)"><i class="fa fa-youtube"></i></a>
-                                                                                    <a class="btn-social whatsapp" href="javascript:void(0)"><i class="fa fa-whatsapp"></i></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="javascript:void(0);" class="btn btn-primary light mr-1 px-3" data-toggle="modal" data-target="#cameraModal"><i class="fa fa-camera m-0"></i> </a>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="cameraModal">
-                                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title">Upload images</h5>
-                                                                                    <button type="button" class="close" data-dismiss="modal">
-                                                                                        <span>&times;</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <div class="input-group mb-3">
-                                                                                        <div class="input-group-prepend">
-                                                                                            <span class="input-group-text">Upload</span>
-                                                                                        </div>
-                                                                                        <div class="custom-file">
-                                                                                            <input type="file" class="custom-file-input">
-                                                                                            <label class="custom-file-label">Choose file</label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#postModal">Post</a>
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="postModal">
-                                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title">Post</h5>
-                                                                                    <button type="button" class="close" data-dismiss="modal">
-                                                                                        <span>&times;</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <textarea name="textarea" id="textarea2" cols="30" rows="5" class="form-control bg-transparent" placeholder="Please type what you want...."></textarea>
-                                                                                    <a class="btn btn-primary btn-rounded" href="javascript:void(0)">Post</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                                    <img src="images/profile/8.jpg" alt="" class="img-fluid w-100">
-                                                                    <a class="post-title" href="post-details.html"><h3 class="text-black">Collection of textile samples lay spread</h3></a>
-                                                                    <p>
-                                                                        A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning
-                                                                        of spare which enjoy whole heart.
-                                                                    </p>
-                                                                    <button class="btn btn-primary mr-2">
-                                                                        <span class="mr-2">
-                                                                            <i class="fa fa-heart"></i>
-                                                                        </span>Like
-                                                                    </button>
-                                                                    <button class="btn btn-secondary" data-toggle="modal" data-target="#replyModal">
-                                                                        <span class="mr-2">
-                                                                            <i class="fa fa-reply"></i>
-                                                                        </span>Reply
-                                                                    </button>
-                                                                </div>
-                                                                <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                                    <img src="images/profile/9.jpg" alt="" class="img-fluid w-100">
-                                                                    <a class="post-title" href="post-details.html"><h3 class="text-black">Collection of textile samples lay spread</h3></a>
-                                                                    <p>
-                                                                        A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning
-                                                                        of spare which enjoy whole heart.
-                                                                    </p>
-                                                                    <button class="btn btn-primary mr-2">
-                                                                        <span class="mr-2">
-                                                                            <i class="fa fa-heart"></i>
-                                                                        </span>Like
-                                                                    </button>
-                                                                    <button class="btn btn-secondary" data-toggle="modal" data-target="#replyModal">
-                                                                        <span class="mr-2">
-                                                                            <i class="fa fa-reply"></i>
-                                                                        </span>Reply
-                                                                    </button>
-                                                                </div>
-                                                                <div class="profile-uoloaded-post pb-3">
-                                                                    <img src="images/profile/8.jpg" alt="" class="img-fluid w-100">
-                                                                    <a class="post-title" href="post-details.html"><h3 class="text-black">Collection of textile samples lay spread</h3></a>
-                                                                    <p>
-                                                                        A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning
-                                                                        of spare which enjoy whole heart.
-                                                                    </p>
-                                                                    <button class="btn btn-primary mr-2">
-                                                                        <span class="mr-2">
-                                                                            <i class="fa fa-heart"></i>
-                                                                        </span>Like
-                                                                    </button>
-                                                                    <button class="btn btn-secondary" data-toggle="modal" data-target="#replyModal">
-                                                                        <span class="mr-2">
-                                                                            <i class="fa fa-reply"></i>
-                                                                        </span>Reply
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>*@
-
-                                                    <div id="contacts" class="tab-pane fade active show">
-                                                        <div class="pt-3">
-                                                            <div class="settings-form">
-
-                                                                <div class="row mt-4">
-                                                                    @if (Model != null)
-                                                                    {
-                                                                        if (Model.NfcContentList != null && Model.NfcContentList.Count > 0)
-                                                                        {
-                                                                            foreach (var item in Model.NfcContentList)
-                                                                            {
-                                                                                if (item.Type == "ContactNo" && item.IsDisplay == true)
-                                                                                {
-                                                                                    if (item.Content.Contains("6") || item.Content.Contains("7") || item.Content.Contains("9") || item.Content.Contains("8"))
-                                                                                    {
-                                                                                        <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                            <div class="card">
-                                                                                                <div class="social-graph-wrapper widget-phone">
-                                                                                                    <span class="s-icon"><a href="tel:@item.Content" target="_blank"><i class="fa fa-phone fa-lg"></i></a></span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    }
-                                                                                }
-                                                                                if (item.Type == "ContactNo" || item.Type == "Whatsapp")
-                                                                                {
-                                                                                    if (item.IsDisplay == true)
-                                                                                    {
-
-                                                                                        if (item.Content.Contains("6") || item.Content.Contains("7") || item.Content.Contains("9") || item.Content.Contains("8"))
-                                                                                        {
-                                                                                            <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                                <div class="card">
-                                                                                                    <div class="social-graph-wrapper widget-whatsapp">
-                                                                                                        <span class="s-icon"><a href="https://api.whatsapp.com/send?phone=91+@item.Content" target="_blank"><i class="fa fa-whatsapp fa-lg"></i></a></span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                                else if (item.Type == "SocialMedia" && item.IsDisplay == true)
-                                                                                {
-
-                                                                                    if (item.Content.ToLower().Contains("fb") || item.Content.ToLower().Contains("facebook"))
-                                                                                    {
-                                                                                        <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                            <div class="card">
-                                                                                                <div class="social-graph-wrapper widget-facebook">
-                                                                                                    <span class="s-icon"><a href="@item.Content" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></span>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    }
-
-                                                                                    if (item.Content.ToLower().Contains("telegram") || item.Content.ToLower().Contains("telegram"))
-                                                                                    {
-                                                                                        <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                            <div class="card">
-                                                                                                <div class="social-graph-wrapper widget-telegram">
-                                                                                                    <span class="s-icon"><a href="@item.Content" target="_blank"><i class="fa fa-telegram fa-lg"></i></a></span>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    }
-
-                                                                                    if (item.Content.ToLower().Contains("instagram") || item.Content.ToLower().Contains("insta"))
-                                                                                    {
-                                                                                        <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                            <div class="card">
-                                                                                                <div class="social-graph-wrapper widget-instagram">
-                                                                                                    <span class="s-icon"><a href="@item.Content" target="_blank"><i class="fa fa-instagram fa-lg"></i></a></span>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    }
-
-                                                                                    if (item.Content.ToLower().Contains("linkedin") || item.Content.ToLower().Contains("linkedin"))
-                                                                                    {
-                                                                                        <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                            <div class="card">
-                                                                                                <div class="social-graph-wrapper widget-linkedin">
-                                                                                                    <span class="s-icon"><a href="@item.Content" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a></span>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    }
-
-                                                                                    if (item.Content.ToLower().Contains("twitter") || item.Content.ToLower().Contains("tw"))
-                                                                                    {
-                                                                                        <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                            <div class="card">
-                                                                                                <div class="social-graph-wrapper widget-twitter">
-                                                                                                    <span class="s-icon"><a href="@item.Content" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></span>
-                                                                                                </div>
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    }
-                                                                                }
-                                                                                else if (item.Type == "Email" && item.IsDisplay == true)
-                                                                                {
-
-                                                                                    <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                        <div class="card">
-                                                                                            <div class="social-graph-wrapper widget-email">
-                                                                                                <span class="s-icon"><a href="mailto:@item.Content?subject= Dost &amp;body=" target="_blank"><i class="fa fa-envelope fa-lg"></i></a></span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                }
-                                                                                else if (item.Type == "WebLink" && item.IsDisplay == true)
-                                                                                {
-
-                                                                                    <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                        <div class="card">
-                                                                                            <div class="social-graph-wrapper widget-website">
-                                                                                                <span class="s-icon"><a href="@item.Content" target="_blank"><i class="fa fa-globe fa-lg"></i></a></span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                }
-                                                                                else if (item.Type == "Location" && item.IsDisplay == true)
-                                                                                {
-
-                                                                                    <div class="col-xl-3 col-xxl-3 col-sm-3 col-4">
-                                                                                        <div class="card">
-                                                                                            <div class="social-graph-wrapper widget-map">
-                                                                                                <span class="s-icon"><a href="@item.Content" target="_blank"><i class="fa fa-map-marker fa-lg"></i></a></span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                }
-                                                                                else
-                                                                                {
-
-                                                                                }
-
-                                                                            }
-                                                                        }
-                                                                    }
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div id="about-me" class="tab-pane fade">
-                                                        <div class="profile-about-me">
-                                                            <div class="pt-4 border-bottom-1 pb-3">
-                                                                <h4 class="text-primary">About Me</h4>
-                                                                <p class="mb-2">
-                                                                    <div id="Body" class="click2edit"></div>
-                                                                </p>
+                                                        <div id="about-me" class="tab-pane fade">
+                                                            <div class="profile-about-me">
+                                                                <div class="pt-4 border-bottom-1 pb-3">
+                                                                    <h4 class="text-primary">About Me</h4>
+                                                                    <p class="mb-2"></p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="profile-skills mb-5">
-                                                            <h4 class="text-primary mb-2">Skills</h4>
-                                                            @if (Model != null)
-                                                            {
-                                                                if (Model.lstSkill != null)
-                                                                {
-                                                                    foreach (var item in Model.lstSkill)
-                                                                    {
-                                                                        <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">@item.Skill</a>
-                                                                    }
-                                                                }
-                                                            }
-                                                        </div>
-                                                        <div class="profile-lang  mb-5">
-                                                            <h4 class="text-primary mb-2">Language</h4>
-                                                            @if (Model != null)
-                                                            {
-                                                                if (Model.lstLanguage != null)
-                                                                {
-                                                                    foreach (var item in Model.lstLanguage)
-                                                                    {
-                                                                        <a href="javascript:void(0);" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i> @item.Language</a>
-                                                                    }
-                                                                }
-                                                            }
-                                                        </div>
-                                                        <div class="profile-personal-info">
-                                                            <h4 class="text-primary mb-4">Achievements</h4>
-                                                            <div class="card">
+                                                            <div class="profile-skills mb-5">
+                                                                <h4 class="text-primary mb-2">Skills</h4>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Admin</a>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Dashboard</a>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Photoshop</a>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Bootstrap</a>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Responsive</a>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Crypto</a>
+                                                            </div>
+                                                            <div class="profile-lang  mb-5">
+                                                                <h4 class="text-primary mb-2">Language</h4>
+                                                                <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-us"></i> English</a>
+                                                                <a href="javascript:void(0);" class="text-muted pe-3 f-s-16"><i class="flag-icon flag-icon-fr"></i> Hindi</a>
 
-                                                                <div class="card-body">
-                                                                    <div class="table-responsive">
-                                                                        <table class="table style-1" id="ListDatatableView">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th><i class="fa fa-star achiv"></i></th>
-                                                                                    <th>Achievements</th>
-
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-
-                                                                                @if (Model != null)
-                                                                                {
-                                                                                    if (Model.lstAchievement != null)
-                                                                                    {
-                                                                                        foreach (var item in Model.lstAchievement)
-                                                                                        {
-                                                                                            <tr>
-                                                                                                <td>
-                                                                                                    <h6><i class="fa fa-star achiv"></i></h6>
-                                                                                                </td>
-                                                                                                <td>
-                                                                                                    <div class="media style-1">
-                                                                                                        <div class="media-body">
-                                                                                                            @*<div id="emailbody"class="click2edit"></div>
-                                                                                                                @Html.HiddenFor(m => m.EmailBodyHTML)*@
-                                                                                                            <span>@item.Achievement</span>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </td>
-
-                                                                                                <td>
-                                                                                                    <div class="d-flex action-button">
-                                                                                                        @*<a href="javascript:void(0);" class="btn btn-info btn-xs light px-2">
-                                                                                                                <i class="fa fa-pencil achiv"></i>
-                                                                                                            </a>*@
-                                                                                                        <a href="/NFCProfile/DeleteAchievement?Id=@item.Pk_AchievementId&Code=@Model.Code" class="ml-2 btn btn-xs px-2 light btn-danger">
-
-                                                                                                            <i class="fa fa-trash-o achiv"></i>
-                                                                                                        </a>
-                                                                                                    </div>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            </tbody>
-                                                                        </table>
+                                                            </div>
+                                                            <div class="profile-personal-info">
+                                                                <h4 class="text-primary mb-4">Achievements</h4>
+                                                                <div class="row mb-2">
+                                                                    <div class="col-sm-3 col-5">
+                                                                        <h5 class="f-w-500">
+                                                                            Age <span class="pull-end">:</span>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <div class="col-sm-9 col-7">
+                                                                        <span>27</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
 
-                                                @*<div id="broadcast" class="tab-pane fade">
-                                                        <div class="pt-3">
-                                                            <div class="settings-form">
-                                                                <h4 class="text-primary">Account Setting</h4>
-                                                                <form>
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-6">
-                                                                            <label>Email</label>
-                                                                            <input type="email" placeholder="Email" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <label>Password</label>
-                                                                            <input type="password" placeholder="Password" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Address</label>
-                                                                        <input type="text" placeholder="1234 Main St" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Address 2</label>
-                                                                        <input type="text" placeholder="Apartment, studio, or floor" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-6">
-                                                                            <label>City</label>
-                                                                            <input type="text" class="form-control">
-                                                                        </div>
-                                                                        <div class="form-group col-md-4">
-                                                                            <label>State</label>
-                                                                            <select class="form-control default-select" id="inputState">
-                                                                                <option selected="">Choose...</option>
-                                                                                <option>Option 1</option>
-                                                                                <option>Option 2</option>
-                                                                                <option>Option 3</option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-2">
-                                                                            <label>Zip</label>
-                                                                            <input type="text" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <div class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" class="custom-control-input" id="gridCheck">
-                                                                            <label class="custom-control-label" for="gridCheck"> Check me out</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <button class="btn btn-primary" type="submit">
-                                                                        Sign
-                                                                        in
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>*@
-                                            </div>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="replyModal">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Post Reply</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <textarea class="form-control" rows="4">Message</textarea>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Reply</button>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @if (Session["NFCCode"] != null)
-                    {
-                        @*@Html.HiddenFor(m => m.hdfCode)*@
-                        <input type="hidden" value="@Session["NFCCode"]" id="hdfCode" />
-                    }
-                </div>
-
-            }
-            else if (ViewBag.NFCResopnse == "Wrong NFC Code")
-            {
-                <h4 class="text-center" style="color:red">@ViewBag.NFCResopnse </h4>
-            }
-            else
-            {
-                <div class="authincation h-100">
-                    <div class="container h-100">
-                        <div class="row justify-content-center h-100 align-items-center">
-                            <div class="col-md-6">
-                                <div class="authincation-content">
-                                    <div class="row no-gutters">
-                                        <div class="col-xl-12">
-                                            <div class="auth-form">
-                                                <h4 class="text-center mb-4">Welcome to Dost NFC Zone</h4>
-                                                <div class="text-center mb-3">
-                                                    <img src="~/images/nfc_logo.png" alt="" style="width:100px;">
-
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="mb-1"><strong>If you are already a user please sign in to activate your NFC Card or Sign up Now</strong></label>
-
-                                                </div>
-                                                <div class="text-center">
-                                                    <input type="submit" class="btn btn-primary btn-block" value="Sign In" onclick="return funSignIn();">
-                                                </div>
-                                                <div class="new-account mt-3">
-                                                    <p>New User? <a class="text-primary" href="/Home/Signup">Create an Account</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="col-lg-2"></div>
                     </div>
                 </div>
-            }
-        }
-        <!--**********************************
-            Content body end
-            ***********************************-->
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js" defer></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-    @*<script src="~/vendor/jquery/jquery.min.js"></script>*@
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <script src="~/assets/js/jquery1-3.4.1.min.js"></script>
-    <script src="~/assets/js/popper1.min.js"></script>
-    <script src="~/assets/js/bootstrap1.min.js"></script>
-    <script src="~/assets/js/metisMenu.js"></script>
-    <script src="~/assets/vendors/scroll/perfect-scrollbar.min.js"></script>
-    <script src="~/assets/vendors/scroll/scrollable-custom.js"></script>
-    <script src="~/assets/js/custom.js"></script>
-    <script>
-        jQuery(document).ready(function () {
-            var name = $("#hdfCode").val();
-            if (name == "" && name != null) {
-                debugger;
-                $('#divcontainer').hide();
-                alert("You have not activated any card. Please activate any card");
-                window.location.href = "/Home/Login";
-            }
-            setTimeout(function () {
-                dezSettingsOptions.version = 'dark';
-                new dezSettings(dezSettingsOptions);
-            }, 100)
+            </div>
+        </div>
+  
+    <!--**********************************
+        Content body end
+    ***********************************-->
+
+   
 
 
-            $('#emailbody').summernote(
-            {
-                height: 150,
-                toolbar: [
-                  // [groupName, [list of button]]
-                  //['style', ['bold', 'italic', 'underline', 'clear']],
-                  //['font', ['strikethrough', 'superscript', 'subscript']],
-                  //['fontsize', ['fontsize']],
-                  //['para', ['ul', 'ol', 'paragraph']],
-                  //['height', ['height']]
-                ]
-            });
-        });
-        function funSignIn() {
-            window.location.href = "/Home/Login";
-        }
-        $('#btnAddToContacts').click(function () {
-            debugger;
-            var id = $("#hdfCode").val();
-            var LogId = $("#LogId").val();
-            // id = getUrlParameter('id');
-            window.location.href = "/nfc/SaveVCF?id=" + id + "&LogId = " + LogId;
-        })
-        $("#SaveContactCard").click(function () {
-            debugger;
-            var id = $("#hdfCode").val();
-            var LogId = $("#LogId").val();
-            // id = getUrlParameter('id');
-            window.location.href = "/nfc/SaveVCF?id=" + id + "&LogId = " + LogId;
-        })
-    </script>
-    <script type="text/javascript">
-        function getFile() {
-            document.getElementById("upfile").click();
-        }
-    </script>
+    <script src="~/assetsAdmin/vendor/global/global.min.js"></script>
+    <script src="~/assetsAdmin/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
 
-    <script type="text/javascript">
-        var loadFile_highlights = function (event) {
-            var image = document.getElementById('output');
-            image.src = URL.createObjectURL(event.target.files[0]);
-        };
-    </script>
-    <script>
-        function aboutme() {
-            debugger;
-            var code = $('#hdfCode').val();
+    <script src="~/assetsAdmin/vendor/counter/counter.min.js"></script>
+    <script src="~/assetsAdmin/vendor/counter/waypoint.min.js"></script>
+    <script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
+    <script src="~/assetsAdmin/vendor/chart-js/chart.bundle.min.js"></script>
+    <script src="~/assetsAdmin/vendor/peity/jquery.peity.min.js"></script>
+    <script src="~/assetsAdmin/js/dashboard/dashboard-1.js"></script>
+    <script src="~/assetsAdmin/vendor/owl-carousel/owl.carousel.js"></script>
 
-            $.ajax({
-                url: '/NFC/GetAboutMe', type: 'post', dataType: 'json',
-                data: { 'code': code },
-                success: function (data) {
-                    debugger;
-                    $("#divload").css({ 'display': 'none' });
-                    if (data.Result == "1") {
-                        $('#Body').html(data.Body);
-                        //var dd = $("#Description").val();
-                        //$('#Description1').summernote('code', data.Body);
-                        //$('#EmailBodyHTML1').val(data.Achievement);
-                        //var dd1 = $("#EmailBodyHTML1").val();
-                        //$('#emailbody1').summernote('code', data.Achievement);
+    <script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
+    <script src="~/assetsAdmin/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/assetsAdmin/vendor/datatables/responsive/responsive.js"></script>
+    <script src="~/assetsAdmin/js/plugins-init/datatables.init.js"></script>
 
-                    }
-                    else {
-                        alert(data.Result);
-                    }
-                }
-            });
-        }
-    </script>
+    <script src="~/assetsAdmin/js/custom.min.js"></script>
+    <script src="~/assetsAdmin/js/dlabnav-init.js"></script>
+    <script src="~/assetsAdmin/js/demo.js"></script>
+    <script src="~/assetsAdmin/js/styleSwitcher.js"></script>
 </body>
 </html>

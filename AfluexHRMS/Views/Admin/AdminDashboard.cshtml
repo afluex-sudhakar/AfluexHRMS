@@ -8,7 +8,7 @@
 
 
 <div class="container-fluid">
-    
+
     <div class="row">
         <div class="col-xl-12">
             <div class="row">
@@ -37,80 +37,88 @@
                     </div>
 
                 </div>*@
-                        <div class="col-xl-12">
-                            <div class="row">
-                                <div class="col-xl-3 col-sm-3">
-                                    <div class="card">
-                                        <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                            <div class="w-75">
-                                                <h4 class="mb-3 text-nowrap">TOTAL EMPLOYEES</h4>
-                                            </div>
-                                            <div>
-                                                <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalEmployee</h2>
-                                            </div>
-                                        </div>
+                <div class="col-xl-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">TOTAL EMPLOYEES</h4>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-sm-3">
-                                    <div class="card">
-                                        <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                            <div class="w-75">
-                                                <h4 class="mb-3 text-nowrap">TOTAL HOLIDAYS</h4>
-                                            </div>
-                                            <div>
-                                                <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalHolidays</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-sm-3">
-                                    <div class="card">
-                                        <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                            <div class="w-75">
-                                                <h4 class="mb-3 text-nowrap">DISTRIBUTED SALARY</h4>
-                                            </div>
-                                            <div>
-                                                <h2 class="fs-32 font-w700 mb-0">@ViewBag.DistributedSalary</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-sm-3">
-                                    <div class="card">
-                                        <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                            <div class="w-75">
-                                                <h4 class="mb-3 text-nowrap">PENDING SALARY</h4>
-                                            </div>
-                                            <div>
-                                                <h2 class="fs-32 font-w700 mb-0">@ViewBag.PendingSalary</h2>
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalEmployee</h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">TOTAL HOLIDAYS</h4>
+                                    </div>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalHolidays</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">DISTRIBUTED SALARY</h4>
+                                    </div>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.DistributedSalary</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">PENDING SALARY</h4>
+                                    </div>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.PendingSalary</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 
 
-    <div class="container-fluid">
-       
-        <div class="row">
-            <div class="col-xl-6 col-lg-12">
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xl-8 col-lg-12">
+         
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Monthly Attendance</h4>
+                        <div class="text-end">
+                            <i class="fa fa-circle text-success me-1"></i><span>Present</span>&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-circle text-danger me-1"></i><span>Absent</span>
+                        </div>
+                        
                     </div>
-                    <div class="card-body">
-                        <div id="horizontal-bar-chart" class="ct-chart ct-golden-section chartlist-chart"></div>
-                    </div>
+                    
+                    <div id="overlapping-bars" class="ct-chart ct-golden-section chartlist-chart mt-4"></div>
+                    
                 </div>
-            </div>
+            
+        </div>
 
-            <div class="col-xl-6 col-lg-12">
+        <div class="col-xl-4 col-lg-12">
+            <div class="clearfix">
                 <div class="card">
                     <div class="card-header d-block">
                         <h4 class="card-title">Calender </h4>
@@ -153,11 +161,12 @@
                                 <span class="sr-only">60% Complete</span>
                             </div>
                         </div>
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -171,9 +180,9 @@
         //google.charts.setOnLoadCallback(drawChart);
         //drawChart();
 
-        window.onload=drawChart();
+        window.onload = horizontalBarChart();
     });
-   
+
 
     //function drawChart() {
     //    debugger;
@@ -215,7 +224,61 @@
     //         });
     //}
 
-    
+
+
+    function horizontalBarChart() {
+        $.ajax({
+                         type: 'POST',
+                         dataType: 'json',
+                         contentType: 'application/json',
+                         url: '/Admin/GetJoiningDetails',
+                         data: JSON.stringify(),
+                         success:
+                         function (response) {
+                             var Month = [];
+                             var Present = [];
+                             var Absent = [];
+                             var t = JSON.parse(JSON.stringify(response));
+                             for (var i = 0; i < t.length; i++) {
+                                 Month.push(t[i].Month);
+                                 Present.push(t[i].TotalUser);
+                                 Absent.push(t[i].City2);
+                             }
+                                 var data = {
+                                     labels: Month,
+                                     series: [
+                                       [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8, 5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8, 5, 4, 3, 7, 5, 10, 3],
+                                       [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4, 3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4, 3, 2, 9, 5, 4, 6, 4]
+                                     ]
+                                 };
+                                 var options = {
+                                     seriesBarDistance: 10,
+                                     plugins: [
+			                                    Chartist.plugins.tooltip()
+                                     ]
+                                 };
+                                 var responsiveOptions = [
+                                     ['screen and (max-width: 640px)', {
+                                         seriesBarDistance: 5,
+                                         axisX: {
+                                             labelInterpolationFnc: function (value) {
+                                                 return value[0];
+                                             }
+                                         }
+                                         
+                                     }]
+                                 ];
+                             
+                                 new Chartist.Bar('#overlapping-bars', data, options, responsiveOptions);
+                        
+                         },
+                         error: function () {
+                         }
+        });
+
+
+
+    }
 
     function drawChart() {
 
@@ -279,7 +342,8 @@
 </script>
 
 
-@*<script type="text/javascript">
+@*
+<script type="text/javascript">
     debugger;
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(BindAttendanceStatus);
