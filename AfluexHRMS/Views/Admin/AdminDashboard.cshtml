@@ -6,149 +6,168 @@
 }
 
 
-<style>
-    h4{
-        color:white;
-    }
-</style>   
 
-<div class="main_content_iner overly_inner ">
-    <div class="container-fluid p-0 ">
-        <div class="row">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="white_card card_height_100 mb_30 social_media_card">
+<div class="container-fluid">
 
-                            @*<div class="media_thumb ml_25">
-                                <img src="img/media.svg" alt>
-                            </div>*@
-                            <div class="media_card_body">
-                                <div class="media_card_list">
-                                    <div class="single_media_card">
-                                        <span>TOTAL EMPLOYEES</span>
-                                        <h4>@ViewBag.TotalEmployee</h4>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="row">
+                @*<div class="col-xl-6">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card tryal-gradient">
+                                <div class="card-body tryal row">
+                                    <div class="col-xl-7 col-sm-7">
+                                        <h2 class="mb-0">Manage your project in one touch</h2>
+                                        <span>
+                                            Let Fillow manage your project automatically with our best AI
+                                            systems
+                                        </span>
+                                        <a href="javascript:void(0);" class="btn btn-rounded">
+                                            Try Free
+                                            Now
+                                        </a>
                                     </div>
-                                    <div class="single_media_card">
-                                        <span>TOTAL HOLIDAYS</span>
-                                        <h4>@ViewBag.TotalHolidays</h4>
+                                    <div class="col-xl-5 col-sm-5 ">
+                                        <img src="public/assets/images/chart.png" alt="" class="sd-shape">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-6">
-                        <div class="white_card card_height_100 mb_30 social_media_card">
-                            @*<div class="media_thumb ml_25">
-                                <img src="img/media.svg" alt>
-                            </div>*@
-                            <div class="media_card_body">
-                                <div class="media_card_list">
-                                    <div class="single_media_card">
-                                        <span>DISTRIBUTED SALARY</span>
-                                        <h4>@ViewBag.DistributedSalary</h4>
+                </div>*@
+                <div class="col-xl-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">TOTAL EMPLOYEES</h4>
                                     </div>
-                                    <div class="single_media_card">
-                                        <span>PENDING SALARY</span>
-                                        <h4>@ViewBag.PendingSalary</h4>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalEmployee</h2>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">TOTAL HOLIDAYS</h4>
+                                    </div>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalHolidays</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">DISTRIBUTED SALARY</h4>
+                                    </div>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.DistributedSalary</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="card">
+                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
+                                    <div class="w-75">
+                                        <h4 class="mb-3 text-nowrap">PENDING SALARY</h4>
+                                    </div>
+                                    <div>
+                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.PendingSalary</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xl-8 col-lg-12">
+         
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Monthly Attendance</h4>
+                        <div class="text-end">
+                            <i class="fa fa-circle text-success me-1"></i><span>Present</span>&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-circle text-danger me-1"></i><span>Absent</span>
+                        </div>
+                        
+                    </div>
+                    
+                    <div id="overlapping-bars" class="ct-chart ct-golden-section chartlist-chart mt-4"></div>
+                    
+                </div>
+            
+        </div>
+
+        <div class="col-xl-4 col-lg-12">
+            <div class="clearfix">
+                <div class="card">
+                    <div class="card-header d-block">
+                        <h4 class="card-title">Calender </h4>
+                        @*<p class="mb-0 subtitle">add <code>.progress-animated</code> to change the style</p>*@
+                    </div>
+                    <div class="card-body">
+                        <h6>
+                            Task #1
+                            <span class="pull-end" style="color:#4800ff">85%</span>
+                        </h6>
+                        <div class="progress ">
+                            <div class="progress-bar bg-danger progress-animated" style="width: 85%; height:8px;" role="progressbar">
+                                <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>
+                        <h6 class="mt-4">
+                            Task #2
+                            <span class="pull-end" style="color:#4800ff">90%</span>
+                        </h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-info progress-animated" style="width: 90%; height:8px;" role="progressbar">
+                                <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>
+                        <h6 class="mt-4">
+                            Task #3
+                            <span class="pull-end" style="color:#4800ff">65%</span>
+                        </h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-success progress-animated" style="width: 65%; height:8px;" role="progressbar">
+                                <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>
+                        <h6 class="mt-4">
+                            Task #4
+                            <span class="pull-end" style="color:#4800ff">80%</span>
+                        </h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning progress-animated" style="width: 80%; height:8px;" role="progressbar">
+                                <span class="sr-only">60% Complete</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-                <div class="col-xl-6">
-                    <div class="white_card mb_30 card_height_100">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Monthly Attendance</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div id="marketchart"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-6">
-                    <div class="white_card mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0"> <i class="fa fa-calendar-alt"> Calendar</i></h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="white_card_body">
-                            <div class="world_list_wraper">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-9">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="single_progressbar">
-                                                    <h6 class="f_s_14 f_w_400">Task #1</h6>
-                                                    <div id="bar4" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="81"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="single_progressbar">
-                                                    <h6>Task #2</h6>
-                                                    <div id="bar5" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="58"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="single_progressbar">
-                                                    <h6>Task #3</h6>
-                                                    <div id="bar6" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="42"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="single_progressbar">
-                                                    <h6>Task #4</h6>
-                                                    <div id="bar7" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="55"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        </div>
+    </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -161,9 +180,9 @@
         //google.charts.setOnLoadCallback(drawChart);
         //drawChart();
 
-        window.onload=drawChart();
+        window.onload = horizontalBarChart();
     });
-   
+
 
     //function drawChart() {
     //    debugger;
@@ -205,7 +224,61 @@
     //         });
     //}
 
-    
+
+
+    function horizontalBarChart() {
+        $.ajax({
+                         type: 'POST',
+                         dataType: 'json',
+                         contentType: 'application/json',
+                         url: '/Admin/GetJoiningDetails',
+                         data: JSON.stringify(),
+                         success:
+                         function (response) {
+                             var Month = [];
+                             var Present = [];
+                             var Absent = [];
+                             var t = JSON.parse(JSON.stringify(response));
+                             for (var i = 0; i < t.length; i++) {
+                                 Month.push(t[i].Month);
+                                 Present.push(t[i].TotalUser);
+                                 Absent.push(t[i].City2);
+                             }
+                                 var data = {
+                                     labels: Month,
+                                     series: [
+                                       [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8, 5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8, 5, 4, 3, 7, 5, 10, 3],
+                                       [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4, 3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4, 3, 2, 9, 5, 4, 6, 4]
+                                     ]
+                                 };
+                                 var options = {
+                                     seriesBarDistance: 10,
+                                     plugins: [
+			                                    Chartist.plugins.tooltip()
+                                     ]
+                                 };
+                                 var responsiveOptions = [
+                                     ['screen and (max-width: 640px)', {
+                                         seriesBarDistance: 5,
+                                         axisX: {
+                                             labelInterpolationFnc: function (value) {
+                                                 return value[0];
+                                             }
+                                         }
+                                         
+                                     }]
+                                 ];
+                             
+                                 new Chartist.Bar('#overlapping-bars', data, options, responsiveOptions);
+                        
+                         },
+                         error: function () {
+                         }
+        });
+
+
+
+    }
 
     function drawChart() {
 
@@ -269,7 +342,8 @@
 </script>
 
 
-@*<script type="text/javascript">
+@*
+<script type="text/javascript">
     debugger;
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(BindAttendanceStatus);

@@ -321,6 +321,23 @@ namespace AfluexHRMS.Models
         public string MessageStatus { get; set; }
     }
 
+    public class UpdateBusinessProfileForMobile
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string BusinessName { get; set; }
+        public string Description { get; set; }
+        public string FK_UserId { get; set; }
+        public string PK_ProfileId { get; set; }
+        public DataTable dtcontact { get; set; }
+        public DataTable dtemail { get; set; }
+        public DataTable dtweblink { get; set; }
+        public DataTable dtsocial { get; set; }
+
+
+
+    }
+
 
 
     public class EmployeeDashboardRequest

@@ -1,0 +1,101 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "SetActionDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    i{
+        font-size:50px;
+    }
+</style>
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0 ">
+        <div class="row">
+            <div class="col-12">
+                @*<div class="row">
+                    <div class="col-xl-4">
+                        <div class="white_card card_height_100 mb_30 social_media_card1">
+                            <div class="media_card_body1">
+                                <div class="media_card_list1">
+                                    <div class="single_media_card1">
+                                        <p class="mb-1"><a href="#" class="text-white">Activate</a></p>
+                                        <h3 class="text-white"><i class="fa fa-credit-card"></i> Business Card</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="white_card card_height_100 mb_30 social_media_card1">
+                            <div class="media_card_body1">
+                                <div class="media_card_list1">
+                                    <div class="single_media_card1">
+                                        <p class="mb-1"><a href="#" class="text-white">Set Action</a></p>
+                                        <h3 class="text-white"><i class="fa fa-credit-card"></i> Business Card</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+
+                <div class="row">
+                    @if (Model != null)
+                        {
+                            if (Model.lst != null)
+                            {
+                                foreach (var Item in Model.lst)
+                                {
+                                <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+                                    <div class="widget-stat card mb-3" style="border-radius:25px;background-color:@Item.Color">
+                                        <div class="card-body  p-4">
+                                            <div class="media">
+                                                <span class="mr-3">
+                                                    <i class="fa fa-credit-card-alt"></i>
+                                                </span>
+                                                <div class="media-body text-white text-right">
+                                                    @if (Item.IsActive == "True")
+                                                    {
+                                                        <p class="mb-1"><a href="/NFCProfile/ProfileUpdate?EncCode=@Item.EncCode" class="text-white text-activate">Set Action</a></p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="mb-1"><a href="/Home/NFCActivation?C=@Item.EncCode" class="text-white text-activate">Activate</a></p>
+                                                    }
+                                                    <h4 class="text-white">@Item.Service</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+                        else
+                        {
+                            <div class="row justify-content-center">
+                                <div class="col-xl-6 col-xxl-6">
+                                    <div class="card">
+                                        <div class="card-body py-5">
+                                            <div class="text-center">
+                                                <i class="fa fa-frown-o"></i>
+                                            </div>
+                                            <div class="text-center m-3">
+                                                <h2 class="swal2-title"> You don't have any NFC Device!! </h2>
+                                                <p>Please buy any NFC Device.</p>
+                                                <a href="/Shop/Product" class="btn btn-secondary btn-lg mt-2">Buy Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
