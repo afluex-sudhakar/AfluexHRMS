@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<style>
+    i {
+        font-size: 50px;
+    }
+</style>
 <div class="container-fluid">
     <div class="row page-titles">
         <ol class="breadcrumb">
@@ -14,205 +18,62 @@
         </ol>
     </div>
     <div class="row">
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media_card_list">
-                        <div class="d-flex justify-content-between ">
-                            <h4>TOTAL EMPLOYEES</h4>
-                            <h6>@ViewBag.TotalEmployee</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media_card_list">
-                        <div class="d-flex justify-content-between">
-                            <h4>TOTAL HOLIDAYS</h4>
-                            <h6>@ViewBag.TotalHolidays</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-9 col-lg-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">My Information</h4>
-                </div>
-                <div class="card-body">
-                    <!-- Nav tabs -->
-                    <div class="default-tab">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#home"><i class="la la-phone me-2"></i> Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#profile"><i class="la la-user me-2"></i> whatsApp</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#contact"><i class="la la-envelope me-2"></i> Emails</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#message"><i class="la la-envelope me-2"></i> Web/App/ulr's</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#socialMedia"><i class="la la-phone me-2"></i> Social Media</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#location"><i class="fas fa-file-alt me-2"></i> Location</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel">
-                                <div class="pt-4">
-                                    <div class="basic-form">
-                                        <form class="d-flex align-items-center flex-wrap">
-                                            <div class="">
-                                                <button type="submit" class="btn btn-primary mb-2"><i class="la la-phone"></i></button>
-                                                <h4 class="d-inline-block">Contact Number</h4>
-                                            </div>
-                                            <div class="mb-2 mx-sm-3">
-                                                <label class="sr-only">Contact Number</label>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mb-2">Add</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile">
-                                <div class="pt-4">
-                                    <div class="basic-form">
-                                        <form class="d-flex align-items-center flex-wrap">
-                                            <div class="">
-                                                <button type="submit" class="btn btn-primary mb-2"><i class="la la-phone"></i></button>
-                                                <h4 class="d-inline-block">Contact Number</h4>
-                                            </div>
-                                            <div class="mb-2 mx-sm-3">
-                                                <label class="sr-only">Contact Number</label>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mb-2">Add</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="contact">
-                                <div class="pt-4">
-                                    <div class="basic-form">
-                                        <form class="d-flex align-items-center flex-wrap">
-                                            <div class="">
-                                                <button type="submit" class="btn btn-primary mb-2"><i class="la la-phone"></i></button>
-                                                <h4 class="d-inline-block">Contact Number</h4>
-                                            </div>
-                                            <div class="mb-2 mx-sm-3">
-                                                <label class="sr-only">Contact Number</label>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mb-2">Add</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="message">
-                                <div class="pt-4">
-                                    <div class="basic-form">
-                                        <form class="d-flex align-items-center flex-wrap">
-                                            <div class="">
-                                                <button type="submit" class="btn btn-primary mb-2"><i class="la la-phone"></i></button>
-                                                <h4 class="d-inline-block">Contact Number</h4>
-                                            </div>
-                                            <div class="mb-2 mx-sm-3">
-                                                <label class="sr-only">Contact Number</label>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mb-2">Add</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="socialMedia">
-                                <div class="pt-4">
-                                    <div class="basic-form">
-                                        <form class="d-flex align-items-center flex-wrap">
-                                            <div class="">
-                                                <button type="submit" class="btn btn-primary mb-2"><i class="la la-phone"></i></button>
-                                                <h4 class="d-inline-block">Contact Number</h4>
-                                            </div>
-                                            <div class="mb-2 mx-sm-3">
-                                                <label class="sr-only">Contact Number</label>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mb-2">Add</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="location">
-                                <div class="pt-4">
-                                    <div class="basic-form">
-                                        <form class="d-flex align-items-center flex-wrap">
-                                            <div class="">
-                                                <button type="submit" class="btn btn-primary mb-2"><i class="la la-phone"></i></button>
-                                                <h4 class="d-inline-block">Contact Number</h4>
-                                            </div>
-                                            <div class="mb-2 mx-sm-3">
-                                                <label class="sr-only">Contact Number</label>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mb-2">Add</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-4">
-            <div class="clearfix">
-                <div class="card card-bx profile-card author-profile m-b30">
-                    <div class="card-body">
-                                    <div class="p-3">
-                                        <div class="author-profile">
-                                            <div class="author-media">
-                                                <img src="https://fillow.dexignlab.com/codeigniter/demo/public/assets/images/user.jpg" alt="">
-                                                <div class="upload-link" title="" data-toggle="tooltip" data-placement="right" data-original-title="update">
-                                                    <input type="file" class="update-flie">
-                                                    <i class="fa fa-camera"></i>
-                                                </div>
-                                            </div>
-                                            <div class="author-info">
-                                                <h6 class="title">John</h6>
-                                                <span>Developer</span>
+        <div class="col-12">
+
+            <div class="row">
+                            <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+                                <div class="widget-stat card" style="background-color:#FF7114">
+                                    <div class="card-body  p-4">
+                                        <div class="media">
+                                            <span class="mr-3">
+                                                <i class="fa fa-credit-card-alt" style="color:white"></i>
+                                            </span>
+
+                                            <div class="media-body text-white text-right">
+                                                
+                                                <p class="mb-1"><a href="" class="text-white text-activate" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Activate</a></p>
+                                               
+                                                <h4 class="text-white">Business Card</h4>
                                             </div>
                                         </div>
                                     </div>
-                        <div class="input-group">
-                            <a href="https://www.dexignlab.com/" target="_blank" class="form-control text-primary rounded text-start bg-white fs-16">https://www.dexignlab.com/</a>
-                        </div>
-                                    <p class="p-3">
-                                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially uncha
-                                    </p>
-                                <div class="card-footer">
-                                    <div class="input-group mb-3">
-                                        <div class="form-control rounded text-center bg-success text-white fs-16">share prifile</div>
-                                        <div class="form-control rounded text-center bg-success text-white fs-16">edit profile</div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Business Card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row ">
+                    <div class="col-xl-6 col-lg-6 form-group">
+                        <div class="mb-1">
+                            <label>I already have a card</label>
+                            @if (Session["UserNFCCode"].ToString() != "" && Session["UserNFCCode"].ToString() != null && Session["UserNFCCode"].ToString() != "na")
+                            {
+                                <a href="/nfc/Profile?id=@Session["UserNFCCode"].ToString()" class="btn btn-primary">Go</a>
+                            }
+                            else
+                            {
+                                <a href="/Home/NFCActivation" class="btn btn-primary">Go</a>
+                            }
                         </div>
                     </div>
                 </div>
-            </div>
 
-<!-- JS, Popper.js, and jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

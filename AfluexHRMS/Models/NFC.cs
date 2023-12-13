@@ -70,7 +70,7 @@ namespace AfluexHRMS.Models
         public string DOB { get; set; }
         public string Gender { get; set; }
 
-        public string Pk_NfcProfileId { get; set; }
+        public int Pk_NfcProfileId { get; set; }
         public string Content { get; set; }
         public string IsWhatsapp { get; set; }
 
@@ -264,6 +264,71 @@ namespace AfluexHRMS.Models
                   new SqlParameter ("@AddedBy",PK_UserId),
             };
             DataSet ds = DBHelper.ExecuteQuery("UpdateBusinessInfo", para);
+            return ds;
+        }
+
+        public DataSet UpdateProfileStatus(bool IsChecked)
+        {
+            SqlParameter[] para ={
+                new SqlParameter ("@PK_ProfileId",PK_ProfileId),
+                 new SqlParameter ("@IsCheked",IsChecked),
+                  new SqlParameter ("@AddedBy",PK_UserId),
+            };
+            DataSet ds = DBHelper.ExecuteQuery("UpdateProfileStatus", para);
+            return ds;
+        }
+
+        public DataSet UpdateProfilePic()
+        {
+            SqlParameter[] para ={
+                new SqlParameter ("@PK_ProfileId",PK_ProfileId),
+                new SqlParameter("@ProfilePic",ProfilePic)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("UpdateProfilePicForNFC", para);
+            return ds;
+        }
+
+        public DataSet GetUrlForRedirection()
+        {
+            SqlParameter[] para ={
+                  new SqlParameter ("@FK_UserId",FK_UserId),
+                  new SqlParameter ("@Type",Type)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("GetUrlForRedirection", para);
+            return ds;
+        }
+
+        public DataSet UpdateRedirectionUrl()
+        {
+            SqlParameter[] para ={
+                   new SqlParameter ("@Pk_NfcProfileId",Pk_NfcProfileId),
+                new SqlParameter ("@PK_ProfileId",PK_ProfileId),
+                 new SqlParameter ("@IsCheked",IsIncluded),
+                  new SqlParameter ("@AddedBy",FK_UserId),
+            };
+
+            DataSet ds = DBHelper.ExecuteQuery("RedirectWebLink", para);
+            return ds;
+        }
+
+        public DataSet GetProfileDataForNFC()
+        {
+            SqlParameter[] para ={
+                 new SqlParameter ("@FK_ProfileId",PK_ProfileId),
+                new SqlParameter ("@Fk_UserId",PK_UserId),
+                new SqlParameter ("@Type",Type),
+            };
+            DataSet ds = DBHelper.ExecuteQuery("GetProfileDataForNFC", para);
+            return ds;
+        }
+
+        public DataSet DeleteNFCProfileData()
+        {
+            SqlParameter[] para ={
+                new SqlParameter ("@Pk_NfcProfileId",Pk_NfcProfileId),
+                  new SqlParameter ("@DeletedBy",PK_UserId),
+            };
+            DataSet ds = DBHelper.ExecuteQuery("DeleteNFCProfileData", para);
             return ds;
         }
     }

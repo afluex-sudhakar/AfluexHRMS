@@ -95,15 +95,67 @@
             margin: 0 !important;
         }
 </style>
-@using (Html.BeginForm("ProfileUpdate", "NFCProfile", FormMethod.Post, new { @id = "Profile", @enctype = "multipart/form-data", @autocomplete = "off" }))
+@using (Html.BeginForm("ProfileUpdate", "NFCProfile", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
     <div class="container-fluid">
         <div class="row page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Manage NFC Device</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Profile</a></li>
-            </ol>
+            <div class="col-lg-12 d-lg-flex justify-content-between align-items-baseline">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Manage NFC Device</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Profile</a></li>
+                </ol>
+                <div class="text-end">
+                    <a href="/Home/NFCActivation" class="btn btn-secondary mb-2">View Profile</a>
+                    <button type="button" class="btn btn-secondary mb-2" data-toggle="modal" data-target="#exampleModalCenter"> + Create New</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create a new card</h5>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                                <input type="hidden" id="hdfProfile" name="PK_ProfileId" value="@Model.PK_ProfileId" />
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" style="white-space: nowrap;">Profile Name</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.ProfileName, new { @class = "form-control", @placeholder = "Profile Name" })
+                                    </div>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <label class="col-form-label col-sm-3 pt-0">Profile Type</label>
+                                        <div class="col-sm-9">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Contact Card" name="ProfileType" />
+                                                <label class="form-check-label">
+                                                    Contact Card
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="ProfileType" value="Redirection">
+                                                <label class="form-check-label">
+                                                    Redirection
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="btnProfileAdd">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+       
         <div class="row">
             <div class="col-xl-9 col-lg-8">
                 <div class="clearfix">
@@ -121,6 +173,290 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <div class="swiper-container card-swiper">
+                                    <div class="swiper-wrapper" id="divbindProfile">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.lst != null)
+                                            {
+                                                int i = 1;
+                                                foreach (var Item in Model.lst)
+                                                {
+                                                    if (Item.ProfileType == "Contact Card")
+                                                    {
+                                                        <div class="swiper-slide">
+                                                            <div class="card-bx stacked card">
+                                                                @*<img src="../images/card/card1.jpg" alt="">*@
+                                                                <div class="card-info" style="background-color:@Item.ColorCodeContact">
+                                                                    <p class="mb-1 text-white fs-14">Profile Name</p>
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <h2 class="num-text text-white mb-5 font-w600">@Item.ProfileName</h2>
+                                                                        <div class="text-right" style="margin-top: -45px">
+                                                                            <div class="mt-4 text-white">
+                                                                                <input type="checkbox" class="chkactive massive-checkbox" value="@Item.PK_ProfileId" @Item.ActiveStatus />
+                                                                            </div>
+                                                                            <div class="mt-4 text-white">
+                                                                                <p>Activate</p>
+                                                                                <p><a href="#ShowConctact('@i')" onclick="ShowConctact(@Item.PK_ProfileId,@i);" data-epensedetailsid='@Item.PK_ProfileId' class="text-white"><i class="fa fa-edit"></i> Edit</a></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex">
+                                                                        <div class="mb-2">
+                                                                            <button type="button" class="btn btn-secondary" style="background:#e12929;border: 1px solid #e12929">Contact Card</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                            <div class="row Contact_@Item.PK_ProfileId" style="display:none" id="Contact_@Item.PK_ProfileId">
+                                                                <div class="col-xl-12 col-lg-12">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h4 class="card-title">@Item.ProfileName</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="basic-form">
+                                                                                <form action="#">
+                                                                                    <div class="form-row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group ">
+                                                                                            <div class="text-center">
+                                                                                                <div class="text-center">
+                                                                                                    <div class="my-profile">
+                                                                                                        <img src="@Item.ProfilePic" alt="" class="rounded" id="output1">
+                                                                                                        <a class="file_active" onclick="getFile();" for="upfile"><i class="fa fa-pencil" aria-hidden="true"></i><input id="upfile" type="file" value="upload" style="display: none" /></a>
+
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>First Name</label>
+                                                                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control FirstName_" + @i + "", @Placeholder = "First Name" })
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label>Last Name</label>
+                                                                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control LastName_" + @i + "", @Placeholder = "Last Name" })
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Company</label>
+                                                                                                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control CompanyName_" + @i + "", @Placeholder = "Company Name" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Designation</label>
+                                                                                                @Html.TextBoxFor(m => m.Designation, new { @class = "form-control Designation_" + @i + "", @Placeholder = "Designation" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Gender</label>
+                                                                                                    @Html.DropDownListFor(m => m.Gender, new SelectList(ViewBag.ddlgender, "Value", "Text"), new { @class = "form-control g Gender_" + @i + "" })
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Date of Birth</label>
+                                                                                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control DOB_" + @i + "", @Placeholder = "DOB", @type = "date" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Mobile Number</label>
+                                                                                                @Html.DropDownListFor(m => m.ContactList, new SelectList(ViewBag.Mobile, "Value", "Text"), new { @class = "js-example-placeholder-multiple Mobile_" + @i + "", @multiple = "multiple", })
+                                                                                                @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryContact_');" />Is Primary
+                                                                            <input type="hidden" class="PrimaryNumber_@i" name="PrimaryNumber" />*@
+                                                                                                <div class="selectedMobile" style="display:none">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Emails</label>
+                                                                                                    @Html.DropDownListFor(m => m.EmailList, new SelectList(ViewBag.ddlEmail, "Value", "Text"), new { @class = "js-example-placeholder-multiple Email_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryEmail_');" />Is Primary
+                                                                                <input type="hidden" class="PrimaryEmail__@i" name="PrimaryEmail" />*@
+                                                                                                    <div class="selectedEmail2" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Social Media</label>
+                                                                                                    @Html.DropDownListFor(m => m.SocialLink, new SelectList(ViewBag.SocialMedia, "Value", "Text"), new { @class = "js-example-placeholder-multiple SocialMedia_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimarySocial_');" />Is Primary
+                                                                                <input type="hidden" class="PrimarySocial_@i" name="PrimarySocial" />*@
+                                                                                                    <div class="selectedSocial" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Web/App Urls</label>
+                                                                                                    @Html.DropDownListFor(m => m.WebLink, new SelectList(ViewBag.WebLink, "Value", "Text"), new { @class = "js-example-placeholder-multiple WebLink_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryWebLink_');" />Is Primary
+                                                                                <input type="hidden" class="PrimaryWebLink_@i" name="PrimaryWebLink" />*@
+                                                                                                    <div class="selectedWebLink" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Whatsapp No</label>
+                                                                                                @Html.DropDownListFor(m => m.WhatsappList, new SelectList(ViewBag.ddlWhatsapp, "Value", "Text"), new { @class = "js-example-placeholder-multiple Whatsapp_" + @i + "", @multiple = "multiple" })
+                                                                                                @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryContact_');" />Is Primary
+                                                                            <input type="hidden" class="PrimaryNumber_@i" name="PrimaryNumber" />*@
+                                                                                                <div class="selectedWhatsapp" style="display:none">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xl-6 col-lg-6 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label>Location</label>
+                                                                                                    @Html.DropDownListFor(m => m.LocationList, new SelectList(ViewBag.ddlLocation, "Value", "Text"), new { @class = "js-example-placeholder-multiple Location_" + @i + "", @multiple = "multiple" })
+                                                                                                    @*<input type="checkbox" onchange="return setPrimary(@i,'PrimaryEmail_');" />Is Primary
+                                                                                <input type="hidden" class="PrimaryEmail__@i" name="PrimaryEmail" />*@
+                                                                                                    <div class="selectedLocation" style="display:none">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-12 col-lg-12 form-group">
+                                                                                            <div class="mb-3">
+                                                                                                <label>Notes</label>
+                                                                                                @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control Remarks_" + @i + "", @Placeholder = "Notes" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-6 col-lg-6 text-center">
+                                                                                            <input class="btn btn-success mb-2 px-5" type="button" value="UPDATE" onclick="return SaveBusinessContact('@i')" id="btnBusinessContact" name="btnBusinessContact" data-profile="@Item.PK_ProfileId" />
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center ">
+                                                                                            <button type="button" class="btn btn-danger mb-2 px-5" onclick="UpdateRedirectionUrl('Remove',@i);">REMOVE</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="swiper-slide">
+                                                            <div class="card-bx stacked card">
+                                                                <div class="card-info" style="background-color:@Item.ColorCodeRedirection">
+                                                                    <p class="mb-1 text-white fs-14">Profile Name</p>
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <h2 class="num-text text-white mb-5 font-w600">@Item.ProfileName</h2>
+                                                                        <div class="text-right" style="margin-top: -45px">
+                                                                            <!-- <div class="num-text text-white mb-3 font-w600" style="border: 2px solid white; border-radius: 8px; width: 50px; height: 50px;"></div> -->
+                                                                            <div class="mt-4 text-white">
+                                                                                <input type="checkbox" class="chkactive massive-checkbox" value="@Item.PK_ProfileId" @Item.ActiveStatus />
+                                                                            </div>
+                                                                            <div class="mt-4 text-white">
+                                                                                <p>Activate</p>
+                                                                                <p><a href="#Redirect('@i')" onclick="Redirect(@Item.PK_ProfileId,@i);" class="text-white"><i class="fa fa-edit"></i> Edit</a></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex">
+                                                                        <div class="mb-2">
+                                                                            <button type="button" class="btn btn-secondary">Redirection</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="row Redirect_@Item.PK_ProfileId" style="display:none" id="Redirect_@Item.PK_ProfileId">
+                                                                <div class="col-xl-12 col-lg-12">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h4 class="card-title">Social</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="basic-form">
+                                                                                <form action="#">
+                                                                                    <div class="row">
+                                                                                        <div class="col-xl-12 col-lg-12 col-md-12 text-center">
+                                                                                            <div class="input-group mb-3">
+                                                                                                <div class="input-group-prepend">
+                                                                                                    <select class="form-control btn btn-primary dropdown-toggle" onchange="GetUrl(@i)" id="ddlUrl_@i">
+                                                                                                        <option value="0" class="dropdown-toggle">Select</option>
+                                                                                                        <option value="WebLink" class="dropdown-item">Web Link</option>
+                                                                                                        <option value="SocialMedia" class="dropdown-item">Social Media</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                                <select class="form-control" id="ddlWebLink_@i" style="background-color: #42366c;">
+                                                                                                    <option value="0">--Select--</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="row mt-5 ">
+                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center">
+                                                                                            <input class="btn btn-success mb-2 px-5" type="submit" value="UPDATE" id="btnRedirct" name="btnRedirct" onclick="UpdateRedirectionUrl('Update',@i);" />
+                                                                                        </div>
+                                                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-center ">
+                                                                                            <button type="button" class="btn btn-danger mb-2 px-5" onclick="UpdateRedirectionUrl('Remove',@i);">REMOVE</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    }
+
+                                                    i = i + 1;
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -569,7 +905,7 @@
                                         </div>
                                         <div class="text-center position-relative">
                                             <div class="my-profile">
-                                                <img src="images/profile/port.jpg" alt="" class="rounded" alt="" style="border-radius: 8px; width: 200px; height: 200px;">
+                                                <img src="~/assets/img/User.jpg" alt="" class="rounded" alt="" style="border-radius: 8px; width: 200px; height: 200px;">
                                                 <a class="btn bg-primary light me-1 px-3 close nav-link position-absolute top-0 start-100 translate-middle" href="javascript:void(0);"><i class="fa fa-pencil me-2 text-white"></i></a>
                                             </div>
                                             <h4 class="mt-3 font-w600 text-black mb-0 name-text">URL :</h4>
@@ -650,7 +986,7 @@
     </div>
 }
 
-
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
@@ -1151,6 +1487,7 @@
         GetBusinessProfile(ProfileId, index);
     }
     function SaveBusinessContact(index) {
+        debugger;
         var isAllValid = true;
         if ($('.FirstName_' + index + '').val() == '') {
             $('.FirstName_' + index + '').addClass('errortext');
@@ -1271,6 +1608,7 @@
         });
     }
     function UpdateRedirectionUrl(func, index) {
+        debugger;
         var PK_NFCProfileId = $("#ddlWebLink_" + index + " :selected").val();
         var PK_ProfileId = $("#hdfProfile").val();
         $.ajax({
