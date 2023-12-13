@@ -592,9 +592,50 @@ namespace AfluexHRMS.Controllers
             }
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
-        
-   
-        
+
+
+
+        [HttpPost]
+        public ActionResult UpdateEmployeeProfile(UpdateEmployeeProfileRequest model,HttpPostedFileBase PostedFile)
+        {
+            Response Response = new Response();
+            model.DOB = string.IsNullOrEmpty(model.DOB) ? null : Common.ConvertToSystemDate(model.DOB, "dd/MM/yyyy");
+            model.DateOfJoining = string.IsNullOrEmpty(model.DateOfJoining) ? null : Common.ConvertToSystemDate(model.DateOfJoining, "dd/MM/yyyy");
+
+            if (PostedFile != null)
+            {
+                model.Image = "/EmployeeProfile/" + Guid.NewGuid() + Path.GetExtension(PostedFile.FileName);
+                PostedFile.SaveAs(Path.Combine(Server.MapPath(model.Image)));
+            }
+            try
+            {
+                DataSet ds = model.UpdateEmployeeProfile();
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["MSG"].ToString() == "1")
+                    {
+                        Response.Status = "1";
+                        Response.Message = "Your profile details updated successfully. ";
+                    }
+                    else if (ds.Tables[0].Rows[0]["MSG"].ToString() == "0")
+                    {
+                        Response.Status = "0";
+                        Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+                else
+                {
+                    Response.Status = "0";
+                    Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Status = "0";
+                Response.Message = ex.Message;
+            }
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

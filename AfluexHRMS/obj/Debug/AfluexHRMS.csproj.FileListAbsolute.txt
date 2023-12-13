@@ -158,4 +158,3 @@ E:\Repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.xml
 E:\Repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.xml
 E:\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 E:\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
-E:\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
