@@ -97,6 +97,14 @@ namespace AfluexHRMS.Models
         public string CompanyName { get; set; }
         public string Remarks { get; set; }
 
+        public string EmailBodyHTML { get; set; }
+        public bool IsPrimaryNumber { get; set; }
+        public string IsDisplay { get; set; }
+
+        public bool IsPrimaryEmail { get; set; }
+        public bool IsPrimarySocial { get; set; }
+        public bool IsPrimaryWebLink { get; set; }
+
 
         public DataSet GetmailList()
         {
