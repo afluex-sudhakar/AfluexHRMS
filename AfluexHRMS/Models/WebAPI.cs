@@ -42,7 +42,7 @@ namespace AfluexHRMS.Models
         public string EmployeeName { get; set; }
         public string ProfilePic { get; set; }
     }
-    
+
     public class LeaveApplicationRequest
     {
         public string Status { get; set; }
@@ -292,7 +292,7 @@ namespace AfluexHRMS.Models
             return ds;
         }
     }
- 
+
     public class MessagesListRequest
     {
         public string Status { get; set; }
@@ -300,7 +300,7 @@ namespace AfluexHRMS.Models
         public string EmployeeID { get; set; }
         public string MessageStatus { get; set; }
         public List<MessagesListResponse> lstList { get; set; }
-        
+
         public DataSet GetAllMessages()
         {
             SqlParameter[] para ={
@@ -318,7 +318,7 @@ namespace AfluexHRMS.Models
         public string RequestCode { get; set; }
         public string Message { get; set; }
         public string MessageDate { get; set; }
-        public string MessageStatus { get; set; }          
+        public string MessageStatus { get; set; }
     }
 
     public class UpdateBusinessProfileForMobile
@@ -452,7 +452,7 @@ namespace AfluexHRMS.Models
         public string FK_EmpID { get; set; }
         public string FromDate { get; set; }
         public string ToDate { get; set; }
-      
+
         public List<GetAttenndaceListRespons> listAttenndace { get; set; }
 
         public DataSet GetAttenndaceList()
@@ -490,6 +490,95 @@ namespace AfluexHRMS.Models
     }
 
 
+
+    public class GetEmployeeProfileRequest
+    {
+
+        public string PK_EmployeeID { get; set; }
+
+        public DataSet GetEmployeeProfile()
+        {
+            SqlParameter[] para ={
+                new SqlParameter("@FK_EmpID",PK_EmployeeID),
+            };
+            DataSet ds = DBHelper.ExecuteQuery("GetEmployeeProfile", para);
+            return ds;
+        }
+    }
+    public class GetEmployeeProfileResponse
+    {
+        public string Status { get; set; }
+        public string Message { get; set; }
+        public string LoginID { get; set; }
+        public string EmployeeName { get; set; }
+        public string FatherName { get; set; }
+        public string DOB { get; set; }
+        public string Gender { get; set; }
+        public string MobileNo { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public string EmployeeCode { get; set; }
+        public string PhoneNo { get; set; }
+        public string DOJ { get; set; }
+        public string PinCode { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string PanNo { get; set; }
+        public string AccountNo { get; set; }
+        public string BankName { get; set; }
+        public string BankBranch { get; set; }
+        public string IFSCCOde { get; set; }
+        public string ProfilePic { get; set; }
+    }
+
+    public class UpdateEmployeeProfileRequest
+    {
+        public string EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public string DOB { get; set; }
+        public string Gender { get; set; }
+        public string MobileNo { get; set; }
+        public string PerAddress { get; set; }
+        public string PerState { get; set; }
+        public string PerPinCode { get; set; }
+        public string PerCity { get; set; }
+        public string Email { get; set; }
+        public string LocAddress { get; set; }
+        public string DateOfJoining { get; set; }
+        public string Pan { get; set; }
+        public string BankAccountNo { get; set; }
+        public string BankName { get; set; }
+        public string BankBranchName { get; set; }
+        public string IFSCCOde { get; set; }
+        public string Image { get; set; }
+
+        public DataSet UpdateEmployeeProfile()
+        {
+            SqlParameter[] para =
+                            {
+                           new SqlParameter ("@FK_EmpID",EmployeeID),
+                            new SqlParameter("@EmployeeName", EmployeeName ),
+                            new SqlParameter("@DOB" ,DOB),
+                              new SqlParameter ("@Gender",Gender),
+                            new SqlParameter("@MobileNo", MobileNo ),
+                            new SqlParameter("@PerAddress" ,PerAddress),
+                              new SqlParameter ("@PerPinCode",PerPinCode),
+                            new SqlParameter("@PerState", PerState ),
+                            new SqlParameter("@PerCity" ,PerCity),
+                              new SqlParameter ("@Email",Email),
+                            new SqlParameter("@LocAddress", LocAddress ),
+                            new SqlParameter("@DateOfJoining" ,DateOfJoining),
+                              new SqlParameter ("@Pan",Pan),
+                            new SqlParameter("@BankAccountNo", BankAccountNo ),
+                            new SqlParameter("@BankName" ,BankName),
+                              new SqlParameter ("@BankBranchName",BankBranchName),
+                            new SqlParameter("@IFSCCOde", IFSCCOde ),
+                            new SqlParameter("@Profile" ,Image)
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("UpdateEmployeeProfile", para);
+            return ds;
+        }
+    }
 
 
 

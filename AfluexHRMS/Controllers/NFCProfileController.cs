@@ -1,7 +1,9 @@
 ﻿using AfluexHRMS.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,7 +27,7 @@ namespace AfluexHRMS.Controllers
             {
                 List<Master> lst = new List<Master>();
                 model.Fk_MainServiceTypeId = "3";
-                model.Fk_UserId = Session["Pk_userId"].ToString();
+                model.Fk_UserId = Session["PK_EmployeeID"].ToString();
                 DataSet ds = model.GetService();
                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
@@ -226,6 +228,7 @@ namespace AfluexHRMS.Controllers
             }
             ViewBag.ddlLocation = ddlLocation;
             #endregion
+
             string[] colorContact = { "#FF4C41", "#68CF29", "#51A6F5", "#eb8153", "#FFAB2D" };
             string[] colorRedirection = { "#eb8153", "#6418C3", "#FF4C90", "#68CF90", "#90A6F9", "#FFAB8D" };
             var i = 0;
@@ -927,6 +930,191 @@ namespace AfluexHRMS.Controllers
             }
 
             return Json(model.Result, model.Message, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult UpdateProfileStatus(string ProfileId, bool IsChecked)
+        {
+            NFCProfileModel model = new NFCProfileModel();
+            model.PK_UserId = Session["PK_EmployeeID"].ToString();
+            model.PK_ProfileId = ProfileId;
+            DataSet ds = model.UpdateProfileStatus(IsChecked);
+            if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+            {
+                model.Result = "Yes";
+            }
+            else if (ds.Tables[0].Rows[0]["Msg"].ToString() == "0")
+            {
+                model.Result = "No";
+            }
+            else
+            {
+                model.Result = "No";
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult UpdateProfilePicForContactCard(string PK_ProfileId)
+        {
+            NFCProfileModel obj = new NFCProfileModel();
+            bool msg = false;
+            if (Request.Files.Count > 0)
+            {
+                HttpFileCollectionBase files = Request.Files;
+                HttpPostedFileBase file = files[0];
+
+                string fileName = file.FileName;
+                obj.PK_ProfileId = PK_ProfileId;
+                obj.ProfilePic = "/images/ProfilePicture/" + Guid.NewGuid() + Path.GetExtension(file.FileName);
+                file.SaveAs(Path.Combine(Server.MapPath(obj.ProfilePic)));
+                DataSet ds = obj.UpdateProfilePic();
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                    {
+                        obj.Result = "true";
+                        obj.Message = "Picture Uploaded succesfully ! ";
+                    }
+                    else
+                    {
+                        obj.Result = "false";
+                        obj.Message = "Not Uploaded. Kindly try after some times. !! ";
+                    }
+                }
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetUrlForRedirection(string Type)
+        {
+            NFCProfileModel obj = new NFCProfileModel();
+            obj.Type = Type;
+            obj.FK_UserId = Session["PK_EmployeeID"].ToString();
+            DataSet ds = obj.GetUrlForRedirection();
+
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                var JsonList = JsonConvert.SerializeObject(ds.Tables[0]);
+                return Json(JsonList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public ActionResult UpdateRedirectionUrl(string PK_ProfileId, string PK_NFCProfileId, string func)
+        {
+            NFCProfileModel obj = new NFCProfileModel();
+            obj.PK_ProfileId = PK_ProfileId;
+            obj.Pk_NfcProfileId = Convert.ToInt32(PK_NFCProfileId);
+            obj.FK_UserId = Session["PK_EmployeeID"].ToString();
+            if (func == "Update")
+            {
+                obj.IsRedirect = true;
+                obj.IsIncluded = true;
+            }
+            else if (func == "Remove")
+            {
+                obj.IsRedirect = false;
+                obj.IsIncluded = false;
+            }
+            else
+            {
+
+            }
+            DataSet ds = obj.UpdateRedirectionUrl();
+
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                {
+                    obj.Result = "Success";
+                    if (func == "Remove")
+                    {
+                        obj.Message = "Removed successfully";
+                    }
+                    else
+                    {
+                        obj.Message = "Profile updated successfully";
+                    }
+
+                }
+                else
+                {
+                    obj.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetProfileData(string Type, string PK_ProfileId)
+        {
+            NFCProfileModel model = new NFCProfileModel();
+
+            model.PK_UserId = Session["PK_EmployeeID"].ToString();
+            model.Type = Type;
+            if (PK_ProfileId == null)
+            {
+                model.PK_ProfileId = "0";
+            }
+            else
+            {
+                model.PK_ProfileId = PK_ProfileId;
+            }
+            TempData["ReDesc"] = model.Code;
+            DataSet ds = model.GetProfileDataForNFC();
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                var LinesStatusList = JsonConvert.SerializeObject(ds.Tables[0]);
+                return Json(LinesStatusList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("0", JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult DeleteNFCProfileData(string Pk_NfcProfileId)
+        {
+            NFCProfileModel model = new NFCProfileModel();
+            model.PK_UserId = Session["PK_EmployeeID"].ToString();
+            model.Pk_NfcProfileId = Convert.ToInt32(Pk_NfcProfileId);
+            DataSet ds = model.DeleteNFCProfileData();
+            if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+            {
+                model.Result = "Yes";
+                TempData["Update"] = "Success";
+            }
+            else if (ds.Tables[0].Rows[0]["Msg"].ToString() == "0")
+            {
+                model.Result = "No";
+                TempData["Update"] = "Error";
+            }
+            else
+            {
+                model.Result = "No";
+                TempData["Update"] = "Error";
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetProfilePersonalData()
+        {
+            NFCProfileModel model = new NFCProfileModel();
+            model.PK_UserId = Session["PK_EmployeeID"].ToString();
+            TempData["ReDesc"] = model.Code;
+            DataSet ds = model.GetNFCProfileData();
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                var LinesStatusList = JsonConvert.SerializeObject(ds.Tables[0]);
+                return Json(LinesStatusList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("0", JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
