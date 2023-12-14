@@ -353,8 +353,7 @@ namespace AfluexHRMS.Controllers
         }
 
         [HttpPost]
-        [ActionName("ProfileUpdate")]
-        public ActionResult ProfileUpdate(NFCProfileModel model)
+        public ActionResult ProfileUpdateAction(NFCProfileModel model)
         {
             try
             {
