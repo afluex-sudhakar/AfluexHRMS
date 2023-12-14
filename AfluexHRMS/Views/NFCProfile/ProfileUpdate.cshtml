@@ -6,9 +6,7 @@
 }
 
 
-<link href="~/assetsAdmin/vendor/toastr/css/toastr.min.css" rel="stylesheet" />
-<script src="~/assetsAdmin/vendor/toastr/js/toastr.min.js"></script>
-@*<script src="~/assetsAdmin/js/plugins-init/toastr-init.js"></script>*@
+
 <style>
     .errortext {
         border: 1px solid red !important;
@@ -1348,6 +1346,7 @@
                     GetProfileData("SocialMedia", "#tblSocialMedia");
                     GetProfileData("Whatsapp", "#tblWhatsapp");
                     GetProfileData("Location", "#tblLocation");
+                    ErrorAlert("Successfully Deleted !!");
                 }
                 else {
 
