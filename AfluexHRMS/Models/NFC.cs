@@ -15,6 +15,7 @@ namespace AfluexHRMS.Models
     {
         public List<NFCContent> NfcContentList { get; set; }
         public string Flag { get; set; }
+        public string Skill { get; set; }
         public string DecryptedCode { get; set; }
         public string PK_UserId { get; set; }
         public string Code { get; set; }
