@@ -228,6 +228,7 @@ namespace AfluexHRMS.Controllers
             }
             ViewBag.ddlLocation = ddlLocation;
             #endregion
+
             string[] colorContact = { "#FF4C41", "#68CF29", "#51A6F5", "#eb8153", "#FFAB2D" };
             string[] colorRedirection = { "#eb8153", "#6418C3", "#FF4C90", "#68CF90", "#90A6F9", "#FFAB8D" };
             var i = 0;
