@@ -353,7 +353,7 @@ namespace AfluexHRMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProfileUpdate(NFCProfileModel model)
+        public ActionResult ProfileUpdateAction(NFCProfileModel model)
         {
             try
             {
@@ -929,7 +929,7 @@ namespace AfluexHRMS.Controllers
                 model.Message = ex.Message;
             }
 
-            return Json(model.Result, model.Message, JsonRequestBehavior.AllowGet);
+            return Json(model.Result,model.Message,JsonRequestBehavior.AllowGet);
         }
 
 

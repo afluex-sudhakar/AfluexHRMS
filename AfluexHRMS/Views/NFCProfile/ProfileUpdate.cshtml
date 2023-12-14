@@ -1027,7 +1027,7 @@
             fileData.append('ProfileType', $('input[name="ProfileType"]:checked').val());
             fileData.append('DecryptedCode', $('#DecryptedCode').val());
             $.ajax({
-                url: '/NFCProfile/ProfileUpdate',
+                url: '/NFCProfile/ProfileUpdateAction',
                 type: "POST",
                 contentType: false,
                 processData: false,
@@ -1145,7 +1145,7 @@
     function ProfileUpdatePost() {
         debugger;
         $.ajax({
-            url: '@Url.Action("ProfileUpdate", "NFCProfile")',
+            url: '@Url.Action("ProfileUpdateAction", "NFCProfile")',
             type: 'POST',
             data: $("#form1").serialize(),
             success: function (data) {
