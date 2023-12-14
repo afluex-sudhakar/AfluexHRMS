@@ -353,7 +353,7 @@ namespace AfluexHRMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProfileUpdate(NFCProfileModel model)
+        public ActionResult ProfileUpdateAction(NFCProfileModel model)
         {
             try
             {
@@ -929,7 +929,7 @@ namespace AfluexHRMS.Controllers
                 model.Message = ex.Message;
             }
 
-            return Json(model.Result, model.Message, JsonRequestBehavior.AllowGet);
+            return Json(model.Result,model.Message,JsonRequestBehavior.AllowGet);
         }
 
 
@@ -1115,6 +1115,216 @@ namespace AfluexHRMS.Controllers
             {
                 return Json("0", JsonRequestBehavior.AllowGet);
             }
+        }
+
+
+        public ActionResult EditProfileSetAction(string id)
+        {
+            NFCProfileModel objProfile = new NFCProfileModel();
+            try
+            {
+                if (id == null || id == "")
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                NFCModel obj = new NFCModel();
+                id = id.Replace(" ", "+");
+                var desc = Crypto.DecryptNFC(id);
+                obj.Code = desc;
+                objProfile.Code = id;
+                DataSet ds = obj.CheckNFCCode();
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["IsActivated"].ToString() != "" && Convert.ToBoolean(ds.Tables[0].Rows[0]["IsActivated"].ToString()))
+                    {
+                        DataSet ds1 = obj.GetNFCProfileData();
+                        if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
+                        {
+                            objProfile.PK_ProfileId = ds1.Tables[0].Rows[0]["PK_ProfileId"].ToString();
+                            objProfile.Name = ds1.Tables[0].Rows[0]["Name"].ToString();
+                            objProfile.Email = ds1.Tables[0].Rows[0]["PrimaryEmail"].ToString();
+                            //objProfile.DOB = ds1.Tables[0].Rows[0]["DOB"].ToString();
+                            //objProfile.Mobile = ds1.Tables[0].Rows[0]["Mobile"].ToString();
+                            //objProfile.ProfilePic = ds1.Tables[0].Rows[0]["ProfilePic"].ToString();
+                            //objProfile.Gender = ds1.Tables[0].Rows[0]["Sex"].ToString();
+                            //objProfile.PK_UserId = ds1.Tables[0].Rows[0]["PK_UserId"].ToString();
+                            objProfile.Summary = ds1.Tables[0].Rows[0]["Summary"].ToString();
+                            //objProfile.BusinessName = ds1.Tables[0].Rows[0]["BusinessName"].ToString();
+                            objProfile.EmailBodyHTML = ds1.Tables[0].Rows[0]["Designation"].ToString();
+                            //objProfile.UserCode = ds1.Tables[0].Rows[0]["UserCode"].ToString();
+                            //objProfile.Leg = ds1.Tables[0].Rows[0]["NFCProfileLeg"].ToString();
+                            Session["SponsorId"] = ds1.Tables[0].Rows[0]["LoginId"].ToString();
+                            objProfile.ProfilePic = ds1.Tables[0].Rows[0]["ProfilePic"].ToString();
+                            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[1].Rows.Count > 0)
+                            {
+                                List<NFCContent> NfcContentList = new List<NFCContent>();
+
+                                foreach (DataRow row in ds1.Tables[1].Rows)
+                                {
+                                    if (row["Type"].ToString() == "Email")
+                                    {
+                                        objProfile.Email = row["Content"].ToString();
+                                    }
+                                    NfcContentList.Add(new NFCContent()
+                                    {
+                                        Content = row["Content"].ToString(),
+                                        Type = row["Type"].ToString(),
+                                        IsWhatsApp = row["IsWhatsapp"].ToString(),
+                                        IsPrimary = row["IsPrimary"].ToString()
+                                    });
+                                }
+                                objProfile.NfcContentList = NfcContentList;
+                            }
+                            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[1].Rows.Count > 0)
+                            {
+                                List<NFCProfileModel> lst = new List<NFCProfileModel>();
+
+                                foreach (DataRow row in ds1.Tables[1].Rows)
+                                {
+                                    if (row["Type"].ToString() == "ContactNo")
+                                    {
+                                        lst.Add(new NFCProfileModel()
+                                        {
+                                            Pk_NfcProfileId = Convert.ToInt32(row["PK_NFcProfileId"]),
+                                            Mobile = row["Content"].ToString(),
+                                            IsPrimaryNumber = Convert.ToBoolean(row["IsPrimary"]),
+                                            IsDisplay = row["IsDisplay"].ToString(),
+                                            Type = row["Type"].ToString()
+                                        });
+                                    }
+                                    if (row["Type"].ToString() == "Email")
+                                    {
+                                        lst.Add(new NFCProfileModel()
+                                        {
+                                            Pk_NfcProfileId = Convert.ToInt32(row["PK_NFcProfileId"]),
+                                            Email = row["Content"].ToString(),
+                                            IsPrimaryEmail = Convert.ToBoolean(row["IsPrimary"]),
+                                            IsDisplay = row["IsDisplay"].ToString(),
+                                            Type = row["Type"].ToString()
+                                        });
+                                    }
+                                    if (row["Type"].ToString() == "SocialMedia")
+                                    {
+                                        lst.Add(new NFCProfileModel()
+                                        {
+                                            Pk_NfcProfileId = Convert.ToInt32(row["PK_NFcProfileId"]),
+                                            SocialMedia = row["Content"].ToString(),
+                                            IsPrimarySocial = Convert.ToBoolean(row["IsPrimary"]),
+                                            IsDisplay = row["IsDisplay"].ToString(),
+                                            Type = row["Type"].ToString()
+                                        });
+                                    }
+                                    if (row["Type"].ToString() == "WebLink")
+                                    {
+                                        lst.Add(new NFCProfileModel()
+                                        {
+                                            Pk_NfcProfileId = Convert.ToInt32(row["PK_NFcProfileId"]),
+                                            WebLink = row["Content"].ToString(),
+                                            IsPrimaryWebLink = Convert.ToBoolean(row["IsPrimary"]),
+                                            IsDisplay = row["IsDisplay"].ToString(),
+                                            Type = row["Type"].ToString()
+                                        });
+                                    }
+                                    if (row["Type"].ToString() == "Whatsapp")
+                                    {
+                                        lst.Add(new NFCProfileModel()
+                                        {
+                                            Pk_NfcProfileId = Convert.ToInt32(row["PK_NFcProfileId"]),
+                                            Mobile = row["Content"].ToString(),
+                                            IsPrimaryNumber = Convert.ToBoolean(row["IsPrimary"]),
+                                            IsDisplay = row["IsDisplay"].ToString(),
+                                            Type = row["Type"].ToString()
+                                        });
+                                    }
+                                    if (row["Type"].ToString() == "Location")
+                                    {
+                                        lst.Add(new NFCProfileModel()
+                                        {
+                                            Pk_NfcProfileId = Convert.ToInt32(row["PK_NFcProfileId"]),
+                                            WebLink = row["Content"].ToString(),
+                                            IsPrimaryNumber = Convert.ToBoolean(row["IsPrimary"]),
+                                            IsDisplay = row["IsDisplay"].ToString(),
+                                            Type = row["Type"].ToString()
+                                        });
+                                    }
+                                }
+                                objProfile.lst = lst;
+                            }
+                            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[3].Rows.Count > 0)
+                            {
+                                List<ListSkill> lstTo = new List<ListSkill>();
+                                List<UserSkill> lstSkill = new List<UserSkill>();
+
+                                foreach (DataRow row in ds1.Tables[3].Rows)
+                                {
+                                    UserSkill objSkill = new UserSkill();
+                                    objSkill.Pk_SkillId = row["PK_SkillId"].ToString();
+                                    objSkill.Skill = row["Skill"].ToString();
+                                    lstSkill.Add(objSkill);
+                                }
+                                objProfile.lstSkill = lstSkill;
+                            }
+                            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[4].Rows.Count > 0)
+                            {
+                                List<UserLanguage> lstLanguage = new List<UserLanguage>();
+
+                                foreach (DataRow row in ds1.Tables[4].Rows)
+                                {
+                                    UserLanguage objLanguage = new UserLanguage();
+                                    objLanguage.Pk_LanguageId = row["PK_LanguageId"].ToString();
+                                    objLanguage.Language = row["Language"].ToString();
+                                    lstLanguage.Add(objLanguage);
+                                }
+                                objProfile.lstLanguage = lstLanguage;
+                            }
+                            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[5].Rows.Count > 0)
+                            {
+                                List<UserAchievement> lstAchievement = new List<UserAchievement>();
+
+                                foreach (DataRow row in ds1.Tables[5].Rows)
+                                {
+                                    UserAchievement objA = new UserAchievement();
+                                    objA.Pk_AchievementId = row["PK_AchievementId"].ToString();
+                                    objA.Achievement = row["Achievement"].ToString();
+                                    lstAchievement.Add(objA);
+                                }
+                                objProfile.lstAchievement = lstAchievement;
+                            }
+                            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[6].Rows.Count > 0)
+                            {
+                                objProfile.Description = ds1.Tables[6].Rows[0]["Description"].ToString();
+                                objProfile.BannerImage = ds1.Tables[6].Rows[0]["BannerImage"].ToString();
+                            }
+                        }
+                        else
+                        {
+                            return RedirectToAction("ProfileUpdate", "NFCProfile");
+                        }
+                        ViewBag.ISActivated = true;
+                        Session["NFCCode"] = id;
+                        Session["NFCActivated"] = "true";
+                    }
+                    else
+                    {
+                        //Not Activated login or activation required
+                        ViewBag.ISActivated = false;
+                        Session["NFCCode"] = id;
+                        Session["NFCActivated"] = "false";
+                        Session["SponsorId"] = null;
+                        Session["Leg"] = null;
+                    }
+                }
+                else
+                {
+                    //ViewBag.NFCResopnse = "Wrong NFC Code";
+                }
+                //}
+            }
+            catch (System.Exception ex)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View(objProfile);
         }
     }
 }
