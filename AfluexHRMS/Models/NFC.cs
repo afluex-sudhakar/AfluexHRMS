@@ -351,6 +351,17 @@ namespace AfluexHRMS.Models
             DataSet ds = DBHelper.ExecuteQuery("SaveAboutMe", para);
             return ds;
         }
+
+        public DataSet UpdateBannerImage()
+        {
+            SqlParameter[] para ={
+                new SqlParameter ("@FK_UserId",FK_UserId),
+                new SqlParameter ("@PK_ProfileId",PK_ProfileId),
+                new SqlParameter("@BannerImage",BannerImage)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("UpdateBannerImage", para);
+            return ds;
+        }
     }
     public class NFCContent
     {

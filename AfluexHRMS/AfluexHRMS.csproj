@@ -176,6 +176,7 @@
     <Content Include="assetsAdmin\images\customers\33.jpg" />
     <Content Include="assetsAdmin\images\customers\44.jpg" />
     <Content Include="assetsAdmin\images\favicon.png" />
+    <Content Include="assetsAdmin\images\favicons.png" />
     <Content Include="assetsAdmin\images\group\g1.jpg" />
     <Content Include="assetsAdmin\images\group\g2.jpg" />
     <Content Include="assetsAdmin\images\group\g3.jpg" />
@@ -776,7 +777,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50284</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50284/</IISUrl>
+          <IISUrl>http://localhost:50285/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

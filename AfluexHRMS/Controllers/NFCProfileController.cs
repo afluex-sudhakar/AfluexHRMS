@@ -1567,6 +1567,38 @@ namespace AfluexHRMS.Controllers
             // return RedirectToAction("EditProfileSetAction", "NFCProfile");
             return View(model);
         }
+
+
+        [HttpPost]
+        public ActionResult UpdateBannerImage(string PK_ProfileId)
+        {
+            NFCProfileModel obj = new NFCProfileModel();
+            if (Request.Files.Count > 0)
+            {
+                HttpFileCollectionBase files = Request.Files;
+                HttpPostedFileBase file = files[0];
+                obj.PK_ProfileId = PK_ProfileId;
+                obj.FK_UserId = Session["Pk_EmployeeId"].ToString();
+                obj.BannerImage = "/images/BannerImage/" + Guid.NewGuid() + Path.GetExtension(file.FileName);
+                file.SaveAs(Path.Combine(Server.MapPath(obj.BannerImage)));
+                DataSet ds = obj.UpdateBannerImage();
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                    {
+                        obj.Result = "1";
+                        obj.BannerImage = obj.BannerImage;
+                    }
+                    else
+                    {
+                        obj.Result = "0";
+                        obj.BannerImage = null;
+                    }
+                }
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
     }
 }
 
