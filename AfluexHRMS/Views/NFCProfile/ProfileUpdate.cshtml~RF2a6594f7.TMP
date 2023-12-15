@@ -483,7 +483,7 @@
                                         <a class="nav-link" data-bs-toggle="tab" href="#emails"><i class="la la-envelope me-2"></i> Emails</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#web-urls"><i class="la la-envelope me-2"></i> Web/App URL's</a>
+                                        <a class="nav-link" data-bs-toggle="tab" href="#web-urls"><i class="la la-envelope me-2"></i> Web/App Ulr's</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" href="#social"><i class="la la-phone me-2"></i> Social Media</a>
@@ -758,7 +758,7 @@
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Social Links</h5>
+                                                        <h5 class="modal-title">Business Card</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -771,7 +771,7 @@
                                                                     {
                                                                         if (item.Content.Contains("6") || item.Content.Contains("7") || item.Content.Contains("9") || item.Content.Contains("8"))
                                                                         {
-                                                                            <a class="btn-social whatsapp" href="https://api.whatsapp.com/send?phone=91+@item.Content&text=https://dost.click?id=@Model.enc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                                                            <a class="btn-social whatsapp" href="https://api.whatsapp.com/send?phone=91+@item.Content&text=https://dost.click?id=@Model.enc" target="_blank"><i class="fa fa-whatsapp"></i></a>
                                                                         }
                                                                     }
                                                                 }
@@ -784,53 +784,53 @@
                                                                     {
                                                                         if (item.Content.Contains("facebook") || item.Content.Contains("fb"))
                                                                         {
-                                                                            <a class="btn-social facebook" href="@item.Content" target="_blank"><i class="fab fa-facebook"></i></a>
+                                                                            <a class="btn-social facebook" href="@item.Content" target="_blank"><i class="fa fa-facebook"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                                                                            <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("instagram") || item.Content.Contains("insta"))
                                                                         {
-                                                                            <a class="btn-social instagram" href="@item.Content" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                                            <a class="btn-social instagram" href="@item.Content" target="_blank"><i class="fa fa-instagram"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                                            <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("linkedin") || item.Content.Contains("link"))
                                                                         {
-                                                                            <a class="btn-social linkedin" href="@item.Content" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                                                            <a class="btn-social linkedin" href="@item.Content" target="_blank"><i class="fa fa-linkedin"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                                                            <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fa fa-linkedin"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("twitter") || item.Content.Contains("tw"))
                                                                         {
-                                                                            <a class="btn-social twitter" href="@item.Content" target="_blank"><i class="fab fa-twitter"></i></a>
+                                                                            <a class="btn-social twitter" href="@item.Content" target="_blank"><i class="fa fa-twitter"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fab fa-twitter"></i></a>
+                                                                            <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fa fa-twitter"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("youtube") || item.Content.Contains("utube"))
                                                                         {
-                                                                            <a class="btn-social youtube" href="@item.Content" target="_blank"><i class="fab fa-youtube"></i></a>
+                                                                            <a class="btn-social youtube" href="@item.Content" target="_blank"><i class="fa fa-youtube"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                                                                            <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
                                                                         }
                                                                     }
                                                                 }
                                                                 else
                                                                 {
-                                                                    <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                                                                    <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                                                                    <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fab fa-linkedin"></i></a>
-                                                                    <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fab fa-twitter"></i></a>
-                                                                    <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                                                                    <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                                    <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a>
+                                                                    <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                                    <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                                    <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
                                                                 }
                                                             }
                                                         </div>
@@ -1034,7 +1034,7 @@
             fileData.append('ProfileType', $('input[name="ProfileType"]:checked').val());
             fileData.append('DecryptedCode', $('#DecryptedCode').val());
             $.ajax({
-                url: '/NFCProfile/ProfileUpdateAction',
+                url: '/NFCProfile/ProfileUpdate',
                 type: "POST",
                 contentType: false,
                 processData: false,
@@ -1152,7 +1152,7 @@
     function ProfileUpdatePost() {
         debugger;
         $.ajax({
-            url: '@Url.Action("ProfileUpdateAction", "NFCProfile")',
+            url: '@Url.Action("ProfileUpdate", "NFCProfile")',
             type: 'POST',
             data: $("#form1").serialize(),
             success: function (data) {
