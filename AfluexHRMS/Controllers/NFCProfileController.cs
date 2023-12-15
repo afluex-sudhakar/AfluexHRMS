@@ -1,4 +1,5 @@
-﻿using AfluexHRMS.Models;
+﻿using AfluexHRMS.Filter;
+using AfluexHRMS.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -1334,7 +1335,7 @@ namespace AfluexHRMS.Controllers
             try
             {
                 DataSet ds = new DataSet();
-                model.FK_UserId = Session["Pk_userId"].ToString();
+                model.FK_UserId = Session["PK_EmployeeID"].ToString();
                 model.PK_BusinessProfileId = PK_ProfileId;
                 string[] sk = Skill.Split(',');
                 for (int i = 0; i < sk.Length; i++)
@@ -1370,7 +1371,7 @@ namespace AfluexHRMS.Controllers
             UserLanguage model = new UserLanguage();
             try
             {
-                model.FK_UserId = Session["Pk_userId"].ToString();
+                model.FK_UserId = Session["PK_EmployeeID"].ToString();
                 model.PK_BusinessProfileId = PK_ProfileId;
                 DataSet ds = new DataSet();
                 string[] lang = Language.Split(',');
@@ -1407,7 +1408,7 @@ namespace AfluexHRMS.Controllers
             try
             {
                 model.Achievement = Achievement;
-                model.FK_UserId = Session["Pk_userId"].ToString();
+                model.FK_UserId = Session["PK_EmployeeID"].ToString();
                 model.PK_BusinessProfileId = PK_ProfileId;
                 DataSet ds = model.SaveAchievement();
                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
@@ -1436,7 +1437,7 @@ namespace AfluexHRMS.Controllers
         {
             UserAchievement model = new UserAchievement();
             model.Pk_AchievementId = Id;
-            model.FK_UserId = Session["Pk_userId"].ToString();
+            model.FK_UserId = Session["PK_EmployeeID"].ToString();
             DataSet ds = model.DeleteAchievement();
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
@@ -1531,6 +1532,41 @@ namespace AfluexHRMS.Controllers
         //    }
         //    return Json(model, JsonRequestBehavior.AllowGet);
         //}
+
+        [HttpPost]
+        [ActionName("EditProfileSetAction")]
+        [OnAction(ButtonName = "btnSave")]
+        public ActionResult SaveAboutMe(NFCProfileModel model)//(string EmailBodyHTML, string PK_ProfileId)
+        {
+            //NFCProfileModel model = new NFCProfileModel();
+            try
+            {
+                //model.EmailBodyHTML = EmailBodyHTML;
+                model.FK_UserId = Session["PK_EmployeeID"].ToString();
+                //   model.PK_ProfileId = PK_ProfileId;
+                DataSet ds = model.SaveAboutMe();
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                    {
+                        model.Result = "1";
+                        model.Message = "About me added successfully";
+                    }
+                    else
+                    {
+                        model.Result = "0";
+                        model.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                model.Result = "0";
+                model.Message = ex.Message;
+            }
+            // return RedirectToAction("EditProfileSetAction", "NFCProfile");
+            return View(model);
+        }
     }
 }
 

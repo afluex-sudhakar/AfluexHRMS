@@ -189,7 +189,7 @@
 
                             <div class="profile-info">
                                 <div class="profile-photo">
-                                    <img src="https://fillow.dexignlab.com/codeigniter/demo/public/assets/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                                    <img src="~/assets/img/User.jpg" class="img-fluid rounded-circle" alt="">
                                     @*@if (Model.ProfilePic != null && Model.ProfilePic != "")
                                     {
                                         <img src="@Model.ProfilePic" class="img-fluid rounded-circle" alt="" style="width: 115px; height: 100px; object-fit: cover;">
@@ -884,7 +884,11 @@
                                                 <div class="pt-4 border-bottom-1 pb-3">
                                                     <h4 class="text-primary">About Me</h4>
                                                     @*<textarea id="email-compose-editor" class="textarea_editor form-control bg-transparent" rows="15" placeholder="Enter text ..."></textarea>*@
-                                                    <div id="emailbody"><p></p></div>
+
+                                                    @*<div id="emailbody"><p></p></div>*@
+                                                    <div id="emailbody"></div>
+
+
                                                     @Html.HiddenFor(m => m.EmailBodyHTML)
                                                     @*<div id="emailbody" class="click2edit"></div>*@
 
@@ -990,7 +994,7 @@
                                                         {
                                                             foreach (var item in Model.lstLanguage)
                                                             {
-                                                                <a href="javascript:void(0);" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i> @item.Language</a>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1"><i class="flag-icon flag-icon-us"></i> @item.Language</a>
                                                             }
                                                         }
                                                     }
@@ -1071,7 +1075,7 @@
                                                                                             </a>*@
                                                                                             @*<a href="/NFCProfile/DeleteAchievement?id=@item.Pk_AchievementId&Code=@Model.Code" class="ml-2 btn btn-xs px-2 light btn-danger" >*@
                                                                                             <a href="javascript:void(0)" class="ml-2 btn btn-xs px-2 light btn-danger" onclick="return DeleteAchivement(@item.Pk_AchievementId,'@Model.Code');">
-                                                                                                <i class="fa fa-trash-o achiv"></i>
+                                                                                                <i class="fa fa-trash achiv"></i>
                                                                                             </a>
                                                                                         </div>
                                                                                     </td>
@@ -1198,11 +1202,12 @@
     }
     function AddSkill() {
         debugger;
+        //var PK_ProfileId = $("#PK_ProfileId").val();
         $.ajax({
             url: '/NFCProfile/SaveSkill',
             type: "GET",
             dataType: "JSON",
-            data: { Skill: $("#Skill").val(), PK_ProfileId: 'PK_ProfileId' },
+            data: { Skill: $("#Skill").val(), PK_ProfileId: $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger;
                 if (data != null) {
@@ -1228,7 +1233,7 @@
             url: '/NFCProfile/SaveLanguage',
             type: "GET",
             dataType: "JSON",
-            data: { Language: $("#txtLanguage").val(), PK_ProfileId: PK_ProfileId },
+            data: { Language: $("#txtLanguage").val(), PK_ProfileId: $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger;
                 if (data != null) {
@@ -1280,7 +1285,7 @@
             url: '/NFCProfile/SaveAchievement',
             type: "GET",
             dataType: "JSON",
-            data: { Achievement: $("#txtAchievement").val(), PK_ProfileId: PK_ProfileId },
+            data: { Achievement: $("#txtAchievement").val(), PK_ProfileId: $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger;
                 if (data != null) {
@@ -1352,7 +1357,7 @@
             type: "Post",
             url: '/NFCProfile/SaveAboutMe',
             dataType: "JSON",
-            data: { 'EmailBodyHTML': $("#EmailBodyHTML").val(), 'PK_ProfileId': PK_ProfileId },
+            data: { 'EmailBodyHTML': $("#EmailBodyHTML").val(), 'PK_ProfileId': $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger; $("#EmailBodyHTML")
                 if (data != null) {

@@ -340,6 +340,17 @@ namespace AfluexHRMS.Models
             DataSet ds = DBHelper.ExecuteQuery("DeleteNFCProfileData", para);
             return ds;
         }
+        
+        public DataSet SaveAboutMe()
+        {
+            SqlParameter[] para ={
+                new SqlParameter ("@PK_ProfileId",PK_ProfileId),
+                new SqlParameter("@FK_UserId",FK_UserId),
+                new SqlParameter("@Description",EmailBodyHTML)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("SaveAboutMe", para);
+            return ds;
+        }
     }
     public class NFCContent
     {
@@ -631,5 +642,7 @@ namespace AfluexHRMS.Models
             DataSet ds = DBHelper.ExecuteQuery("DeleteAchievement", para);
             return ds;
         }
+
+       
     }
 }
