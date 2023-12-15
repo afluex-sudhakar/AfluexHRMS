@@ -1326,6 +1326,211 @@ namespace AfluexHRMS.Controllers
             }
             return View(objProfile);
         }
+
+
+        public ActionResult SaveSkill(string Skill, string PK_ProfileId)
+        {
+            UserSkill model = new UserSkill();
+            try
+            {
+                DataSet ds = new DataSet();
+                model.FK_UserId = Session["Pk_userId"].ToString();
+                model.PK_BusinessProfileId = PK_ProfileId;
+                string[] sk = Skill.Split(',');
+                for (int i = 0; i < sk.Length; i++)
+                {
+                    model.Skill = sk[i];
+                    ds = model.SaveSkill();
+                }
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                    {
+                        model.Response = "1";
+                        model.Message = "Skill added successfully";
+                    }
+                    else
+                    {
+                        model.Response = "0";
+                        model.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                model.Response = "0";
+                model.Message = ex.Message;
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult SaveLanguage(string Language, string PK_ProfileId)
+        {
+            UserLanguage model = new UserLanguage();
+            try
+            {
+                model.FK_UserId = Session["Pk_userId"].ToString();
+                model.PK_BusinessProfileId = PK_ProfileId;
+                DataSet ds = new DataSet();
+                string[] lang = Language.Split(',');
+                for (int i = 0; i < lang.Length; i++)
+                {
+                    model.Language = lang[i];
+                    ds = model.SaveLanguage();
+                }
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                    {
+                        model.Response = "1";
+                        model.Message = "Language added successfully";
+                    }
+                    else
+                    {
+                        model.Response = "0";
+                        model.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                model.Response = "0";
+                model.Message = ex.Message;
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SaveAchievement(string Achievement, string PK_ProfileId)
+        {
+            UserAchievement model = new UserAchievement();
+            try
+            {
+                model.Achievement = Achievement;
+                model.FK_UserId = Session["Pk_userId"].ToString();
+                model.PK_BusinessProfileId = PK_ProfileId;
+                DataSet ds = model.SaveAchievement();
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                    {
+                        model.Response = "1";
+                        model.Message = "Achievement added successfully";
+                    }
+                    else
+                    {
+                        model.Response = "0";
+                        model.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                model.Response = "0";
+                model.Message = ex.Message;
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteAchievement(string Id, string Code)
+        {
+            UserAchievement model = new UserAchievement();
+            model.Pk_AchievementId = Id;
+            model.FK_UserId = Session["Pk_userId"].ToString();
+            DataSet ds = model.DeleteAchievement();
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                {
+                    model.Response = "1";
+                    model.Message = "Achievement deleted successfully";
+                }
+                else
+                {
+                    model.Response = "0";
+                    model.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            // return RedirectToAction("EditProfileSetAction", "NFCProfile", new { id = Code });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+
+        //public ActionResult SetPrimary(NFCProfileModel model)
+        //{
+        //    try
+        //    {
+        //        DataSet ds = new DataSet();
+        //        model.FK_UserId = Session["Pk_userId"].ToString();
+        //        if (model.Mobile != null && model.Mobile != "0" && model.Mobile != "" && model.Mobile != "undefined")
+        //        {
+        //            model.Pk_NfcProfileId = Convert.ToInt32(model.Mobile);
+        //            model.IsPrimaryNumber = true;
+        //            model.IsWhatsapp = true;
+        //        }
+        //        if (model.ContactList != null)
+        //        {
+        //            model.ContactList = model.ContactList[0].Split(',');
+        //            int i = 0;
+
+        //            for (i = 0; i < model.ContactList.Length; i++)
+        //            {
+        //                if (model.ContactList[i] != "" && model.ContactList[i] != "0")
+        //                {
+        //                    model.IsDislpayValue = true;
+        //                    model.IsPrimaryNumber = true;
+        //                    model.Pk_NfcProfileId = Convert.ToInt32(model.ContactList[i]);
+        //                    if (model.ContactList[i] == model.Mobile)
+        //                    {
+        //                        model.IsWhatsapp = true;
+        //                    }
+        //                    else
+        //                    {
+        //                        model.IsWhatsapp = false;
+        //                    }
+        //                    ds = model.SetPrimaryNumber();
+        //                }
+        //            }
+        //            for (i = 0; i < model.HideContacts.Length; i++)
+        //            {
+        //                if (model.HideContacts[i] != "" && model.HideContacts[i] != "0")
+        //                {
+        //                    model.IsDislpayValue = false;
+        //                    model.IsPrimaryNumber = false;
+        //                    model.Pk_NfcProfileId = Convert.ToInt32(model.HideContacts[i]);
+        //                    if (model.HideContacts[i] == model.Mobile)
+        //                    {
+        //                        model.IsWhatsapp = true;
+        //                    }
+        //                    else
+        //                    {
+        //                        model.IsWhatsapp = false;
+        //                    }
+        //                    ds = model.SetPrimaryNumber();
+        //                }
+        //            }
+        //        }
+        //        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        //        {
+        //            if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+        //            {
+        //                model.Result = "1";
+        //                model.Message = "Primary value set successfully";
+        //            }
+        //            else
+        //            {
+        //                model.Result = "0";
+        //                model.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        model.Result = "0";
+        //        model.Message = ex.Message;
+        //    }
+        //    return Json(model, JsonRequestBehavior.AllowGet);
+        //}
     }
 }
 
