@@ -79,7 +79,6 @@ namespace AfluexHRMS.Controllers
             }
 
             model.ddlLeave = ddlLeave;
-
             #endregion
             DataSet ds1 = model.LeaveTypeListOfEmployee();
             if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
@@ -134,9 +133,7 @@ namespace AfluexHRMS.Controllers
                 {
                     Response.Status = "0";
                     Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -213,7 +210,6 @@ namespace AfluexHRMS.Controllers
             }
 
             model.ddlLeave = ddlLeave;
-
             #endregion
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -362,7 +358,6 @@ namespace AfluexHRMS.Controllers
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult MessagesList(MessagesListRequest model)
         {
             List<MessagesListResponse> lstComplains = new List<MessagesListResponse>();
@@ -399,8 +394,6 @@ namespace AfluexHRMS.Controllers
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-
 
         [HttpPost]
         public ActionResult EmployeeDashboard(EmployeeDashboardRequest model)
@@ -489,7 +482,6 @@ namespace AfluexHRMS.Controllers
                         Response.Message = "   PunchOut Successfully !";
                         Response.PunchOutDate = ds.Tables[0].Rows[0]["PunchOutDate"].ToString();
                         Response.PunchOutTime = ds.Tables[0].Rows[0]["PunchOutTime"].ToString();
-
                     }
                     else
                     {
@@ -552,8 +544,7 @@ namespace AfluexHRMS.Controllers
                 return Json(model, JsonRequestBehavior.AllowGet);
             }
         }
-
-    
+  
         [HttpPost]
         public ActionResult EmployeeProfile(GetEmployeeProfileRequest model)
         {
@@ -592,8 +583,6 @@ namespace AfluexHRMS.Controllers
             }
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
-
-
 
         [HttpPost]
         public ActionResult UpdateEmployeeProfile(UpdateEmployeeProfileRequest model,HttpPostedFileBase PostedFile)
@@ -636,6 +625,5 @@ namespace AfluexHRMS.Controllers
             }
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
-
     }
 }
