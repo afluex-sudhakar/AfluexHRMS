@@ -777,7 +777,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50284</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50285/</IISUrl>
+          <IISUrl>http://localhost:50284/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
