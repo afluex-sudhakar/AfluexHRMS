@@ -189,7 +189,7 @@
 
                             <div class="profile-info">
                                 <div class="profile-photo">
-                                    <img src="https://fillow.dexignlab.com/codeigniter/demo/public/assets/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                                    <img src="~/assets/img/User.jpg" class="img-fluid rounded-circle" alt="">
                                     @*@if (Model.ProfilePic != null && Model.ProfilePic != "")
                                     {
                                         <img src="@Model.ProfilePic" class="img-fluid rounded-circle" alt="" style="width: 115px; height: 100px; object-fit: cover;">
@@ -347,14 +347,14 @@
                                                                         </div>
                                                                         <div class="phone-detail" id="call" style="display:none">
                                                                             @*<div class="d-flex justify-content-between my-2">
-                                    <button class="btn btn-primary mr-2">
-                                        Show
-                                    </button>
-                                    <button class="btn btn-secondary">
-                                        Hide
-                                    </button>
+                                                                                <button class="btn btn-primary mr-2">
+                                                                                    Show
+                                                                                </button>
+                                                                                <button class="btn btn-secondary">
+                                                                                    Hide
+                                                                                </button>
 
-                                </div>*@
+                                                                            </div>*@
                                                                             <div class="row my-2">
                                                                                 <div class="col-6">
                                                                                     <div class="custom-control custom-checkbox mb-3 checkbox-success">
@@ -393,7 +393,7 @@
                                                                 <div class="col-xl-3 col-xxl-3 col-sm-4 col-6">
                                                                     <div class="card">
                                                                         <div class="social-graph-wrapper widget-whatsapp">
-                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('whatsapp')"><i class="fa fa-whatsapp fa-lg"></i></a></span>
+                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('whatsapp')"><i class="fab fa-whatsapp fa-lg"></i></a></span>
                                                                         </div>
                                                                         <div class="whatsapp-detail" id="whatsapp" style="display:none">
                                                                             <div class="row my-2">
@@ -476,7 +476,7 @@
                                                                 <div class="col-xl-3 col-xxl-3 col-sm-4 col-6">
                                                                     <div class="card">
                                                                         <div class="social-graph-wrapper widget-facebook">
-                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('facebook')"><i class="fa fa-facebook fa-lg"></i></a></span>
+                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('facebook')"><i class="fab fa-facebook fa-lg"></i></a></span>
                                                                         </div>
                                                                         <div class="facebook-detail" id="facebook" style="display:none">
                                                                             <div class="row my-2">
@@ -520,7 +520,7 @@
                                                                 <div class="col-xl-3 col-xxl-3 col-sm-4 col-6">
                                                                     <div class="card">
                                                                         <div class="social-graph-wrapper widget-instagram">
-                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('instagram')"><i class="fa fa-instagram fa-lg"></i></a></span>
+                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('instagram')"><i class="fab fa-instagram fa-lg"></i></a></span>
                                                                         </div>
                                                                         <div class="intagram-detail" id="instagram" style="display:none">
                                                                             <div class="row my-2">
@@ -564,7 +564,7 @@
                                                                 <div class="col-xl-3 col-xxl-3 col-sm-4 col-6">
                                                                     <div class="card">
                                                                         <div class="social-graph-wrapper widget-twitter">
-                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('twitter')"><i class="fa fa-twitter fa-lg"></i></a></span>
+                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('twitter')"><i class="fab fa-twitter fa-lg"></i></a></span>
                                                                         </div>
                                                                         <div class="twitter-detail" id="twitter" style="display:none">
                                                                             <div class="row my-2">
@@ -608,7 +608,7 @@
                                                                 <div class="col-xl-3 col-xxl-3 col-sm-4 col-6">
                                                                     <div class="card">
                                                                         <div class="social-graph-wrapper widget-telegram">
-                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('telegram')"><i class="fa fa-telegram fa-lg"></i></a></span>
+                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('telegram')"><i class="fab fa-telegram fa-lg"></i></a></span>
                                                                         </div>
                                                                         <div class="telegram-detail" id="telegram" style="display:none">
                                                                             <div class="row my-2">
@@ -652,7 +652,7 @@
                                                                 <div class="col-xl-3 col-xxl-3 col-sm-4 col-6">
                                                                     <div class="card">
                                                                         <div class="social-graph-wrapper widget-linkedin">
-                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('linkedin')"><i class="fa fa-linkedin fa-lg"></i></a></span>
+                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('linkedin')"><i class="fab fa-linkedin fa-lg"></i></a></span>
                                                                         </div>
                                                                         <div class="linkdin-detail" id="linkedin" style="display:none">
                                                                             <div class="row my-2">
@@ -737,7 +737,7 @@
                                                                 <div class="col-xl-3 col-xxl-3 col-sm-4 col-6">
                                                                     <div class="card">
                                                                         <div class="social-graph-wrapper widget-map">
-                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('map')"><i class="fa fa-map-marker fa-lg"></i></a></span>
+                                                                            <span class="s-icon"><a href="javascript:void(0)" onclick="return Show('map')"><i class="fa fa-map-marker-alt fa-lg"></i></a></span>
                                                                         </div>
                                                                         <div class="map-detail" id="map" style="display:none">
                                                                             <div class="row my-2">
@@ -884,7 +884,15 @@
                                                 <div class="pt-4 border-bottom-1 pb-3">
                                                     <h4 class="text-primary">About Me</h4>
                                                     @*<textarea id="email-compose-editor" class="textarea_editor form-control bg-transparent" rows="15" placeholder="Enter text ..."></textarea>*@
-                                                    <div id="emailbody"><p></p></div>
+
+                                                    @*<div id="emailbody"><p></p></div>*@
+                                                    
+                                                    <div class="custom-ekeditor">
+                                                        <div id="ckeditor"></div>
+                                                    </div>
+                                                    
+
+
                                                     @Html.HiddenFor(m => m.EmailBodyHTML)
                                                     @*<div id="emailbody" class="click2edit"></div>*@
 
@@ -901,7 +909,7 @@
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Business Card</h5>
+                                                                <h5 class="modal-title">Add More Skills</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                             </div>
                                                             <div class="modal-body">
@@ -953,19 +961,17 @@
             <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1">Crypto</a>*@
                                             </div>
                                             <div class="profile-lang  mb-5">
-                                                <h4 class="text-primary mb-2">Language<span class="add_more" data-toggle="modal" data-target="#languageModalCenter">+</span></h4>
+                                                <h4 class="text-primary mb-2">Language <span class="add_more" data-bs-toggle="modal" data-bs-target="#languageModalCenter">+</span></h4>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="languageModalCenter">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title">Add More Languages</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                             </div>
-                                                            <div class="modal-body text-left">
-                                                                <form>
+                                                            <div class="modal-body">
+                                                                <div class="form-row ">
                                                                     <div class="form-row ">
                                                                         <div class="col-xl-12 col-lg-12 form-group">
                                                                             <div class="mb-1">
@@ -973,17 +979,18 @@
                                                                                 <input type="text" class="form-control" id="txtLanguage" placeholder="Type Your Lnaguage">
                                                                             </div>
                                                                         </div>
-
                                                                     </div>
-                                                                </form>
+                                                                </div>
+
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
                                                                 <button type="button" class="btn btn-primary" onclick="return AddLanguage();">Add</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                      
                                                 <div id="divLang">
                                                     @if (Model != null)
                                                     {
@@ -991,7 +998,7 @@
                                                         {
                                                             foreach (var item in Model.lstLanguage)
                                                             {
-                                                                <a href="javascript:void(0);" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i> @item.Language</a>
+                                                                <a href="javascript:void(0);" class="btn btn-primary light btn-xs mb-1"><i class="flag-icon flag-icon-us"></i> @item.Language</a>
                                                             }
                                                         }
                                                     }
@@ -1003,16 +1010,14 @@
                                             </div>
 
                                             <div class="profile-personal-info">
-                                                <h4 class="text-primary mb-4">Achievements<span class="add_more" data-toggle="modal" data-target="#achievementModalCenter">+</span></h4>
+                                                <h4 class="text-primary mb-4">Achievements<span class="add_more" data-bs-toggle="modal" data-bs-target="#achievementModalCenter">+</span></h4>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="achievementModalCenter">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title">Add More Achievements</h5>
-                                                                <button type="button" class="close" data-dismiss="modal">
-                                                                    <span>&times;</span>
-                                                                </button>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                             </div>
                                                             <div class="modal-body text-left">
                                                                 <form>
@@ -1028,23 +1033,23 @@
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
                                                                 <button type="button" class="btn btn-primary" onclick="return AddAchievement();">Add</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- modal -->
-                                                <div class="card">
+                                                @*<div class="card">
 
-                                                    <div class="card-body">
+                                                    <div class="card-body">*@
                                                         <div class="table-responsive">
-                                                            <table class="table style-1" id="tblA">
-                                                                <thead>
+                                                            <table class="table">
+                                                                <thead class="thead-primary">
                                                                     <tr>
                                                                         <th><i class="fa fa-star achiv"></i></th>
                                                                         <th>Achievements</th>
-                                                                        <th>ACTION</th>
+                                                                        <th>Action</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -1070,11 +1075,11 @@
                                                                                     <td>
                                                                                         <div class="d-flex action-button">
                                                                                             @*<a href="javascript:void(0);" class="btn btn-info btn-xs light px-2">
-                                                            <i class="fa fa-pencil achiv"></i>
-                                                        </a>*@
+                                                                                                <i class="fa fa-pencil achiv"></i>
+                                                                                            </a>*@
                                                                                             @*<a href="/NFCProfile/DeleteAchievement?id=@item.Pk_AchievementId&Code=@Model.Code" class="ml-2 btn btn-xs px-2 light btn-danger" >*@
                                                                                             <a href="javascript:void(0)" class="ml-2 btn btn-xs px-2 light btn-danger" onclick="return DeleteAchivement(@item.Pk_AchievementId,'@Model.Code');">
-                                                                                                <i class="fa fa-trash-o achiv"></i>
+                                                                                                <i class="fa fa-trash achiv"></i>
                                                                                             </a>
                                                                                         </div>
                                                                                     </td>
@@ -1087,8 +1092,8 @@
                                                         </div>
                                                         @*<input type="submit" class="btn btn-primary" onclick="return SaveAboutMe();" value="Save" />*@
                                                         <input type="submit" class="btn btn-primary" name="btnSave" value="Save" onclick="return validateForm();" />
-                                                    </div>
-                                                </div>
+                                                    @*</div>
+                                                </div>*@
 
 
                                             </div>
@@ -1104,6 +1109,8 @@
 
                 
             </div>
+
+
         </div>
 
 
@@ -1114,7 +1121,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script>
     function validateForm() {
-        var emailBodyHTML = $('#emailbody').summernote('code');
+        var emailBodyHTML = $('#ckeditor').summernote('code');
         $('#EmailBodyHTML').val(emailBodyHTML);
     }
     var PK_ProfileId = $("#PK_ProfileId").val();
@@ -1201,11 +1208,12 @@
     }
     function AddSkill() {
         debugger;
+        //var PK_ProfileId = $("#PK_ProfileId").val();
         $.ajax({
             url: '/NFCProfile/SaveSkill',
             type: "GET",
             dataType: "JSON",
-            data: { Skill: $("#Skill").val(), PK_ProfileId: PK_ProfileId },
+            data: { Skill: $("#Skill").val(), PK_ProfileId: $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger;
                 if (data != null) {
@@ -1231,7 +1239,7 @@
             url: '/NFCProfile/SaveLanguage',
             type: "GET",
             dataType: "JSON",
-            data: { Language: $("#txtLanguage").val(), PK_ProfileId: PK_ProfileId },
+            data: { Language: $("#txtLanguage").val(), PK_ProfileId: $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger;
                 if (data != null) {
@@ -1283,7 +1291,7 @@
             url: '/NFCProfile/SaveAchievement',
             type: "GET",
             dataType: "JSON",
-            data: { Achievement: $("#txtAchievement").val(), PK_ProfileId: PK_ProfileId },
+            data: { Achievement: $("#txtAchievement").val(), PK_ProfileId: $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger;
                 if (data != null) {
@@ -1347,7 +1355,7 @@
 
     function SaveAboutMe() {
         debugger;
-        var emailBodyHTML = $('#emailbody').summernote('code');
+        var emailBodyHTML = $('#ckeditor').summernote('code');
 
         // var emailBodyHTML = $('#emailbody').summernote('code');
         $("#EmailBodyHTML").val(emailBodyHTML);
@@ -1355,7 +1363,7 @@
             type: "Post",
             url: '/NFCProfile/SaveAboutMe',
             dataType: "JSON",
-            data: { 'EmailBodyHTML': $("#EmailBodyHTML").val(), 'PK_ProfileId': PK_ProfileId },
+            data: { 'EmailBodyHTML': $("#EmailBodyHTML").val(), 'PK_ProfileId': $("#PK_ProfileId").val() },
             success: function (data) {
                 debugger; $("#EmailBodyHTML")
                 if (data != null) {
@@ -1612,18 +1620,18 @@
             $("#locationh").attr('checked', 'checked');
             $("#ddllocation").addClass('d-none');
         }
-        $('#emailbody').summernote(
-        {
-            height: 150,
-            toolbar: [
-              // [groupName, [list of button]]
-              ['style', ['bold', 'italic', 'underline', 'clear']],
-              ['font', ['strikethrough', 'superscript', 'subscript']],
-              ['fontsize', ['fontsize']],
-              ['para', ['ul', 'ol', 'paragraph']],
-              ['height', ['height']]
-            ]
-        });
+        //$('#emailbody').summernote(
+        //{
+        //    height: 150,
+        //    toolbar: [
+        //      // [groupName, [list of button]]
+        //      ['style', ['bold', 'italic', 'underline', 'clear']],
+        //      ['font', ['strikethrough', 'superscript', 'subscript']],
+        //      ['fontsize', ['fontsize']],
+        //      ['para', ['ul', 'ol', 'paragraph']],
+        //      ['height', ['height']]
+        //    ]
+        //});
     })
 </script>
 <script>
