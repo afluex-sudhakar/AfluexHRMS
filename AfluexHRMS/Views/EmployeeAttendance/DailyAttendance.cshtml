@@ -9,21 +9,25 @@
 @using (Html.BeginForm("DailyAttendance", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
     <div class="container-fluid">
-        <div class="row">
-            <div class="row page-titles">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Attendance</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Attendance</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Daily Attendance</a></li>
+                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Attendance</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Daily Attendance </li>
                 </ol>
             </div>
+        </div>
+        <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header d-lg-flex justify-content-between">
+                    @*<div class="card-header d-lg-flex justify-content-between">
                         <h4 class="card-title">Search Employee</h4>
                         <p style="color: red">
                             @TempData["DailyAttendance"]
                         </p>
-                    </div>
+                    </div>*@
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-md-3">
@@ -68,7 +72,7 @@
                                 <div class="box_body p-4">
                                     <div class="table-responsive">
                                         <div class="QA_table mb_30">
-                                            <table class="table">
+                                            <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mg-b-0">
                                                 <thead>
                                                     <tr>
                                                         <th>SNo.</th>

@@ -3,226 +3,570 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" dir="ltr">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
+
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+
+    <!-- TITLE -->
     <title>Afluex HRMS</title>
 
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/AssetsAdminNew/images/brand/favicon.png" />
 
-    <!-- MOBILE SPECIFIC -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/assetsAdmin/images/favicon.png">
-    <link href="~/assetsAdmin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
-    <link href="~/assetsAdmin/vendor/nouislider/nouislider.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assetsAdmin/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <!-- BOOTSTRAP CSS -->
+    <link href="~/AssetsAdminNew/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-    <link href="~/assetsAdmin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/assetsAdmin/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css" />
-    
-    <link href="~/assetsAdmin/vendor/toastr/css/toastr.min.css" rel="stylesheet" />
-    <link href="~/assetsAdmin/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- STYLE CSS -->
+    <link href="~/AssetsAdminNew/css/style.css" rel="stylesheet" />
+    <link href="~/AssetsAdminNew/css/dark-style.css" rel="stylesheet" />
+    <link href="~/AssetsAdminNew/css/skin-modes.css" rel="stylesheet" />
 
+    <!-- SIDE-MENU CSS -->
+    <link href="~/AssetsAdminNew/css/sidemenu.css" rel="stylesheet" id="sidemenu-theme">
+
+    <!--C3 CHARTS CSS -->
+    <link href="~/AssetsAdminNew/plugins/charts-c3/c3-chart.css" rel="stylesheet" />
+
+    <!-- P-scroll bar css-->
+    <link href="~/AssetsAdminNew/plugins/p-scroll/perfect-scrollbar.css" rel="stylesheet" />
+
+    <!--- FONT-ICONS CSS -->
+    <link href="~/AssetsAdminNew/plugins/icons/icons.css" rel="stylesheet" />
+
+    <!-- SIDEBAR CSS -->
+    <link href="~/AssetsAdminNew/plugins/sidebar/sidebar.css" rel="stylesheet" />
+
+
+    <!-- SELECT2 CSS -->
+    <link href="~/AssetsAdminNew/plugins/select2/select2.min.css" rel="stylesheet" />
+
+    <!-- INTERNAL Data table css -->
+    <link href="~/AssetsAdminNew/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
+    <link href="~/AssetsAdminNew/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
+
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="~/AssetsAdminNew/colors/color1.css" />
+
+    <!-- INTERNAL Switcher css -->
+    <link href="~/AssetsAdminNew/switcher/css/switcher.css" rel="stylesheet" />
+    <link href="~/AssetsAdminNew/switcher/demo.css" rel="stylesheet" />
 </head>
 
-<body>
-
-
-    <!--***************Preloader start*******-->
-    <div id="preloader">
-        <div class="lds-ripple">
-            <div></div>
-            <div></div>
-        </div>
+<body class="app sidebar-mini">
+    <!-- GLOBAL-LOADER -->
+    <div id="global-loader">
+        <img src="~/AssetsAdminNew/images/loader.svg" class="loader-img" alt="Loader">
     </div>
-    <!--*********Preloader end********-->
-    <!--************Main wrapper start************-->
-    <div id="main-wrapper">
+    <!-- /GLOBAL-LOADER -->
+    <!-- PAGE -->
+    <div class="page">
+        <div class="page-main">
 
-        <!--********** Nav header start********************-->
-        <div class="nav-header d-flex">
-            <a href="#!" ><img style="width:70px;" src="~/assetsAdmin/images/logo.png" /></a>
-            <a href="#!" class="brand-logo" style="padding-left:0px;">
-                <div class="brand-title">
-                    <h2 class="d-block text-dark mb-0">Afluex</h2>
+            <!--APP-SIDEBAR-->
+            <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+            <aside class="app-sidebar">
+                <div class="side-header">
+                    <a class="header-brand1" href="/Admin/AdminDashBoard">
+                        <img src="~/AssetsAdminNew/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+                        <img src="~/AssetsAdminNew/images/brand/logo-1.png" class="header-brand-img toggle-logo" alt="logo">
+                        <img src="~/AssetsAdminNew/images/brand/logo-2.png" class="header-brand-img light-logo" alt="logo">
+                        <img src="~/AssetsAdminNew/images/brand/logo-3.png" class="header-brand-img light-logo1" alt="logo">
+                    </a><!-- LOGO -->
                 </div>
-            </a>
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
-        <!--********Nav header end*********************-->
-        <!--**********Header start*****************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="dashboard_bar">
-                                &nbsp;
-                            </div>
-                        </div>
-                        <ul class="navbar-nav header-right">
-
-                            <li class="nav-item dropdown  header-profile">
-                                <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                                    <img src="@Session["ProfilePic"]" width="56" alt="">
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="#!" class="dropdown-item ai-icon">
-                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
-                                             width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                        </svg>
-                                        <span class="ms-2">@Session["Name"] (@Session["LoginID"]) </span>
-                                    </a>
-                                    <a href="/Home/Login" class="dropdown-item ai-icon">
-                                        <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
-                                             width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                            <polyline points="16 17 21 12 16 7"></polyline>
-                                            <line x1="21" y1="12" x2="9" y2="12"></line>
-                                        </svg>
-                                        <span class="ms-2">Logout </span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!--*********Header end *******************-->
-        <!--**************** Sidebar start**********-->
-        <div class="dlabnav">
-            <div class="dlabnav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li>
-                        <a href="/EmployeeLogin/EmployeeDashboard" aria-expanded="false">
-                            <i class="fas fa-home"></i>
-                            <span class="nav-text">Dashboard</span>
-                        </a>
+                <ul class="side-menu">
+                    <li><h3>&nbsp;</h3></li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="/EmployeeLogin/EmployeeDashboard"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-archive"></i>
-                            <span class="nav-text">Leave</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/EmployeeLogin/LeaveApplication">Apply Leave</a></li>
-                            <li><a href="/EmployeeLogin/LeaveReportForEmployee">Leave Report</a></li>
-                            <li><a href="/EmployeeLogin/LeaveCount">Leave Count Report</a></li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fa fa-calendar"></i><span class="side-menu__label">Leave</span><i class="angle fa fa-angle-right"></i></a>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="/EmployeeLogin/LeaveApplication">Apply Leave</a></li>
+                            <li><a class="slide-item" href="/EmployeeLogin/LeaveReportForEmployee">Leave Report</a></li>
+                            <li><a class="slide-item" href="/EmployeeLogin/LeaveCount">Leave Count Report</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-inr"></i>
-                            <span class="nav-text">Salary</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/EmployeeLogin/SalaryPaymentReport">Salary Payment</a></li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fa fa-rupee"></i><span class="side-menu__label">Salary</span><i class="angle fa fa-angle-right"></i></a>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="/EmployeeLogin/SalaryPaymentReport">Salary Payment</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <span class="nav-text">NFC</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/NFCProfile/NFCDevice">Add NFC Device</a></li>
-                            <li><a href="/NFCProfile/SetActionDashboard">Manage NFC Device</a></li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fa fa-credit-card-alt"></i><span class="side-menu__label">NFC</span><i class="angle fa fa-angle-right"></i></a>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="/NFCProfile/NFCDevice">Add NFC Device</a></li>
+                            <li><a class="slide-item" href="/NFCProfile/SetActionDashboard">Manage NFC Device</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-calendar-check"></i>
-                            <span class="nav-text">Attendance</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/EmployeeLogin/DateWiseAttendanceReport">Date Wise Attendance</a></li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon ion-calendar"></i><span class="side-menu__label">Attendance</span><i class="angle fa fa-angle-right"></i></a>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="/EmployeeLogin/DateWiseAttendanceReport">Date Wise Attendance</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="far fa-comment-dots"></i>
-                            <span class="nav-text">Message</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/EmployeeLogin/Message">Send Message</a></li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon ion-chatbox-working"></i><span class="side-menu__label">Message</span><i class="angle fa fa-angle-right"></i></a>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="/EmployeeLogin/Message">Send Message</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
-                            <i class="fas fa-cog"></i>
-                            <span class="nav-text">Setting</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/Home/Login">Logout</a></li>
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fe fe-settings"></i><span class="side-menu__label">Setting</span><i class="angle fa fa-angle-right"></i></a>
+                        <ul class="slide-menu">
+                            <li><a class="slide-item" href="/Home/Login">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
+            </aside>
+            <!--/APP-SIDEBAR-->
+            <!-- Mobile Header -->
+            <div class="app-header header">
+                <div class="container-fluid">
+                    <div class="d-flex">
+                        <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="#"></a><!-- sidebar-toggle-->
+                        <a class="header-brand1 d-flex d-md-none" href="/Admin/AdminDashBoard">
+                            <img src="~/AssetsAdminNew/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="~/AssetsAdminNew/images/brand/logo-1.png" class="header-brand-img toggle-logo" alt="logo">
+                            <img src="~/AssetsAdminNew/images/brand/logo-2.png" class="header-brand-img light-logo" alt="logo">
+                            <img src="~/AssetsAdminNew/images/brand/logo-3.png" class="header-brand-img light-logo1" alt="logo">
+                        </a><!-- LOGO -->
+                        <div class="main-header-center ms-3 d-none d-md-block">
+                            <input class="form-control" placeholder="Search for anything..." type="search"> <button class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="d-flex order-lg-2 ms-auto header-right-icons">
+                            <div class="dropdown d-lg-none d-md-block d-none">
+                                <a href="#" class="nav-link icon" data-bs-toggle="dropdown">
+                                    <i class="fe fe-search"></i>
+                                </a>
+                                <div class="dropdown-menu header-search dropdown-menu-start">
+                                    <div class="input-group w-100 p-2">
+                                        <input type="text" class="form-control" placeholder="Search....">
+                                        <div class="input-group-text btn btn-primary">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- SEARCH -->
+                            <button class="navbar-toggler navresponsive-toggler d-md-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon fe fe-more-vertical text-dark"></span>
+                            </button>
+                            <div class="dropdown d-none d-md-flex">
+                                <a class="nav-link icon full-screen-link nav-link-bg">
+                                    <i class="fe fe-minimize fullscreen-button"></i>
+                                </a>
+                            </div><!-- FULL-SCREEN -->
+                            <div class="dropdown d-none d-md-flex notifications">
+                                <a class="nav-link icon" data-bs-toggle="dropdown">
+                                    <i class="fe fe-bell"></i><span class=" pulse"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+                                    <div class="drop-heading border-bottom">
+                                        <div class="d-flex">
+                                            <h6 class="mt-1 mb-0 fs-16 fw-semibold">You have Notification</h6>
+                                            <div class="ms-auto">
+                                                <span class="badge bg-success rounded-pill">3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="notifications-menu">
+                                        <a class="dropdown-item d-flex" href="chat.html">
+                                            <div class="me-3 notifyimg  bg-primary-gradient brround box-shadow-primary">
+                                                <i class="fe fe-message-square"></i>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h5 class="notification-label mb-1">New review received</h5>
+                                                <span class="notification-subtext">2 hours ago</span>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex" href="chat.html">
+                                            <div class="me-3 notifyimg  bg-secondary-gradient brround box-shadow-primary">
+                                                <i class="fe fe-mail"></i>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h5 class="notification-label mb-1">New Mails Received</h5>
+                                                <span class="notification-subtext">1 week ago</span>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex" href="cart.html">
+                                            <div class="me-3 notifyimg  bg-success-gradient brround box-shadow-primary">
+                                                <i class="fe fe-shopping-cart"></i>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h5 class="notification-label mb-1">New Order Received</h5>
+                                                <span class="notification-subtext">1 day ago</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <a href="#" class="dropdown-item text-center p-3 text-muted">View all Notification</a>
+                                </div>
+                            </div><!-- NOTIFICATIONS -->
+                            <div class="dropdown  d-none d-md-flex message">
+                                <a class="nav-link icon text-center" data-bs-toggle="dropdown">
+                                    <i class="fe fe-message-square"></i><span class=" pulse-danger"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <div class="drop-heading border-bottom">
+                                        <div class="d-flex">
+                                            <h6 class="mt-1 mb-0 fs-16 fw-semibold">You have Messages</h6>
+                                            <div class="ms-auto">
+                                                <span class="badge bg-danger rounded-pill">4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-menu">
+                                        <a class="dropdown-item d-flex" href="chat.html">
+                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/1.jpg"></span>
+                                            <div class="wd-90p">
+                                                <div class="d-flex">
+                                                    <h5 class="mb-1">Madeleine</h5>
+                                                    <small class="text-muted ms-auto text-end">
+                                                        3 hours ago
+                                                    </small>
+                                                </div>
+                                                <span>Hey! there I' am available....</span>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex" href="chat.html">
+                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/12.jpg"></span>
+                                            <div class="wd-90p">
+                                                <div class="d-flex">
+                                                    <h5 class="mb-1">Anthony</h5>
+                                                    <small class="text-muted ms-auto text-end">
+                                                        5 hour ago
+                                                    </small>
+                                                </div>
+                                                <span>New product Launching...</span>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex" href="chat.html">
+                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/4.jpg"></span>
+                                            <div class="wd-90p">
+                                                <div class="d-flex">
+                                                    <h5 class="mb-1">Olivia</h5>
+                                                    <small class="text-muted ms-auto text-end">
+                                                        45 mintues ago
+                                                    </small>
+                                                </div>
+                                                <span>New Schedule Realease......</span>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex" href="chat.html">
+                                            <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/15.jpg"></span>
+                                            <div class="wd-90p">
+                                                <div class="d-flex">
+                                                    <h5 class="mb-1">Sanderson</h5>
+                                                    <small class="text-muted ms-auto text-end">
+                                                        2 days ago
+                                                    </small>
+                                                </div>
+                                                <span>New Schedule Realease......</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <a href="#" class="dropdown-item text-center p-3 text-muted">See all Messages</a>
+                                </div>
+                            </div><!-- MESSAGE-BOX -->
+                            <div class="dropdown d-none d-md-flex profile-1">
+                                <a href="#" data-bs-toggle="dropdown" class="nav-link pe-2 leading-none d-flex">
+                                    <span>
+                                        <img src="@Session["ProfilePic"]" alt="profile-user" class="avatar  profile-user brround cover-image">
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <div class="drop-heading">
+                                        <div class="text-center">
+                                            <h5 class="text-dark mb-0">@Session["Name"] (@Session["LoginID"]) </h5>
+                                            @*<small class="text-muted"></small>*@
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider m-0"></div>
+                                    @*<a class="dropdown-item" href="profile.html">
+                                            <i class="dropdown-icon fe fe-user"></i> Profile
+                                        </a>
+                                        <a class="dropdown-item" href="email.html">
+                                            <i class="dropdown-icon fe fe-mail"></i> Inbox
+                                            <span class="badge bg-primary float-end">3</span>
+                                        </a>
+                                        <a class="dropdown-item" href="emailservices.html">
+                                            <i class="dropdown-icon fe fe-settings"></i> Settings
+                                        </a>
+                                        <a class="dropdown-item" href="faq.html">
+                                            <i class="dropdown-icon fe fe-alert-triangle"></i> Need help??
+                                        </a>*@
+                                    <a class="dropdown-item" href="/Home/Login">
+                                        <i class="dropdown-icon fe fe-alert-circle"></i>  Logout
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- SIDE-MENU -->
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!--************ Sidebar end***********-->
-
-
-        <!--************Content body start******************-->
-        <div class="content-body default-height">
-            @RenderBody()
-        </div>
-        <!--************Content body end******************-->
-        <!--******** Footer start**************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>
-                    Copyright © Designed &amp; Developed by <a href="#!" target="_blank">Afluex</a> 2023
-                </p>
+            <div class="mb-1 navbar navbar-expand-lg  responsive-navbar navbar-dark d-md-none bg-white">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                    <div class="d-flex order-lg-2 ms-auto">
+                        <div class="dropdown d-sm-flex">
+                            <a href="#" class="nav-link icon" data-bs-toggle="dropdown">
+                                <i class="fe fe-search"></i>
+                            </a>
+                            <div class="dropdown-menu header-search dropdown-menu-start">
+                                <div class="input-group w-100 p-2">
+                                    <input type="text" class="form-control" placeholder="Search....">
+                                    <div class="input-group-text btn btn-primary">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- SEARCH -->
+                        <div class="dropdown d-md-flex">
+                            <a class="nav-link icon theme-layout nav-link-bg layout-setting">
+                                <span class="dark-layout" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Dark Theme"><i class="fe fe-moon"></i></span>
+                                <span class="light-layout" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Light Theme"><i class="fe fe-sun"></i></span>
+                            </a>
+                        </div><!-- Theme-Layout -->
+                        <div class="dropdown d-md-flex">
+                            <a class="nav-link icon full-screen-link nav-link-bg">
+                                <i class="fe fe-minimize fullscreen-button"></i>
+                            </a>
+                        </div><!-- FULL-SCREEN -->
+                        <div class="dropdown  d-md-flex notifications">
+                            <a class="nav-link icon" data-bs-toggle="dropdown">
+                                <i class="fe fe-bell"></i><span class=" pulse"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <div class="drop-heading border-bottom">
+                                    <div class="d-flex">
+                                        <h6 class="mt-1 mb-0 fs-16 fw-semibold">You have Notification</h6>
+                                        <div class="ms-auto">
+                                            <span class="badge bg-success rounded-pill">3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notifications-menu">
+                                    <a class="dropdown-item d-flex" href="chat.html">
+                                        <div class="me-3 notifyimg  bg-primary-gradient brround box-shadow-primary">
+                                            <i class="fe fe-message-square"></i>
+                                        </div>
+                                        <div class="mt-1">
+                                            <h5 class="notification-label mb-1">New review received</h5>
+                                            <span class="notification-subtext">2 hours ago</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex" href="chat.html">
+                                        <div class="me-3 notifyimg  bg-secondary-gradient brround box-shadow-primary">
+                                            <i class="fe fe-mail"></i>
+                                        </div>
+                                        <div class="mt-1">
+                                            <h5 class="notification-label mb-1">New Mails Received</h5>
+                                            <span class="notification-subtext">1 week ago</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex" href="cart.html">
+                                        <div class="me-3 notifyimg  bg-success-gradient brround box-shadow-primary">
+                                            <i class="fe fe-shopping-cart"></i>
+                                        </div>
+                                        <div class="mt-1">
+                                            <h5 class="notification-label mb-1">New Order Received</h5>
+                                            <span class="notification-subtext">1 day ago</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-divider m-0"></div>
+                                <a href="#" class="dropdown-item text-center p-3 text-muted">View all Notification</a>
+                            </div>
+                        </div><!-- NOTIFICATIONS -->
+                        <div class="dropdown d-md-flex message">
+                            <a class="nav-link icon text-center" data-bs-toggle="dropdown">
+                                <i class="fe fe-message-square"></i><span class=" pulse-danger"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <div class="drop-heading border-bottom">
+                                    <div class="d-flex">
+                                        <h6 class="mt-1 mb-0 fs-16 fw-semibold">You have Messages</h6>
+                                        <div class="ms-auto">
+                                            <span class="badge bg-danger rounded-pill">4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-menu">
+                                    <a class="dropdown-item d-flex" href="chat.html">
+                                        <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/1.jpg"></span>
+                                        <div class="wd-90p">
+                                            <div class="d-flex">
+                                                <h5 class="mb-1">Madeleine</h5>
+                                                <small class="text-muted ms-auto text-end">
+                                                    3 hours ago
+                                                </small>
+                                            </div>
+                                            <span>Hey! there I' am available....</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex" href="chat.html">
+                                        <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/12.jpg"></span>
+                                        <div class="wd-90p">
+                                            <div class="d-flex">
+                                                <h5 class="mb-1">Anthony</h5>
+                                                <small class="text-muted ms-auto text-end">
+                                                    5 hour ago
+                                                </small>
+                                            </div>
+                                            <span>New product Launching...</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex" href="chat.html">
+                                        <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/4.jpg"></span>
+                                        <div class="wd-90p">
+                                            <div class="d-flex">
+                                                <h5 class="mb-1">Olivia</h5>
+                                                <small class="text-muted ms-auto text-end">
+                                                    45 mintues ago
+                                                </small>
+                                            </div>
+                                            <span>New Schedule Realease......</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex" href="chat.html">
+                                        <span class="avatar avatar-md brround me-3 align-self-center cover-image" data-bs-image-src="~/AssetsAdminNew/images/users/15.jpg"></span>
+                                        <div class="wd-90p">
+                                            <div class="d-flex">
+                                                <h5 class="mb-1">Sanderson</h5>
+                                                <small class="text-muted ms-auto text-end">
+                                                    2 days ago
+                                                </small>
+                                            </div>
+                                            <span>New Schedule Realease......</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-divider m-0"></div>
+                                <a href="#" class="dropdown-item text-center p-3 text-muted">See all Messages</a>
+                            </div>
+                        </div><!-- MESSAGE-BOX -->
+                        <div class="dropdown d-md-flex profile-1">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-link pe-2 leading-none d-flex">
+                                <span>
+                                    <img src="@Session["ProfilePic"]" alt="profile-user" class="avatar  profile-user brround cover-image">
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <div class="drop-heading">
+                                    <div class="text-center">
+                                        <h5 class="text-dark mb-0">@Session["Name"] </h5>
+                                        <small class="text-muted">(@Session["LoginID"])</small>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider m-0"></div>
+                                @*<a class="dropdown-item" href="profile.html">
+                                        <i class="dropdown-icon fe fe-user"></i> Profile
+                                    </a>
+                                    <a class="dropdown-item" href="email.html">
+                                        <i class="dropdown-icon fe fe-mail"></i> Inbox
+                                        <span class="badge bg-primary float-end">3</span>
+                                    </a>
+                                    <a class="dropdown-item" href="emailservices.html">
+                                        <i class="dropdown-icon fe fe-settings"></i> Settings
+                                    </a>
+                                    <a class="dropdown-item" href="faq.html">
+                                        <i class="dropdown-icon fe fe-alert-triangle"></i> Need help??
+                                    </a>*@
+                                <a class="dropdown-item" href="/Home/Login">
+                                    <i class="dropdown-icon fe fe-alert-circle"></i> Logout
+                                </a>
+                            </div>
+                        </div>
+                        <!-- SIDE-MENU -->
+                    </div>
+                </div>
             </div>
+            <!-- /Mobile Header -->
+            <!--app-content open-->
+            <div class="app-content">
+                <div class="side-app">
+                    @RenderBody()
+                </div>
+            </div>
+            <!--app-content end-->
         </div>
-        <!--*********  Footer end*******************-->
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        Copyright © 2024 <a href="#!">Afluex</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="#!"> Afluex  </a> All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER CLOSED -->
+
     </div>
 
+    <!-- BACK-TO-TOP -->
+    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JQUERY JS -->
+    <script src="~/AssetsAdminNew/plugins/jquery/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="~/AssetsAdminNew/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="~/AssetsAdminNew/plugins/input-mask/jquery.mask.min.js"></script>
+
+    <!-- SIDE-MENU JS -->
+    <script src="~/AssetsAdminNew/plugins/sidemenu/sidemenu.js"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="~/AssetsAdminNew/plugins/sidebar/sidebar.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="~/AssetsAdminNew/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="~/AssetsAdminNew/plugins/p-scroll/pscroll.js"></script>
+    <script src="~/AssetsAdminNew/plugins/p-scroll/pscroll-1.js"></script>
 
 
+    <!-- CHARTJS CHART JS-->
+    <script src="~/AssetsAdminNew/plugins/chart/Chart.bundle.js"></script>
+    <script src="~/AssetsAdminNew/plugins/chart/utils.js"></script>
+
+    <!-- PIETY CHART JS-->
+    <script src="~/AssetsAdminNew/plugins/peitychart/jquery.peity.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/peitychart/peitychart.init.js"></script>
+
+    <!-- INTERNAL SELECT2 JS -->
+    <script src="~/AssetsAdminNew/plugins/select2/select2.full.min.js"></script>
+
+    <!-- INTERNAL Data tables js-->
+    <script src="~/AssetsAdminNew/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/dataTables.responsive.min.js"></script>
+
+    <!-- ECHART JS-->
+    <script src="~/AssetsAdminNew/plugins/echarts/echarts.js"></script>
+
+    <!-- APEXCHART JS -->
+    <script src="~/AssetsAdminNew/js/apexcharts.js"></script>
+
+    <!-- INDEX JS -->
+    <script src="~/AssetsAdminNew/js/index1.js"></script>
 
 
+    <!-- CUSTOM JS-->
+    <script src="~/AssetsAdminNew/js/custom.js"></script>
 
-    <script src="~/assetsAdmin/vendor/global/global.min.js"></script>
-    <script src="~/assetsAdmin/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
-
-    <script src="~/assetsAdmin/vendor/ckeditor/ckeditor.js"></script>
-
-    <script src="~/assetsAdmin/vendor/counter/counter.min.js"></script>
-    <script src="~/assetsAdmin/vendor/counter/waypoint.min.js"></script>
-    @*<script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
-    <script src="~/assetsAdmin/vendor/chart-js/chart.bundle.min.js"></script>*@
-    <script src="~/assetsAdmin/vendor/peity/jquery.peity.min.js"></script>
-    @*<script src="~/assetsAdmin/js/dashboard/dashboard-1.js"></script>*@
-    <script src="~/assetsAdmin/vendor/owl-carousel/owl.carousel.js"></script>
-
-    @*<script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>*@
-    <script src="~/assetsAdmin/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/assetsAdmin/vendor/datatables/responsive/responsive.js"></script>
-    <script src="~/assetsAdmin/js/plugins-init/datatables.init.js"></script>
-
-    <script src="~/assetsAdmin/js/custom.min.js"></script>
-    <script src="~/assetsAdmin/js/dlabnav-init.js"></script>
-    @*<script src="~/assetsAdmin/js/demo.js"></script>*@
-
-    
-
-    <script src="~/assetsAdmin/vendor/toastr/js/toastr.min.js"></script>
-    <script src="~/assetsAdmin/js/styleSwitcher.js"></script>
-
-
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
+    <!-- Switcher js -->
+    <script src="~/AssetsAdminNew/switcher/js/switcher.js"></script>
 </body>
-
 </html>
