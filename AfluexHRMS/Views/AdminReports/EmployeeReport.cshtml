@@ -8,11 +8,15 @@
 @using (Html.BeginForm("EmployeeReport", "AdminReports", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
     <div class="container-fluid">
-        <div class="row page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Reports</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Employee Report</a></li>
-            </ol>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Reports</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Reports</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee Report</li>
+                </ol>
+            </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -69,55 +73,56 @@
                                 <div class="col-lg-12">
                                     <div class="box_body p-4">
                                         <div class="table-responsive">
-                                                <table class="table display" id="example">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Sr.No</th>
-                                                            <th>Employee Code</th>
-                                                            <th>Employee Name</th>
-                                                            <th>Password</th>
-                                                            <th> CompanyName</th>
-                                                            <th> DepartmentName</th>
-                                                            <th> DesignationName</th>
-                                                            <th> Gender</th>
-                                                            <th> DateOfJoining</th>
-                                                            <th> Contact</th>
-                                                            <th>View</th>
-                                                            @*<th>Delete</th>*@
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @if (Model != null)
+                                            <table class="table display table display table-bordered table-hover" id="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sr.No</th>
+                                                        <th>Employee Code</th>
+                                                        <th>Employee Name</th>
+                                                        <th>Password</th>
+                                                        <th> CompanyName</th>
+                                                        <th> DepartmentName</th>
+                                                        <th> DesignationName</th>
+                                                        <th> Gender</th>
+                                                        <th> DateOfJoining</th>
+                                                        <th> Contact</th>
+                                                        <th>View</th>
+                                                        @*<th>Delete</th>*@
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model != null)
+                                                    {
+                                                        if (Model.lstList != null)
                                                         {
-                                                            if (Model.lstList != null)
+                                                            int i = 1;
+                                                            foreach (var item in Model.lstList)
                                                             {
-                                                                int i = 1;
-                                                                foreach (var item in Model.lstList)
-                                                                {
-                                                                    <tr>
-                                                                        <td>@i </td>
-                                                                        <td>@item.EmployeeCode</td>
-                                                                        <td>@item.EmployeeName</td>
-                                                                        <td>@item.Password</td>
-                                                                        <td>@item.CompanyName</td>
-                                                                        <td>@item.DepartmentName</td>
-                                                                        <td>@item.DesignationName</td>
-                                                                        <td>@item.Gender</td>
-                                                                        <td>@item.DateOfJoining</td>
-                                                                        <td>@item.Contact</td>
-                                                                        <td>
-                                                                            <a href="/AdminReports/Details?id=@item.EmployeeID" class="btn btn-primary btn-sm" target="_blank">View</a>
+                                                                <tr>
+                                                                    <td>@i </td>
+                                                                    <td>@item.EmployeeCode</td>
+                                                                    <td>@item.EmployeeName</td>
+                                                                    <td>@item.Password</td>
+                                                                    <td>@item.CompanyName</td>
+                                                                    <td>@item.DepartmentName</td>
+                                                                    <td>@item.DesignationName</td>
+                                                                    <td>@item.Gender</td>
+                                                                    <td>@item.DateOfJoining</td>
+                                                                    <td>@item.Contact</td>
+                                                                    <td>
+                                                                        <a href="/AdminReports/Details?id=@item.EmployeeID" class="btn btn-primary btn-sm" target="_blank">View</a>
 
-                                                                        </td>
-                                                                        @*<td><a href="/AdminReports/DeleteEmployee?id=@item.EmployeeID" class="btn btn-danger btn-sm"onclick="return confirm('Are you want to delete?;')">Delete</a></td>*@
-                                                                    </tr>
-                                                                    i++;
-                                                                }
+                                                                    </td>
+                                                                    @*<td><a href="/AdminReports/DeleteEmployee?id=@item.EmployeeID" class="btn btn-danger btn-sm"onclick="return confirm('Are you want to delete?;')">Delete</a></td>*@
+                                                                </tr>
+                                                                i++;
                                                             }
                                                         }
-                                                    </tbody>
+                                                    }
+                                                </tbody>
 
-                                                </table>
+                                            </table>
+
                                         </div>
                                     </div>
                                 </div>
