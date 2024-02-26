@@ -8,10 +8,14 @@
 @using (Html.BeginForm("EmployeeDashboard", "EmployeeLogin", FormMethod.Post, new { @id = "Profile", @enctype = "multipart/form-data", @autocomplete = "off" }))
 {
     <div class="container-fluid">
-        <div class="row page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Employee Dashboard</a></li>
-            </ol>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Employee Dashboard </h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee Dashboard </li>
+                </ol>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-5 col-md-12">
@@ -73,7 +77,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-3 mt-3">
-                                    <input type="submit" value="Send" class="pull-right btn btn-success" id="sendEmail" name="sendEmail" onclick="return ValidateForm()" />
+                                    <input type="submit" value="Send" class="btn btn-success" id="sendEmail" name="sendEmail" onclick="return ValidateForm()" />
                                 </div>
                             </div>
                         </div>
