@@ -71,7 +71,7 @@
                                         <label class="form-label d-block" for="inputEmail4"><h5>&nbsp;</h5></label>
                                         @if (Model.CompanyID == null)
                                         {
-                                            <input type="submit" class="btn btn-success" name="Save" value="Save" onclick="return validateform();" />
+                                            <input type="submit" class="btn btn-success" id="Save" name="Save" value="Save" onclick="return validateform();" />
                                         }
                                         else
                                         {
@@ -193,4 +193,14 @@ function onlyAlphabets(e, t) {
     }
 }
 
+
+   
+    $("#btnSave").click(function (event) {
+        debugger;
+  event.preventDefault();
+  event.stopPropagation();
+  return $.growl.notice({
+    message: "You have 4 notification"
+  });
+}).call(this);
 </script>
