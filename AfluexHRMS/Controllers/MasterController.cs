@@ -445,18 +445,18 @@ namespace AfluexHRMS.Controllers
                     }
                     else if (ds.Tables[0].Rows[0][0].ToString() == "0")
                     {
-                        TempData["Designationmsg"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrDesignationmsg"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
                 else
                 {
-                    TempData["Designationmsg"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    TempData["ErrDesignationmsg"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                 }
 
             }
             catch (Exception ex)
             {
-                TempData["Designationmsg"] = ex.Message;
+                TempData["ErrDesignationmsg"] = ex.Message;
             }
             return RedirectToAction("DesignationMaster", "Master");
         }

@@ -10,27 +10,16 @@
     <div class="container-fluid">
         <div class="page-header">
             <div>
-                <h1 class="page-title">Reports</h1>
+                <h1 class="page-title">Employee List</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Reports</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Employee Report</li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee List</li>
                 </ol>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header d-lg-flex justify-content-between">
-                        <h4 class="card-title">Employee Report</h4>
-                        @*<p style="color: #ff0000">
-                                @TempData["EmpSalary"]
-                            </p>
-                            <p style="color: red">
-                                @TempData["ErrEmpSalary"]
-                            </p>*@
-                    </div>
-
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3 mb-3">
@@ -45,17 +34,17 @@
 
                             <div class="col-md-3 mb-3">
                                 <label class="form-label" for="inputEmail4"><h5>Company Name</h5></label>
-                                @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control default-select wide" })
+                                @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
                             </div>
 
                             <div class="col-md-3 mb-3">
                                 <label class="form-label" for="inputEmail4"><h5>Department Name</h5></label>
-                                @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control default-select wide", @onchange = "return GetDesignation();" })
+                                @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control form-select default-select wide", @onchange = "return GetDesignation();" })
                             </div>
 
                             <div class="col-md-3 mb-3">
                                 <label class="form-label" for="inputEmail4"><h5>Designation Name</h5></label>
-                                @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control default-select wide" })
+                                @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp;</h5></label>

@@ -84,6 +84,33 @@
        
 }
 
+@if (TempData["Company"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "Success : @TempData["Company"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if(TempData["ErrCompany"] !=null )
+{
+
+        <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrCompany"]",
+                    type: "error"
+                });
+            };
+
+        </script>
+
+}
+
+
 <style>
     .errortext {
         border: 1px solid red !important;
