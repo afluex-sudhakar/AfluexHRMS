@@ -14,7 +14,6 @@
             <div>
                 <h1 class="page-title">Attendance</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Attendance</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Quick Attendance Posting</li>
                 </ol>
@@ -23,15 +22,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    @*<div class="card-header d-lg-flex justify-content-between">
-                        <h4 class="card-title">Employee Quick Attendance</h4>
-                        <p style="color: #ff0000">
-                            @TempData["Attendancemsg"]
-                        </p>
-                        <p style="color: red">
-                            @TempData["ErrAttendancemsg"]
-                        </p>
-                    </div>*@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3 mb-3">
@@ -188,6 +178,31 @@
     }
 </script>
 
+@if (TempData["Attendancemsg"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["Attendancemsg"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrAttendancemsg"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrAttendancemsg"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
 
 <style>
     .errortext {

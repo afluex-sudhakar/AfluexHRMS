@@ -14,7 +14,6 @@
                 <div>
                     <h1 class="page-title">Company Master</h1>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Master</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Company Master</li>
                     </ol>
@@ -62,7 +61,7 @@
                                         <label class="form-label d-block" for="inputEmail4"><h5>&nbsp;</h5></label>
                                         @if (Model.CompanyID == null)
                                         {
-                                            <input type="submit" class="btn btn-success" name="Save" value="Save" onclick="return validateform();" />
+                                            <input type="submit" class="btn btn-success" id="Save" name="Save" value="Save" onclick="return validateform();" />
                                         }
                                         else
                                         {
@@ -84,6 +83,33 @@
   
        
 }
+
+@if (TempData["Company"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "Success : @TempData["Company"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if(TempData["ErrCompany"] !=null )
+{
+
+        <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrCompany"]",
+                    type: "error"
+                });
+            };
+
+        </script>
+
+}
+
 
 <style>
     .errortext {
@@ -183,5 +209,6 @@ function onlyAlphabets(e, t) {
         alert(err.Description);
     }
 }
+
 
 </script>

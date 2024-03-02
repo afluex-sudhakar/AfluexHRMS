@@ -12,7 +12,6 @@
             <div>
                 <h1 class="page-title">Holiday</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Leave Management</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Holiday</li>
                 </ol>
@@ -119,6 +118,32 @@
         background-color: #fff0f0 !important;
     }
 </style>
+
+@if (TempData["Holiday"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["Holiday"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrHoliday"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrHoliday"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
 
 <script>
 

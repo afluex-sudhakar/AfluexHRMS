@@ -12,7 +12,6 @@
             <div>
                 <h1 class="page-title">Search Employee</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Employee</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Search Employee</li>
                 </ol>
@@ -21,16 +20,6 @@
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="card">
-                    @*<div class="card-header d-lg-flex justify-content-between">
-                        <h4 class="card-title">Search Employee</h4>
-                        <p style="color: #ff0000">
-                            @TempData["EmpSal"]
-                        </p>
-                        <p style="color: red">
-                            @TempData["ErrEmpSal"]
-                        </p>
-                    </div>*@
-
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3 mb-3">
@@ -243,8 +232,32 @@
     
 }
 
+@if (TempData["EmpSal"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["EmpSal"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrEmpSal"] != null)
+{
 
-<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrEmpSal"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
+
 <script>
 
     function validateform() {
