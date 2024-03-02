@@ -13,7 +13,6 @@
                 <div>
                     <h1 class="page-title">Apply Leave</h1>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/EmployeeLogin/EmployeeDashboard">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Leave</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Apply Leave </li>
                     </ol>
@@ -22,14 +21,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        @*<div class="card-header d-lg-flex justify-content-between">
-                            <h4 class="card-title">Leave</h4>
-                            <p style="color: #ff0000">
-                                @TempData["EmployeeLeaveApp"]
-                            </p>
-                        </div>*@
-                        
-
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-lg-12">
@@ -131,3 +122,29 @@
 
 
 </script>
+
+@if (TempData["EmployeeLeaveApp"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "@TempData["EmployeeLeaveApp"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrEmployeeLeaveApp"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrEmployeeLeaveApp"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}

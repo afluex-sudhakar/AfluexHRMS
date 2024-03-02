@@ -425,13 +425,13 @@ namespace AfluexHRMS.Controllers
                     }
                     else
                     {
-                        TempData["DailyAttendance"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrDailyAttendance"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                TempData["DailyAttendance"] = ex.Message;
+                TempData["ErrDailyAttendance"] = ex.Message;
             }
             FormName = "DailyAttendance";
             Controller = "EmployeeAttendance";
