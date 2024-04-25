@@ -1,0 +1,23 @@
+﻿@model AfluexHRMS.Models.Admin
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("MyProfile", "Admin", FormMethod.Post, new { @id = "Profile", enctype = "multipart/form-data" }))
+{
+
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">My Profile</h1>
+            </div>
+        </div>
+        
+    </div>
+
+}
+
+
