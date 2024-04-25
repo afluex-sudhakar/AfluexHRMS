@@ -80,7 +80,10 @@ namespace AfluexHRMS.Controllers
         //    }
         //    return Json(dataList2, JsonRequestBehavior.AllowGet);
         //}
-
+        public ActionResult MyProfile()
+        {
+            return View();
+        }
        
     }
 }

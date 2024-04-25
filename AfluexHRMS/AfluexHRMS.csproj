@@ -1612,6 +1612,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\NFCProfile\EditProfileSetAction.cshtml" />
+    <Content Include="Views\Admin\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1641,7 +1642,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50284</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50285/</IISUrl>
+          <IISUrl>http://localhost:50284/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
