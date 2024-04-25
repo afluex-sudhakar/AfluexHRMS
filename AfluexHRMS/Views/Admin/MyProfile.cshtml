@@ -1,0 +1,171 @@
+﻿@model AfluexHRMS.Models.Admin
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("MyProfile", "Admin", FormMethod.Post, new { @id = "Profile", enctype = "multipart/form-data" }))
+{
+
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">My Profile</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <div class="clearfix">
+                    <div class="card shadow">
+                        <div class="card-body">
+
+
+                            <div class="fixed-left">
+                                <div class="profile-picture-container" id="profile-picture-container" data-image-type="square">
+
+                                    <div class="upload-image-container ">
+                                        <h2 class="blue-title semibold no-margin">+</h2>
+                                        <label for="upload" class="uploadPic mb-0"></label>
+                                        <input type="file" id="upload" class="uploadPic d-none" value="Choose a file" accept="image/*">
+                                        <p id="_logo-desc" class="ft-13 no-margin">Your Company Logo comes here</p>
+                                    </div>
+
+                                    <div class="company-logo-img ">
+                                        <img height="60px" id="companyLogoImageTag" onload="setupProfilePicture()" src="" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                <p class="text-muted mt-3 text-center">demo@gmail.com</p>
+
+                <p class="text-muted text-center">Designation :  DesignationName  </p>
+
+                <p class="text-muted text-center">Department : DepartmentName  </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-12">
+                <div class="card shadow">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Personal Info</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>First Name</h5></label>
+                                <input type="email" class="form-control" id="emailto" name="emailto" placeholder="First Name">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Middle Name</h5></label>
+                                <input type="text" class="form-control" placeholder="Subject">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Last Name</h5></label>
+                                <input type="text" class="form-control" placeholder="Last Name">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Gender</h5></label>
+                                <select class="default-select form-control wide">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Transgender</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Blood Group</h5></label>
+                                <select class="default-select form-control wide">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>AB</option>
+                                    <option>AB <sup>+</sup></option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Marital Status</h5></label>
+                                <select class="default-select form-control wide">
+                                    <option>Marriede</option>
+                                    <option>UnMarried</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Contact Info</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Official Email ID</h5></label>
+                                <input type="email" class="form-control" id="emailto" name="emailto" placeholder="Official Email ID">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Personal Email ID</h5></label>
+                                <input type="text" class="form-control" placeholder="Personal Email ID">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Phone Number</h5></label>
+                                <input type="text" class="form-control" placeholder="+91 85XX545">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for=""><h5>Alternate NUmber</h5></label>
+                                <input type="text" class="form-control" placeholder="Type Alternate NUmber">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Adderess</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+
+                            <div class="col-md-12">
+                               <div class="row">
+                                   <div class="col-md-6 mb-3">
+                                       <div class="row">
+                                           <div class="col-md-12 mb-3">
+                                               <label class="form-label" for="inputEmail4"><h5>Current Address</h5></label>
+                                               <input type="email" class="form-control" id="emailto" name="emailto" placeholder="Adderess Line 1 ">
+                                           </div>
+                                           <div class="col-md-12 mb-3">
+                                               <input type="text" class="form-control" placeholder="Adderess Line 1">
+                                           </div>
+                                           <div class="col-md-12 mb-3">
+                                               <input type="text" class="form-control" placeholder="Adderess Line 2">
+                                           </div>
+                                        </div>
+                                   </div>
+                                   <div class="col-md-6 mb-3">
+                                       <div class="row">
+                                           <div class="col-md-12 mb-3">
+                                               <label class="form-label" for="inputEmail4"><h5>Permanent Address</h5></label>
+                                               <input type="email" class="form-control" id="emailto" name="emailto" placeholder="Adderess Line 1 ">
+                                           </div>
+                                           <div class="col-md-12 mb-3">
+                                               <input type="text" class="form-control" placeholder="Adderess Line 1">
+                                           </div>
+                                           <div class="col-md-12 mb-3">
+                                               <input type="text" class="form-control" placeholder="Adderess Line 2">
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+

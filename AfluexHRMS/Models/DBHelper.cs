@@ -16,7 +16,9 @@ namespace AfluexHRMS.Models
         {
             try
             {
-                connectionString = "Data Source=23.111.171.42;Initial Catalog= HRMSDemoDB; User Id= hrmsuser; Password=HRMS123!@#; Integrated Security=false;";
+                connectionString = "Data Source=101.53.150.222,1440;Initial Catalog=HRMSDemoDB; User Id=sa; Password=Fx1479LVAPbF; Integrated Security=false;";
+
+                //connectionString = "Data Source=23.111.171.42;Initial Catalog= HRMSDemoDB; User Id= hrmsuser; Password=HRMS123!@#; Integrated Security=false;";
                 //connectionString = "Data Source=DESKTOP-JR58KGS;Initial Catalog=AfluexHRMS;Integrated Security=True";
             }
             catch (Exception)
