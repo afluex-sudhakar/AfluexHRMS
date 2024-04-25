@@ -82,7 +82,7 @@
     <div class="row row-cards">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
             <div class="card">
-                <div class="card-header pt-2 pb-0 border-bottom-0">
+                <div class="card-header pb-0 border-bottom-0">
                     <h3 class="card-title mb-4"> Task #1</h3>
                     <div class="card-options">
                         <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-bar-chart mb-0"></i></a>
@@ -146,6 +146,30 @@
         </div><!-- COL END -->
     </div>
     <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+            <div class="card custom-card ">
+                <div class="card-header">
+                    <h3 class="card-title">Your Company Logo Here</h3>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="fixed-left">
+                        <div class="profile-picture-container" id="profile-picture-container" data-image-type="square">
+
+                            <div class="upload-image-container ">
+                                <h2 class="blue-title semibold no-margin">+</h2>
+                                <label for="upload" class="uploadPic mb-0"></label>
+                                <input type="file" id="upload" class="uploadPic d-none" value="Choose a file" accept="image/*">
+                                <p id="_logo-desc" class="ft-13 no-margin">Your Company Logo comes here</p>
+                            </div>
+
+                            <div class="company-logo-img ">
+                                <img height="60px" id="companyLogoImageTag" onload="setupProfilePicture()" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
             <div class="card">
                 <div class="card-header">
@@ -155,33 +179,7 @@
                     <div id="chartArea" class="chart-donut"></div>
                 </div>
             </div>
-        </div><!-- COL END -->
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
-            <div class="card custom-card ">
-                <div class="card-header">
-                    <h3 class="card-title">Recent Orders</h3>
-                </div>
-                <div class="card-body pt-0">
-                    <div id="recentorders" class="apex-charts ht-150"></div>
-                    <div class="row sales-product-infomation pb-0 mb-0 mx-auto wd-100p mt-6">
-                        <div class="col-md-6 col justify-content-center text-center">
-                            <p class="mb-0 d-flex justify-content-center"><span class="legend bg-primary"></span>Delivered</p>
-                            <h3 class="mb-1 fw-bold">5238</h3>
-                            <div class="d-flex justify-content-center ">
-                                <p class="text-muted mb-0">Last 6 months</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col text-center float-end">
-                            <p class="mb-0 d-flex justify-content-center "><span class="legend bg-background2"></span>Cancelled</p>
-                            <h3 class="mb-1 fw-bold">3467</h3>
-                            <div class="d-flex justify-content-center ">
-                                <p class="text-muted mb-0">Last 6 months</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- COL END -->
+        </div>
     </div>
     <div class="row">
         <div class="col-xl-4 col-md-12">

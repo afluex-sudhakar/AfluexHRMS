@@ -373,3 +373,4 @@ F:\Ashwani Afluex\repo\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveA
 F:\Ashwani Afluex\repo\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 F:\Ashwani Afluex\repo\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
+D:\Devendra\HrmsAfluex2024\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
