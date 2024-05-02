@@ -251,6 +251,7 @@ namespace AfluexHRMS.Models
 
             return Gender;
         }
+        
         public static List<SelectListItem> BindPaymentMode()
         {
             List<SelectListItem> PaymentMode = new List<SelectListItem>();

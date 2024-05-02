@@ -9,6 +9,21 @@ namespace AfluexHRMS.Models
 {
     public class EmployeeLogin
     {
+        public string postedFile { get; set; }
+        public string DepartmentName { get; set; }
+        public string DesignationName { get; set; }
+        public string ProfilePic { get; set; }
+        public string GenderID { get; set; }
+        public List<EmployeeLogin> lstListprofile { get; set; }
+        public string DOJ { get; set; }
+        public string Address { get; set; }
+        public string Contact { get; set; }
+        public string Email { get; set; }
+        public string PAN { get; set; }
+        public string BloodGroup { get; set; }
+        public string Gender { get; set; }
+        public string DOB { get; set; }
+        public string FatherName { get; set; }
         public List<EmployeeLogin> lstList { get; set; }
         public string EmployeeID { get; set; }
         public string LeaveID { get; set; }
@@ -138,6 +153,34 @@ namespace AfluexHRMS.Models
                 new SqlParameter("@Message",Message)
             };
             DataSet ds = DBHelper.ExecuteQuery("SaveEmail", para);
+            return ds;
+        }
+
+        public DataSet GetProfileDetails()
+        {
+            SqlParameter[] para = {
+                     new SqlParameter("@FK_EmpID",EmployeeID),};
+            DataSet ds = DBHelper.ExecuteQuery("GetEmployeeProfile", para);
+            return ds;
+        }
+
+        public DataSet UpdateProfileDetails()
+        {
+            SqlParameter[] para =
+            {
+                      new SqlParameter("@Fk_EmpID",EmployeeID),
+                      new SqlParameter("@Profile",postedFile),
+                      new SqlParameter("@Name",Name),
+                      new SqlParameter("@FatherName",FatherName),
+                      new SqlParameter("@DOB",DOB),
+                      new SqlParameter("@Gender",GenderID),
+                      new SqlParameter("@BloodGroup",BloodGroup),
+                      new SqlParameter("@Email",Email),
+                      new SqlParameter("@MobileNo",Contact),
+                      new SqlParameter("@Pan",PAN),
+                      new SqlParameter("@UpdatedBy",EmployeeID)
+            };
+            DataSet ds = DBHelper.ExecuteQuery("UpdateEmployeeProfileDetails", para);
             return ds;
         }
     }

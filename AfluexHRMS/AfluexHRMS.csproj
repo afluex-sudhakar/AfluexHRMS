@@ -1372,6 +1372,10 @@
     <Content Include="assets\vendors\verctorMap\map-vector.js" />
     <Content Include="assets\vendors\verctorMap\vector-map.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\1.gif" />
+    <Content Include="images\2.gif" />
+    <Content Include="images\3.gif" />
+    <Content Include="images\4.gif" />
     <Content Include="images\Afluex-loader.gif" />
     <Content Include="images\nfc_logo.png" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -1612,7 +1616,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\NFCProfile\EditProfileSetAction.cshtml" />
-    <Content Include="Views\Admin\MyProfile.cshtml" />
+    <Content Include="Views\EmployeeLogin\MyProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1642,7 +1646,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50284</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50284/</IISUrl>
+          <IISUrl>http://localhost:50285/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

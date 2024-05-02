@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="col col-auto">
                                     <div class="counter-icon dashboard_icon bg-primary-gradient box-shadow-primary brround mb-0 ms-auto">
-                                        <img src="https://cdn-icons-gif.flaticon.com/7211/7211817.gif" class="rounded p-1" />
+                                        <img src="~/images/1.gif" class="rounded p-1" />
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col col-auto">
                                     <div class="counter-icon dashboard_icon bg-danger-gradient box-shadow-primary brround mb-0 ms-auto">
-                                        <img src="https://cdn-icons-gif.flaticon.com/6416/6416392.gif" class="rounded p-1" />
+                                        <img src="~/images/2.gif" class="rounded p-1" />
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col col-auto">
                                     <div class="counter-icon dashboard_icon bg-secondary-gradient box-shadow-primary brround mb-0 ms-auto">
-                                        <img src="https://cdn-icons-gif.flaticon.com/11095/11095504.gif" class="rounded p-1" />
+                                        <img src="~/images/3.gif" class="rounded p-1" />
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col col-auto">
                                     <div class="counter-icon dashboard_icon bg-success-gradient box-shadow-primary brround mb-0 ms-auto">
-                                        <img src="https://cdn-icons-gif.flaticon.com/12417/12417283.gif" class="rounded p-1" />
+                                        <img src="~/images/4.gif" class="rounded p-1" />
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
                             </div>
 
                             <div class="company-logo-img ">
-                                <img height="60px" id="companyLogoImageTag" onload="setupProfilePicture()" src="" alt="">
+                                <img height="60" id="companyLogoImage" onload="setupProfilePicture()" src="" alt="">
                             </div>
                         </div>
                     </div>
@@ -556,56 +556,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        //debugger;
-        //google.charts.load("current", { packages: ["ImageBarChart"] });
-        //google.charts.setOnLoadCallback(drawChart);
-        //drawChart();
-
         window.onload = horizontalBarChart();
     });
-
-
-    //function drawChart() {
-    //    debugger;
-    //    $.noConflict();
-    //         $.ajax({
-    //             type: 'POST',
-    //             dataType: 'json',
-    //             contentType: 'application/json',
-    //             url: '/Admin/GetJoiningDetails',
-    //             data: JSON.stringify(),
-    //             success:
-    //             function (response) {
-    //                 var datare = response;
-    //                 var data = new google.visualization.DataTable();
-
-    //                 data.addColumn('string', 'Month');
-    //                 data.addColumn('number', 'Present');
-    //                 data.addColumn('number', 'Absent');
-    //                 for (var i = 0; i < datare.length; i++) {
-    //                     data.addRow([datare[i].Month, parseInt(datare[i].TotalUser), parseInt(datare[i].City2)]);
-    //                 }
-
-    //                 var chart = new google.visualization.ImageBarChart(document.getElementById('marketchart'));
-    //                 var options = {
-    //                     pieSliceText: 'value-and-percentage',
-    //                     format: 'decimal',
-    //                     is3D: true,
-    //                     legend: { position: 'bottom' },
-    //                     animation: {
-    //                         startup: true,
-    //                         duration: 1000,
-    //                         easing: 'out',
-    //                     }, chartArea: { width: "100%", height: "100%" }
-    //                 };
-    //                 chart.draw(data, options);
-    //             },
-    //             error: function () {
-    //             }
-    //         });
-    //}
-
-
 
     function horizontalBarChart() {
         $.ajax({
@@ -646,12 +598,12 @@
                                                  return value[0];
                                              }
                                          }
-                                         
+
                                      }]
                                  ];
-                             
+
                                  new Chartist.Bar('#overlapping-bars', data, options, responsiveOptions);
-                        
+
                          },
                          error: function () {
                          }
@@ -719,7 +671,45 @@
 
             }
         });
-    }
+    };
+
+
+    //function getFile1() {
+    //    document.getElementById("companyLogoImage").click();
+    //}
+    //var loadFile = function (event) {
+    //    var image = document.getElementById('output');
+    //    image.src = URL.createObjectURL(event.target.files[0]);
+    //};
+
+    $("companyLogoImage").change(function () {
+        debugger;
+        var fileUpload = $("#companyLogoImage").get(0);
+        var files = fileUpload.files;
+        var formData = new FormData();
+        formData.append(files[0].name, files[0]);
+        var AdminID = @Session["Pk_AdminId"];
+        formData.append("AdminID",AdminID)
+        $.ajax({
+            url: "/Customer/UpdateProfilePic",
+            type: 'post',
+            datatype: 'json',
+            contentType: false,
+            processData: false,
+            async: false,
+            data: formData,
+            success: function (data) {
+
+                if (data == true) {
+                    alert("Picture Uploaded succesfully !");
+                    //window.location.href= "/Customer/MyAccount";
+                }
+                else {
+                    alert("Not Uploaded. Kindly try after some times. !! ")
+                }
+            }
+        })
+    });
 </script>
 
 
@@ -763,9 +753,6 @@
                 };
 
                 chart.draw(data, options);
-
-
-
 
             },
             error: function () {
