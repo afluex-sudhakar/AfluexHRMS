@@ -13,9 +13,8 @@
                 <div>
                     <h1 class="page-title">Message</h1>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/EmployeeLogin/EmployeeDashboard">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Message</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Message</li>
+                        <li class="breadcrumb-item active" aria-current="page">Send Message</li>
                     </ol>
                 </div>
             </div>
@@ -99,6 +98,32 @@
             </div>
         </div>
     </div>
+}
+
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["Message"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrMessage"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrMessage"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
 }
 
 <script>

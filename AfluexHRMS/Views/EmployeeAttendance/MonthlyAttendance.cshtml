@@ -1,20 +1,20 @@
 ﻿@model AfluexHRMS.Models.EmployeeAttendance
 
 @{
-    ViewBag.Title = "DailyAttendance";
+    ViewBag.Title = "MonthlyAttendance";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 
-@using (Html.BeginForm("DailyAttendance", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
+@using (Html.BeginForm("MonthlyAttendance", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
     <div class="container-fluid">
         <div class="page-header">
             <div>
-                <h1 class="page-title">Attendance</h1>
+                <h1 class="page-title">Monthly Attendance</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Attendance</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Daily Attendance </li>
+                    <li class="breadcrumb-item active" aria-current="page">Monthly Attendance</li>
                 </ol>
             </div>
         </div>
@@ -24,15 +24,14 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-md-3">
-                                <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
-                                @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
+                                <label class="form-label" for="inputEmail4"><h5>Select Date <span style="color:red;">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "Select Date", @autocomplete = "off", @readonly = "true" })
                             </div>
-
                             <div class="col-md-3">
-                                <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
-                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                                <label class="form-label" for="inputEmail4"><h5>Employee Code <span style="color:red;">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code", @onchange = "getname();" })
+                                <span id="spName" style="color:#006d3a;font-weight: bold;"></span>
                             </div>
-
                             <div class="col-md-3 mb-3">
                                 <label class="form-label d-none d-lg-block"><h5>&nbsp;</h5></label>
                                 <input type="submit" class="btn btn-info" name="Search" value="Search" onclick="return validateSearch();" />
@@ -47,14 +46,14 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label class="form-label" for="inputEmail4"><h5>Attendance Date<span style="color:red">*</span></h5></label>
-                                @Html.TextBoxFor(m => m.AttendanceDate, new { @class = "form-control", @Placeholder = "Attendance Date" })
-                            </div>
 
-                            <div class="col-md-9">
+                            <div class="col-md-3">
                                 <label class="form-label d-none d-lg-block mb-4"><h5>&nbsp;</h5></label>
-                                <b>  [  P - Present , A - Absent , HD - Half Day , FD - Full Day , L - Leave , S - Sunday  ]</b>
+                                <b>Employee Details: </b><span>@ViewBag.EmployeeDetails</span>
+                            </div>
+                            <div class="col-md-9 text-center">
+                                <label class="form-label d-none d-lg-block mb-4"><h5>&nbsp;</h5></label>
+                                <b style="color:red">  [  P - Present , A - Absent , HD - Half Day , FD - Full Day , L - Leave , S - Sunday  ]</b>
                             </div>
                         </div>
 
@@ -69,8 +68,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>SNo.</th>
-                                                        <th>Emp Code</th>
-                                                        <th>Name</th>
+                                                        <th hidden>Emp Code</th>
+                                                        <th>Attendance Date</th>
+                                                        @*<th>Name</th>*@
                                                         <th style="min-width:100px">W.H Limit</th>
                                                         <th style="min-width:150px">Attendance</th>
                                                         <th>InTime</th>
@@ -91,10 +91,11 @@
                                                             {
                                                                 <tr class="text-left">
                                                                     <td>@i</td>
-                                                                    <td style="min-width:100px">@Item.EmployeeLoginId <input type='hidden' value='@Item.EmployeeID' id='empid @i' name='empid @i'></td>
-                                                                    <td style="min-width:200px">@Item.EmployeeName</td>
+                                                                    <td style="min-width:100px" hidden>@ViewBag.EmployeeCode<input type='hidden' value='@ViewBag.PK_EmployeeID' id='empid @i' name='empid @i'></td>
+                                                                    <td style="min-width:100px">@Item.AttendanceDate <input type='hidden' value='@Item.AttendanceDate' id='monthly @i' name='monthly @i'></td>
+                                                                    @*<td style="min-width:200px">@Item.EmployeeName</td>*@
                                                                     <td>@Item.WHLimit <input type='hidden' value='@Item.WHLimit' id='days @i' name='days @i'></td>
-                                                                    <td><input type='text' id="txtattend @i" maxlength="1" onkeypress="return onlyAlphabets(event);" value='@Item.Attendance' name="txtattend @i" class="form-control"></td>
+                                                                    <td><input type='text' id="txtattend @i" maxlength="1" onkeypress="return onlyAlphabets(event);" value='@Item.PresentDay' name="txtattend @i" class="form-control"></td>
                                                                     <td><input type='time' id="txtintime @i" value='@Item.InTime' name="txtintime @i" class="form-control" onchange="getdataintime(this)"></td>
                                                                     <td><input type='time' id="txtouttime @i" value='@Item.OutTime' name="txtouttime @i" class="form-control" onchange="getdataouttime(this,'@i',@Item.WHLimit)"></td>
                                                                     <td><input type='text' id="txttotalhrs @i" readonly="readonly" value='@Item.TotalHRWork' name="txttotalhrs @i" class="form-control" onchange="getdata(this,'@i)"></td>
@@ -134,7 +135,33 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
+
+
 <script>
+
+
+
+    function getname() {
+        $.ajax({
+            url: "/EmployeeAttendance/GetEmployeeName",
+            Type: "Get",
+            DataType: "JSON",
+            data: { LoginId: $('#EmployeeLoginId').val() },
+            success: function (data) {
+                if (data.Result == "Yes") {
+                    //$('#Name').html(data.DisplayName);
+                    document.getElementById('spName').innerHTML = 'Name: ' + data.DisplayName;
+                }
+                else {
+                    alert('Invalid Login ID');
+                    $('#LoginId').val('');
+                    document.getElementById('spName').innerHTML = '';
+                }
+            }
+
+        });
+
+    }
     function getdataintime(intime) {
 
         var intime = $('#txtintime').val(intime.value);
@@ -142,7 +169,7 @@
 
 
     }
-    function getdataouttime(outtime,i,WHLimit) {
+    function getdataouttime(outtime, i, WHLimit) {
 
         var otime = outtime.value;
         var ot = otime.split(":");
@@ -151,92 +178,95 @@
         var intime = document.getElementById('txtintime ' + i).value;
         var it = intime.split(":");
         var itFinal = it[0];
-       var totlhr = ((Number)(otFinal) - (Number)(itFinal)).toString();
-       document.getElementById("txttotalhrs " + i).value = totlhr;
-       var overtime = ((Number)(totlhr) - (Number)(WHLimit)).toString();
-       if ((Number)(overtime) > 0) {
-           document.getElementById("txtovertime " + i).value = overtime;
-       }
-       else
-       {
-           document.getElementById("txtovertime " + i).value = "0";
-       }
+        var totlhr = ((Number)(otFinal) - (Number)(itFinal)).toString();
+        document.getElementById("txttotalhrs " + i).value = totlhr;
+        var overtime = ((Number)(totlhr) - (Number)(WHLimit)).toString();
+        if ((Number)(overtime) > 0) {
+            document.getElementById("txtovertime " + i).value = overtime;
+        }
+        else {
+            document.getElementById("txtovertime " + i).value = "0";
+        }
 
 
-       if ((Number)(totlhr) < (Number)(WHLimit)/2) {
-           document.getElementById("txthd " + i).value = "HD";
-       }
-       else
-       {
-           document.getElementById("txthd " + i).value = "FD";
-       }
+        if ((Number)(totlhr) < (Number)(WHLimit) / 2) {
+            document.getElementById("txthd " + i).value = "HD";
+        }
+        else {
+            document.getElementById("txthd " + i).value = "FD";
+        }
 
     }
 
-    function AllPresent() {
-        debugger
-        // var allpresent = $('#allpresent').val();
-        var tr = [];
-        $.ajax({
-            url: '/EmployeeAttendance/AllPresent', type: 'post', dataType: 'json',
-            data: {  },
-            success: function (data) {
-                var j = 1;
-                //$('#example1_wrapper').find("tr:not(:first)").remove();
-                if (data.lstList.length > 0) {
-                    $('#tbodyAttd').empty();
-                    for (var i = 0; i < data.lstList.length; i++) {
-                        $('#tbodyAttd').empty();
+    //function AllPresent() {
+    //    debugger
+    //    // var allpresent = $('#allpresent').val();
+    //    var tr = [];
+    //    $.ajax({
+    //        url: '/EmployeeAttendance/AllPresent', type: 'post', dataType: 'json',
+    //        data: {  },
+    //        success: function (data) {
+    //            var j = 1;
+    //            //$('#example1_wrapper').find("tr:not(:first)").remove();
+    //            if (data.lstList.length > 0) {
+    //                $('#tbodyAttd').empty();
+    //                for (var i = 0; i < data.lstList.length; i++) {
+    //                    $('#tbodyAttd').empty();
 
-                            tr.push('<tr>');
-                            tr.push("<td>" + j + "</td>");
-                            tr.push("<td>" + data.lstList[i].EmployeeLoginId + "</td>");
-                            tr.push("<td>" + data.lstList[i].EmployeeName + "</td>");
-                            tr.push("<td>" + data.lstList[i].WHLimit + "</td>");
-                            tr.push("<td><input type='text' value='" + data.lstList[i].Attendance + "' id='txtattend " + i + "' name='txtattend " + i + "' required='required'></td>");
-                            tr.push("<td><input type='time' value='" + data.lstList[i].InTime + "' id='txtintime " + i + "'name='txtintime " + i + "'  onchange='getdataintime(this)' required='required'></td>");
-                            tr.push("<td><input type='time' value='" + data.lstList[i].OutTime + "' id='txtouttime " + i + "' name='txtouttime " + i + "' onchange='getdataouttime(this,"+i+","+data.lstList[i].WHLimit+") required='required'></td>");
-                            tr.push("<td><input type='text' value='" + data.lstList[i].TotalHRWork + "' id='txttotalhrs " + i + "' name='txttotalhrs " + i + "' required='required'></td>");
-                            tr.push("<td><input type='text' value='" + data.lstList[i].OverTime + "' id='txtovertime " + i + "' name='txtovertime " + i + "' required='required'></td>");
-                            tr.push("<td><input type='text' value='" + data.lstList[i].ISHalfDay + "' id='txthd " + i + "' name='txthd " + i + "' required='required'></td>");
-                            tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].EmployeeID + "' id='empid " + i + "' name='empid " + i + "'></td>");
-                            tr.push('</tr>');
-                            j++;
-                            //plcTotal = plcTotal + parseInt(data.lstList[i].PLCCharge);
+    //                        tr.push('<tr>');
+    //                        tr.push("<td>" + j + "</td>");
+    //                        tr.push("<td>" + data.lstList[i].EmployeeLoginId + "</td>");
+    //                        tr.push("<td>" + data.lstList[i].EmployeeName + "</td>");
+    //                        tr.push("<td>" + data.lstList[i].WHLimit + "</td>");
+    //                        tr.push("<td><input type='text' value='" + data.lstList[i].Attendance + "' id='txtattend " + i + "' name='txtattend " + i + "' required='required'></td>");
+    //                        tr.push("<td><input type='time' value='" + data.lstList[i].InTime + "' id='txtintime " + i + "'name='txtintime " + i + "'  onchange='getdataintime(this)' required='required'></td>");
+    //                        tr.push("<td><input type='time' value='" + data.lstList[i].OutTime + "' id='txtouttime " + i + "' name='txtouttime " + i + "' onchange='getdataouttime(this,"+i+","+data.lstList[i].WHLimit+") required='required'></td>");
+    //                        tr.push("<td><input type='text' value='" + data.lstList[i].TotalHRWork + "' id='txttotalhrs " + i + "' name='txttotalhrs " + i + "' required='required'></td>");
+    //                        tr.push("<td><input type='text' value='" + data.lstList[i].OverTime + "' id='txtovertime " + i + "' name='txtovertime " + i + "' required='required'></td>");
+    //                        tr.push("<td><input type='text' value='" + data.lstList[i].ISHalfDay + "' id='txthd " + i + "' name='txthd " + i + "' required='required'></td>");
+    //                        tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].EmployeeID + "' id='empid " + i + "' name='empid " + i + "'></td>");
+    //                        tr.push('</tr>');
+    //                        j++;
+    //                        //plcTotal = plcTotal + parseInt(data.lstList[i].PLCCharge);
 
-                        tr.push('<tr style="display:none">');
-                        tr.push("<td><input type='hidden' value='" + j + "' id='hdrows' name='hdrows'></td>");
-                        tr.push('</tr>');
-                        $('#tbodyAttd').append($(tr.join('')));
-                        //$("#example1_wrapper").append('<tr><td id="EmployeeID' + i + ' " style="display:none">' + data.lstList[i].EmployeeID +
-                        //      '</td><td id="i' + i + ' " >' + data.lstList[i].i +
-                        //    '</td><td id="EmployeeName' + i + ' " >' + data.lstList[i].EmployeeName +
-                        //    '</td><td id="EmployeeLoginId' + i + ' " >' + data.lstList[i].EmployeeLoginId +
-                        //    '</td><td id="WHLimit' + i + ' " >' + data.lstList[i].WHLimit +
-                        //      '</td><td id="Attendance' + i + ' " >' + data.lstList[i].Attendance +
-                        //     '</td><td id="InTime' + i + ' " >' + data.lstList[i].InTime +
-                        //     '</td><td id="OutTime' + i + ' " >' + data.lstList[i].OutTime +
-                        //       '</td><td id="TotalHRWork' + i + ' " >' + data.lstList[i].TotalHRWork +
-                        //        '</td><td id="OverTime' + i + ' " >' + data.lstList[i].OverTime +
-                        //    '</td><td id="ISHalfDay' + i + ' " >' + data.lstList[i].ISHalfDay +
+    //                    tr.push('<tr style="display:none">');
+    //                    tr.push("<td><input type='hidden' value='" + j + "' id='hdrows' name='hdrows'></td>");
+    //                    tr.push('</tr>');
+    //                    $('#tbodyAttd').append($(tr.join('')));
+    //                    //$("#example1_wrapper").append('<tr><td id="EmployeeID' + i + ' " style="display:none">' + data.lstList[i].EmployeeID +
+    //                    //      '</td><td id="i' + i + ' " >' + data.lstList[i].i +
+    //                    //    '</td><td id="EmployeeName' + i + ' " >' + data.lstList[i].EmployeeName +
+    //                    //    '</td><td id="EmployeeLoginId' + i + ' " >' + data.lstList[i].EmployeeLoginId +
+    //                    //    '</td><td id="WHLimit' + i + ' " >' + data.lstList[i].WHLimit +
+    //                    //      '</td><td id="Attendance' + i + ' " >' + data.lstList[i].Attendance +
+    //                    //     '</td><td id="InTime' + i + ' " >' + data.lstList[i].InTime +
+    //                    //     '</td><td id="OutTime' + i + ' " >' + data.lstList[i].OutTime +
+    //                    //       '</td><td id="TotalHRWork' + i + ' " >' + data.lstList[i].TotalHRWork +
+    //                    //        '</td><td id="OverTime' + i + ' " >' + data.lstList[i].OverTime +
+    //                    //    '</td><td id="ISHalfDay' + i + ' " >' + data.lstList[i].ISHalfDay +
 
-                        //    '</td></tr>')
+    //                    //    '</td></tr>')
 
-                    }
-                }
-            }
+    //                }
+    //            }
+    //        }
 
-        });
-    }
+    //    });
+    //}
 
-    function validateSave() {
+    function validateSearch() {
 
         $(".errortext").removeClass("errortext");
 
-        if ($('#AttendanceDate').val() == '') {
-            $("#AttendanceDate").addClass('errortext');
-            $('#AttendanceDate').focus();
+        if ($('#FromDate').val() == '') {
+            $("#FromDate").addClass('errortext');
+            $('#FromDate').focus();
 
+            return false;
+        }
+        if ($('#EmployeeLoginId').val() == '') {
+            $("#EmployeeLoginId").addClass('errortext');
+            $('#EmployeeLoginId').focus();
             return false;
         }
 
@@ -289,6 +319,12 @@
         changeMonth: true,
 
     });
+    $('#FromDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true,
+
+    });
     $('#AttendanceDate').datepicker({
         dateFormat: 'dd/mm/yy',
         changeYear: true,
@@ -300,24 +336,24 @@
 @if (TempData["DailyAttendance"] != null)
 {
     <script type="text/javascript">
-            window.onload = function () {
-               notif({
-                   msg: "<b>Success:</b> @TempData["DailyAttendance"]",
+        window.onload = function () {
+            notif({
+                msg: "<b>Success:</b> @TempData["DailyAttendance"]",
                 type: "success"
             });
-            };
+        };
     </script>
 }
 else if (TempData["ErrDailyAttendance"] != null)
 {
 
     <script type="text/javascript">
-            window.onload = function () {
-                notif({
-                    msg: "<b>Oops!</b> @TempData["ErrDailyAttendance"]",
-                    type: "error"
-                });
-            };
+        window.onload = function () {
+            notif({
+                msg: "<b>Oops!</b> @TempData["ErrDailyAttendance"]",
+                type: "error"
+            });
+        };
 
     </script>
 

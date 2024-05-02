@@ -13,7 +13,6 @@
             <div>
                 <h1 class="page-title">Salary Head</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Admin/AdminDashBoard">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Master</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Salary Head</li>
                 </ol>
@@ -22,15 +21,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    @*<div class="card-header d-lg-flex justify-content-between">
-                        <h4 class="card-title">Salary Head</h4>
-                        <p style="color: #ff0000">
-                            @TempData["SallaryHeadtmsg"]
-                        </p>
-                        <p style="color: red">
-                            @TempData["ErrSallaryHeadtmsg"]
-                        </p>
-                    </div>*@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -75,6 +65,33 @@
 
         </div>
     </div>
+}
+
+
+@if (TempData["SallaryHeadtmsg"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["SallaryHeadtmsg"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrSallaryHeadtmsg"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrSallaryHeadtmsg"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
 }
 
 <script>

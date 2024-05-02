@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace AfluexHRMS.Controllers
 {
@@ -425,13 +426,13 @@ namespace AfluexHRMS.Controllers
                     }
                     else
                     {
-                        TempData["DailyAttendance"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrDailyAttendance"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                TempData["DailyAttendance"] = ex.Message;
+                TempData["ErrDailyAttendance"] = ex.Message;
             }
             FormName = "DailyAttendance";
             Controller = "EmployeeAttendance";
@@ -534,5 +535,208 @@ namespace AfluexHRMS.Controllers
             return View(model);
         }
         #endregion
+
+        #region MonthlyAttendancePosting
+        public ActionResult MonthlyAttendance(EmployeeAttendance model)
+        {
+            return View(model);
+        }
+        [HttpPost]
+        [ActionName("MonthlyAttendance")]
+        [OnAction(ButtonName = "Search")]
+        public ActionResult MonthlyAttendanceBY(EmployeeAttendance model)
+        {
+
+            List<EmployeeAttendance> lst = new List<EmployeeAttendance>();
+            DataSet ds1 = model.GetMonthlyWiseAttendance();
+
+            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow r in ds1.Tables[0].Rows)
+                {
+                    EmployeeAttendance obj = new EmployeeAttendance();
+                    obj.AttendanceDate = r["DateValue"].ToString();
+                    obj.OverTime = r["OverTime"].ToString();
+                    obj.InTime = r["InTime"].ToString();
+                    obj.OutTime = r["OutTime"].ToString();
+                    obj.ISHalfDay = r["IshalfDay"].ToString();
+
+                    lst.Add(obj);
+                }
+                ViewBag.EmployeeDetails = ds1.Tables[1].Rows[0]["EmployeeDetails"].ToString();
+                ViewBag.PK_EmployeeID = ds1.Tables[1].Rows[0]["PK_EmployeeID"].ToString();
+                ViewBag.EmployeeCode = ds1.Tables[1].Rows[0]["EmployeeCode"].ToString();
+
+            }
+            model.lstList = lst;
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("MonthlyAttendance")]
+        [OnAction(ButtonName = "Save")]
+        public ActionResult SaveMonthlyAttendance(EmployeeAttendance obj)
+        {
+            string FormName = "";
+            string Controller = "";
+            obj.AttendanceDate = string.IsNullOrEmpty(obj.AttendanceDate) ? null : Common.ConvertToSystemDate(obj.AttendanceDate, "dd/MM/yyyy");
+
+            try
+            {
+
+                string noofrows = Request["hdrows"].ToString();
+                string Empid = "";
+                string attend = "";
+                string attenddate = "";
+                string intime = "";
+                string outtime = "";
+                string totalhr = "";
+                string overtime = "";
+                string ishalfdy = "";
+
+                DataTable dtst = new DataTable();
+
+                dtst.Columns.Add("FK_EmployeeID ", typeof(string));
+                dtst.Columns.Add("AttendanceDate ", typeof(string));
+                dtst.Columns.Add("AttendanceStatus", typeof(string));
+                dtst.Columns.Add("InTime", typeof(string));
+                dtst.Columns.Add("OutTime ", typeof(string));
+                dtst.Columns.Add("TotalHoursWork", typeof(string));
+                dtst.Columns.Add("OverTime", typeof(string));
+                dtst.Columns.Add("IsHalfDay", typeof(string));
+
+
+                for (int i = 1; i <= int.Parse(noofrows) - 1; i++)
+                {
+                    if (Request["txtattend " + i].ToString() == "A")
+                    {
+                        intime = "";
+                        outtime = "";
+                        totalhr = "";
+                        overtime = "";
+                        ishalfdy = "";
+                        attenddate = "";
+                        attend = Request["txtattend " + i].ToString();
+                        attenddate = Request["monthly " + i].ToString();
+                        Empid = Request["empid " + i].ToString();
+                    }
+                    else if (Request["txtattend " + i].ToString() == "P")
+                    {
+                        intime = Request["txtintime " + i].ToString();
+                        outtime = Request["txtouttime " + i].ToString();
+                        totalhr = Request["txttotalhrs " + i].ToString();
+                        overtime = Request["txtovertime " + i].ToString();
+                        ishalfdy = Request["txthd " + i].ToString();
+                        attend = Request["txtattend " + i].ToString();
+                        attenddate = Request["monthly " + i].ToString();
+                        Empid = Request["empid " + i].ToString();
+
+                    }
+
+
+                    if (Request["txtattend " + i].ToString() != "")
+                    {
+                        dtst.Rows.Add(Empid, string.IsNullOrEmpty(attenddate) ? null : Common.ConvertToSystemDate(attenddate, "dd/MM/yyyy"), attend, intime, outtime, totalhr, overtime, ishalfdy);
+                    }
+                    
+
+                }
+
+                obj.AddedBy = Session["Pk_AdminId"].ToString();
+                obj.dtTable = dtst;
+
+                DataSet ds = obj.SaveEmployeeMonthlyAttendance();
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                    {
+                        TempData["DailyAttendance"] = " Daily Attendance Saved successfully !";
+                    }
+                    else
+                    {
+                        TempData["ErrDailyAttendance"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrDailyAttendance"] = ex.Message;
+            }
+            FormName = "MonthlyAttendance";
+            Controller = "EmployeeAttendance";
+
+            return RedirectToAction(FormName, Controller);
+        }
+        public ActionResult MonthlyWiseAttendanceReport(EmployeeAttendance model)
+        {
+            #region HAlfFullDay
+            List<SelectListItem> AttendType = Common.AttendanceStatus();
+            ViewBag.AttendType = AttendType;
+            #endregion HAlfFullDay
+
+            #region IsFullHalfDay
+            List<SelectListItem> ISHalfFullDay = Common.IsFullHalfDay();
+            ViewBag.ISHalfFullDay = ISHalfFullDay;
+            #endregion IsFullHalfDay
+
+            return View(model);
+        }
+        [HttpPost]
+        [ActionName("MonthlyWiseAttendanceReport")]
+        [OnAction(ButtonName = "Search")]
+        public ActionResult MonthlyWiseAttendanceReportBy(EmployeeAttendance model)
+        {
+
+            List<EmployeeAttendance> lst = new List<EmployeeAttendance>();
+            model.FromDate = string.IsNullOrEmpty(model.FromDate) ? null : Common.ConvertToSystemDate(model.FromDate, "dd/MM/yyyy");
+            model.ToDate = string.IsNullOrEmpty(model.ToDate) ? null : Common.ConvertToSystemDate(model.ToDate, "dd/MM/yyyy");
+            DataSet ds1 = model.MonthlyWiseAttendanceReportBy();
+
+            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow r in ds1.Tables[0].Rows)
+                {
+                    EmployeeAttendance obj = new EmployeeAttendance();
+                    obj.EmployeeID = r["FK_EmployeeID"].ToString();
+                    obj.EmployeeName = r["EmployeeName"].ToString();
+                    obj.EmployeeLoginId = r["LoginID"].ToString();
+                    obj.ISHalfDay = r["IsHalfDay"].ToString();
+                    obj.Attendance = r["Status"].ToString();
+                    obj.AttendanceDate = r["AttendanceDate"].ToString();
+                    lst.Add(obj);
+                }
+            }
+            model.lstList = lst;
+
+            #region HAlfFullDay
+            List<SelectListItem> AttendType = Common.AttendanceStatus();
+            ViewBag.AttendType = AttendType;
+            #endregion HAlfFullDay
+
+            #region IsFullHalfDay
+            List<SelectListItem> ISHalfFullDay = Common.IsFullHalfDay();
+            ViewBag.ISHalfFullDay = ISHalfFullDay;
+            #endregion IsFullHalfDay
+
+            return View(model);
+        }
+        #endregion
+        public ActionResult GetEmployeeName(string LoginId)
+        {
+            Common obj = new Common();
+            obj.ReferBy = LoginId;
+            DataSet ds = obj.GetEmployeeDetails();
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+
+
+                obj.DisplayName = ds.Tables[0].Rows[0]["EmployeeName"].ToString();
+
+                obj.Result = "Yes";
+
+            }
+            else { obj.Result = "No"; }
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
     }
 }

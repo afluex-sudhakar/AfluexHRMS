@@ -121,18 +121,18 @@ namespace AfluexHRMS.Controllers
                     }
                     else if (ds.Tables[0].Rows[0][0].ToString() == "0")
                     {
-                        TempData["EmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrEmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
                 else
                 {
-                    TempData["EmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    TempData["ErrEmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                 }
 
             }
             catch (Exception ex)
             {
-                TempData["EmployeeLeaveApp"] = ex.Message;
+                TempData["ErrEmployeeLeaveApp"] = ex.Message;
             }
             return RedirectToAction("LeaveApplication", "EmployeeLogin");
         }
@@ -403,13 +403,13 @@ namespace AfluexHRMS.Controllers
                     }
                     else if (ds.Tables[0].Rows[0]["MSG"].ToString() == "1")
                     {
-                        TempData["Message"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrMessage"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                TempData["Message"] = ex.Message;
+                TempData["ErrMessage"] = ex.Message;
             }
             return RedirectToAction("Message");
         }

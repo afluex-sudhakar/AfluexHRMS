@@ -1,21 +1,19 @@
 ﻿@model AfluexHRMS.Models.EmployeeAttendance
 
 @{
-    ViewBag.Title = "DateWiseAttendanceReport";
+    ViewBag.Title = "MonthlyWiseAttendanceReport";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-
-
-@using (Html.BeginForm("DateWiseAttendanceReport", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
+@using (Html.BeginForm("MonthlyWiseAttendanceReport", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
     <div class="container-fluid">
         <div class="page-header">
             <div>
-                <h1 class="page-title">Date Wise Attendance Report</h1>
+                <h1 class="page-title">Monthly Wise Attendance Report</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Reports</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Date Wise Attendance Report</li>
+                    <li class="breadcrumb-item active" aria-current="page">Monthly Wise Attendance Report</li>
                 </ol>
             </div>
         </div>
@@ -100,7 +98,7 @@
             </div>
         </div>
     </div>
-    
+
 }
 
 
@@ -126,6 +124,8 @@
 
 
 </script>
+
+
 
 
 
