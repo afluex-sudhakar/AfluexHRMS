@@ -1,4 +1,5 @@
-﻿using AfluexHRMS.Models;
+﻿using AfluexHRMS.Filter;
+using AfluexHRMS.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -81,7 +82,43 @@ namespace AfluexHRMS.Controllers
         //    }
         //    return Json(dataList2, JsonRequestBehavior.AllowGet);
         //}
-       
+        public ActionResult GetIDCard()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ActionName("GetIDCard")]
+        [OnAction(ButtonName = "Search")]
+        public ActionResult GetSearchIDCard(Master model)
+        {
+            
+            List<Master> lst = new List<Master>();
+            DataSet ds1 = model.GetIDCard();
+            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow r in ds1.Tables[0].Rows)
+                {
+                    Master objM = new Master();
+                    objM.EmployeeID = r["PK_EmployeeID"].ToString();
+                    objM.EmployeeCode = r["LoginID"].ToString();
+                    objM.EmployeeName = r["EmployeeName"].ToString();
+                    objM.CompanyName = r["CompanyName"].ToString();
+                    objM.DepartmentName = r["DepartmentName"].ToString();
+                    objM.DesignationName = r["DesignationName"].ToString();
+                    objM.Gender = r["Gender"].ToString();
+                    objM.Email = r["Email"].ToString();
+                    objM.DateOfJoining = r["DateOfJoining"].ToString();
+                    objM.Contact = r["MobileNo"].ToString();
+                    objM.BloodGroup = r["BloodGroup"].ToString();
+                    objM.CompanyAddress = r["CompanyAddress"].ToString();
+                    objM.CompanyContact = r["CompanyContact"].ToString();
+                    objM.ProfilePic = r["ProfilePic"].ToString();
+                    lst.Add(objM);
+                }
+                model.lstGetIDCard = lst;
+            }
+            return View(model);
+        }
 
     }
 }

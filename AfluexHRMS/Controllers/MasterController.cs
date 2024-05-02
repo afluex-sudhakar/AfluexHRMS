@@ -1531,7 +1531,7 @@ namespace AfluexHRMS.Controllers
 
                 #endregion For Work Experience
 
-                obj.ProfilePic = "../images/ProfilePic/" + Guid.NewGuid() + Path.GetExtension(postedFile.FileName);
+                obj.ProfilePic = "/EmployeeProfile/" + Guid.NewGuid() + Path.GetExtension(postedFile.FileName);
                 obj.AddedBy = Session["Pk_AdminId"].ToString();
                 obj.dtQualification = dtst;
                 obj.dtWorkExp = dtst1;
@@ -1542,7 +1542,7 @@ namespace AfluexHRMS.Controllers
                     {
                         if (postedFile != null)
                         {
-                            obj.ProfilePic = "../images/ProfilePic/" + Guid.NewGuid() + Path.GetExtension(postedFile.FileName);
+                            obj.ProfilePic = "/EmployeeProfile/" + Guid.NewGuid() + Path.GetExtension(postedFile.FileName);
                             postedFile.SaveAs(Path.Combine(Server.MapPath(obj.ProfilePic)));
                         }
                         //TempData["Emp"] = "Employee Saved successfully.Employee Code is " + ds.Tables[0].Rows[0]["EmpCode"].ToString() + " ,LoginId is " + ds.Tables[0].Rows[0]["LoginId"].ToString() + " and Password is " + ds.Tables[0].Rows[0]["Password"].ToString();
@@ -1581,6 +1581,12 @@ namespace AfluexHRMS.Controllers
 
             obj.DOB = string.IsNullOrEmpty(obj.DOB) ? null : Common.ConvertToSystemDate(obj.DOB, "dd/MM/yyyy");
             obj.DateOfJoining = string.IsNullOrEmpty(obj.DateOfJoining) ? null : Common.ConvertToSystemDate(obj.DateOfJoining, "dd/MM/yyyy");
+
+            if (postedFile != null)
+            {
+                obj.ProfilePic = "/EmployeeProfile/" + Guid.NewGuid() + Path.GetExtension(postedFile.FileName);
+                postedFile.SaveAs(Path.Combine(Server.MapPath(obj.ProfilePic)));
+            }
             // obj.FromDate = string.IsNullOrEmpty(obj.FromDate) ? null : Common.ConvertToSystemDate(obj.FromDate, "dd/MM/yyyy");
             //  obj.ToDate = string.IsNullOrEmpty(obj.ToDate) ? null : Common.ConvertToSystemDate(obj.ToDate, "dd/MM/yyyy");
             try
@@ -1663,11 +1669,6 @@ namespace AfluexHRMS.Controllers
                 {
                     if (ds.Tables[0].Rows[0]["MSG"].ToString() == "1")
                     {
-                        if (postedFile != null)
-                        {
-                            obj.ProfilePic = "../images/ProfilePic/" + Guid.NewGuid() + Path.GetExtension(postedFile.FileName);
-                            postedFile.SaveAs(Path.Combine(Server.MapPath(obj.ProfilePic)));
-                        }
                         TempData["Emp"] = "Employee Updated successfully ";
 
                     }
