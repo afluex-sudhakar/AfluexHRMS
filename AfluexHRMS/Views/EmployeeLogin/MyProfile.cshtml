@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 @using (Html.BeginForm("MyProfile", "EmployeeLogin", FormMethod.Post, new { @id = "Profile", enctype = "multipart/form-data",@autocomplete="off" }))
 {
 <div class="container-fluid">
@@ -34,17 +35,17 @@
             <div class="card shadow">
                 <div class="card-header d-lg-flex justify-content-between">
                     <h4 class="card-title">PERSONAL INFO</h4>
+                    <a id="EditFuction" href="#!"><i class="fa fa-pencil"></i></a>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="ShowData">
                     <div class="row mb-3">
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Name</label>
-                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Full Name" })
-                            @Html.HiddenFor(m=> m.EmployeeID)
+                           ksjadhskajdh
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Father Name</label>
-                            @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name" })
+                            dkjsadjkash
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">DOB</label>
@@ -64,8 +65,41 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-body" id="EditData" style="display:none;">
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Name</label>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Full Name" })
+                            @Html.HiddenFor(m => m.EmployeeID)
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Father Name</label>
+                            @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">DOB</label>
+                            @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @placeholder = "DOB", @readonly = "read" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Gender</label>
+                            @Html.DropDownListFor(m => m.GenderID, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Blood Group</label>
+                            @Html.TextBoxFor(m => m.BloodGroup, new { @class = "form-control", @placeholder = "Blood Group" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Date Of Joining</label>
+                            @Html.TextBoxFor(m => m.DOJ, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button class="btn btn-primary">Update Data</button>
+                           <button class="btn btn-danger" id="cancelData">Cancel</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card shadow">
+            <div class="card shadow" >
                 <div class="card-header d-lg-flex justify-content-between">
                     <h4 class="card-title">CONTACT & ADDRESS</h4>
                 </div>
@@ -104,6 +138,19 @@
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
 <script>
+
+    $(document).ready(function () {
+        $("#EditFuction").click(function () {
+            $("#EditData").css("display", "block");
+            $("#ShowData").css("display", "none");
+        });
+
+        $("#cancelData").click(function(e){
+            $("#EditData").css("display", "none");
+            //$("#EditData").hide();
+            e.preventDefault();
+        })
+    });
     $('#DOB').datepicker({
         dateFormat: 'dd/mm/yy',
         changeYear: true,
