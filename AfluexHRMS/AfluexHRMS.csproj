@@ -1505,6 +1505,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminReportsController.cs" />
     <Compile Include="Controllers\EmployeeAttendanceController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Controllers\EmployeeLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1629,6 +1630,7 @@
     <Folder Include="EmployeeProfile\" />
     <Folder Include="EmployeePunching\" />
     <Folder Include="images\ProfilePicture\" />
+    <Folder Include="Views\Employee\" />
     <Folder Include="Views\WebAPI\" />
   </ItemGroup>
   <PropertyGroup>
