@@ -79,7 +79,6 @@ namespace AfluexHRMS.Controllers
             }
 
             model.ddlLeave = ddlLeave;
-
             #endregion
             DataSet ds1 = model.LeaveTypeListOfEmployee();
             if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
@@ -134,9 +133,7 @@ namespace AfluexHRMS.Controllers
                 {
                     Response.Status = "0";
                     Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -213,7 +210,6 @@ namespace AfluexHRMS.Controllers
             }
 
             model.ddlLeave = ddlLeave;
-
             #endregion
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -362,7 +358,6 @@ namespace AfluexHRMS.Controllers
             return Json(Response, JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult MessagesList(MessagesListRequest model)
         {
             List<MessagesListResponse> lstComplains = new List<MessagesListResponse>();
@@ -399,8 +394,6 @@ namespace AfluexHRMS.Controllers
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-
 
         [HttpPost]
         public ActionResult EmployeeDashboard(EmployeeDashboardRequest model)
@@ -453,21 +446,21 @@ namespace AfluexHRMS.Controllers
                 {
                     if (ds.Tables[0].Rows[0][0].ToString() == "1")
                     {
-                        Response.status = "0";
+                        Response.status = "1";
                         Response.Message = "   Punching Successfully !";
                         Response.PunchInDate = ds.Tables[0].Rows[0]["PunchInDate"].ToString();
                         Response.PunchInTime = ds.Tables[0].Rows[0]["PunchInTime"].ToString();
                     }
                     else
                     {
-                        Response.status = "1";
+                        Response.status = "0";
                         Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Response.status = "1";
+                Response.status = "0";
                 Response.Message = ex.Message;
             }
             return Json(Response, JsonRequestBehavior.AllowGet);
@@ -485,22 +478,21 @@ namespace AfluexHRMS.Controllers
                 {
                     if (ds.Tables[0].Rows[0][0].ToString() == "1")
                     {
-                        Response.status = "0";
+                        Response.status = "1";
                         Response.Message = "   PunchOut Successfully !";
                         Response.PunchOutDate = ds.Tables[0].Rows[0]["PunchOutDate"].ToString();
                         Response.PunchOutTime = ds.Tables[0].Rows[0]["PunchOutTime"].ToString();
-
                     }
                     else
                     {
-                        Response.status = "1";
+                        Response.status = "0";
                         Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Response.status = "1";
+                Response.status = "0";
                 Response.Message = ex.Message;
             }
             return Json(Response, JsonRequestBehavior.AllowGet);
@@ -541,21 +533,97 @@ namespace AfluexHRMS.Controllers
                 }
                 model.listAttenndace = lst;
 
-                model.Status = "0";
+                model.Status = "1";
                 model.Message = "Record Found.";
                 return Json(model, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                model.Status = "1";
+                model.Status = "0";
                 model.Message = "Record Not Found.";
                 return Json(model, JsonRequestBehavior.AllowGet);
             }
         }
+  
+        [HttpPost]
+        public ActionResult EmployeeProfile(GetEmployeeProfileRequest model)
+        {
+            GetEmployeeProfileResponse Response = new GetEmployeeProfileResponse();
+            DataSet ds0 = model.GetEmployeeProfile();
+            if (ds0 != null && ds0.Tables.Count > 0 && ds0.Tables[0].Rows.Count > 0)
+            {
+                    Response.LoginID = ds0.Tables[0].Rows[0]["LoginID"].ToString();
+                    Response.EmployeeName = ds0.Tables[0].Rows[0]["EmployeeName"].ToString();
+                    Response.FatherName = ds0.Tables[0].Rows[0]["FatherName"].ToString();
+                    Response.DOB = ds0.Tables[0].Rows[0]["DOB"].ToString();
+                    Response.Gender = ds0.Tables[0].Rows[0]["Gender"].ToString();
+                    Response.MobileNo = ds0.Tables[0].Rows[0]["MobileNo"].ToString();
+                    Response.Email = ds0.Tables[0].Rows[0]["Email"].ToString();
+                    Response.Address = ds0.Tables[0].Rows[0]["Address"].ToString();
+                    Response.EmployeeCode = ds0.Tables[0].Rows[0]["EmployeeCode"].ToString();
+                    Response.DOJ = ds0.Tables[0].Rows[0]["DOJ"].ToString();
+                    Response.PinCode = ds0.Tables[0].Rows[0]["PinCode"].ToString();
+                    Response.State = ds0.Tables[0].Rows[0]["State"].ToString();
+                    Response.City = ds0.Tables[0].Rows[0]["City"].ToString();
+                    Response.PanNo = ds0.Tables[0].Rows[0]["PanNo"].ToString();
+                    Response.AccountNo = ds0.Tables[0].Rows[0]["AccountNo"].ToString();
+                    Response.BankName = ds0.Tables[0].Rows[0]["BankName"].ToString();
+                    Response.BankBranch = ds0.Tables[0].Rows[0]["BankBranch"].ToString();
+                    Response.IFSCCOde = ds0.Tables[0].Rows[0]["IFSCCOde"].ToString();
+                    Response.ProfilePic = ds0.Tables[0].Rows[0]["ProfilePic"].ToString();
+                    Response.PhoneNo = ds0.Tables[0].Rows[0]["PhoneNo"].ToString();
 
+                    Response.Status = "1";
+                    Response.Message = "Record Found.";               
+            }
+            else
+            {
+                    Response.Status = "0";
+                    Response.Message = "Record Not Found.";         
+            }
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
 
+        [HttpPost]
+        public ActionResult UpdateEmployeeProfile(UpdateEmployeeProfileRequest model,HttpPostedFileBase PostedFile)
+        {
+            Response Response = new Response();
+            model.DOB = string.IsNullOrEmpty(model.DOB) ? null : Common.ConvertToSystemDate(model.DOB, "dd/MM/yyyy");
+            model.DateOfJoining = string.IsNullOrEmpty(model.DateOfJoining) ? null : Common.ConvertToSystemDate(model.DateOfJoining, "dd/MM/yyyy");
 
-
-
+            if (PostedFile != null)
+            {
+                model.Image = "/EmployeeProfile/" + Guid.NewGuid() + Path.GetExtension(PostedFile.FileName);
+                PostedFile.SaveAs(Path.Combine(Server.MapPath(model.Image)));
+            }
+            try
+            {
+                DataSet ds = model.UpdateEmployeeProfile();
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["MSG"].ToString() == "1")
+                    {
+                        Response.Status = "1";
+                        Response.Message = "Your profile details updated successfully. ";
+                    }
+                    else if (ds.Tables[0].Rows[0]["MSG"].ToString() == "0")
+                    {
+                        Response.Status = "0";
+                        Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    }
+                }
+                else
+                {
+                    Response.Status = "0";
+                    Response.Message = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Status = "0";
+                Response.Message = ex.Message;
+            }
+            return Json(Response, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -483,7 +483,7 @@
                                         <a class="nav-link" data-bs-toggle="tab" href="#emails"><i class="la la-envelope me-2"></i> Emails</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#web-urls"><i class="la la-envelope me-2"></i> Web/App URL's</a>
+                                        <a class="nav-link" data-bs-toggle="tab" href="#web-urls"><i class="la la-envelope me-2"></i> Web/App Ulr's</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" href="#social"><i class="la la-phone me-2"></i> Social Media</a>
@@ -729,8 +729,8 @@
                                     <div class="form-row mb-4">
                                         <div class="col-lg-12 col-md-12 col-sm-12 my-1 d-flex">
                                             <div class="input-group input-group-sm copy">
-                                                @*<input id="txtcopy" type="text" class="form-control input-default" readonly value="https://afluexhrms.click/NFC/Profile?id=@Model.Code">*@
-                                                <input id="txtcopy" type="text" class="form-control input-default" readonly value="http://afluexhrms.click?id=@Model.enc">
+                                                @*<input id="txtcopy" type="text" class="form-control input-default" readonly value="https://dost.click/NFC/Profile?id=@Model.Code">*@
+                                                <input id="txtcopy" type="text" class="form-control input-default" readonly value="http://dost.click?id=@Model.enc">
 
                                                 <a href="javascript:void(0);" class="btn btn-primary light me-1 px-3 close" style="padding-top: 11px;"><i class="fa fa-link m-0"></i> </a>
                                             </div>
@@ -758,7 +758,7 @@
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Social Links</h5>
+                                                        <h5 class="modal-title">Business Card</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -771,7 +771,7 @@
                                                                     {
                                                                         if (item.Content.Contains("6") || item.Content.Contains("7") || item.Content.Contains("9") || item.Content.Contains("8"))
                                                                         {
-                                                                            <a class="btn-social whatsapp" href="https://api.whatsapp.com/send?phone=91+@item.Content&text=https://dost.click?id=@Model.enc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                                                            <a class="btn-social whatsapp" href="https://api.whatsapp.com/send?phone=91+@item.Content&text=https://dost.click?id=@Model.enc" target="_blank"><i class="fa fa-whatsapp"></i></a>
                                                                         }
                                                                     }
                                                                 }
@@ -784,53 +784,53 @@
                                                                     {
                                                                         if (item.Content.Contains("facebook") || item.Content.Contains("fb"))
                                                                         {
-                                                                            <a class="btn-social facebook" href="@item.Content" target="_blank"><i class="fab fa-facebook"></i></a>
+                                                                            <a class="btn-social facebook" href="@item.Content" target="_blank"><i class="fa fa-facebook"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                                                                            <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("instagram") || item.Content.Contains("insta"))
                                                                         {
-                                                                            <a class="btn-social instagram" href="@item.Content" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                                            <a class="btn-social instagram" href="@item.Content" target="_blank"><i class="fa fa-instagram"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                                            <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("linkedin") || item.Content.Contains("link"))
                                                                         {
-                                                                            <a class="btn-social linkedin" href="@item.Content" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                                                            <a class="btn-social linkedin" href="@item.Content" target="_blank"><i class="fa fa-linkedin"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                                                            <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fa fa-linkedin"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("twitter") || item.Content.Contains("tw"))
                                                                         {
-                                                                            <a class="btn-social twitter" href="@item.Content" target="_blank"><i class="fab fa-twitter"></i></a>
+                                                                            <a class="btn-social twitter" href="@item.Content" target="_blank"><i class="fa fa-twitter"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fab fa-twitter"></i></a>
+                                                                            <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fa fa-twitter"></i></a>
                                                                         }
                                                                         if (item.Content.Contains("youtube") || item.Content.Contains("utube"))
                                                                         {
-                                                                            <a class="btn-social youtube" href="@item.Content" target="_blank"><i class="fab fa-youtube"></i></a>
+                                                                            <a class="btn-social youtube" href="@item.Content" target="_blank"><i class="fa fa-youtube"></i></a>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                                                                            <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
                                                                         }
                                                                     }
                                                                 }
                                                                 else
                                                                 {
-                                                                    <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                                                                    <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
-                                                                    <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fab fa-linkedin"></i></a>
-                                                                    <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fab fa-twitter"></i></a>
-                                                                    <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                                                                    <a class="btn-social facebook" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                                    <a class="btn-social instagram" href="https://www.instagram.com/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a>
+                                                                    <a class="btn-social linkedin" href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                                    <a class="btn-social twitter" href="https://twitter.com/login" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                                    <a class="btn-social youtube" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
                                                                 }
                                                             }
                                                         </div>
@@ -1034,7 +1034,7 @@
             fileData.append('ProfileType', $('input[name="ProfileType"]:checked').val());
             fileData.append('DecryptedCode', $('#DecryptedCode').val());
             $.ajax({
-                url: '/NFCProfile/ProfileUpdateAction',
+                url: '/NFCProfile/ProfileUpdate',
                 type: "POST",
                 contentType: false,
                 processData: false,
@@ -1152,7 +1152,7 @@
     function ProfileUpdatePost() {
         debugger;
         $.ajax({
-            url: '@Url.Action("ProfileUpdateAction", "NFCProfile")',
+            url: '@Url.Action("ProfileUpdate", "NFCProfile")',
             type: 'POST',
             data: $("#form1").serialize(),
             success: function (data) {
@@ -1399,7 +1399,7 @@
                     }
                     $(Id).append('<tr><td> <span><svg width="50" height="50" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="63" height="63" rx="14" fill="#625794" /><path d="M37.2692 38.9908L37.2692 38.9908L32.3961 43.8874C32.3934 43.8902 32.3909 43.8927 32.3885 43.895M37.2692 38.9908L32.0389 43.5375L32.3918 43.8917C32.3825 43.9009 32.3749 43.9078 32.3716 43.9107L32.3705 43.9117C32.373 43.9095 32.3796 43.9036 32.3877 43.8957C32.388 43.8955 32.3883 43.8952 32.3885 43.895M37.2692 38.9908C37.8291 38.4281 37.827 37.5179 37.2643 36.9578C36.7016 36.3978 35.7914 36.3999 35.2314 36.9626L35.2313 36.9627L32.8127 39.393M37.2692 38.9908L32.8127 39.393M32.3885 43.895C31.8292 44.4509 30.9226 44.4526 30.3615 43.8946C30.3603 43.8934 30.3591 43.8922 30.3578 43.8909L30.3563 43.8894L30.3442 43.8773L25.4813 38.9908L25.8357 38.6381L25.4813 38.9908C24.9215 38.4282 24.9234 37.518 25.4862 36.9578C26.049 36.3978 26.9591 36.4 27.5191 36.9627L27.5192 36.9627L29.9377 39.393L29.9377 20.75C29.9377 19.9561 30.5813 19.3125 31.3752 19.3125C32.1692 19.3125 32.8127 19.9561 32.8127 20.75L32.8127 39.393M32.3885 43.895C32.39 43.8935 32.3914 43.8921 32.3928 43.8907L32.8127 39.393M30.3577 43.8908C30.3573 43.8903 30.3568 43.8899 30.3564 43.8894L30.3577 43.8908Z" fill="white" stroke="white" /></svg></span></td><td style="display:none">' + obj[i].Fk_UserId +
    ' </td><td><span class="font-w600 text-black">' + InfoType + '</span></td><td id="Pk_NfcProfileId' + i + '" style="display:none" >' + obj[i].Pk_NfcProfileId +
-   ' </td><td colspan="2">' + obj[i].Content + '</td><td><a href="javascript:void(0)" id="btnanchor" class="badge badge-danger light" style="font-size:12px;" value=' + obj[i].Pk_NfcProfileId + '" onclick="DeleteProfileData(' + obj[i].Pk_NfcProfileId + ');">Remove</a></td></tr>')
+   ' </td><td colspan="2">' + obj[i].Content + '</td><td><a href="javascript:void(0)" id="btnanchor" class="btn-link  text-danger float-right" value=' + obj[i].Pk_NfcProfileId + '" onclick="DeleteProfileData(' + obj[i].Pk_NfcProfileId + ');">Remove</a></td></tr>')
                 }
             }
         });
