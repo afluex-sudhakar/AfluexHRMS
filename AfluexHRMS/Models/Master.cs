@@ -20,7 +20,9 @@ namespace AfluexHRMS.Models
         public string Contact { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
-        
+        public string CompanyContact { get; set; }
+        public string CompanyAddress { get; set; }
+        public string BloodGroup { get; set; }
 
         public string Pk_DepartmentId { get; set; }
         public List<Master> listDepartment { get; set; }
@@ -109,6 +111,7 @@ namespace AfluexHRMS.Models
         public string LeaveName { get; set; }
 
         public List<Master> lstListEmployee { get; set; }
+        public List<Master> lstGetIDCard { get; set; }
 
         public string LeaveApplicationID { get; set; }
         public string UsedLeave { get; set; }
@@ -157,6 +160,12 @@ namespace AfluexHRMS.Models
         {
             SqlParameter[] para = { new SqlParameter("@Pincode", Pincode2) };
             DataSet ds = DBHelper.ExecuteQuery("GetStateCity", para);
+            return ds;
+        }
+        public DataSet GetIDCard()
+        {
+            SqlParameter[] para = { new SqlParameter("@EmployeeCode", EmployeeCode) };
+            DataSet ds = DBHelper.ExecuteQuery("GetIDCard", para);
             return ds;
         }
 
@@ -555,6 +564,7 @@ namespace AfluexHRMS.Models
                                   new SqlParameter("@VerRemark",Remark),
                                   new SqlParameter("@FK_CompanyID",CompanyID),
                                   new SqlParameter("@IFSCCOde",IFSCCOde),
+                                  new SqlParameter("@BloodGroup",BloodGroup),
                             };
             DataSet ds = DBHelper.ExecuteQuery("AddEmployeeBasicDetails", para);
             return ds;
@@ -593,6 +603,7 @@ namespace AfluexHRMS.Models
                                   new SqlParameter("@UpdatedBy",AddedBy),
                                   new SqlParameter("@FK_CompanyID",CompanyID),
                                   new SqlParameter("@IFSCCOde",IFSCCOde),
+                                  new SqlParameter("@BloodGroup",BloodGroup),
                             };
             DataSet ds = DBHelper.ExecuteQuery("UpdateEmployee", para);
             return ds;

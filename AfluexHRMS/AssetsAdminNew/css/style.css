@@ -4334,7 +4334,7 @@ input[type=submit].btn-block {
 .card-footer,
 .card-header {
     background: none;
-    padding: 1rem 1.5rem
+    padding: 1px;
 }
 
 .card-header {
@@ -15802,7 +15802,7 @@ img {
     border: 1px solid #eaedf1;
     display: block;
     margin-bottom: -1px;
-    padding: .75rem 1.25rem;
+    /*padding: .75rem 1.25rem;*/
     position: relative
 }
 
@@ -30086,7 +30086,7 @@ button.bg-lime:hover {
 }
 
 .primary b {
-    color: #623aa2
+    color: #1a586f
 }
 
 .secondary b {
@@ -34250,4 +34250,23 @@ top: 0;
 
 .upload-demo.rect .upload-demo-wrap {
     width: 700px;
+}
+}
+.id_card li{
+     color: #202647;
+     position: relative;
+     padding-left: 150px;
+ }
+.id_card li p{
+    margin:0;
+}
+.id_card li b{
+         position: absolute;
+    left: 50px;
+    top: 8px;
+    font-size: 15px;
+    color: #000;
+}
+.id_card h3{
+        margin-top:18px;
 }

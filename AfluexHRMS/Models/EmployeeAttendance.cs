@@ -17,6 +17,7 @@ namespace AfluexHRMS.Models
         public string EmployeeLoginId { get; set; }
         public string EmployeeCode { get; set; }
         public string Status { get; set; }
+        public string LoginId { get; set; }
         public DataTable dsEmployeeAttendance { get; set; }
         public string AttendanceDate { get; set; }
 
@@ -127,6 +128,21 @@ namespace AfluexHRMS.Models
             return ds;
 
         }
+        public DataSet MonthlyWiseAttendanceReportBy()
+        {
+            SqlParameter[] para =
+                            {
+                                new SqlParameter("@EmployeeCode",EmployeeLoginId),
+                                new SqlParameter("@EmployeeName",EmployeeName),
+                                new SqlParameter("@Status",Attendance),
+                                new SqlParameter("@HDFD ",ISHalfDay),
+                                new SqlParameter("@FromDate",FromDate),
+                                new SqlParameter("@ToDate",ToDate),
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("MonthlyWiseAttendanceReport", para);
+            return ds;
+
+        }
 
         public DataSet AttendanceSummaryReportBy()
         {
@@ -141,5 +157,33 @@ namespace AfluexHRMS.Models
             return ds;
 
         }
+        public DataSet GetMonthlyWiseAttendance()
+        {
+            SqlParameter[] para =
+                            {
+                                new SqlParameter("@Date",FromDate),
+                                new SqlParameter("@EmployeeCode",EmployeeLoginId)
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("GetMonthlyWiseAttendance", para);
+            return ds;
+
+        }
+        public DataSet GetEmployeeListAutoSeach()
+        {
+            SqlParameter[] para = {
+                                        new SqlParameter("@LoginId", LoginId)};
+            DataSet ds = DBHelper.ExecuteQuery("GetEmployeeListforAutoSearch", para);
+            return ds;
+        }
+        public DataSet SaveEmployeeMonthlyAttendance()
+        {
+            SqlParameter[] para ={
+                                new SqlParameter("@EmployeeMonthlyAttendance",dtTable),
+                                  new SqlParameter("@AddedBy",AddedBy),
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("MonthlyAttendancePosting", para);
+            return ds;
+        }
+
     }
 }
