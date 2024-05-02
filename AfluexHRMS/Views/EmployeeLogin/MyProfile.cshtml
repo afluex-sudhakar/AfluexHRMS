@@ -103,6 +103,33 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
+
+@if (TempData["Profile"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "Success : @TempData["Profile"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrProfile"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrProfile"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
+
 <script>
     $('#DOB').datepicker({
         dateFormat: 'dd/mm/yy',

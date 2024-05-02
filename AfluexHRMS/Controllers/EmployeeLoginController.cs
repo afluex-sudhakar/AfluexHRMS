@@ -510,21 +510,21 @@ namespace AfluexHRMS.Controllers
                     }
                     else
                     {
-                        TempData["Profile"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrProfile"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                         FormName = "MyProfile";
                         Controller = "EmployeeLogin";
                     }
                 }
                 else
                 {
-                    TempData["Profile"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    TempData["ErrProfile"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     FormName = "MyProfile";
                     Controller = "EmployeeLogin";
                 }
             }
             catch(Exception ex)
             {
-                TempData["Profile"] = ex.Message;
+                TempData["ErrProfile"] = ex.Message;
                 FormName = "MyProfile";
                 Controller = "EmployeeLogin";
             }
