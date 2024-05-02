@@ -4,169 +4,550 @@
     ViewBag.Title = "AdminDashboard";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-
-
-
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-xl-12">
+    <div class="row mt-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
             <div class="row">
-                @*<div class="col-xl-6">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="card tryal-gradient">
-                                <div class="card-body tryal row">
-                                    <div class="col-xl-7 col-sm-7">
-                                        <h2 class="mb-0">Manage your project in one touch</h2>
-                                        <span>
-                                            Let Fillow manage your project automatically with our best AI
-                                            systems
-                                        </span>
-                                        <a href="javascript:void(0);" class="btn btn-rounded">
-                                            Try Free
-                                            Now
-                                        </a>
-                                    </div>
-                                    <div class="col-xl-5 col-sm-5 ">
-                                        <img src="public/assets/images/chart.png" alt="" class="sd-shape">
-                                    </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xl-3">
+                    <div class="card overflow-hidden">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="">TOTAL EMPLOYEES</h6>
+                                    <h3 class="mb-2 number-font">@ViewBag.TotalEmployee</h3>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>*@
-                <div class="col-xl-12">
-                    <div class="row">
-                        <div class="col-xl-3 col-sm-3">
-                            <div class="card">
-                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                    <div class="w-75">
-                                        <h4 class="mb-3 text-nowrap">TOTAL EMPLOYEES</h4>
-                                    </div>
-                                    <div>
-                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalEmployee</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-3">
-                            <div class="card">
-                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                    <div class="w-75">
-                                        <h4 class="mb-3 text-nowrap">TOTAL HOLIDAYS</h4>
-                                    </div>
-                                    <div>
-                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.TotalHolidays</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-3">
-                            <div class="card">
-                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                    <div class="w-75">
-                                        <h4 class="mb-3 text-nowrap">DISTRIBUTED SALARY</h4>
-                                    </div>
-                                    <div>
-                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.DistributedSalary</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-3">
-                            <div class="card">
-                                <div class="card-body card-padding d-flex align-items-center justify-content-between">
-                                    <div class="w-75">
-                                        <h4 class="mb-3 text-nowrap">PENDING SALARY</h4>
-                                    </div>
-                                    <div>
-                                        <h2 class="fs-32 font-w700 mb-0">@ViewBag.PendingSalary</h2>
+                                <div class="col col-auto">
+                                    <div class="counter-icon dashboard_icon bg-primary-gradient box-shadow-primary brround mb-0 ms-auto">
+                                        <img src="~/images/1.gif" class="rounded p-1" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xl-3">
+                    <div class="card overflow-hidden">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="">TOTAL HOLIDAYS</h6>
+                                    <h3 class="mb-2 number-font">@ViewBag.TotalHolidays</h3>
+                                </div>
+                                <div class="col col-auto">
+                                    <div class="counter-icon dashboard_icon bg-danger-gradient box-shadow-primary brround mb-0 ms-auto">
+                                        <img src="~/images/2.gif" class="rounded p-1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xl-3">
+                    <div class="card overflow-hidden">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="">DISTRIBUTED SALARY</h6>
+                                    <h3 class="mb-2 number-font">@ViewBag.DistributedSalary</h3>
+                                </div>
+                                <div class="col col-auto">
+                                    <div class="counter-icon dashboard_icon bg-secondary-gradient box-shadow-primary brround mb-0 ms-auto">
+                                        <img src="~/images/3.gif" class="rounded p-1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xl-3">
+                    <div class="card overflow-hidden">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="">PENDING SALARY</h6>
+                                    <h3 class="mb-2 number-font">@ViewBag.PendingSalary</h3>
+                                </div>
+                                <div class="col col-auto">
+                                    <div class="counter-icon dashboard_icon bg-success-gradient box-shadow-primary brround mb-0 ms-auto">
+                                        <img src="~/images/4.gif" class="rounded p-1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cards">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-header pb-0 border-bottom-0">
+                    <h3 class="card-title mb-4"> Task #1</h3>
+                    <div class="card-options">
+                        <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-bar-chart mb-0"></i></a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <h3 class="d-inline-block mb-2">81%</h3>
+                    <div class="progress h-2 mt-2 mb-2">
+                        <div class="progress-bar bg-primary w-50" role="progressbar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-header pb-0 border-bottom-0">
+                    <h3 class="card-title mb-4">Task #2</h3>
+                    <div class="card-options">
+                        <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-bar-chart mb-0"></i></a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <h3 class="d-inline-block mb-2">72%</h3>
+                    <div class="progress h-2 mt-2 mb-2">
+                        <div class="progress-bar bg-success w-50" role="progressbar"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- COL END -->
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-header pb-0 border-bottom-0">
+                    <h3 class="card-title mb-4"> Task #3</h3>
+                    <div class="card-options">
+                        <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-bar-chart mb-0"></i></a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <h3 class="d-inline-block mb-2">75%</h3>
+                    <div class="progress h-2 mt-2 mb-2">
+                        <div class="progress-bar bg-warning w-50" role="progressbar"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- COL END -->
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-header pb-0 border-bottom-0">
+                    <h3 class="card-title mb-4">Task #4</h3>
+                    <div class="card-options">
+                        <a class="btn btn-sm btn-primary" href="#"><i class="fa fa-bar-chart mb-0"></i></a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <h3 class="d-inline-block mb-2">45%</h3>
+                    <div class="progress h-2 mt-2 mb-2">
+                        <div class="progress-bar bg-danger w-50" role="progressbar"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- COL END -->
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+            <div class="card custom-card ">
+                <div class="card-header">
+                    <h3 class="card-title">Your Company Logo Here</h3>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="fixed-left">
+                        <div class="profile-picture-container" id="profile-picture-container" data-image-type="square">
 
+                            <div class="upload-image-container ">
+                                <h2 class="blue-title semibold no-margin">+</h2>
+                                <label for="upload" class="uploadPic mb-0"></label>
+                                <input type="file" id="upload" class="uploadPic d-none" value="Choose a file" accept="image/*">
+                                <p id="_logo-desc" class="ft-13 no-margin">Your Company Logo comes here</p>
+                            </div>
+
+                            <div class="company-logo-img ">
+                                <img height="60" id="companyLogoImage" onload="setupProfilePicture()" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Total Transactions</h3>
+                </div>
+                <div class="card-body pb-0">
+                    <div id="chartArea" class="chart-donut"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4 col-md-12">
+            <div class="card overflow-hidden">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Timeline</h3>
+                    </div>
+                </div>
+                <div class="card-body pb-0 pt-4">
+                    <div class="activity1">
+                        <div class="activity-blog">
+                            <div class="activity-img brround bg-primary-transparent text-primary">
+                                <i class="fa fa-user-plus fs-20"></i>
+                            </div>
+                            <div class="activity-details d-flex">
+                                <div><b><span class="text-dark"> Mr John </span> </b>  Started following you <span class="d-flex text-muted fs-11">01 June 2020</span></div>
+                                <div class="ms-auto fs-13 text-dark fw-semibold"><span class="badge bg-primary text-white">1m</span></div>
+                            </div>
+                        </div>
+                        <div class="activity-blog">
+                            <div class="activity-img brround bg-secondary-transparent text-secondary">
+                                <i class="fa fa-comment fs-20"></i>
+                            </div>
+                            <div class="activity-details d-flex">
+                                <div><b><span class="text-dark"> Lily </span> </b> 1 Commented applied <span class="d-flex text-muted fs-11">01 July 2020</span> </div>
+                                <div class="ms-auto fs-13 text-dark fw-semibold"><span class="badge bg-danger text-white">3m</span></div>
+                            </div>
+                        </div>
+                        <div class="activity-blog">
+                            <div class="activity-img brround bg-success-transparent text-success">
+                                <i class="fa fa-thumbs-up fs-20"></i>
+                            </div>
+                            <div class="activity-details d-flex">
+                                <div><b><span class="text-dark"> Kevin </span> </b> liked your site <span class="d-flex text-muted fs-11">05 July 2020</span></div>
+                                <div class="ms-auto fs-13 text-dark fw-semibold"><span class="badge bg-warning text-white">5m</span></div>
+                            </div>
+                        </div>
+                        <div class="activity-blog">
+                            <div class="activity-img brround bg-info-transparent text-info">
+                                <i class="fa fa-envelope fs-20"></i>
+                            </div>
+                            <div class="activity-details d-flex">
+                                <div><b><span class="text-dark"> Andrena </span> </b> posted a new article <span class="d-flex text-muted fs-11">09 October 2020</span></div>
+                                <div class="ms-auto fs-13 text-dark fw-semibold"><span class="badge bg-info text-white">5m</span></div>
+                            </div>
+                        </div>
+                        <div class="activity-blog">
+                            <div class="activity-img brround bg-danger-transparent text-danger">
+                                <i class="fa fa-shopping-bag fs-20"></i>
+                            </div>
+                            <div class="activity-details d-flex">
+                                <div><b><span class="text-dark"> Sonia </span> </b> Delivery in progress <span class="d-flex text-muted fs-11">12 October 2020</span></div>
+                                <div class="ms-auto fs-13 text-dark fw-semibold"><span class="badge bg-warning text-white">5m</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title fw-semibold ">Browser Usage</h4>
+                </div>
+                <div class="card-body pt-2 pb-2">
+                    <div class="d-md-flex align-items-center browser-stats">
+                        <div class="d-flex">
+                            <i class="fa fa-chrome bg-secondary-gradient text-white me-2"></i>
+                            <p class="fs-16 my-auto mb-0">Chrome</p>
+                        </div>
+                        <div class="ms-auto my-auto">
+                            <div class="d-flex">
+                                <span class="me-4 my-auto fs-16">35,502</span>
+                                <span class="text-success fs-15"><i class="fe fe-arrow-up"></i>12.75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-md-flex align-items-center browser-stats">
+                        <div class="d-flex">
+                            <i class="fa fa-opera text-white bg-danger-gradient me-2"></i>
+                            <p class="fs-16 my-auto mb-0">Opera</p>
+                        </div>
+                        <div class="ms-auto my-auto">
+                            <div class="d-flex">
+                                <span class="me-4 my-auto fs-16">12,563</span>
+                                <span class="text-danger fs-15"><i class="fe fe-arrow-down"></i>15.12%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-md-flex align-items-center browser-stats">
+                        <div class="d-flex">
+                            <i class="fa fa-firefox text-white bg-purple-gradient me-2"></i>
+                            <p class="fs-16 my-auto mb-0">IE</p>
+                        </div>
+                        <div class="ms-auto my-auto">
+                            <div class="d-flex">
+                                <span class="me-4 my-auto fs-16">25,364</span>
+                                <span class="text-success fs-15"><i class="fe fe-arrow-up"></i>24.37%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-md-flex align-items-center browser-stats">
+                        <div class="d-flex">
+                            <i class="fa fa-edge text-white bg-info-gradient me-2"></i>
+                            <p class="fs-16 my-auto mb-0">Firefox</p>
+                        </div>
+                        <div class="ms-auto my-auto">
+                            <div class="d-flex">
+                                <span class="me-4 my-auto fs-16">14,635</span>
+                                <span class="text-success fs-15"><i class="fe fe-arrow-up"></i>15,63%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-md-flex align-items-center browser-stats">
+                        <div class="d-flex">
+                            <i class="fa fa-android text-white bg-success-gradient me-2"></i>
+                            <p class="fs-16 my-auto mb-0">Android</p>
+                        </div>
+                        <div class="ms-auto my-auto">
+                            <div class="d-flex">
+                                <span class="me-4 my-auto fs-16">15,453</span>
+                                <span class="text-danger fs-15"><i class="fe fe-arrow-down"></i>23.70%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title fw-semibold ">Daily Activity</h4>
+                </div>
+                <div class="card-body pb-0">
+                    <ul class="task-list">
+                        <li>
+                            <i class="task-icon bg-primary"></i>
+                            <h6>Task Finished<span class="text-muted fs-11 ms-2">29 Oct 2020</span></h6>
+                            <p class="text-muted fs-12">Adam Berry finished task on<a href="#" class="fw-semibold"> Project Management</a></p>
+                        </li>
+                        <li>
+                            <i class="task-icon bg-secondary"></i>
+                            <h6>New Comment<span class="text-muted fs-11 ms-2">25 Oct 2020</span></h6>
+                            <p class="text-muted fs-12">Victoria commented on Project <a href="#" class="fw-semibold"> AngularJS Template</a></p>
+                        </li>
+                        <li>
+                            <i class="task-icon bg-primary"></i>
+                            <h6>New Comment<span class="text-muted fs-11 ms-2">25 Oct 2020</span></h6>
+                            <p class="text-muted fs-12">Victoria commented on Project <a href="#" class="fw-semibold"> AngularJS Template</a></p>
+                        </li>
+                        <li>
+                            <i class="task-icon bg-secondary"></i>
+                            <h6>Task Overdue<span class="text-muted fs-11 ms-2">14 Oct 2020</span></h6>
+                            <p class="text-muted mb-0 fs-12">Petey Cruiser finished task <a href="#" class="fw-semibold"> Integrated management</a></p>
+                        </li>
+                        <li>
+                            <i class="task-icon bg-primary"></i>
+                            <h6>Task Overdue<span class="text-muted fs-11 ms-2">29 Oct 2020</span></h6>
+                            <p class="text-muted mb-0 fs-12">Petey Cruiser finished task <a href="#" class="fw-semibold"> Integrated management</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12">
+            <div class="card ">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">Product Sales</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="data-table" class="table table-bordered text-nowrap mb-0">
+                            <thead class="border-top">
+                                <tr>
+                                    <th class="bg-transparent border-bottom-0 w-5">S.no</th>
+                                    <th class="bg-transparent border-bottom-0">Name</th>
+                                    <th class="bg-transparent border-bottom-0">Date</th>
+                                    <th class="bg-transparent border-bottom-0">Amount</th>
+                                    <th class="bg-transparent border-bottom-0">Status</th>
+                                    <th class="bg-transparent border-bottom-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-bottom">
+                                    <td class="text-muted fs-15 fw-semibold text-center">01.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/11.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Jake poole</h6>
+                                                <span class="fs-12 text-muted">jacke123@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">20-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$5.321.2</td>
+                                    <td class="text-success fs-15 fw-semibold">Success</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <td class="text-muted fs-15 fw-semibold text-center">02.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/1.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Virginia Gray</h6>
+                                                <span class="fs-12 text-muted">virginia456@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">20-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$53,3654</td>
+                                    <td class="text-success fs-15 fw-semibold">Success</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <td class="text-muted fs-15 fw-semibold text-center">03.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/12.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Jacob Thomson</h6>
+                                                <span class="fs-12 text-muted">jacobthomson@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">20-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$1,56,3654</td>
+                                    <td class="text-primary fs-15 fw-semibold">Pending</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <td class="text-muted fs-15 fw-semibold text-center">04.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/13.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Trevor Thomson</h6>
+                                                <span class="fs-12 text-muted">trevor@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">19-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$12.3</td>
+                                    <td class="text-success fs-15 fw-semibold">Success</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <td class="text-muted fs-15 fw-semibold text-center">05.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/2.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Kylie north</h6>
+                                                <span class="fs-12 text-muted">kylie@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">19-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$5.312.2</td>
+                                    <td class="text-primary fs-15 fw-semibold">Pending</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <td class="text-muted fs-15 fw-semibold text-center">06.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/14.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Jan Hodges</h6>
+                                                <span class="fs-12 text-muted">jan@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">19-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$5.312.2</td>
+                                    <td class="text-danger fs-15 fw-semibold">Cancel</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <td class="text-muted fs-15 fw-semibold text-center">07.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/4.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Trevor Thomson</h6>
+                                                <span class="fs-12 text-muted">trevor@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">19-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$2,24,1421</td>
+                                    <td class="text-success fs-15 fw-semibold">Success</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted fs-15 fw-semibold text-center">08.</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <span class="avatar avatar-md brround mt-1" style="background-image: url(AssetsAdminNew/images/users/5.jpg)"></span>
+                                            <div class="ms-2 mt-0 mt-sm-2 d-block">
+                                                <h6 class="mb-0 fs-14 fw-semibold">Emily Lewis</h6>
+                                                <span class="fs-12 text-muted">emily@gmail.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">19-11-2020 </td>
+                                    <td class="text-muted fs-15 fw-semibold">$9.321.2</td>
+                                    <td class="text-danger fs-15 fw-semibold">Cancel</td>
+                                    <td class="">
+                                        <a class="btn btn-primary btn-sm rounded-11 me-2" data-bs-toggle="tooltip" data-bs-original-title="Edit"><i><svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" /></svg></i></a>
+                                        <a class="btn btn-danger btn-sm rounded-11" data-bs-toggle="tooltip" data-bs-original-title="Delete"><i><svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" /></svg></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <div class="container-fluid">
 
     <div class="row">
         <div class="col-xl-8 col-lg-12">
-         
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Monthly Attendance</h4>
-                        <div class="text-end">
-                            <i class="fa fa-circle text-success me-1"></i><span>Present</span>&nbsp;&nbsp;&nbsp;
-                            <i class="fa fa-circle text-danger me-1"></i><span>Absent</span>
-                        </div>
-                        
-                    </div>
-                    
-                    <div id="overlapping-bars" class="ct-chart ct-golden-section chartlist-chart mt-4"></div>
-                    
-                </div>
-            
-        </div>
 
-        <div class="col-xl-4 col-lg-12">
-            <div class="clearfix">
-                <div class="card">
-                    <div class="card-header d-block">
-                        <h4 class="card-title">Calender </h4>
-                        @*<p class="mb-0 subtitle">add <code>.progress-animated</code> to change the style</p>*@
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Monthly Attendance</h4>
+                    <div class="text-end">
+                        <i class="fa fa-circle text-success me-1"></i><span>Present</span>&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-circle text-danger me-1"></i><span>Absent</span>
                     </div>
-                    <div class="card-body">
-                        <h6>
-                            Task #1
-                            <span class="pull-end" style="color:#4800ff">90%</span>
-                        </h6>
-                        <div class="progress ">
-                            <div class="progress-bar bg-danger progress-animated" style="width: 90%; height:8px;" role="progressbar">
-                                <span class="sr-only">60% Complete</span>
-                            </div>
-                        </div>
-                        <h6 class="mt-4">
-                            Task #2
-                            <span class="pull-end" style="color:#4800ff">75%</span>
-                        </h6>
-                        <div class="progress">
-                            <div class="progress-bar bg-info progress-animated" style="width: 75%; height:8px;" role="progressbar">
-                                <span class="sr-only">60% Complete</span>
-                            </div>
-                        </div>
-                        <h6 class="mt-4">
-                            Task #3
-                            <span class="pull-end" style="color:#4800ff">65%</span>
-                        </h6>
-                        <div class="progress">
-                            <div class="progress-bar bg-success progress-animated" style="width: 65%; height:8px;" role="progressbar">
-                                <span class="sr-only">60% Complete</span>
-                            </div>
-                        </div>
-                        <h6 class="mt-4">
-                            Task #4
-                            <span class="pull-end" style="color:#4800ff">45%</span>
-                        </h6>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning progress-animated" style="width: 45%; height:8px;" role="progressbar">
-                                <span class="sr-only">60% Complete</span>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
+
+                <div id="overlapping-bars" class="ct-chart ct-golden-section chartlist-chart mt-4"></div>
+
             </div>
         </div>
     </div>
 </div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -175,56 +556,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        //debugger;
-        //google.charts.load("current", { packages: ["ImageBarChart"] });
-        //google.charts.setOnLoadCallback(drawChart);
-        //drawChart();
-
         window.onload = horizontalBarChart();
     });
-
-
-    //function drawChart() {
-    //    debugger;
-    //    $.noConflict();
-    //         $.ajax({
-    //             type: 'POST',
-    //             dataType: 'json',
-    //             contentType: 'application/json',
-    //             url: '/Admin/GetJoiningDetails',
-    //             data: JSON.stringify(),
-    //             success:
-    //             function (response) {
-    //                 var datare = response;
-    //                 var data = new google.visualization.DataTable();
-
-    //                 data.addColumn('string', 'Month');
-    //                 data.addColumn('number', 'Present');
-    //                 data.addColumn('number', 'Absent');
-    //                 for (var i = 0; i < datare.length; i++) {
-    //                     data.addRow([datare[i].Month, parseInt(datare[i].TotalUser), parseInt(datare[i].City2)]);
-    //                 }
-
-    //                 var chart = new google.visualization.ImageBarChart(document.getElementById('marketchart'));
-    //                 var options = {
-    //                     pieSliceText: 'value-and-percentage',
-    //                     format: 'decimal',
-    //                     is3D: true,
-    //                     legend: { position: 'bottom' },
-    //                     animation: {
-    //                         startup: true,
-    //                         duration: 1000,
-    //                         easing: 'out',
-    //                     }, chartArea: { width: "100%", height: "100%" }
-    //                 };
-    //                 chart.draw(data, options);
-    //             },
-    //             error: function () {
-    //             }
-    //         });
-    //}
-
-
 
     function horizontalBarChart() {
         $.ajax({
@@ -265,12 +598,12 @@
                                                  return value[0];
                                              }
                                          }
-                                         
+
                                      }]
                                  ];
-                             
+
                                  new Chartist.Bar('#overlapping-bars', data, options, responsiveOptions);
-                        
+
                          },
                          error: function () {
                          }
@@ -338,7 +671,45 @@
 
             }
         });
-    }
+    };
+
+
+    //function getFile1() {
+    //    document.getElementById("companyLogoImage").click();
+    //}
+    //var loadFile = function (event) {
+    //    var image = document.getElementById('output');
+    //    image.src = URL.createObjectURL(event.target.files[0]);
+    //};
+
+    $("companyLogoImage").change(function () {
+        debugger;
+        var fileUpload = $("#companyLogoImage").get(0);
+        var files = fileUpload.files;
+        var formData = new FormData();
+        formData.append(files[0].name, files[0]);
+        var AdminID = @Session["Pk_AdminId"];
+        formData.append("AdminID",AdminID)
+        $.ajax({
+            url: "/Customer/UpdateProfilePic",
+            type: 'post',
+            datatype: 'json',
+            contentType: false,
+            processData: false,
+            async: false,
+            data: formData,
+            success: function (data) {
+
+                if (data == true) {
+                    alert("Picture Uploaded succesfully !");
+                    //window.location.href= "/Customer/MyAccount";
+                }
+                else {
+                    alert("Not Uploaded. Kindly try after some times. !! ")
+                }
+            }
+        })
+    });
 </script>
 
 
@@ -382,9 +753,6 @@
                 };
 
                 chart.draw(data, options);
-
-
-
 
             },
             error: function () {

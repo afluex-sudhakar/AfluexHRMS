@@ -8,25 +8,18 @@
 @using (Html.BeginForm("EditEmployeeBasicInfo", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
     <div class="container-fluid">
-        <div class="row page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Master</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Employee Details</a></li>
-            </ol>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Employee Details</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Employee</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee Details</li>
+                </ol>
+            </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header d-lg-flex justify-content-between">
-                        <h4 class="card-title">Employee Details</h4>
-                        <p style="color: #ff0000">
-                            @TempData["Emp"]
-                        </p>
-                        <p style="color: red">
-                            @TempData["ErrEmp"]
-                        </p>
-                    </div>
-
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3 mb-3">
@@ -41,17 +34,17 @@
 
                             <div class="col-md-3 mb-3">
                                 <label class="form-label"><h5>Company Name</h5></label>
-                                @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control default-select wide" })
+                                @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
                             </div>
 
                             <div class="col-md-3 mb-3">
                                 <label class="form-label"><h5>Department Name</h5></label>
-                                @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control default-select wide", @onchange = "return GetDesignation();" })
+                                @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control form-select default-select wide", @onchange = "return GetDesignation();" })
                             </div>
 
                             <div class="col-md-3 mb-3">
                                 <label class="form-label"><h5>Designation Name</h5></label>
-                                @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control default-select wide" })
+                                @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp;</h5></label>
@@ -61,7 +54,7 @@
 
                         <div class="box_body p-4">
                             <div class="table-responsive">
-                                    <table class="table display" id="example">
+                                    <table class="table table-bordered display table-hover" id="data-table">
                                         <thead>
                                             <tr>
                                                 <th>Sr.No</th>
@@ -117,6 +110,32 @@
         </div>
     </div>
     
+}
+
+@if (TempData["Emp"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["Emp"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrEmp"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrEmp"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
 }
 
 <script>

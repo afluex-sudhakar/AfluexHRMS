@@ -5,40 +5,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    i {
-        font-size: 50px;
-    }
-</style>
 <div class="container-fluid">
-    <div class="row page-titles">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">NFC</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Add NFC Device</a></li>
-        </ol>
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">NFC Device</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">NFC</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add NFC Device</li>
+            </ol>
+        </div>
     </div>
     <div class="row">
         <div class="col-12">
-
             <div class="row">
-                            <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
-                                <div class="widget-stat card" style="background-color:#FF7114">
-                                    <div class="card-body  p-4">
-                                        <div class="media">
-                                            <span class="mr-3">
-                                                <i class="fa fa-credit-card-alt" style="color:white"></i>
-                                            </span>
-
-                                            <div class="media-body text-white text-end">
-                                                
-                                                <p class="mb-1"><a href="" class="text-white text-activate" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Activate</a></p>
-                                               
-                                                <h4 class="text-white">Business Card</h4>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="card bg-primary img-card box-primary-shadow">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="text-white">
+                                    <h2 class="number-font">Business Card</h2>
+                                    <a class="text-white btn btn-success mb-0"  data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Activate </a>
                                 </div>
+                                <div class="ms-auto"> <i class="fa fa-credit-card-alt text-white fs-30 me-2 mt-2"></i> </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

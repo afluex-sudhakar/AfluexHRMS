@@ -11,28 +11,19 @@
 @using (Html.BeginForm("SalaryPosting", "Payroll", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete="off" }))
 {
     
-
-
         <div class="container-fluid">
-            <div class="row page-titles">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Payroll</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Salary Posting</a></li>
-                </ol>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Salary</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Payroll</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Salary Posting</li>
+                    </ol>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header d-lg-flex justify-content-between">
-                            <h4 class="card-title">Salary</h4>
-                            <p style="color: #ff0000">
-                                @TempData["Salary"]
-                            </p>
-                            <p style="color: red">
-                                @TempData["ErrSalary"]
-                            </p>
-                        </div>
-
                         <div class="card-body">
 
                             <div class="row">
@@ -60,7 +51,7 @@
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
                                         <div class="QA_table mb_30">
-                                            <table class="table display" id="example">
+                                            <table class="table border table-bordered text-nowrap text-md-nowrap table-hover display" id="data-table">
                                                 <thead>
                                                     <tr>
                                                         <th>SNo.</th>
@@ -277,6 +268,31 @@
     });
 </script>
 
+@if (TempData["Salary"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["Salary"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrSalary"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrSalary"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
 
 <style>
     .errortext {

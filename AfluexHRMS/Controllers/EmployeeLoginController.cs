@@ -3,6 +3,7 @@ using AfluexHRMS.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -121,18 +122,18 @@ namespace AfluexHRMS.Controllers
                     }
                     else if (ds.Tables[0].Rows[0][0].ToString() == "0")
                     {
-                        TempData["EmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrEmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
                 else
                 {
-                    TempData["EmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    TempData["ErrEmployeeLeaveApp"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                 }
 
             }
             catch (Exception ex)
             {
-                TempData["EmployeeLeaveApp"] = ex.Message;
+                TempData["ErrEmployeeLeaveApp"] = ex.Message;
             }
             return RedirectToAction("LeaveApplication", "EmployeeLogin");
         }
@@ -403,13 +404,13 @@ namespace AfluexHRMS.Controllers
                     }
                     else if (ds.Tables[0].Rows[0]["MSG"].ToString() == "1")
                     {
-                        TempData["Message"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        TempData["ErrMessage"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                TempData["Message"] = ex.Message;
+                TempData["ErrMessage"] = ex.Message;
             }
             return RedirectToAction("Message");
         }
@@ -451,7 +452,86 @@ namespace AfluexHRMS.Controllers
             }
             return View(model);
         }
-       
+
         #endregion
+
+        #region MyProfile
+        public ActionResult MyProfile(EmployeeLogin model)
+        {
+            model.EmployeeID = Session["PK_EmployeeID"].ToString();
+           DataSet ds1 = model.GetProfileDetails();
+            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
+            {
+                   model.EmployeeID = ds1.Tables[0].Rows[0]["PK_EmployeeID"].ToString();
+                   model.Name = ds1.Tables[0].Rows[0]["EmployeeName"].ToString();
+                   model.DOB = ds1.Tables[0].Rows[0]["DOB"].ToString();
+                   model.FatherName = ds1.Tables[0].Rows[0]["FatherName"].ToString();
+                   model.GenderID = ds1.Tables[0].Rows[0]["Gender"].ToString();
+                   model.BloodGroup = ds1.Tables[0].Rows[0]["BloodGroup"].ToString();
+                   model.DOJ = ds1.Tables[0].Rows[0]["DOJ"].ToString();
+                   model.Email = ds1.Tables[0].Rows[0]["Email"].ToString();
+                   model.Contact = ds1.Tables[0].Rows[0]["MobileNo"].ToString();
+                   model.PAN = ds1.Tables[0].Rows[0]["PanNo"].ToString();
+                   model.Address = ds1.Tables[0].Rows[0]["FullAddress"].ToString();
+                   model.ProfilePic = ds1.Tables[0].Rows[0]["ProfilePic"].ToString();
+                   model.DepartmentName = ds1.Tables[0].Rows[0]["DepartmentName"].ToString();
+                   model.DesignationName = ds1.Tables[0].Rows[0]["DesignationName"].ToString();
+            }
+            #region Gender
+            List<SelectListItem> Gender = Common.GenderList();
+            ViewBag.Gender = Gender;
+            #endregion Gender
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("MyProfile")]
+        [OnAction(ButtonName = "profileupdate")]
+        public ActionResult UpdateProfile(HttpPostedFileBase postedFile, EmployeeLogin model)
+        {
+            string FormName = "";
+            string Controller = "";
+            try
+            {
+                if (postedFile != null)
+                {
+                    model.postedFile = "/EmployeeProfile/" + Guid.NewGuid() + Path.GetExtension(postedFile.FileName);
+                    postedFile.SaveAs(Path.Combine(Server.MapPath(model.postedFile)));
+                }
+                model.EmployeeID = Session["PK_EmployeeID"].ToString();
+                DataSet ds = model.UpdateProfileDetails();
+                if(ds !=null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    if(ds.Tables[0].Rows[0]["Msg"].ToString() =="1")
+                    {
+                        TempData["Profile"] = "Profile Updated Successfully.";
+                        FormName = "MyProfile";
+                        Controller = "EmployeeLogin";
+                    }
+                    else
+                    {
+                        TempData["Profile"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                        FormName = "MyProfile";
+                        Controller = "EmployeeLogin";
+                    }
+                }
+                else
+                {
+                    TempData["Profile"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
+                    FormName = "MyProfile";
+                    Controller = "EmployeeLogin";
+                }
+            }
+            catch(Exception ex)
+            {
+                TempData["Profile"] = ex.Message;
+                FormName = "MyProfile";
+                Controller = "EmployeeLogin";
+            }
+            return RedirectToAction(FormName,Controller);
+        }
+
+        #endregion
+
     }
 }

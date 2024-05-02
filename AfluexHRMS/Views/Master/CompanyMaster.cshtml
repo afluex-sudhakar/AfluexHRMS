@@ -10,25 +10,18 @@
 {
 
         <div class="container-fluid">
-            <div class="row page-titles">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Master</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Company Master</a></li>
-                </ol>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Company Master</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Master</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Company Master</li>
+                    </ol>
+                </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header d-lg-flex justify-content-between">
-                            <h4 class="card-title">Company Master</h4>
-                            <p style="color: #ff0000">
-                                @TempData["Company"]
-                            </p>
-                            <p style="color: red">
-                                @TempData["ErrCompany"]
-                            </p>
-                        </div>
-                       
                          <div class="card-body">
                                 <div class="row mb-3">
                                     <div class="col-md-3 mb-3">
@@ -68,7 +61,7 @@
                                         <label class="form-label d-block" for="inputEmail4"><h5>&nbsp;</h5></label>
                                         @if (Model.CompanyID == null)
                                         {
-                                            <input type="submit" class="btn btn-success" name="Save" value="Save" onclick="return validateform();" />
+                                            <input type="submit" class="btn btn-success" id="Save" name="Save" value="Save" onclick="return validateform();" />
                                         }
                                         else
                                         {
@@ -90,6 +83,33 @@
   
        
 }
+
+@if (TempData["Company"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "Success : @TempData["Company"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if(TempData["ErrCompany"] !=null )
+{
+
+        <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrCompany"]",
+                    type: "error"
+                });
+            };
+
+        </script>
+
+}
+
 
 <style>
     .errortext {
@@ -189,5 +209,6 @@ function onlyAlphabets(e, t) {
         alert(err.Description);
     }
 }
+
 
 </script>

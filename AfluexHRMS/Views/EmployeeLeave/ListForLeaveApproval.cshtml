@@ -9,24 +9,18 @@
 @using (Html.BeginForm("ListForLeaveApproval", "EmployeeLeave", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
     <div class="container-fluid">
-        <div class="row page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Leave Management</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Leave Approval</a></li>
-            </ol>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Leave Approval</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Leave Management</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Leave Approval</li>
+                </ol>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header d-lg-flex justify-content-between">
-                        <h4 class="card-title">Leave</h4>
-                        <p style="color: #ff0000">
-                            @TempData["ApproveLeave"]
-                        </p>
-                        <p style="color: red">
-                            @TempData["ErrApproveLeave"]
-                        </p>
-                    </div>
                     <div class="card-body">
 
                         <div class="row">
@@ -57,7 +51,7 @@
                             <div class="box_body p-4">
                                 <div class="table-responsive">
                                     <div class="QA_table mb_30">
-                                        <table class="table display" id="example">
+                                        <table class="table table-bordered display table-hover" id="data-table">
                                             <thead>
                                                 <tr>
                                                     <th>SNo.</th>
@@ -95,8 +89,8 @@
                                                                 <td><input type="text" class="form-control" id="txtDesc @i" name="txtRemark @i" onchange="getdata(this)" /></td>
 
                                                                 <td><input type="text" class="form-control" id="txtDesc @i" name="txtDays @i" onchange="getdata1(this)" /></td>
-                                                                <td>
-                                                                    <a href="#" class="btn btn-success btn-sm" onclick="Approve('@i','@Item.LeaveApplicationID');">Approve</a>
+                                                                <td class="d-flex">
+                                                                    <a href="#" class="btn btn-success btn-sm" style="margin-right:10px;" onclick="Approve('@i','@Item.LeaveApplicationID');">Approve</a>
                                                                     <a href="#" class="btn btn-danger btn-sm" onclick="Reject('@i','@Item.LeaveApplicationID');">Reject</a>
                                                                 </td>
                                                             </tr>
@@ -182,3 +176,29 @@
         $('#txtdays').val(days.value);
     }
 </script>
+
+@if (TempData["ApproveLeave"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["ApproveLeave"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrApproveLeave"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrApproveLeave"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}

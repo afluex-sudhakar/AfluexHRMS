@@ -11,25 +11,18 @@
 
 
         <div class="container-fluid">
-            <div class="row page-titles">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Payroll</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Salary Payment</a></li>
-                </ol>
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Salary Payment</h1>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Payroll</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Salary Payment</li>
+                    </ol>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header d-lg-flex justify-content-between">
-                            <h4 class="card-title">Salary Payment</h4>
-                            <p style="color: #ff0000">
-                                @TempData["EmpSalary"]
-                            </p>
-                            <p style="color: red">
-                                @TempData["ErrEmpSalary"]
-                            </p>
-                        </div>
-                      
                             <div class="card-body">
 
                                 <div class="row">
@@ -64,7 +57,7 @@
                                     <div class="box_body p-4">
                                         <div class="table-responsive">
                                             <div class="QA_table mb_30">
-                                                <table class="table display">
+                                                <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mg-b-0">
                                                     <thead>
                                                         <tr>
                                                             <th>SNo.</th>
@@ -251,6 +244,31 @@
 
 </script>
 
+@if (TempData["EmpSalary"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["EmpSalary"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrEmpSalary"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrEmpSalary"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
 
 <style>
     .errortext {

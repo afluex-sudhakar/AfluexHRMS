@@ -5,17 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    i{
-        font-size:50px;
-    }
-</style>
 <div class="container-fluid">
-    <div class="row page-titles">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">NFC</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Manage NFC Device</a></li>
-        </ol>
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Manage NFC Device</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">NFC</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage NFC Device</li>
+            </ol>
+        </div>
     </div>
     <div class="row">
         <div class="col-12">
@@ -27,7 +25,7 @@
                     {
                         foreach (var Item in Model.lst)
                         {
-                            <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+                            @*<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
                                 <div class="widget-stat card" style="background-color:@Item.Color">
                                     <div class="card-body  p-4">
                                         <div class="media">
@@ -48,8 +46,27 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>*@
+                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                <div class="card bg-primary img-card box-primary-shadow" style="background-color:@Item.Color">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="text-white">
+                                                @if (Item.IsActive == "True")
+                                                {
+                                                    <span class="badge bg-warning  me-1 mb-2 mt-1"><a style="font-size:15px;" href="/NFCProfile/ProfileUpdate?EncCode=@Item.EncCode" class="text-white text-activate">Set Action</a></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning  me-1 mb-2 mt-1"><a style="font-size:15px;" href="/Home/NFCActivation?C=@Item.EncCode" class="text-white text-activate">Activate</a></span>
+                                                }
+                                                <h2 class="number-font">@Item.Service</h2>
+                                            </div>
+                                            <div class="ms-auto"> <i class="fa fa-credit-card-alt text-white fs-30 me-2 mt-2"></i> </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                         }
                     }
                     else
