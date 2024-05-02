@@ -50,10 +50,11 @@
                             <div class="col-md-3 mb-3">
                                 <label class="form-label" for="inputEmail4"><h5>To Date   </h5></label>
                                 @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "ToDate", @readonly = "readonly" })
+                                <p id="validationResult"></p>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp;</h5></label>
-                                <input type="submit" name="Search" id="Search" value="Search" class="btn btn-success d-block" onclick="return ValidateForm();" />
+                                <input type="submit" name="Search" id="Search" value="Search" class="btn btn-success d-block" onclick="return validateDateRange();" />
                             </div>
                         </div>
 
@@ -109,7 +110,37 @@
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
 
+
+
+
+
 <script>
+
+
+    var today = new Date();
+
+    today.setDate(1);
+    // Format today's date as yyyy-mm-dd
+    var formattedDate = today.getDate().toString().padStart(2, '0') + "/" + (today.getMonth() + 1).toString().padStart(2, '0')+ "/" + today.getFullYear();
+
+    // Set today's date in the date picker
+    $("#FromDate").val(formattedDate);
+
+
+
+    // Get the current date
+    var currentDate = new Date();
+
+    // Calculate the last date of the current month
+    var lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+    // Format the last date as yyyy-mm-dd
+    var formattedDatelast = lastDate.getDate().toString().padStart(2, '0') + "/" + (lastDate.getMonth() + 1).toString().padStart(2, '0') +"/"+ lastDate.getFullYear();
+
+    // Set the last date of the month in the date picker
+    $("#ToDate").val(formattedDatelast);
+
+
 
     $('#FromDate').datepicker({
         dateFormat: 'dd/mm/yy',
@@ -122,8 +153,34 @@
         changeMonth: true
     });
 
+    function validateDateRange() {
+    
+        if ($('#FromDate').val() == '') {
+            $("#FromDate").addClass('errortext');
+            $('#FromDate').focus();
 
+            return false;
+        }
+        if ($('#ToDate').val() == '') {
+            $("#ToDate").addClass('errortext');
+            $('#ToDate').focus();
+
+            return false;
+        }
+    }
+
+
+    
+   
 </script>
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>
+
 
 
 
