@@ -16,7 +16,7 @@
     <title>@ViewBag.Title</title>
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="~/AssetsAdminNew/images/brand/favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assetsAdmin/images/favicon.png">
 
     <!-- BOOTSTRAP CSS -->
     <link href="~/AssetsAdminNew/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -89,9 +89,6 @@
                     <li><h3>&nbsp;</h3></li>
                     <li class="slide">
                         <a class="side-menu__item" data-bs-toggle="slide" href="/Admin/AdminDashBoard"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
-                    </li>
-                    <li class="slide">
-                        <a class="side-menu__item" data-bs-toggle="slide" href="/Admin/MyProfile"><i class="side-menu__icon fa fa-address-book"></i><span class="side-menu__label">My Profile</span></a>
                     </li>
                     <li class="slide">
                         <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fe fe-database"></i><span class="side-menu__label">Master</span><i class="angle fa fa-angle-right"></i></a>
@@ -306,7 +303,7 @@
                             <div class="dropdown d-none d-md-flex profile-1">
                                 <a href="#" data-bs-toggle="dropdown" class="nav-link pe-2 leading-none d-flex">
                                     <span>
-                                        <img src="AssetsAdminNew/images/users/8.jpg" alt="profile-user" class="avatar  profile-user brround cover-image">
+                                        <img src="@Session["ProfilePic"]" alt="profile-user" class="avatar  profile-user brround cover-image">
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

@@ -34087,3 +34087,167 @@ textarea.form-control {
 .dashboard_icon{
     line-height:3rem!important;
 }
+
+
+
+
+/*Image Uploader*/
+ .profile-picture-container {
+	 width: calc(100px + 3vw);
+	 background-position: center;
+	 max-width: 162px;
+	 margin-left: auto;
+	 margin-right: auto;
+	 margin-top: 15px;
+	 padding: 3px;
+	 height: calc(100px + 3vw);
+}
+ .profile-picture-container .upload-image-container {
+	 text-align: center;
+	 border: 2px dashed #a0c5ef;
+	 border-radius: 8px;
+	 width: 100%;
+	 height: 100%;
+	 padding: 5px;
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
+	 justify-content: center;
+	 position: relative;
+}
+ .profile-picture-container .upload-image-container h2 {
+	 font-size: 40px;
+}
+ .profile-picture-container .upload-image-container h5 {
+	 font-size: 16px;
+	 font-weight: 600;
+}
+ .profile-picture-container .upload-image-container p {
+	 opacity: 0.42;
+	 font-size: 12px;
+}
+ 
+.is-small-image {
+width: 175px;
+max-width: 175px;
+}
+
+.is-small-image #_logo-desc {
+display: none;
+}
+
+.is-small-image + .text-center {
+width: 175px !important;
+margin-bottom: 2rem;
+}
+
+.social-section.big {
+top: 0;
+}
+
+.uploadPic {
+    position: absolute;
+    opacity: 0;
+    height: 100%;
+    z-index: 999;
+    width: 152px;
+    border-radius: 50%;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    min-height: 45px;
+}
+
+.btnClose-croppie {
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    margin-top: -10px;
+    height: 30px;
+    width: 30px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: -10px;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btnClose-croppie i {
+    color: black !important;
+    line-height: 30px;
+    font-size: 20px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btnClose-croppie:hover {
+    background: red;
+}
+
+.btnClose-croppie:hover i {
+    color: white !important;
+
+}
+
+.company-logo-img {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.company-logo-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.is-small-image .company-logo-img,
+.is-small-image .company-logo-img img {
+    min-height: 53px;
+}
+
+.profile-picture-container.is-small-image {
+    height: auto !important;
+    min-height: 53px !important;
+}
+
+.profile-picture-container {
+    position: relative;
+    padding: 0 !important;
+}
+
+.profile-picture-container .upload-image-container {
+
+    position: absolute;
+    /*opacity: 0;*/
+    z-index: 2;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    height: calc(100% - 4px);
+    top: 2px;
+    width: calc(100% - 4px);
+    left: 2px;
+}
+
+.profile-picture-container .upload-image-container.has-image {
+    opacity: 0;
+}
+
+.profile-picture-container:hover .upload-image-container.has-image {
+    opacity: 1;
+}
+
+.image-square-btn, .image-rect-btn {
+    background: #ffffff;
+    color: #333333 !important;
+    padding: 5px 10px;
+    line-height: 24px;
+    cursor: pointer;
+    width: 120px;
+}
+
+.upload-demo.rect .upload-demo-wrap {
+    width: 700px;
+}
