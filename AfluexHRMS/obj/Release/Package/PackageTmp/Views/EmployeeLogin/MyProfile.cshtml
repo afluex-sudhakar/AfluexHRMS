@@ -1,0 +1,259 @@
+﻿@model AfluexHRMS.Models.EmployeeLogin
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("MyProfile", "EmployeeLogin", FormMethod.Post, new { @id = "Profile", enctype = "multipart/form-data",@autocomplete="off" }))
+{
+<div class="container-fluid">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Personal Information</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">My Profile</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Personal Details</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-12">
+            <div class="clearfix">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+
+                        <img style="height:150px; width:150px; border-radius:2px;" class="d-block m-auto" src="@Model.ProfilePic" alt=""/>
+
+                        <input type="file" id="postedFile" name="postedFile" class="form-control mt-2" />
+
+                        <p class="text-muted mt-3 text-center" style="font-weight:bold;">@Model.Email</p>
+                        <p class="text-muted mt-3 text-center" style="font-weight:bold;">Department:- @Model.DepartmentName</p>
+                        <p class="text-muted mt-3 text-center" style="font-weight:bold;">Designation:- @Model.DesignationName</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-12">
+            <div class="card shadow-lg"  id="showdata">
+                <div class="card-header d-lg-flex justify-content-between">
+                    <h4 class="card-title">PERSONAL INFO</h4>
+                    <div class="card-options">
+                        <a ><i class="fa fa-pencil" id="respondbutton"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Name</label>
+                            @Model.Name
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Father Name</label>
+                            @Model.FatherName
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">DOB</label>
+                            @Model.DOB
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Gender</label>
+                            @Model.GenderID
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Blood Group</label>
+                            @Model.BloodGroup
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Date Of Joining</label>
+                            @Model.DOJ
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow-lg" id="Editabledata">
+                <div class="card-header d-lg-flex justify-content-between">
+                    <h4 class="card-title">PERSONAL INFO</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Name</label>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Full Name" })
+                            @Html.HiddenFor(m => m.EmployeeID)
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Father Name</label>
+                            @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">DOB</label>
+                            @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @placeholder = "DOB", @readonly = "read" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Gender</label>
+                            @Html.DropDownListFor(m => m.GenderID, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Blood Group</label>
+                            @Html.TextBoxFor(m => m.BloodGroup, new { @class = "form-control", @placeholder = "Blood Group" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Date Of Joining</label>
+                            @Html.TextBoxFor(m => m.DOJ, new { @class = "form-control", @disabled = "disabled" })
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <input type="submit" class="btn btn-primary" id="profileupdate" name="profileupdate" value="Update" />
+                            <a class="btn btn-danger text-white" onclick="return btnnormal()">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-lg" id="cardshow">
+                <div class="card-header d-lg-flex justify-content-between">
+                    <h4 class="card-title">CONTACT & ADDRESS</h4>
+                    <div class="card-options">
+                        <a><i class="fa fa-pencil" id="respondbtn"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Email ID</label>
+                            @Model.Email
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Mobile No.</label>
+                            @Model.Contact
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Pan Number</label>
+                            @Model.PAN
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Address</label>
+                            @Model.Address
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow-lg" id="cardhide">
+                <div class="card-header d-lg-flex justify-content-between">
+                    <h4 class="card-title">CONTACT & ADDRESS</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Email ID</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Mobile No.</label>
+                            @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", @Placeholder = "Mobile No", @maxlength = "10", @onkeypress = "return isNumberOrDecimal(event);" })
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Pan Number</label>
+                            @Html.TextBoxFor(m => m.PAN, new { @class = "form-control", @Placeholder = "PAN  ", @onchange = "return validatePan();" })
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Address</label>
+                            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @placeholder = "Address", @disabled = "disabled" })
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <input type="submit" class="btn btn-primary" id="profileupdate" name="profileupdate" value="Update" />
+                            <a class="btn btn-danger" onclick="return cancelbtn()">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+}
+
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+
+@if (TempData["Profile"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "Success : @TempData["Profile"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrProfile"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrProfile"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        $('#Editabledata').hide();
+        $('#cardhide').hide();
+
+        $('#respondbutton').click(function () {
+            $('#showdata').hide();
+            $('#Editabledata').show();
+        });
+        $('#respondbtn').click(function () {
+            $('#cardhide').show();
+            $('#cardshow').hide();
+        });
+    });
+    function btnnormal() {
+        $('#showdata').show();
+        $('#Editabledata').hide();
+    };
+    function cancelbtn() {
+        $('#cardshow').show();
+        $('#cardhide').hide();
+    };
+
+    $('#DOB').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+
+    function validatePan() {
+        var panVal = $('#PAN').val();
+        var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+
+        if (regpan.test(panVal)) {
+            $("#PAN").removeClass('errortext');
+        } else {
+            alert("Invalid PAN Number");
+            $("#PAN").val('');
+            $("#PAN").addClass('errortext');
+        }
+    };
+
+    function isNumberOrDecimal(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    };
+
+</script>

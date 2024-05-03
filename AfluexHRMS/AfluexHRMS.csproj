@@ -1488,6 +1488,7 @@
     <Content Include="AssetsAdminNew\plugins\summernote\font\summernotec360.eot" />
     <Content Include="AssetsAdminNew\plugins\summernote\font\summernotec360.ttf" />
     <Content Include="AssetsAdminNew\plugins\summernote\font\summernotec360.woff" />
+    <None Include="Properties\PublishProfiles\AfluexHRMSDemo.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
