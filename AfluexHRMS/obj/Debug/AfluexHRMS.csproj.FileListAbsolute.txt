@@ -211,7 +211,6 @@ F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\bin\System.Web.Http.WebHost.x
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 F:\Ashwani Afluex\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
 D:\Devendra\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
-F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
 D:\Devendra\HrmsAfluex2024\AfluexHRMS\AfluexHRMS\bin\ApplicationInsights.config
 D:\Devendra\HrmsAfluex2024\AfluexHRMS\AfluexHRMS\bin\roslyn\csc.exe
 D:\Devendra\HrmsAfluex2024\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -320,6 +319,7 @@ F:\Ashwani Afluex\repo\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveA
 F:\Ashwani Afluex\repo\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.dll
 F:\Ashwani Afluex\repo\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.pdb
 D:\Devendra\HrmsAfluex2024\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
+F:\Sarfraz Ahmad\repository\AfluexHRMS\AfluexHRMS\obj\Debug\AfluexHRMS.csprojResolveAssemblyReference.cache
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\ApplicationInsights.config
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\roslyn\csc.exe
 E:\Tanishq\Repository\AfluexHRMS\AfluexHRMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll

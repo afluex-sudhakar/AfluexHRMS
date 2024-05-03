@@ -1,0 +1,119 @@
+﻿@model AfluexHRMS.Models.Home
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assetsAdmin/images/favicon.png">
+    <link href="~/assetsAdmin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/nouislider/nouislider.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <title>Registration || Afluex HRMS</title>
+    <link href="~/assetsAdmin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/assetsAdmin/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="fix-wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-6">
+                    <div class="card shadow mb-0 h-auto">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <a href="/Home/Registration"><img class="logo-auth" style="width:230px;" src="~/assets/img/logo.png" alt=""></a>
+                               
+                            </div>
+                            <h4 class="text-center mb-4">Registration</h4>
+                            <form >
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="fname">First Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter First Name" id="username">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="lname">Last Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter Last Name" id="email">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="email">Email</label>
+                                        <input type="email" class="form-control" placeholder="Email" id="email">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Gender</label>
+                                        <select id="inputGender" class="default-select form-control wide">
+                                            <option selected>Select...</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-6 position-relative">
+                                        <label class="form-label" for="dlab-password">Password</label>
+                                        <input type="password" id="Password" class="form-control">
+                                        <span class="show-pass eye">
+                                            <i class="fa fa-eye-slash"></i>
+                                            <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
+                                    <div class="mb-3 col-md-6 position-relative">
+                                        <label class="form-label" for="cpassword">Confirm Password</label>
+                                        <input type="password" id="Password" class="form-control">
+                                    </div>
+                                    <div class="mb-3 col-md-6 position-relative ">
+                                        <label class="form-label" for="otp">OTP</label>
+                                        <input type="text" id="dlab-otp" class="form-control">
+                                    </div>
+                                    <div class="mb-3 col-md-6 position-relative text-end mt-4">
+                                        <a href="javascript:void(0)" style="color:black" id="resendOTP" onclick="ResendOTP();">Not Received? Resend OTP </a>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="new-account mt-3">
+                                <p>Already have an account? <a class="text-primary" href="/Home/Login">Sign in</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script src="~/assetsAdmin/vendor/global/global.min.js"></script>
+<script src="~/assetsAdmin/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+<script src="~/assetsAdmin/vendor/counter/counter.min.js"></script>
+<script src="~/assetsAdmin/vendor/counter/waypoint.min.js"></script>
+<script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
+<script src="~/assetsAdmin/vendor/chart-js/chart.bundle.min.js"></script>
+<script src="~/assetsAdmin/vendor/peity/jquery.peity.min.js"></script>
+<script src="~/assetsAdmin/js/dashboard/dashboard-1.js"></script>
+<script src="~/assetsAdmin/vendor/owl-carousel/owl.carousel.js"></script>
+
+<script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
+<script src="~/assetsAdmin/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/assetsAdmin/vendor/datatables/responsive/responsive.js"></script>
+<script src="~/assetsAdmin/js/plugins-init/datatables.init.js"></script>
+
+<script src="~/assetsAdmin/js/custom.min.js"></script>
+<script src="~/assetsAdmin/js/dlabnav-init.js"></script>
+<script src="~/assetsAdmin/js/demo.js"></script>
+<script src="~/assetsAdmin/js/styleSwitcher.js"></script>
+</body>
+</html>

@@ -7,161 +7,124 @@
 
 @using (Html.BeginForm("EmployeeReport", "AdminReports", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
-
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Employee Report</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Employee List</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Reports</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee List</li>
+                </ol>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code" })
+                            </div>
 
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Code" })
+                            </div>
 
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Employee Report</h3>
-                                    @*<p style="color: #ff0000">
-                                        @TempData["Salary"]
-                                    </p>
-                                    <p style="color: red">
-                                        @TempData["ErrSalary"]
-                                    </p>*@
-                                </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Company Name</h5></label>
+                                @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Department Name</h5></label>
+                                @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control form-select default-select wide", @onchange = "return GetDesignation();" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Designation Name</h5></label>
+                                @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp;</h5></label>
+                                <input type="submit" class="btn btn-primary d-block" id="Search" name="Search" value="Search" />
                             </div>
                         </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
 
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code" })
-                                    </div>
+                    </div>
 
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Code" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Company Name</h5></label>
-                                        @Html.DropDownListFor(m => m.CompanyID, new SelectList(ViewBag.ddlCompany, "Value", "Text"), new { @class = "form-control" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Department Name</h5></label>
-                                        @Html.DropDownListFor(m => m.DepartmentID, new SelectList(ViewBag.ddlDepartment, "Value", "Text"), new { @class = "form-control", @onchange = "return GetDesignation();" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Designation Name</h5></label>
-                                        @Html.DropDownListFor(m => m.DesignationID, new SelectList(ViewBag.ddlDesignation, "Value", "Text"), new { @class = "form-control" })
-                                    </div>
-
-
-                                    <div class="col-md-3 mt-4">
-                                        <input type="submit" class="btn btn-primary" id="Search" name="Search" value="Search" style="margin-top:20px"/>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            @if (Model != null)
-                            {
-                                if (Model.lstList != null)
-                                {
+                    @if (Model != null)
+                    {
+                        if (Model.lstList != null)
+                        {
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="box_body p-4">
                                         <div class="table-responsive">
-                                            <div class="QA_table mb_30">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Sr.No</th>
-                                                            <th>Employee Code</th>
-                                                            <th>Employee Name</th>
-                                                            <th>Password</th>
-                                                            <th> CompanyName</th>
-                                                            <th> DepartmentName</th>
-                                                            <th> DesignationName</th>
-                                                            <th> Gender</th>
-                                                            <th> DateOfJoining</th>
-                                                            <th> Contact</th>
-                                                            <th>View</th>
-                                                            @*<th>Delete</th>*@
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @if (Model != null)
+                                            <table class="table display table display table-bordered table-hover" id="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sr.No</th>
+                                                        <th>Employee Code</th>
+                                                        <th>Employee Name</th>
+                                                        <th>Password</th>
+                                                        <th> CompanyName</th>
+                                                        <th> DepartmentName</th>
+                                                        <th> DesignationName</th>
+                                                        <th> Gender</th>
+                                                        <th> DateOfJoining</th>
+                                                        <th> Contact</th>
+                                                        <th>View</th>
+                                                        @*<th>Delete</th>*@
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (Model != null)
+                                                    {
+                                                        if (Model.lstList != null)
                                                         {
-                                                            if (Model.lstList != null)
+                                                            int i = 1;
+                                                            foreach (var item in Model.lstList)
                                                             {
-                                                                int i = 1;
-                                                                foreach (var item in Model.lstList)
-                                                                {
-                                                                    <tr>
-                                                                        <td>@i </td>
-                                                                        <td>@item.EmployeeCode</td>
-                                                                        <td>@item.EmployeeName</td>
-                                                                        <td>@item.Password</td>
-                                                                        <td>@item.CompanyName</td>
-                                                                        <td>@item.DepartmentName</td>
-                                                                        <td>@item.DesignationName</td>
-                                                                        <td>@item.Gender</td>
-                                                                        <td>@item.DateOfJoining</td>
-                                                                        <td>@item.Contact</td>
-                                                                        <td>
-                                                                            <a href="/AdminReports/Details?id=@item.EmployeeID" class="btn btn-primary btn-sm" target="_blank">View</a>
+                                                                <tr>
+                                                                    <td>@i </td>
+                                                                    <td>@item.EmployeeCode</td>
+                                                                    <td>@item.EmployeeName</td>
+                                                                    <td>@item.Password</td>
+                                                                    <td>@item.CompanyName</td>
+                                                                    <td>@item.DepartmentName</td>
+                                                                    <td>@item.DesignationName</td>
+                                                                    <td>@item.Gender</td>
+                                                                    <td>@item.DateOfJoining</td>
+                                                                    <td>@item.Contact</td>
+                                                                    <td>
+                                                                        <a href="/AdminReports/Details?id=@item.EmployeeID" class="btn btn-primary btn-sm" target="_blank">View</a>
 
-                                                                        </td>
-                                                                        @*<td><a href="/AdminReports/DeleteEmployee?id=@item.EmployeeID" class="btn btn-danger btn-sm"onclick="return confirm('Are you want to delete?;')">Delete</a></td>*@
-                                                                    </tr>
-                                                                    i++;
-                                                                }
+                                                                    </td>
+                                                                    @*<td><a href="/AdminReports/DeleteEmployee?id=@item.EmployeeID" class="btn btn-danger btn-sm"onclick="return confirm('Are you want to delete?;')">Delete</a></td>*@
+                                                                </tr>
+                                                                i++;
                                                             }
                                                         }
-                                                    </tbody>
+                                                    }
+                                                </tbody>
 
+                                            </table>
 
-
-                                                </table>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                    }
-                                }
-                        </div>
-                    </div>
+                        }
+                    }
+
+
                 </div>
             </div>
         </div>
     </div>
+
 }
 
 

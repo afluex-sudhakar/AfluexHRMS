@@ -1,0 +1,95 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "SetActionDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Manage NFC Device</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">NFC</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage NFC Device</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+            <div class="row">
+                @if (Model != null)
+                {
+                    if (Model.lst != null)
+                    {
+                        foreach (var Item in Model.lst)
+                        {
+                            @*<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+                                <div class="widget-stat card" style="background-color:@Item.Color">
+                                    <div class="card-body  p-4">
+                                        <div class="media">
+                                            <span class="mr-3">
+                                                <i class="fa fa-credit-card-alt" style="color:white"></i>
+                                            </span>
+                                            <div class="media-body text-white text-right">
+                                                @if (Item.IsActive == "True")
+                                                {
+                                                    <p class="mb-1"><a href="/NFCProfile/ProfileUpdate?EncCode=@Item.EncCode" class="text-white text-activate">Set Action</a></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="mb-1"><a href="/Home/NFCActivation?C=@Item.EncCode" class="text-white text-activate">Activate</a></p>
+                                                }
+                                                <h4 class="text-white">@Item.Service</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                                <div class="card bg-primary img-card box-primary-shadow" style="background-color:@Item.Color">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="text-white">
+                                                @if (Item.IsActive == "True")
+                                                {
+                                                    <span class="badge bg-warning  me-1 mb-2 mt-1"><a style="font-size:15px;" href="/NFCProfile/ProfileUpdate?EncCode=@Item.EncCode" class="text-white text-activate">Set Action</a></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning  me-1 mb-2 mt-1"><a style="font-size:15px;" href="/Home/NFCActivation?C=@Item.EncCode" class="text-white text-activate">Activate</a></span>
+                                                }
+                                                <h2 class="number-font">@Item.Service</h2>
+                                            </div>
+                                            <div class="ms-auto"> <i class="fa fa-credit-card-alt text-white fs-30 me-2 mt-2"></i> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="row justify-content-center">
+                            <div class="col-xl-6 col-xxl-6">
+                                <div class="card">
+                                    <div class="card-body py-5">
+                                        <div class="text-center">
+                                            <i class="fa fa-frown-o"></i>
+                                        </div>
+                                        <div class="text-center m-3">
+                                            <h2 class="swal2-title"> You don't have any NFC Device!! </h2>
+                                            <p>Please buy any NFC Device.</p>
+                                            <a href="/Shop/Product" class="btn btn-secondary btn-lg mt-2">Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

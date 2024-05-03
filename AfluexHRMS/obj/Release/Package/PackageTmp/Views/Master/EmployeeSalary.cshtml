@@ -7,259 +7,214 @@
 
 @using (Html.BeginForm("EmployeeSalary", "Master", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Search Employee</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Employee</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Search Employee</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Employee Code</h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code " })
+                            </div>
 
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Employee Salary</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="/Master/EmployeeSalaryList" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label"><h5>Employee Name </h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                                @Html.HiddenFor(m => m.EmployeeID)
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp;</h5></label>
+                                <input type="submit" name="Search" id="Search" value="Search" class="btn btn-primary d-block" onclick="return validateform();" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Search Employee</h3>
-                                    <p style="color: #ff0000">
-                                        @TempData["EmpSal"]
-                                    </p>
-                                    <p style="color: red">
-                                        @TempData["ErrEmpSal"]
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
-                                <div class="row mb-3">
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Employee Code</h5></label>
-                                      @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code " })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label"><h5>Employee Name </h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
-                                        @Html.HiddenFor(m => m.EmployeeID)
-                                    </div>
-                                   
-                                    <div class="col-md-3" style="margin-top:43px">
-                                        <input type="submit" name="Search" id="Search" value="Search" class="btn btn-primary" onclick="return validateform();" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                @if (Model.EmployeeName != null)
+            @if (Model.EmployeeName != null)
                 {
-                    <div class="container-fluid p-0">
-                        <div class="row justify-content-center">
                             <div class="col-lg-12">
-                                <div class="white_card card_height_100 mb_30">
-                                    <div class="white_card_header">
-                                        <div class="box_header m-0">
-                                            <div class="main-title">
-                                                <h3 class="m-0">Employee Salary</h3>
+                                <div class="card">
+                                    <div class="card-header d-lg-flex justify-content-between">
+                                        <h4 class="card-title">Employee Salary</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <b>Employee Name:</b>
+                                                @Html.DisplayFor(m => m.EmployeeName)
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <b>Employee Code:</b>
+                                                @Html.DisplayFor(m => m.EmployeeCode)
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <b>Father Name:</b>
+                                                @Html.DisplayFor(m => m.FatherName)
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <b>Contact:</b>
+                                                @Html.DisplayFor(m => m.Contact)
+                                                <input type="hidden" value="@Model.EmployeeID" id="EmployeeID" name="EmployeeID1" />
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="white_card_body">
-                                        <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="shadow p-3 mb-3 bg-white rounded">
+                                                    <div class="card_header">
+                                                        <div class="box_header m-0">
+                                                            <div class="main-title">
+                                                                <h3 class="m-0">Earning</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="box_body p-2">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered display table-hover">
+                                                                <thead class="thead-primary">
+                                                                    <tr>
+                                                                        <th>Code</th>
+                                                                        <th>Name</th>
+                                                                        <th>IsAmt/Per</th>
+                                                                        <th>Value</th>
+                                                                        <th>Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @if (Model != null)
+                                                                    {
+                                                                        if (Model.lstList != null)
+                                                                        {
+                                                                            int i = 1;
+                                                                            foreach (var Item in Model.lstList)
+                                                                            {
+                                                                                <tr class="text-left">
+
+                                                                                    <td>@Item.SalaryHeadCode</td>
+                                                                                    <td>@Item.SalaryHeadName</td>
+
+                                                                                    <td>@Item.IsAmtPer</td>
+                                                                                    <td><input type="text" class="form-control" id="txtEarVal @i" name="txtEarVal @i" onchange="getdata1(this,'@Item.IsAmtPer','@i')" /></td>
+                                                                                    <td>
+                                                                                        <input type="text" class="form-control" id="txtEarAmt @i" name="txtEarAmt @i" onchange="getdata2(this)" readonly="readonly" />
+
+                                                                                        <input type='hidden' value='@Item.SalaryHeadID' id='ESalHeadId_ @i' name='ESalHeadId_ @i'>
+                                                                                        @*   <input type='hidden' value='@Item.SalaryAmount' id='ESalAmt_ @i' name='ESalAmt_ @i'>*@
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                                i++;
+                                                                            }
+                                                                            <input type='hidden' value='@i' id='hdrows' name='hdrows' />
+                                                                        }
+                                                                    }
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th colspan="3"></th>
+                                                                        <th colspan="2">Total <input type="text" id="txtTotalEarning" class="form-control" disabled="disabled" /></th>
+
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="shadow p-3 mb-3 bg-white rounded">
+                                                    <div class="card_header">
+                                                        <div class="box_header m-0">
+                                                            <div class="main-title">
+                                                                <h3 class="m-0">Deduction</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="box_body p-2">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered display table-hover">
+                                                                <thead class="thead-primary">
+                                                                    <tr>
+                                                                        <th>Code</th>
+                                                                        <th>Name</th>
+                                                                        <th>IsAmt/Per</th>
+                                                                        <th>Value</th>
+                                                                        <th>Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @if (Model != null)
+                                                                    {
+                                                                        if (Model.lstList1 != null)
+                                                                        {
+                                                                            int j = 1;
+                                                                            foreach (var Item1 in Model.lstList1)
+                                                                            {
+                                                                                <tr class="text-left">
+
+                                                                                    <td>@Item1.SalaryHeadCode</td>
+                                                                                    <td>@Item1.SalaryHeadName</td>
+
+                                                                                    <td>@Item1.IsAmtPer</td>
+                                                                                    <td><input type="text" class="form-control" id="txtDedVal @j" name="txtDedVal @j" onchange="getdata3(this,'@Item1.IsAmtPer','@j')" /></td>
+                                                                                    <td>
+                                                                                        <input type="text" class="form-control" id="txtDedAmt @j" name="txtDedAmt @j" onchange="getdata4(this)" readonly="readonly" />
+
+                                                                                        <input type='hidden' value='@Item1.SalaryHeadID' id='DSalHeadId_ @j' name='DSalHeadId_ @j'>
+                                                                                        <input type='hidden' value='@Item1.SalaryAmount' id='DSalAmt_ @j' name='DSalAmt_ @j'>
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                                j++;
+                                                                            }
+                                                                            <input type='hidden' value='@j' id='hdrows1' name='hdrows1' />
+
+
+                                                                        }
+                                                                    }
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th colspan="3"></th>
+                                                                        <th colspan="2">Total <input type="text" id="txtTotalDeduction" class="form-control" disabled="disabled" /></th>
+
+                                                                    </tr>
+                                                                </tfoot>
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="row mb-3">
                                                 <div class="col-md-3">
-                                                    <b>Employee Name:</b>
-                                                    @Html.DisplayFor(m => m.EmployeeName)
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <b>Employee Code:</b>
-                                                    @Html.DisplayFor(m => m.EmployeeCode)
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <b>Father Name:</b>
-                                                    @Html.DisplayFor(m => m.FatherName)
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <b>Contact:</b>
-                                                    @Html.DisplayFor(m => m.Contact)
-                                                    <input type="hidden" value="@Model.EmployeeID" id="EmployeeID" name="EmployeeID1" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="card_box box_shadow mb_30 border_radius_0">
-                                                        <div class="white_card_header">
-                                                            <div class="box_header m-0">
-                                                                <div class="main-title">
-                                                                    <h3 class="m-0">Earning</h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="box_body p-4">  
-
-                                                            <div class="QA_table mb_30">
-
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Code</th>
-                                                                                <th>Name</th>
-                                                                                <th>IsAmt/Per</th>
-                                                                                <th>Value</th>
-                                                                                <th>Amount</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            @if (Model != null)
-                                                                            {
-                                                                                if (Model.lstList != null)
-                                                                                {
-                                                                                    int i = 1;
-                                                                                    foreach (var Item in Model.lstList)
-                                                                                    {
-                                                                                        <tr class="text-left">
-
-                                                                                            <td>@Item.SalaryHeadCode</td>
-                                                                                            <td>@Item.SalaryHeadName</td>
-
-                                                                                            <td>@Item.IsAmtPer</td>
-                                                                                            <td><input type="text" class="form-control" id="txtEarVal @i" name="txtEarVal @i" onchange="getdata1(this,'@Item.IsAmtPer','@i')" /></td>
-                                                                                            <td>
-                                                                                                <input type="text" class="form-control" id="txtEarAmt @i" name="txtEarAmt @i" onchange="getdata2(this)" readonly="readonly" />
-
-                                                                                                <input type='hidden' value='@Item.SalaryHeadID' id='ESalHeadId_ @i' name='ESalHeadId_ @i'>
-                                                                                                @*   <input type='hidden' value='@Item.SalaryAmount' id='ESalAmt_ @i' name='ESalAmt_ @i'>*@
-
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        i++;
-                                                                                    }
-                                                                                    <input type='hidden' value='@i' id='hdrows' name='hdrows' />
-                                                                                }
-                                                                            }
-                                                                        </tbody>
-                                                                        <tfoot>
-                                                                            <tr>
-                                                                                <th colspan="3"></th>
-                                                                                <th colspan="2">Total <input type="text" id="txtTotalEarning" class="form-control" disabled="disabled" /></th>
-
-                                                                            </tr>
-                                                                        </tfoot>
-                                                                    </table>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-6">
-                                                    <div class="card_box box_shadow mb_30 border_radius_0">
-                                                        <div class="white_card_header">
-                                                            <div class="box_header m-0">
-                                                                <div class="main-title">
-                                                                    <h3 class="m-0">Deduction</h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="box_body p-4">
-
-                                                            <div class="QA_table mb_30">
-
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Code</th>
-                                                                            <th>Name</th>
-                                                                            <th>IsAmt/Per</th>
-                                                                            <th>Value</th>
-                                                                            <th>Amount</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @if (Model != null)
-                                                                        {
-                                                                            if (Model.lstList1 != null)
-                                                                            {
-                                                                                int j = 1;
-                                                                                foreach (var Item1 in Model.lstList1)
-                                                                                {
-                                                                                    <tr class="text-left">
-
-                                                                                        <td>@Item1.SalaryHeadCode</td>
-                                                                                        <td>@Item1.SalaryHeadName</td>
-
-                                                                                        <td>@Item1.IsAmtPer</td>
-                                                                                        <td><input type="text" class="form-control" id="txtDedVal @j" name="txtDedVal @j" onchange="getdata3(this,'@Item1.IsAmtPer','@j')" /></td>
-                                                                                        <td>
-                                                                                            <input type="text" class="form-control" id="txtDedAmt @j" name="txtDedAmt @j" onchange="getdata4(this)" readonly="readonly" />
-
-                                                                                            <input type='hidden' value='@Item1.SalaryHeadID' id='DSalHeadId_ @j' name='DSalHeadId_ @j'>
-                                                                                            <input type='hidden' value='@Item1.SalaryAmount' id='DSalAmt_ @j' name='DSalAmt_ @j'>
-
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    j++;
-                                                                                }
-                                                                                <input type='hidden' value='@j' id='hdrows1' name='hdrows1' />
-
-
-                                                                            }
-                                                                        }
-                                                                    </tbody>
-                                                                    <tfoot>
-                                                                        <tr>
-                                                                            <th colspan="3"></th>
-                                                                            <th colspan="2">Total <input type="text" id="txtTotalDeduction" class="form-control" disabled="disabled" /></th>
-
-                                                                        </tr>
-                                                                    </tfoot>
-
-                                                                </table>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mb-3">
-                                                    <div class="col-md-3">
-                                                        <input type="submit" value="Save" id="Save" name="Save" class="btn btn-success align right" style="text-align:center" onclick="return SaveValidate();" />
-                                                    </div>
+                                                    <input type="submit" value="Save" id="Save" name="Save" class="btn btn-success align right" style="text-align:center" onclick="return SaveValidate();" />
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
-                            </div>
+
                         </div>
-                    </div>
 
                     <input type="hidden" id="TxtValEarning" />
                     <input type="hidden" id="headtypeE" />
@@ -270,16 +225,39 @@
                     <input type="hidden" id="hdTotalEarning" />
                     <input type="hidden" id="hdTotalEarning1" />
 
-                }
+            }
 
-            </div>
         </div>
     </div>
+    
+}
+
+@if (TempData["EmpSal"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["EmpSal"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrEmpSal"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrEmpSal"]",
+                    type: "error"
+                });
+            };
+
+    </script>
 
 }
 
-
-<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
 <script>
 
     function validateform() {

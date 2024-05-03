@@ -6,39 +6,24 @@
 }
 
 
-<div class="main_content_iner ">
-    <div class="container-fluid p-0 sm_padding_15px">
-        <div class="row">
-            <div class="col-12 col-lg-12 col-md-12">
-                <div class="dashboard_header white_card mb_50">
-                    <div class="white_card_body py-2">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="dashboard_header_title">
-                                    <h5 class="mb-0"> User Details</h5>
-                                </div>
-                            </div>
-                            @*<div class="col-lg-6">
-                                <div class="dashboard_breadcam text-end">
-                                    <a href="#" class="btn btn-success rounded-pill">Go to List</a>
-                                </div>
-                            </div>*@
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-12">
-                <div class="card_box box_shadow position-relative mb_30 bg-white">
+<div class="container-fluid">
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">User Details</a></li>
+        </ol>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-12">
+            <div class="clearfix">
+                <div class="card shadow">
                     <div class="box_body p-4">
                         <div class="box-body box-profile">
 
-    
+
                             <img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg" alt="User profile picture">
-   
-                             @*<img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="@Model.ProfilePic" alt="User profile picture">*@
-    
+
+                            @*<img class="profile-user-img rounded-circle img-fluid mx-auto d-block" src="@Model.ProfilePic" alt="User profile picture">*@
+
 
                             <h3 class="profile-username text-center">@Model.EmployeeName (@Model.EmployeeCode)</h3>
 
@@ -58,7 +43,7 @@
                                         <h6 class="margin-bottom">@Model.Contact</h6>
                                         <p>Address</p>
                                         <h6 class="margin-bottom">
-                                           @Model.Address, @Model.State, @Model.City, @Model.PinCode
+                                            @Model.Address, @Model.State, @Model.City, @Model.PinCode
                                         </h6>
                                         <p>Date Of Joining</p>
                                         <h6 class="margin-bottom">@Model.DateOfJoining</h6>
@@ -69,256 +54,252 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-12">
-                <div class="card_box box_shadow position-relative mb_30 bg-white">
-                    <div class="box_body p-4">
-                        <div class="white_card mb_30 ">
-                            <div class="white_card_header">
-                                <div class="bulder_tab_wrapper">
-                                    <ul class="nav" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="Themes-tab" data-bs-toggle="tab" href="#Themes" role="tab" aria-controls="Themes" aria-selected="true">Qualification/Experience</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="page-tab" data-bs-toggle="tab" href="#page" role="tab" aria-controls="profile" aria-selected="false">Salary</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="Header-tab" data-bs-toggle="tab" href="#Header" role="tab" aria-controls="Header" aria-selected="false">Leave</a>
-                                        </li>
-                                    </ul>
+        </div>
+       <div class="col-lg-7 col-md-12">
+            <div class="clearfix">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="bulder_tab_wrapper">
+                            <ul class="nav" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="Themes-tab" data-bs-toggle="tab" href="#Themes" role="tab" aria-controls="Themes" aria-selected="true">Qualification/Experience</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="page-tab" data-bs-toggle="tab" href="#page" role="tab" aria-controls="profile" aria-selected="false">Salary</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="Header-tab" data-bs-toggle="tab" href="#Header" role="tab" aria-controls="Header" aria-selected="false">Leave</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade active show" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
+                                <div class="builder_select">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="white_card card_height_100 mb_30">
+                                                <div class="white_card_header py-2">
+                                                    <div class="box_header m-0">
+                                                        <div class="main-title">
+                                                            <h3 class="m-0">Qualification</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="white_card_body">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th scope="col">Sr.No</th>
+                                                                    <th scope="col">Degree</th>
+                                                                    <th scope="col">Course</th>
+                                                                    <th scope="col">Year Of Passing</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model != null)
+                                                                {
+                                                                    if (Model.lstQualification != null)
+                                                                    {
+                                                                        int i = 1;
+                                                                        foreach (var item in Model.lstQualification)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@i </td>
+                                                                                <td>@item.Board</td>
+                                                                                <td>@item.DegreeCourse</td>
+                                                                                <td>@item.YearOfPassing</td>
+
+                                                                            </tr>
+                                                                            i++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+                                                    <div class="white_card_header py-2">
+                                                        <div class="box_header m-0">
+                                                            <div class="main-title">
+                                                                <h3 class="m-0">Work Experience</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th scope="col">Sr.No</th>
+                                                                    <th scope="col">Comapny</th>
+                                                                    <th scope="col">FromDate</th>
+                                                                    <th scope="col">ToDate</th>
+                                                                    <th scope="col">Post</th>
+                                                                    <th scope="col">Document Submitted</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model != null)
+                                                                {
+                                                                    if (Model.lstWorkExperience != null)
+                                                                    {
+                                                                        int i = 1;
+                                                                        foreach (var item in Model.lstWorkExperience)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@i </td>
+                                                                                <td>@item.PreviousCompany</td>
+                                                                                <td>@item.FromDate</td>
+                                                                                <td>@item.ToDate</td>
+                                                                                <td>@item.Post</td>
+                                                                                <td>@item.CertificateSubmitted</td>
+                                                                            </tr>
+                                                                            i++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="white_card_body p-0">
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade active show" id="Themes" role="tabpanel" aria-labelledby="Themes-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="white_card card_height_100 mb_30">
-                                                        <div class="white_card_header py-2">
-                                                            <div class="box_header m-0">
-                                                                <div class="main-title">
-                                                                    <h3 class="m-0">Qualification</h3>
-                                                                </div>
+                            <div class="tab-pane fade" id="page" role="tabpanel" aria-labelledby="page-tab">
+                                <div class="builder_select">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="white_card card_height_100 mb_30">
+                                                <div class="white_card_header py-2">
+                                                    <div class="box_header m-0">
+                                                        <div class="main-title">
+                                                            <h3 class="m-0">Earning</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="white_card_body">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th scope="col">Sr.No</th>
+                                                                    <th scope="col">Head</th>
+                                                                    <th scope="col">Amount</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model != null)
+                                                                {
+                                                                    if (Model.lstEarning != null)
+                                                                    {
+                                                                        int i = 1;
+                                                                        foreach (var item in Model.lstEarning)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@i </td>
+                                                                                <td>@item.SalaryHeadName</td>
+                                                                                <td>@item.SalaryAmount</td>
+
+
+                                                                            </tr>
+                                                                            i++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <div class="white_card_header py-2">
+                                                        <div class="box_header m-0">
+                                                            <div class="main-title">
+                                                                <h3 class="m-0">Deduction</h3>
                                                             </div>
                                                         </div>
-                                                        <div class="white_card_body">
-                                                            <div class="table-responsive">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Sr.No</th>
-                                                                            <th scope="col">Degree</th>
-                                                                            <th scope="col">Course</th>
-                                                                            <th scope="col">Year Of Passing</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @if (Model != null)
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th scope="col">Sr.No</th>
+                                                                    <th scope="col">Head</th>
+                                                                    <th scope="col">Amount</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model != null)
+                                                                {
+                                                                    if (Model.lstDeduction != null)
+                                                                    {
+                                                                        int i = 1;
+                                                                        foreach (var item in Model.lstDeduction)
                                                                         {
-                                                                            if (Model.lstQualification != null)
-                                                                            {
-                                                                                int i = 1;
-                                                                                foreach (var item in Model.lstQualification)
-                                                                                {
-                                                                                    <tr>
-                                                                                        <td>@i </td>
-                                                                                        <td>@item.Board</td>
-                                                                                        <td>@item.DegreeCourse</td>
-                                                                                        <td>@item.YearOfPassing</td>
+                                                                            <tr>
+                                                                                <td>@i </td>
+                                                                                <td>@item.SalaryHeadName</td>
+                                                                                <td>@item.SalaryAmount</td>
 
-                                                                                    </tr>
-                                                                                    i++;
-                                                                                }
-                                                                            }
+
+                                                                            </tr>
+                                                                            i++;
                                                                         }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-
-
-                                                            <div class="white_card_header py-2">
-                                                                <div class="box_header m-0">
-                                                                    <div class="main-title">
-                                                                        <h3 class="m-0">Work Experience</h3>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="table-responsive">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Sr.No</th>
-                                                                            <th scope="col">Comapny</th>
-                                                                            <th scope="col">FromDate</th>
-                                                                            <th scope="col">ToDate</th>
-                                                                            <th scope="col">Post</th>
-                                                                            <th scope="col">Document Submitted</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @if (Model != null)
-                                                                        {
-                                                                            if (Model.lstWorkExperience != null)
-                                                                            {
-                                                                                int i = 1;
-                                                                                foreach (var item in Model.lstWorkExperience)
-                                                                                {
-                                                                                    <tr>
-                                                                                        <td>@i </td>
-                                                                                        <td>@item.PreviousCompany</td>
-                                                                                        <td>@item.FromDate</td>
-                                                                                        <td>@item.ToDate</td>
-                                                                                        <td>@item.Post</td>
-                                                                                        <td>@item.CertificateSubmitted</td>
-                                                                                    </tr>
-                                                                                    i++;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="page" role="tabpanel" aria-labelledby="page-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="white_card card_height_100 mb_30">
-                                                        <div class="white_card_header py-2">
-                                                            <div class="box_header m-0">
-                                                                <div class="main-title">
-                                                                    <h3 class="m-0">Earning</h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="white_card_body">
-                                                            <div class="table-responsive">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Sr.No</th>
-                                                                            <th scope="col">Head</th>
-                                                                            <th scope="col">Amount</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @if (Model != null)
-                                                                        {
-                                                                            if (Model.lstEarning != null)
-                                                                            {
-                                                                                int i = 1;
-                                                                                foreach (var item in Model.lstEarning)
-                                                                                {
-                                                                                    <tr>
-                                                                                        <td>@i </td>
-                                                                                        <td>@item.SalaryHeadName</td>
-                                                                                        <td>@item.SalaryAmount</td>
-
-
-                                                                                    </tr>
-                                                                                    i++;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-
-                                                            <div class="white_card_header py-2">
-                                                                <div class="box_header m-0">
-                                                                    <div class="main-title">
-                                                                        <h3 class="m-0">Deduction</h3>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="table-responsive">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Sr.No</th>
-                                                                            <th scope="col">Head</th>
-                                                                            <th scope="col">Amount</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @if (Model != null)
-                                                                        {
-                                                                            if (Model.lstDeduction != null)
-                                                                            {
-                                                                                int i = 1;
-                                                                                foreach (var item in Model.lstDeduction)
-                                                                                {
-                                                                                    <tr>
-                                                                                        <td>@i </td>
-                                                                                        <td>@item.SalaryHeadName</td>
-                                                                                        <td>@item.SalaryAmount</td>
-
-
-                                                                                    </tr>
-                                                                                    i++;
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="Header" role="tabpanel" aria-labelledby="Header-tab">
+                                <div class="builder_select">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="white_card card_height_100 mb_30">
+                                                <div class="white_card_header py-2">
+                                                    <div class="box_header m-0">
+                                                        <div class="main-title">
+                                                            <h3 class="m-0">Leave</h3>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="Header" role="tabpanel" aria-labelledby="Header-tab">
-                                        <div class="builder_select">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="white_card card_height_100 mb_30">
-                                                        <div class="white_card_header py-2">
-                                                            <div class="box_header m-0">
-                                                                <div class="main-title">
-                                                                    <h3 class="m-0">Leave</h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="white_card_body">
-                                                            <div class="table-responsive">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col">Sr.No</th>
-                                                                            <th scope="col">Leave Name</th>
-                                                                            <th scope="col">Leave Limit</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        @if (Model != null)
+                                                <div class="white_card_body">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead class="thead-primary">
+                                                                <tr>
+                                                                    <th scope="col">Sr.No</th>
+                                                                    <th scope="col">Leave Name</th>
+                                                                    <th scope="col">Leave Limit</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model != null)
+                                                                {
+                                                                    if (Model.lstLeave != null)
+                                                                    {
+                                                                        int i = 1;
+                                                                        foreach (var item in Model.lstLeave)
                                                                         {
-                                                                            if (Model.lstLeave != null)
-                                                                            {
-                                                                                int i = 1;
-                                                                                foreach (var item in Model.lstLeave)
-                                                                                {
-                                                                                    <tr>
-                                                                                        <td>@i </td>
-                                                                                        <td>@item.LeaveName  </td>
-                                                                                        <td>@item.LeaveLimit</td>
+                                                                            <tr>
+                                                                                <td>@i </td>
+                                                                                <td>@item.LeaveName  </td>
+                                                                                <td>@item.LeaveLimit</td>
 
 
-                                                                                    </tr>
-                                                                                    i++;
-                                                                                }
-                                                                            }
+                                                                            </tr>
+                                                                            i++;
                                                                         }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
@@ -330,6 +311,8 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
