@@ -9,141 +9,98 @@
 
 @using (Html.BeginForm("DateWiseAttendanceReport", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid p-0 sm_padding_15px">
-            <div class="row">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Date Wise Attendance Report</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Reports</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Date Wise Attendance Report</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Code   </h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
+                            </div>
 
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="dashboard_header white_card mb_50">
-                        <div class="white_card_body py-2">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="dashboard_header_title">
-                                        <h5 class="mb-0"> / Master / Date Wise Attendance Report</h5>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
-                                    <div class="dashboard_breadcam text-end">
-                                        <a href="#" class="btn btn-success rounded-pill">Go to List</a>
-                                    </div>
-                                </div>*@
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Name   </h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>IS Half Day </h5></label>
+                                @Html.DropDownListFor(m => m.ISHalfDay, new SelectList(ViewBag.ISHalfFullDay, "Value", "Text"), new { @class = "form-control default-select wide" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Attendance </h5></label>
+                                @Html.DropDownListFor(m => m.Attendance, new SelectList(ViewBag.AttendType, "Value", "Text"), new { @class = "form-control default-select wide" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>From Date   </h5></label>
+                                @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "FromDate", @readonly = "readonly" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>To Date   </h5></label>
+                                @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "ToDate", @readonly = "readonly" })
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp;</h5></label>
+                                <input type="submit" name="Search" id="Search" value="Search" class="btn btn-success d-block" onclick="return ValidateForm();" />
                             </div>
                         </div>
+
+                        <div class="box_body p-2">
+                            <div class="table-responsive">
+                                <table class="table display table-bordered table-hover" id="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>SNo.</th>
+                                            <th>Attendance Date</th>
+                                            <th>Employee Name</th>
+                                            <th>Status</th>
+                                            <th>Half/Full Day</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null)
+                                        {
+                                            if (Model.lstList != null)
+                                            {
+                                                int i = 1;
+                                                foreach (var Item in Model.lstList)
+                                                {
+                                                    <tr class="text-left">
+                                                        <td>@i</td>
+                                                        <td>@Item.AttendanceDate</td>
+                                                        <td>@Item.EmployeeName (@Item.EmployeeLoginId)</td>
+                                                        <td>@Item.Attendance</td>
+                                                        <td>@Item.ISHalfDay</td>
+                                                    </tr>
+                                                    i++;
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <div class="container-fluid p-0">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="white_card card_height_100 mb_30">
-                        <div class="white_card_header">
-                            <div class="box_header m-0">
-                                <div class="main-title">
-                                    <h3 class="m-0">Date Wise Attendance Report</h3>
-                                    @*<p style="color: #ff0000">
-                                        @TempData["EmpSalary"]
-                                    </p>
-                                    <p style="color: red">
-                                        @TempData["ErrEmpSalary"]
-                                    </p>*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="white_card_body">
-                            <div class="card-body">
-
-                                <div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Code   </h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Employee Name   </h5></label>
-                                        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>IS Half Day </h5></label>
-                                        @Html.DropDownListFor(m => m.ISHalfDay, new SelectList(ViewBag.ISHalfFullDay, "Value", "Text"), new { @class = "form-control" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>Attendance </h5></label>
-                                        @Html.DropDownListFor(m => m.Attendance, new SelectList(ViewBag.AttendType, "Value", "Text"), new { @class = "form-control" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>From Date   </h5></label>
-                                        @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @Placeholder = "FromDate", @readonly = "readonly" })
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="inputEmail4"><h5>To Date   </h5></label>
-                                      @Html.TextBoxFor(m => m.ToDate, new { @class = "form-control", @Placeholder = "ToDate", @readonly = "readonly" })
-                                    </div>
-
-
-                                    <div class="col-md-3 mt-4">
-                                        <input type="submit" name="Search" id="Search" value="Search" class="btn btn-success" onclick="return ValidateForm();" style="margin-top:20px"/>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="box_body p-4">
-                                        <div class="table-responsive">
-                                            <div class="QA_table mb_30">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>SNo.</th>
-                                                            <th>Attendance Date</th>
-                                                            <th>Employee Name</th>
-                                                            <th>Status</th>
-                                                            <th>Half/Full Day</th> 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                            @if (Model != null)
-                                                            {
-                                                                if (Model.lstList != null)
-                                                                {
-                                                                    int i = 1;
-                                                                    foreach (var Item in Model.lstList)
-                                                                    {
-                                                                        <tr class="text-left">
-                                                                            <td>@i</td>
-                                                                            <td>@Item.AttendanceDate</td>
-                                                                            <td>@Item.EmployeeName (@Item.EmployeeLoginId)</td>
-                                                                            <td>@Item.Attendance</td>
-                                                                            <td>@Item.ISHalfDay</td>
-                                                                        </tr>
-                                                                        i++;
-                                                                    }
-                                                                }
-                                                            }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+    
 }
 
 

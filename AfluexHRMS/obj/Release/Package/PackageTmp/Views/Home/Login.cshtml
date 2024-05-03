@@ -5,77 +5,98 @@
 }
 
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Login</title>
-    @*<link rel="icon" href="~/assets/img/mini_logo.png" type="image/png">*@
-    <link rel="stylesheet" href="~/assets/css/bootstrap1.min.css" />
-    <link rel="stylesheet" href="~/assets/vendors/themefy_icon/themify-icons.css" />
-    <link rel="stylesheet" href="~/assets/vendors/font_awesome/css/all.min.css" />
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assetsAdmin/images/favicon.png">
+    <link href="~/assetsAdmin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/nouislider/nouislider.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <title>Login || Afluex HRMS</title>
+    <link href="~/assetsAdmin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assetsAdmin/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="~/assets/vendors/scroll/scrollable.css" />
-    <link rel="stylesheet" href="~/assets/css/metisMenu.css">
-    <link rel="stylesheet" href="~/assets/css/style1.css" />
-    <link href="~/assets/css/colors/default.css" rel="stylesheet" id="colorSkinCSS"/>
-    
+    <link href="~/assetsAdmin/css/style.css" rel="stylesheet" type="text/css" />
+
 </head>
-<body style="background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #063970);">
-@using (Html.BeginForm("LoginAction", "Home", FormMethod.Post, new { @id = "form" ,@autocomplete="off"}))
+
+<body>
+@using (Html.BeginForm("LoginAction", "Home", FormMethod.Post, new { @id = "form", @autocomplete = "off" }))
 {
-    <div class="main_content_iner ">
-        <div class="container-fluid mt-5" style="width:60%">
-            <div class="row">
-                <div class="col-lg-12">
-                        <div class="mb_30">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="modal-content cs_modal">
-                                        <div class="modal-header justify-content-center">
-                                            <img src="~/assets/img/logo.png" height="60" />
-                                        </div>
-                                        <h6 class="mb-4 text-center">
-                                            Welcome back, please login to your account.
-                                        </h6>
-                                        <div class="modal-body">
-                                            <div>
-                                                <label class="ml-4">User-Id</label>
-                                                @Html.TextBoxFor(m => m.Loginid, new { @class = "form-control", @Placeholder = "Loginid", @required = "required" })
-                                            </div>
-                                            <div>
-                                                <label class="mb-2">Password</label>
-                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Password", @required = "required" })
-                                            </div>
-
-                                            <div>
-                                                <input type="submit" id="Login" class="form-control" name="Login" value="Sign In" style="background-color: #335899;color:white" />
-                                            </div>
-
-                                            <div class="text-center">
-                                                <a href="#" class="pass_forget_btn">Forget Password?</a>
-                                            </div>
-                                        </div>
+    <div class="fix-wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="card shadow mb-0 h-auto">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <a href="/Home/Login"><img class="logo-auth" style="width:230px;" src="~/assets/img/logo.png" alt=""></a>
+                            </div>
+                            <h4 class="text-center mb-4">Login Your Account</h4>
+                            <h6 class="text-center" style="COLOR:RED;">@TempData["Login"]</h6>
+                               
+                                    <div class="mb-3">
+                                        <label class="form-label" for="loginid">Login ID</label>
+                                        @Html.TextBoxFor(m => m.Loginid, new { @class = "form-control", @Placeholder = "Loginid", @required = "required" })
                                     </div>
-                                </div>
+                                    <div class="mb-3  position-relative">
+                                        <label class="form-label" for="dlab-password">Password</label>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Password", @required = "required" })
+                                        <span class="show-pass eye">
+                                            <i class="fa fa-eye-slash"></i>
+                                            <i class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
+                                    <div class="text-center">
+                                        <input type="submit" id="Login" class="btn btn-primary btn-block" name="Login" value="Log In" />
+                                    </div>
+                               
+                            
+                            <div class="new-account mt-3">
+                                <p>Don't have an account?  <a class="text-primary" href="/Home/SignUp">Sign Up</a></p>
+                            </div>
+                            <div class="text-center">
+                                <a href="#" class="pass_forget_btn">Forget Password?</a>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
 }
 
-    <script src="~/assets/js/jquery1-3.4.1.min.js"></script>
-    <script src="~/assets/js/popper1.min.js"></script>
-    <script src="~/assets/js/bootstrap1.min.js"></script>
-    <script src="~/assets/js/metisMenu.js"></script>
-    <script src="~/assets/vendors/scroll/perfect-scrollbar.min.js"></script>
-    <script src="~/assets/vendors/scroll/scrollable-custom.js"></script>
-    <script src="~/assets/js/custom.js"></script>
+
+
+    <script src="~/assetsAdmin/vendor/global/global.min.js"></script>
+    <script src="~/assetsAdmin/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+    <script src="~/assetsAdmin/vendor/counter/counter.min.js"></script>
+    <script src="~/assetsAdmin/vendor/counter/waypoint.min.js"></script>
+    <script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
+    <script src="~/assetsAdmin/vendor/chart-js/chart.bundle.min.js"></script>
+    <script src="~/assetsAdmin/vendor/peity/jquery.peity.min.js"></script>
+    <script src="~/assetsAdmin/js/dashboard/dashboard-1.js"></script>
+    <script src="~/assetsAdmin/vendor/owl-carousel/owl.carousel.js"></script>
+
+    <script src="~/assetsAdmin/vendor/apexchart/apexchart.js"></script>
+    <script src="~/assetsAdmin/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/assetsAdmin/vendor/datatables/responsive/responsive.js"></script>
+    <script src="~/assetsAdmin/js/plugins-init/datatables.init.js"></script>
+
+    <script src="~/assetsAdmin/js/custom.min.js"></script>
+    <script src="~/assetsAdmin/js/dlabnav-init.js"></script>
+    <script src="~/assetsAdmin/js/demo.js"></script>
+    <script src="~/assetsAdmin/js/styleSwitcher.js"></script>
 </body>
 </html>
+
+
+
+
+
 
 
 
