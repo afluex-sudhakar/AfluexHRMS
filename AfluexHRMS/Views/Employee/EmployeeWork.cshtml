@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 @using (Html.BeginForm("EmployeeWork", "Employee", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
     <div class="container-fluid">
@@ -16,6 +17,8 @@
                     <li class="breadcrumb-item active" aria-current="page">List</li>
                 </ol>
             </div>
+            <div id="google_translate_element"></div>
+
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -28,8 +31,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="box_body p-4">
-                                        <div class="table-responsive">
-                                            <table class="table display table display table-bordered table-hover" id="data-table">
+                                        <div class="table-responsive export-table">
+                                            <table class="table display table display table-bordered table-hover" id="file-datatable">
                                                 <thead>
                                                     <tr>
                                                         <th>Sr.No</th>
@@ -48,7 +51,7 @@
                                                         <th>add1</th>
                                                         <th>add2</th>
                                                         <th>postcode</th>
-                                                        
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -100,4 +103,16 @@
 
 }
 
+<script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+</script>
 
+<script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?
+cb=googleTranslateElementInit">
+</script>
