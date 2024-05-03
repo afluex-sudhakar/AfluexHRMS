@@ -1618,6 +1618,9 @@
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\NFCProfile\EditProfileSetAction.cshtml" />
     <Content Include="Views\EmployeeLogin\MyProfile.cshtml" />
+    <Content Include="Views\Admin\GetIDCard.cshtml" />
+    <Content Include="Views\EmployeeAttendance\MonthlyAttendance.cshtml" />
+    <Content Include="Views\EmployeeAttendance\MonthlyWiseAttendanceReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -74,15 +74,15 @@
 											c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
 										</svg>
                                     </div>
-                                   
+
                                     <div class="br-br-0 br-bl-0 bg-white mt-0 shadow">
-                                       
+
                                         <ul class="list-group list-group-flush id_card">
                                             <div class="text-center mt-5">
                                                 <h3 class="text-dark">@item.EmployeeName</h3>
                                                 <p>@item.DesignationName</p>
                                             </div>
-                                          
+
                                             <li class="list-group-item"><b>Emp ID  </b> <p> : @item.EmployeeCode</p></li>
                                             <li class="list-group-item"><b>Email </b> <p>: @item.Email</p></li>
                                             <li class="list-group-item"><b>Blood Group </b><p>: @item.BloodGroup</p></li>
@@ -90,9 +90,9 @@
                                             <div class="text-center">
                                                 <img height="50" width="150" src="~/assets/img/logo.png" />
                                             </div>
-                                            
+
                                         </ul>
-                                        <div class="card-footer" style="background-color: #05576e;">
+                                        <div class="card-footer text-center" style="background-color: #05576e;">
                                             <button type="button" class="btn btn-primary ">@item.CompanyName</button>
                                         </div>
                                     </div>
@@ -129,12 +129,7 @@
                                             <li class="list-group-item" style="margin-top: 5px;"><b>Company No. :</b><br /> +91 @item.CompanyContact</li>
                                             <li class="list-group-item border-bottom-0"><b></b></li>
                                             <li class="list-group-item border-bottom-0"><b></b></li>
-                                            <li class="list-group-item border-bottom-0"><b></b></li>
-                                            <li class="list-group-item border-bottom-0"><b></b></li>
-                                            <li class="list-group-item border-bottom-0"><b></b></li>
-                                            <li class="list-group-item border-bottom-0"><b></b></li>
-                                            <li class="list-group-item border-bottom-0"><b></b></li>
-                                            <li class="list-group-item border-bottom-0"><b></b></li>
+                                         
                                             <li class="list-group-item border-bottom-0"><b></b></li>
                                             <li class="list-group-item border-bottom-0"><b>If found, please email at hr@afluex.com</b></li>
                                         </ul>
@@ -152,7 +147,7 @@
         </div><!-- COL-END -->
     </div>
 }
-    <script>
+<script>
         function validateformSearch() {
             $(".errortext").removeClass("errortext");
             if ($('#EmployeeCode').val() == '') {
@@ -161,4 +156,4 @@
             }
             return true;
         }
-    </script>
+</script>
