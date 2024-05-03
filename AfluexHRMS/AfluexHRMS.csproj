@@ -1527,6 +1527,7 @@
     <Compile Include="Models\Common.cs" />
     <Compile Include="Models\Crypto.cs" />
     <Compile Include="Models\DBHelper.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeAttendance.cs" />
     <Compile Include="Models\EmployeeLogin.cs" />
     <Compile Include="Models\Home.cs" />
@@ -1622,6 +1623,8 @@
     <Content Include="Views\Admin\GetIDCard.cshtml" />
     <Content Include="Views\EmployeeAttendance\MonthlyAttendance.cshtml" />
     <Content Include="Views\EmployeeAttendance\MonthlyWiseAttendanceReport.cshtml" />
+    <Content Include="Views\Employee\EmployeeWork.cshtml" />
+    <Content Include="Views\Employee\EmployeeEducation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1634,7 +1637,6 @@
     <Folder Include="EmployeeProfile\" />
     <Folder Include="EmployeePunching\" />
     <Folder Include="images\ProfilePicture\" />
-    <Folder Include="Views\Employee\" />
     <Folder Include="Views\WebAPI\" />
   </ItemGroup>
   <PropertyGroup>
