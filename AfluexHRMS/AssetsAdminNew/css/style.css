@@ -34251,3 +34251,21 @@ top: 0;
 .upload-demo.rect .upload-demo-wrap {
     width: 700px;
 }
+.id_card li{
+     color: #202647;
+     position: relative;
+     padding-left: 150px;
+ }
+.id_card li p{
+    margin:0;
+}
+.id_card li b{
+         position: absolute;
+    left: 50px;
+    top: 8px;
+    font-size: 15px;
+    color: #000;
+}
+.id_card h3{
+        margin-top:18px;
+}
