@@ -1,0 +1,159 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "GetIDCard";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("GetIDCard", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
+{
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Employee</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Employee</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Get ID Card</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label"><h5>Employee Code</h5></label>
+                            @Html.TextBoxFor(m => m.EmployeeCode, new { @class = "form-control", @Placeholder = "Employee Code " })
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label d-lg-block d-none mb-lg-3"><h5>&nbsp;</h5></label>
+                            <input type="submit" name="Search" id="Search" value="Search" class="btn btn-primary" onclick="return validateformSearch();" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <!-- ROW-4 OPEN -->
+            <div class="row">
+
+                @if (Model != null)
+                {
+                    if (Model.lstGetIDCard != null)
+                    {
+                        int i = 1;
+                        foreach (var item in Model.lstGetIDCard)
+                        {
+                            <div class="col-sm-6 col-xl-4 primary">
+                                <div class="princing-item mb-4">
+                                    <div class="pricing-divider text-center">
+                                        @*<h3 class="text-light">Basic</h3>*@
+                                        @*<h4 class="my-0 display-2 text-light fw-normal mb-3"><span class="h3">$</span> 120 <span class="h5">/mo</span></h4>*@
+                                        @*<div class="mb-4"><i class="fa fa-rocket plan-icon bg-primary"></i></div>*@
+                                        <div class="wideget-user-img">
+                                            @if (item.ProfilePic != null && item.ProfilePic != "")
+                            {
+                                                <img class="" style="border-radius:50%;" height="120" width="120" src="@item.ProfilePic" alt="img">
+                                            }
+                                            else
+                                            {
+                                                <img class="" style="border-radius:50%;" height="120" width="120" src="~/AssetsAdminNew/images/users/19.jpg" alt="img">
+                                            }
+
+                                            @*<img src="~/AssetsAdminNew/images/users/8.jpg" />*@
+                                        </div>
+                                        <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+                                        <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+												c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+												c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+												H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+                                        <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+											c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+										</svg>
+                                    </div>
+
+                                    <div class="br-br-0 br-bl-0 bg-white mt-0 shadow">
+
+                                        <ul class="list-group list-group-flush id_card">
+                                            <div class="text-center mt-5">
+                                                <h3 class="text-dark">@item.EmployeeName</h3>
+                                                <p>@item.DesignationName</p>
+                                            </div>
+
+                                            <li class="list-group-item"><b>Emp ID  </b> <p> : @item.EmployeeCode</p></li>
+                                            <li class="list-group-item"><b>Email </b> <p>: @item.Email</p></li>
+                                            <li class="list-group-item"><b>Blood Group </b><p>: @item.BloodGroup</p></li>
+                                            <li class="list-group-item"><b>Contact No</b> <p>: @item.Contact</p></li>
+                                            <div class="text-center">
+                                                <img height="50" width="150" src="~/assets/img/logo.png" />
+                                            </div>
+
+                                        </ul>
+                                        <div class="card-footer text-center" style="background-color: #05576e;">
+                                            <button type="button" class="btn btn-primary ">@item.CompanyName</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- COL-END -->
+                            <div class="col-sm-6 col-xl-4 primary">
+                                <div class="princing-item mb-4">
+                                    <div class="pricing-divider text-center">
+                                        @*<h3 class="text-light">Basic</h3>*@
+                                        @*<h4 class="my-0 display-2 text-light fw-normal mb-3"><span class="h3">$</span> 120 <span class="h5">/mo</span></h4>*@
+                                        @*<div class="mb-4"><i class="fa fa-rocket plan-icon bg-primary"></i></div>*@
+                                        <div class="wideget-user-img" style="margin-top: 24px;">
+                                            <img class="" src="~/assets/img/logo_load.png" alt="img">
+
+                                            @*<img src="~/AssetsAdminNew/images/users/8.jpg" />*@
+                                        </div>
+                                        <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+                                        <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+												c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+												c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+                                        <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+												H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+                                        <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+											c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+										</svg>
+                                    </div>
+                                    <div class="br-br-0 br-bl-0 bg-white mt-0 shadow text-center">
+                                        <ul class="list-group list-group-flush text-center">
+                                            <li class="list-group-item">
+                                                <b>Company Address : </b><br /> @item.CompanyAddress
+                                            </li>
+                                            @*<li class="list-group-item"><b>Blood Groop : </b>A+</li>*@
+                                            <li class="list-group-item" style="margin-top: 5px;"><b>Company No. :</b><br /> +91 @item.CompanyContact</li>
+                                            <li class="list-group-item border-bottom-0"><b></b></li>
+                                            <li class="list-group-item border-bottom-0"><b></b></li>
+                                         
+                                            <li class="list-group-item border-bottom-0"><b></b></li>
+                                            <li class="list-group-item border-bottom-0"><b>If found, please email at hr@afluex.com</b></li>
+                                        </ul>
+                                        <div class="card-footer" style="background-color: #05576e;">
+                                            <button type="button" class="btn btn-primary ">@item.CompanyName</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            i++;
+                        }
+                    }
+                }
+            </div>
+        </div><!-- COL-END -->
+    </div>
+}
+<script>
+        function validateformSearch() {
+            $(".errortext").removeClass("errortext");
+            if ($('#EmployeeCode').val() == '') {
+                alert("Please fill Employee Code.")
+                return false;
+            }
+            return true;
+        }
+</script>

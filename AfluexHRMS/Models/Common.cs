@@ -58,7 +58,7 @@ namespace AfluexHRMS.Models
                 else
                     DateString = Month + "/" + Day + "/" + Year;
             }
-            else if (InputFormat == "MM/dd/yyyy" || InputFormat == "MM-dd-yyyy")
+            else if (InputFormat == "MM/dd/yyyy" || InputFormat == "MM-dd-yyyy" )
             {
                 DateString = InputDate;
             }
@@ -86,6 +86,16 @@ namespace AfluexHRMS.Models
 
             return ds;
 
+        }
+        public DataSet GetEmployeeDetails()
+        {
+            SqlParameter[] para = {
+                                      new SqlParameter("@LoginId", ReferBy),
+
+                                  };
+            DataSet ds = DBHelper.ExecuteQuery("GetEmployeeName", para);
+
+            return ds;
         }
         public DataSet BindFormMaster()
         {
