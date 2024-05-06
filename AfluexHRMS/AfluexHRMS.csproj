@@ -1625,6 +1625,7 @@
     <Content Include="Views\EmployeeAttendance\MonthlyWiseAttendanceReport.cshtml" />
     <Content Include="Views\Employee\EmployeeWork.cshtml" />
     <Content Include="Views\Employee\EmployeeEducation.cshtml" />
+    <Content Include="Views\EmployeeLogin\GetEmployeeIDCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

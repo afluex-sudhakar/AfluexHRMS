@@ -15,6 +15,12 @@ namespace AfluexHRMS.Models
         public string ProfilePic { get; set; }
         public string GenderID { get; set; }
         public List<EmployeeLogin> lstListprofile { get; set; }
+        public List<EmployeeLogin> lstGetIDCard { get; set; }
+        public string EmployeeCode { get; set; }
+        public string CompanyName { get; set; }
+        public string DateOfJoining { get; set; }
+        public string CompanyAddress { get; set; }
+        public string CompanyContact { get; set; }
         public string DOJ { get; set; }
         public string Address { get; set; }
         public string Contact { get; set; }
@@ -161,6 +167,12 @@ namespace AfluexHRMS.Models
             SqlParameter[] para = {
                      new SqlParameter("@FK_EmpID",EmployeeID),};
             DataSet ds = DBHelper.ExecuteQuery("GetEmployeeProfile", para);
+            return ds;
+        }
+        public DataSet GetIDCard()
+        {
+            SqlParameter[] para = { new SqlParameter("@EmployeeCode", EmployeeCode) };
+            DataSet ds = DBHelper.ExecuteQuery("GetIDCard", para);
             return ds;
         }
 
