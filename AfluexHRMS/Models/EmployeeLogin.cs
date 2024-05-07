@@ -64,7 +64,19 @@ namespace AfluexHRMS.Models
         public string AddedBy { get; set; }
         public string emailto { get; set; }
         public string subject { get; set; }
-        
+
+
+
+        public string Employeee { get; set; }
+        public string EmployeeLoginId { get; set; }
+        public string ISHalfDay { get; set; }
+
+        public string Attendance { get; set; }
+        public string InTime { get; set; }
+        public string OutTime { get; set; }
+
+        public string TotalHRWork { get; internal set; }
+        public string AttendanceDate { get; internal set; }
 
         public DataSet LeaveTypeListForEmp()
         {
@@ -109,6 +121,20 @@ namespace AfluexHRMS.Models
                             };
             DataSet ds = DBHelper.ExecuteQuery("LeaveReportForEmployee", para);
             return ds;
+        }
+        public DataSet MonthlyAttendanceReport()
+        {
+            SqlParameter[] para =
+                            {
+                                new SqlParameter("@EmployeeCode",EmployeeLoginId),
+                                new SqlParameter("@Status",Attendance),
+                                new SqlParameter("@HDFD ",ISHalfDay),
+                                new SqlParameter("@FromDate",FromDate),
+                                new SqlParameter("@ToDate",ToDate),
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("EmployeeMonthlyAttendanceReport", para);
+            return ds;
+
         }
 
         public DataSet LeaveCount()
