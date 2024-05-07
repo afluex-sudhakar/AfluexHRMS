@@ -632,6 +632,18 @@ namespace AfluexHRMS.Controllers
                         Empid = Request["empid " + i].ToString();
 
                     }
+                    else
+                    {
+                        intime = "";
+                        outtime = "";
+                        totalhr = "";
+                        overtime ="";
+                        ishalfdy ="";
+                        attend = Request["txtattend " + i].ToString();
+                        attenddate = Request["monthly " + i].ToString();
+                        Empid = Request["empid " + i].ToString();
+
+                    }
 
 
                     if (Request["txtattend " + i].ToString() != "")
@@ -702,6 +714,9 @@ namespace AfluexHRMS.Controllers
                     obj.EmployeeLoginId = r["LoginID"].ToString();
                     obj.ISHalfDay = r["IsHalfDay"].ToString();
                     obj.Attendance = r["Status"].ToString();
+                    obj.InTime = r["InTime"].ToString();
+                    obj.OutTime = r["OutTime"].ToString();
+                    obj.TotalHRWork = r["TotalHours"].ToString();
                     obj.AttendanceDate = r["AttendanceDate"].ToString();
                     lst.Add(obj);
                 }

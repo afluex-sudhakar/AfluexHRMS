@@ -119,6 +119,9 @@ namespace AfluexHRMS.Controllers
             }
             return View(model);
         }
-
+        public ActionResult GeneralRules()
+        {
+            return View();
+        }
     }
 }
