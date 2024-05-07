@@ -120,5 +120,38 @@ namespace AfluexHRMS.Controllers
             return View(model);
         }
 
+
+        public JsonResult UpdateProfilePic(string AdminID)
+        {
+            Admin obj = new Admin();
+            bool msg = false;
+            if (Request.Files.Count > 0)
+            {
+                HttpFileCollectionBase files = Request.Files;
+                HttpPostedFileBase file = files[0];
+
+                string fileName = file.FileName;
+                obj.Pk_AdminID = AdminID;
+                obj.ProfilePicture = "/images/CompanyLogo/" + Guid.NewGuid() + Path.GetExtension(file.FileName);
+                file.SaveAs(Path.Combine(Server.MapPath(obj.ProfilePicture)));
+                DataSet ds = obj.UpdateProfilePic();
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0][0].ToString() == "1")
+                    {
+                        msg = true;
+                        Session["ProfilePic"] = obj.ProfilePicture;
+                    }
+                    else
+                    {
+                        msg = false;
+                    }
+                }
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
