@@ -27,7 +27,7 @@ namespace AfluexHRMS.Models
         public string postcode { get; set; }
         
         public List<Employee> lstList { get; set; }
-        public List<Employee> lstListenglish { get; set; }
+        
 
         public DataSet EmployeeReportBy()
         {
@@ -35,10 +35,6 @@ namespace AfluexHRMS.Models
             return ds;
         }
 
-        public DataSet ReporntInEnglish()
-        {
-            DataSet ds = DBHelper.ExecuteQuery("list");
-            return ds;
-        }
+       
     }
 }

@@ -1,0 +1,38 @@
+﻿@model AfluexHRMS.Models.Employee
+
+@{
+    ViewBag.Title = "EmployeeDocuments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("EmployeeDocuments", "Employee", FormMethod.Post, new { @id = "form4", enctype = "multipart/form-data", @autocomplete = "off" }))
+{
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Employee Documents</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">My Profile</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee Documents</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card shadow-lg">
+                    <div class="card-header d-lg-flex justify-content-between">
+                        <h4 class="card-title">Upload Documents</h4>
+                        <div class="card-options">
+                            <div class="table table-bordered">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+

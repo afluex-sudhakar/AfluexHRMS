@@ -1628,6 +1628,8 @@
     <Content Include="Views\EmployeeLogin\GetEmployeeIDCard.cshtml" />
     <Content Include="Views\Admin\GeneralRules.cshtml" />
     <Content Include="Views\EmployeeLogin\MonthlyAttendanceReport.cshtml" />
+    <Content Include="Views\Employee\EmployeeFamily.cshtml" />
+    <Content Include="Views\Employee\EmployeeDocuments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1639,6 +1641,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="EmployeeProfile\" />
     <Folder Include="EmployeePunching\" />
+    <Folder Include="images\CompanyLogo\" />
     <Folder Include="images\ProfilePicture\" />
     <Folder Include="Views\WebAPI\" />
   </ItemGroup>
