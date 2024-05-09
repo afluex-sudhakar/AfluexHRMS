@@ -20,10 +20,10 @@
     <div class="row">
         <div class="col-lg-3 col-md-12">
             <div class="clearfix">
-                <div class="card shadow-lg">
+                <div class="card shadow">
                     <div class="card-body">
 
-                        <img style="height:150px; width:150px; border-radius:2px;" class="d-block m-auto" src="@Model.ProfilePic" alt=""/>
+                        <img style="height:150px; width:150px; border-radius:2px;" src="@Model.ProfilePic" alt=""/>
 
                         <input type="file" id="postedFile" name="postedFile" class="form-control mt-2" />
 
@@ -35,43 +35,7 @@
             </div>
         </div>
         <div class="col-lg-9 col-md-12">
-            <div class="card shadow-lg"  id="showdata">
-                <div class="card-header d-lg-flex justify-content-between">
-                    <h4 class="card-title">PERSONAL INFO</h4>
-                    <div class="card-options">
-                        <a ><i class="fa fa-pencil" id="respondbutton"></i></a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Name</label>
-                            @Model.Name
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Father Name</label>
-                            @Model.FatherName
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">DOB</label>
-                            @Model.DOB
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Gender</label>
-                            @Model.GenderID
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Blood Group</label>
-                            @Model.BloodGroup
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Date Of Joining</label>
-                            @Model.DOJ
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card shadow-lg" id="Editabledata">
+            <div class="card shadow">
                 <div class="card-header d-lg-flex justify-content-between">
                     <h4 class="card-title">PERSONAL INFO</h4>
                 </div>
@@ -80,7 +44,7 @@
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Name</label>
                             @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Full Name" })
-                            @Html.HiddenFor(m => m.EmployeeID)
+                            @Html.HiddenFor(m=> m.EmployeeID)
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Father Name</label>
@@ -100,45 +64,12 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Date Of Joining</label>
-                            @Html.TextBoxFor(m => m.DOJ, new { @class = "form-control", @disabled = "disabled" })
-                        </div>
-                        <div class="col-md-6 mt-2">
-                            <input type="submit" class="btn btn-primary" id="profileupdate" name="profileupdate" value="Update" />
-                            <a class="btn btn-danger text-white" onclick="return btnnormal()">Cancel</a>
+                            @Html.TextBoxFor(m => m.DOJ, new { @class = "form-control",@disabled="disabled"})
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="card shadow-lg" id="cardshow">
-                <div class="card-header d-lg-flex justify-content-between">
-                    <h4 class="card-title">CONTACT & ADDRESS</h4>
-                    <div class="card-options">
-                        <a><i class="fa fa-pencil" id="respondbtn"></i></a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Email ID</label>
-                            @Model.Email
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Mobile No.</label>
-                            @Model.Contact
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Pan Number</label>
-                            @Model.PAN
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label">Address</label>
-                            @Model.Address
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card shadow-lg" id="cardhide">
+            <div class="card shadow">
                 <div class="card-header d-lg-flex justify-content-between">
                     <h4 class="card-title">CONTACT & ADDRESS</h4>
                 </div>
@@ -160,9 +91,8 @@
                             <label class="form-label">Address</label>
                             @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @placeholder = "Address", @disabled = "disabled" })
                         </div>
-                        <div class="col-md-6 mt-2">
-                            <input type="submit" class="btn btn-primary" id="profileupdate" name="profileupdate" value="Update" />
-                            <a class="btn btn-danger" onclick="return cancelbtn()">Cancel</a>
+                        <div class="col-md-4">
+                            <input type="submit" class="btn btn-success-gradient" id="profileupdate" name="profileupdate" value="Update" />
                         </div>
                     </div>
                 </div>
@@ -177,57 +107,7 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
-
-@if (TempData["Profile"] != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-               notif({
-                   msg: "Success : @TempData["Profile"]",
-                type: "success"
-            });
-            };
-    </script>
-}
-else if (TempData["ErrProfile"] != null)
-{
-
-    <script type="text/javascript">
-            window.onload = function () {
-                notif({
-                    msg: "<b>Oops!</b> @TempData["ErrProfile"]",
-                    type: "error"
-                });
-            };
-
-    </script>
-
-}
-
 <script>
-    $(document).ready(function () {
-        debugger;
-        $('#Editabledata').hide();
-        $('#cardhide').hide();
-
-        $('#respondbutton').click(function () {
-            $('#showdata').hide();
-            $('#Editabledata').show();
-        });
-        $('#respondbtn').click(function () {
-            $('#cardhide').show();
-            $('#cardshow').hide();
-        });
-    });
-    function btnnormal() {
-        $('#showdata').show();
-        $('#Editabledata').hide();
-    };
-    function cancelbtn() {
-        $('#cardshow').show();
-        $('#cardhide').hide();
-    };
-
     $('#DOB').datepicker({
         dateFormat: 'dd/mm/yy',
         changeYear: true,
@@ -255,5 +135,4 @@ else if (TempData["ErrProfile"] != null)
 
         return true;
     };
-
 </script>

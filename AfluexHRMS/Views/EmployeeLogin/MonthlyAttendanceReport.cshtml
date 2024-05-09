@@ -1,19 +1,20 @@
-﻿@model AfluexHRMS.Models.EmployeeAttendance
+﻿@model AfluexHRMS.Models.EmployeeLogin
 
 @{
-    ViewBag.Title = "MonthlyWiseAttendanceReport";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewBag.Title = "MonthlyAttendanceReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("MonthlyWiseAttendanceReport", "EmployeeAttendance", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
+
+@using (Html.BeginForm("MonthlyAttendanceReport", "EmployeeLogin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
 {
     <div class="container-fluid">
         <div class="page-header">
             <div>
-                <h1 class="page-title">Monthly Wise Attendance Report</h1>
+                <h1 class="page-title">Monthly Wise Attendance</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Reports</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Monthly Wise Attendance Report</li>
+                    <li class="breadcrumb-item"><a href="#">Attendance</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Monthly Wise Attendance</li>
                 </ol>
             </div>
         </div>
@@ -23,23 +24,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3 mb-3">
-                                <label class="form-label" for="inputEmail4"><h5>Employee Code   </h5></label>
-                                @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
-                            </div>
-
-                            <div class="col-md-3 mb-3">
-                                <label class="form-label" for="inputEmail4"><h5>Employee Name   </h5></label>
-                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
-                            </div>
-
-                            <div class="col-md-3 mb-3">
                                 <label class="form-label" for="inputEmail4"><h5>IS Half Day </h5></label>
-                                @Html.DropDownListFor(m => m.ISHalfDay, new SelectList(ViewBag.ISHalfFullDay, "Value", "Text"), new { @class = "form-control default-select wide" })
+                                @Html.DropDownListFor(m => m.ISHalfDay, new SelectList(ViewBag.ISHalfFullDay, "Value", "Text"), new { @class = "form-control default-select wide form-select" })
                             </div>
 
                             <div class="col-md-3 mb-3">
                                 <label class="form-label" for="inputEmail4"><h5>Attendance </h5></label>
-                                @Html.DropDownListFor(m => m.Attendance, new SelectList(ViewBag.AttendType, "Value", "Text"), new { @class = "form-control default-select wide" })
+                                @Html.DropDownListFor(m => m.Attendance, new SelectList(ViewBag.AttendType, "Value", "Text"), new { @class = "form-control default-select wide form-select" })
                             </div>
 
                             <div class="col-md-3 mb-3">
@@ -65,11 +56,9 @@
                                         <tr>
                                             <th>SNo.</th>
                                             <th>Attendance Date</th>
-                                            <th>Employee Name</th>
                                             <th>Status</th>
                                             <th>In Time</th>
                                             <th>Out Time</th>
-                                            <th>Total Hours Worked</th>
                                             <th>Half/Full Day</th>
                                         </tr>
                                     </thead>
@@ -84,11 +73,9 @@
                                                     <tr class="text-left">
                                                         <td>@i</td>
                                                         <td>@Item.AttendanceDate</td>
-                                                        <td>@Item.EmployeeName (@Item.EmployeeLoginId)</td>
                                                         <td>@Item.Attendance</td>
                                                         <td>@Item.InTime</td>
                                                         <td>@Item.OutTime</td>
-                                                        <td>@Item.TotalHRWork</td>
                                                         <td>@Item.ISHalfDay</td>
                                                     </tr>
                                                     i++;
@@ -160,7 +147,7 @@
     });
 
     function validateDateRange() {
-    
+
         if ($('#FromDate').val() == '') {
             $("#FromDate").addClass('errortext');
             $('#FromDate').focus();
@@ -176,8 +163,8 @@
     }
 
 
-    
-   
+
+
 </script>
 
 <style>
@@ -186,6 +173,7 @@
         background-color: #fff0f0 !important;
     }
 </style>
+
 
 
 

@@ -532,6 +532,97 @@ namespace AfluexHRMS.Controllers
         }
 
         #endregion
-        
+
+       
+        public ActionResult GetEmployeeIDCard(EmployeeLogin model)
+        {
+
+            List<EmployeeLogin> lst = new List<EmployeeLogin>();
+            model.EmployeeCode = Session["LoginID"].ToString();
+            DataSet ds1 = model.GetIDCard();
+            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow r in ds1.Tables[0].Rows)
+                {
+                    EmployeeLogin objM = new EmployeeLogin();
+                    objM.EmployeeID = r["PK_EmployeeID"].ToString();
+                    objM.EmployeeCode = r["LoginID"].ToString();
+                    objM.EmployeeName = r["EmployeeName"].ToString();
+                    objM.CompanyName = r["CompanyName"].ToString();
+                    objM.DepartmentName = r["DepartmentName"].ToString();
+                    objM.DesignationName = r["DesignationName"].ToString();
+                    objM.Gender = r["Gender"].ToString();
+                    objM.Email = r["Email"].ToString();
+                    objM.DateOfJoining = r["DateOfJoining"].ToString();
+                    objM.Contact = r["MobileNo"].ToString();
+                    objM.BloodGroup = r["BloodGroup"].ToString();
+                    objM.CompanyAddress = r["CompanyAddress"].ToString();
+                    objM.CompanyContact = r["CompanyContact"].ToString();
+                    objM.ProfilePic = r["ProfilePic"].ToString();
+                    lst.Add(objM);
+                }
+                model.lstGetIDCard = lst;
+            }
+            return View(model);
+        }
+        public ActionResult MonthlyAttendanceReport()
+        {
+            #region HAlfFullDay
+            List<SelectListItem> AttendType = Common.AttendanceStatus();
+            ViewBag.AttendType = AttendType;
+            #endregion HAlfFullDay
+
+            #region IsFullHalfDay
+            List<SelectListItem> ISHalfFullDay = Common.IsFullHalfDay();
+            ViewBag.ISHalfFullDay = ISHalfFullDay;
+            #endregion IsFullHalfDay
+
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("MonthlyAttendanceReport")]
+        [OnAction(ButtonName = "Search")]
+        public ActionResult SearchMonthlyAttendanceReport(EmployeeLogin model)
+        {
+
+            List<EmployeeLogin> lst = new List<EmployeeLogin>();
+            model.FromDate = string.IsNullOrEmpty(model.FromDate) ? null : Common.ConvertToSystemDate(model.FromDate, "dd/MM/yyyy");
+            model.ToDate = string.IsNullOrEmpty(model.ToDate) ? null : Common.ConvertToSystemDate(model.ToDate, "dd/MM/yyyy");
+            model.EmployeeLoginId = Session["LoginID"].ToString();
+            DataSet ds1 = model.MonthlyAttendanceReport();
+
+            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow r in ds1.Tables[0].Rows)
+                {
+                    EmployeeLogin obj = new EmployeeLogin();
+                    obj.EmployeeID = r["FK_EmployeeID"].ToString();
+                    obj.EmployeeName = r["EmployeeName"].ToString();
+                    obj.EmployeeLoginId = r["LoginID"].ToString();
+                    obj.ISHalfDay = r["IsHalfDay"].ToString();
+                    obj.Attendance = r["Status"].ToString();
+                    obj.InTime = r["InTime"].ToString();
+                    obj.OutTime = r["OutTime"].ToString();
+                    obj.TotalHRWork = r["TotalHours"].ToString();
+                    obj.AttendanceDate = r["AttendanceDate"].ToString();
+                    lst.Add(obj);
+                }
+            }
+            model.lstList = lst;
+
+            #region HAlfFullDay
+            List<SelectListItem> AttendType = Common.AttendanceStatus();
+            ViewBag.AttendType = AttendType;
+            #endregion HAlfFullDay
+
+            #region IsFullHalfDay
+            List<SelectListItem> ISHalfFullDay = Common.IsFullHalfDay();
+            ViewBag.ISHalfFullDay = ISHalfFullDay;
+            #endregion IsFullHalfDay
+
+            return View(model);
+        }
+
     }
 }

@@ -1,0 +1,332 @@
+﻿@model AfluexHRMS.Models.Master
+
+@{
+    ViewBag.Title = "GeneralRules";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("GeneralRules", "Admin", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data", @autocomplete = "off" }))
+{
+    <div class="container-fluid">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Attendance</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Master</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">General Rules </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Code</h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeLoginId, new { @class = "form-control", @Placeholder = "Employee Code" })
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label" for="inputEmail4"><h5>Employee Name</h5></label>
+                                @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", @Placeholder = "Employee Name" })
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label d-none d-lg-block"><h5>&nbsp;</h5></label>
+                                <input type="submit" class="btn btn-info" name="Search" value="Search" onclick="return validateSearch();" />
+                            </div>
+                        </div>
+                        <div class="white_card_header">
+                            <div class="box_header m-0">
+                                <div class="main-title">
+                                    <h3 class="mb-2">Mark Attendance</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label" for="inputEmail4"><h5>Attendance Date<span style="color:red">*</span></h5></label>
+                                @Html.TextBoxFor(m => m.AttendanceDate, new { @class = "form-control", @Placeholder = "Attendance Date" })
+                            </div>
+
+                            <div class="col-md-9">
+                                <label class="form-label d-none d-lg-block mb-4"><h5>&nbsp;</h5></label>
+                                <b>  [  P - Present , A - Absent , HD - Half Day , FD - Full Day , L - Leave , S - Sunday  ]</b>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box_body p-4">
+                                    <div class="table-responsive">
+                                        <div class="QA_table mb_30">
+                                            <table class="table border table-bordered text-nowrap text-md-nowrap table-hover mg-b-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>SNo.</th>
+                                                        <th>Emp Code</th>
+                                                        <th>Name</th>
+                                                        <th style="min-width:100px">W.H Limit</th>
+                                                        <th style="min-width:150px">Attendance</th>
+                                                        <th>InTime</th>
+                                                        <th>Out Time</th>
+                                                        <th style="min-width:200px">Total Hours Worked</th>
+                                                        <th style="min-width:150px">OverTime</th>
+                                                        <th style="min-width:150px">Is HD</th>
+                                                        @*  <th><input type="checkbox" id="select-all" /></th>*@
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbodyAttd">
+                                                    @if (Model != null)
+                                                    {
+                                                        if (Model.lstList != null)
+                                                        {
+                                                            int i = 1;
+                                                            foreach (var Item in Model.lstList)
+                                                            {
+                                                                <tr class="text-left">
+                                                                    <td>@i</td>
+                                                                    <td style="min-width:100px">@Item.EmployeeLoginId <input type='hidden' value='@Item.EmployeeID' id='empid @i' name='empid @i'></td>
+                                                                    <td style="min-width:200px">@Item.EmployeeName</td>
+                                                                    <td>@Item.WHLimit <input type='hidden' value='@Item.WHLimit' id='days @i' name='days @i'></td>
+                                                                    <td><input type='text' id="txtattend @i" maxlength="1" onkeypress="return onlyAlphabets(event);" value='@Item.Attendance' name="txtattend @i" class="form-control"></td>
+                                                                    <td><input type='time' id="txtintime @i" value='@Item.InTime' name="txtintime @i" class="form-control" onchange="getdataintime(this)"></td>
+                                                                    <td><input type='time' id="txtouttime @i" value='@Item.OutTime' name="txtouttime @i" class="form-control" onchange="getdataouttime(this,'@i',@Item.WHLimit)"></td>
+                                                                    <td><input type='text' id="txttotalhrs @i" readonly="readonly" value='@Item.TotalHRWork' name="txttotalhrs @i" class="form-control" onchange="getdata(this,'@i)"></td>
+                                                                    <td><input type='text' id="txtovertime @i" readonly="readonly" value='@Item.OverTime' name="txtovertime @i" class="form-control" onchange="getdata(this)"></td>
+                                                                    <td><input type='text' id="txthd @i" readonly="readonly" value='@Item.ISHalfDay' name="txthd @i" class="form-control" onchange="getdata(this)"></td>
+
+                                                                </tr>
+                                                                i++;
+                                                            }
+                                                            <input type='hidden' value='@i' id='hdrows' name='hdrows' />
+                                                        }
+                                                    }
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <input type="submit" name="Save" id="Save" value="Save" class="btn btn-success" onclick="return validateSave();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="txtintime" />
+    <input type="hidden" id="txtouttime" />
+}
+
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+
+<script>
+    function getdataintime(intime) {
+
+        var intime = $('#txtintime').val(intime.value);
+        // alert(outtime.value);
+
+
+    }
+    function getdataouttime(outtime,i,WHLimit) {
+
+        var otime = outtime.value;
+        var ot = otime.split(":");
+        var otFinal = ot[0];
+        //var intime = $('#txtintime ' + i).val();
+        var intime = document.getElementById('txtintime ' + i).value;
+        var it = intime.split(":");
+        var itFinal = it[0];
+       var totlhr = ((Number)(otFinal) - (Number)(itFinal)).toString();
+       document.getElementById("txttotalhrs " + i).value = totlhr;
+       var overtime = ((Number)(totlhr) - (Number)(WHLimit)).toString();
+       if ((Number)(overtime) > 0) {
+           document.getElementById("txtovertime " + i).value = overtime;
+       }
+       else
+       {
+           document.getElementById("txtovertime " + i).value = "0";
+       }
+
+
+       if ((Number)(totlhr) < (Number)(WHLimit)/2) {
+           document.getElementById("txthd " + i).value = "HD";
+       }
+       else
+       {
+           document.getElementById("txthd " + i).value = "FD";
+       }
+
+    }
+
+    function AllPresent() {
+        debugger
+        // var allpresent = $('#allpresent').val();
+        var tr = [];
+        $.ajax({
+            url: '/EmployeeAttendance/AllPresent', type: 'post', dataType: 'json',
+            data: {  },
+            success: function (data) {
+                var j = 1;
+                //$('#example1_wrapper').find("tr:not(:first)").remove();
+                if (data.lstList.length > 0) {
+                    $('#tbodyAttd').empty();
+                    for (var i = 0; i < data.lstList.length; i++) {
+                        $('#tbodyAttd').empty();
+
+                            tr.push('<tr>');
+                            tr.push("<td>" + j + "</td>");
+                            tr.push("<td>" + data.lstList[i].EmployeeLoginId + "</td>");
+                            tr.push("<td>" + data.lstList[i].EmployeeName + "</td>");
+                            tr.push("<td>" + data.lstList[i].WHLimit + "</td>");
+                            tr.push("<td><input type='text' value='" + data.lstList[i].Attendance + "' id='txtattend " + i + "' name='txtattend " + i + "' required='required'></td>");
+                            tr.push("<td><input type='time' value='" + data.lstList[i].InTime + "' id='txtintime " + i + "'name='txtintime " + i + "'  onchange='getdataintime(this)' required='required'></td>");
+                            tr.push("<td><input type='time' value='" + data.lstList[i].OutTime + "' id='txtouttime " + i + "' name='txtouttime " + i + "' onchange='getdataouttime(this,"+i+","+data.lstList[i].WHLimit+") required='required'></td>");
+                            tr.push("<td><input type='text' value='" + data.lstList[i].TotalHRWork + "' id='txttotalhrs " + i + "' name='txttotalhrs " + i + "' required='required'></td>");
+                            tr.push("<td><input type='text' value='" + data.lstList[i].OverTime + "' id='txtovertime " + i + "' name='txtovertime " + i + "' required='required'></td>");
+                            tr.push("<td><input type='text' value='" + data.lstList[i].ISHalfDay + "' id='txthd " + i + "' name='txthd " + i + "' required='required'></td>");
+                            tr.push("<td style='display:none'><input type='hidden' value='" + data.lstList[i].EmployeeID + "' id='empid " + i + "' name='empid " + i + "'></td>");
+                            tr.push('</tr>');
+                            j++;
+                            //plcTotal = plcTotal + parseInt(data.lstList[i].PLCCharge);
+
+                        tr.push('<tr style="display:none">');
+                        tr.push("<td><input type='hidden' value='" + j + "' id='hdrows' name='hdrows'></td>");
+                        tr.push('</tr>');
+                        $('#tbodyAttd').append($(tr.join('')));
+                        //$("#example1_wrapper").append('<tr><td id="EmployeeID' + i + ' " style="display:none">' + data.lstList[i].EmployeeID +
+                        //      '</td><td id="i' + i + ' " >' + data.lstList[i].i +
+                        //    '</td><td id="EmployeeName' + i + ' " >' + data.lstList[i].EmployeeName +
+                        //    '</td><td id="EmployeeLoginId' + i + ' " >' + data.lstList[i].EmployeeLoginId +
+                        //    '</td><td id="WHLimit' + i + ' " >' + data.lstList[i].WHLimit +
+                        //      '</td><td id="Attendance' + i + ' " >' + data.lstList[i].Attendance +
+                        //     '</td><td id="InTime' + i + ' " >' + data.lstList[i].InTime +
+                        //     '</td><td id="OutTime' + i + ' " >' + data.lstList[i].OutTime +
+                        //       '</td><td id="TotalHRWork' + i + ' " >' + data.lstList[i].TotalHRWork +
+                        //        '</td><td id="OverTime' + i + ' " >' + data.lstList[i].OverTime +
+                        //    '</td><td id="ISHalfDay' + i + ' " >' + data.lstList[i].ISHalfDay +
+
+                        //    '</td></tr>')
+
+                    }
+                }
+            }
+
+        });
+    }
+
+    function validateSave() {
+
+        $(".errortext").removeClass("errortext");
+
+        if ($('#AttendanceDate').val() == '') {
+            $("#AttendanceDate").addClass('errortext');
+            $('#AttendanceDate').focus();
+
+            return false;
+        }
+
+        return true;
+    }
+
+    //function attendVal(i)
+    //{
+    //    if (("txtattend " + i).value = "A") {
+    //        ("txtintime " + i).value = null;
+    //      ("txtouttime " + i).value = "0";
+    //      ("txttotalhrs " + i).value = "0";
+    //      ("txtovertime " + i).value = "0";
+    //      ("txttotalhrs " + i).value = "0";
+    //    }
+    //}
+
+
+    function isNumberOrDecimal(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    function onlyAlphabets(e, t) {
+        try {
+            if (window.event) {
+                var charCode = window.event.keyCode;
+            }
+            else if (e) {
+                var charCode = e.which;
+            }
+            else { return true; }
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                return true;
+            else
+                return false;
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+
+    $('#PostingDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true,
+
+    });
+    $('#AttendanceDate').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true,
+        minMonth: 0
+    });
+</script>
+
+@if (TempData["DailyAttendance"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "<b>Success:</b> @TempData["DailyAttendance"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrDailyAttendance"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrDailyAttendance"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}
+
+<style>
+    .errortext {
+        border: 1px solid red !important;
+        background-color: #fff0f0 !important;
+    }
+</style>
+
+

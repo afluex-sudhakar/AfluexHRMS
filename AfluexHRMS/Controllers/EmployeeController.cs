@@ -54,5 +54,12 @@ namespace AfluexHRMS.Controllers
         {
             return View();
         }
+
+        public ActionResult EmployeeDocuments()
+        {
+            return View();
+        }
+
+
     }
 }

@@ -15,6 +15,12 @@ namespace AfluexHRMS.Models
         public string ProfilePic { get; set; }
         public string GenderID { get; set; }
         public List<EmployeeLogin> lstListprofile { get; set; }
+        public List<EmployeeLogin> lstGetIDCard { get; set; }
+        public string EmployeeCode { get; set; }
+        public string CompanyName { get; set; }
+        public string DateOfJoining { get; set; }
+        public string CompanyAddress { get; set; }
+        public string CompanyContact { get; set; }
         public string DOJ { get; set; }
         public string Address { get; set; }
         public string Contact { get; set; }
@@ -58,7 +64,19 @@ namespace AfluexHRMS.Models
         public string AddedBy { get; set; }
         public string emailto { get; set; }
         public string subject { get; set; }
-        
+
+
+
+        public string Employeee { get; set; }
+        public string EmployeeLoginId { get; set; }
+        public string ISHalfDay { get; set; }
+
+        public string Attendance { get; set; }
+        public string InTime { get; set; }
+        public string OutTime { get; set; }
+
+        public string TotalHRWork { get; internal set; }
+        public string AttendanceDate { get; internal set; }
 
         public DataSet LeaveTypeListForEmp()
         {
@@ -103,6 +121,20 @@ namespace AfluexHRMS.Models
                             };
             DataSet ds = DBHelper.ExecuteQuery("LeaveReportForEmployee", para);
             return ds;
+        }
+        public DataSet MonthlyAttendanceReport()
+        {
+            SqlParameter[] para =
+                            {
+                                new SqlParameter("@EmployeeCode",EmployeeLoginId),
+                                new SqlParameter("@Status",Attendance),
+                                new SqlParameter("@HDFD ",ISHalfDay),
+                                new SqlParameter("@FromDate",FromDate),
+                                new SqlParameter("@ToDate",ToDate),
+                            };
+            DataSet ds = DBHelper.ExecuteQuery("EmployeeMonthlyAttendanceReport", para);
+            return ds;
+
         }
 
         public DataSet LeaveCount()
@@ -161,6 +193,12 @@ namespace AfluexHRMS.Models
             SqlParameter[] para = {
                      new SqlParameter("@FK_EmpID",EmployeeID),};
             DataSet ds = DBHelper.ExecuteQuery("GetEmployeeProfile", para);
+            return ds;
+        }
+        public DataSet GetIDCard()
+        {
+            SqlParameter[] para = { new SqlParameter("@EmployeeCode", EmployeeCode) };
+            DataSet ds = DBHelper.ExecuteQuery("GetIDCard", para);
             return ds;
         }
 

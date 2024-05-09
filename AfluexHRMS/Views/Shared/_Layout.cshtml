@@ -48,6 +48,8 @@
     <!-- INTERNAL Data table css -->
     <link href="~/AssetsAdminNew/plugins/datatable/css/dataTables.bootstrap5.css" rel="stylesheet" />
     <link href="~/AssetsAdminNew/plugins/datatable/responsive.bootstrap5.css" rel="stylesheet" />
+    <link href="~/AssetsAdminNew/plugins/datatable/buttons.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/AssetsAdminNew/plugins/datatable/buttons.bootstrap5.min.css" rel="stylesheet" />
 
 
     <!-- COLOR SKIN CSS -->
@@ -93,7 +95,9 @@
                         <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fa fa-address-book"></i><span class="side-menu__label">My Profile</span><i class="angle fa fa-angle-right"></i></a>
                         <ul class="slide-menu">
                             <li><a class="slide-item" href="/EmployeeLogin/MyProfile">Personal Details</a></li>
+                            <li><a class="slide-item" href="/EmployeeLogin/GetEmployeeIDCard">ID Card</a></li>
                             <li><a class="slide-item" href="/Employee/EmployeeFamily">Employee Family</a></li>
+                            <li><a class="slide-item" href="/Employee/EmployeeDocuments">Upload Documents</a></li>
                         </ul>
                     </li>
                     <li class="slide">
@@ -121,6 +125,7 @@
                         <a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon ion-calendar"></i><span class="side-menu__label">Attendance</span><i class="angle fa fa-angle-right"></i></a>
                         <ul class="slide-menu">
                             <li><a class="slide-item" href="/EmployeeLogin/DateWiseAttendanceReport">Date Wise Attendance</a></li>
+                            <li><a class="slide-item" href="/EmployeeLogin/MonthlyAttendanceReport">Monthly Wise Attendance</a></li>
                         </ul>
                     </li>
                     <li class="slide">
@@ -304,6 +309,7 @@
                                     <a class="dropdown-item" href="/EmployeeLogin/MyProfile">
                                         <i class="dropdown-icon fe fe-user"></i> Profile
                                     </a>
+                                   
                                     @*<a class="dropdown-item" href="email.html">
                                             <i class="dropdown-icon fe fe-mail"></i> Inbox
                                             <span class="badge bg-primary float-end">3</span>
@@ -561,9 +567,22 @@
     <script src="~/AssetsAdminNew/plugins/select2/select2.full.min.js"></script>
 
     <!-- INTERNAL Data tables js-->
+
     <script src="~/AssetsAdminNew/plugins/datatable/js/jquery.dataTables.min.js"></script>
     <script src="~/AssetsAdminNew/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/js/jszip.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/pdfmake/pdfmake.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/pdfmake/vfs_fonts.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/js/buttons.html5.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/js/buttons.print.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/js/buttons.colVis.min.js"></script>
     <script src="~/AssetsAdminNew/plugins/datatable/dataTables.responsive.min.js"></script>
+    <script src="~/AssetsAdminNew/plugins/datatable/responsive.bootstrap5.min.js"></script>
+    <script src="~/AssetsAdminNew/js/table-data.js"></script>
+
+
 
     <!-- ECHART JS-->
     <script src="~/AssetsAdminNew/plugins/echarts/echarts.js"></script>
