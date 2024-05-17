@@ -753,5 +753,11 @@ namespace AfluexHRMS.Controllers
             else { obj.Result = "No"; }
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult AttendanceRule()
+        {
+           
+            return View();
+        }
     }
 }

@@ -1628,6 +1628,7 @@
     <Content Include="Views\EmployeeLogin\GetEmployeeIDCard.cshtml" />
     <Content Include="Views\Admin\GeneralRules.cshtml" />
     <Content Include="Views\EmployeeLogin\MonthlyAttendanceReport.cshtml" />
+    <Content Include="Views\EmployeeAttendance\AttendanceRule.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
