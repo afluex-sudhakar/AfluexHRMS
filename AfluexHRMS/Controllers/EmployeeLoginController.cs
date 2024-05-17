@@ -33,9 +33,9 @@ namespace AfluexHRMS.Controllers
             {
                 model.AddedBy = Session["PK_EmployeeID"].ToString();
                 DataSet ds = model.SendEmail();
-                if(ds != null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    if(ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
                     {
                         TempData["SendEmailSuccess"] = "Your Data Saved Successfully.";
                     }
@@ -49,7 +49,7 @@ namespace AfluexHRMS.Controllers
                     TempData["SendEmailError"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["SendEmailError"] = ex.Message;
             }
@@ -459,23 +459,23 @@ namespace AfluexHRMS.Controllers
         public ActionResult MyProfile(EmployeeLogin model)
         {
             model.EmployeeID = Session["PK_EmployeeID"].ToString();
-           DataSet ds1 = model.GetProfileDetails();
+            DataSet ds1 = model.GetProfileDetails();
             if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
             {
-                   model.EmployeeID = ds1.Tables[0].Rows[0]["PK_EmployeeID"].ToString();
-                   model.Name = ds1.Tables[0].Rows[0]["EmployeeName"].ToString();
-                   model.DOB = ds1.Tables[0].Rows[0]["DOB"].ToString();
-                   model.FatherName = ds1.Tables[0].Rows[0]["FatherName"].ToString();
-                   model.GenderID = ds1.Tables[0].Rows[0]["Gender"].ToString();
-                   model.BloodGroup = ds1.Tables[0].Rows[0]["BloodGroup"].ToString();
-                   model.DOJ = ds1.Tables[0].Rows[0]["DOJ"].ToString();
-                   model.Email = ds1.Tables[0].Rows[0]["Email"].ToString();
-                   model.Contact = ds1.Tables[0].Rows[0]["MobileNo"].ToString();
-                   model.PAN = ds1.Tables[0].Rows[0]["PanNo"].ToString();
-                   model.Address = ds1.Tables[0].Rows[0]["FullAddress"].ToString();
-                   model.ProfilePic = ds1.Tables[0].Rows[0]["ProfilePic"].ToString();
-                   model.DepartmentName = ds1.Tables[0].Rows[0]["DepartmentName"].ToString();
-                   model.DesignationName = ds1.Tables[0].Rows[0]["DesignationName"].ToString();
+                model.EmployeeID = ds1.Tables[0].Rows[0]["PK_EmployeeID"].ToString();
+                model.Name = ds1.Tables[0].Rows[0]["EmployeeName"].ToString();
+                model.DOB = ds1.Tables[0].Rows[0]["DOB"].ToString();
+                model.FatherName = ds1.Tables[0].Rows[0]["FatherName"].ToString();
+                model.GenderID = ds1.Tables[0].Rows[0]["Gender"].ToString();
+                model.BloodGroup = ds1.Tables[0].Rows[0]["BloodGroup"].ToString();
+                model.DOJ = ds1.Tables[0].Rows[0]["DOJ"].ToString();
+                model.Email = ds1.Tables[0].Rows[0]["Email"].ToString();
+                model.Contact = ds1.Tables[0].Rows[0]["MobileNo"].ToString();
+                model.PAN = ds1.Tables[0].Rows[0]["PanNo"].ToString();
+                model.Address = ds1.Tables[0].Rows[0]["FullAddress"].ToString();
+                model.ProfilePic = ds1.Tables[0].Rows[0]["ProfilePic"].ToString();
+                model.DepartmentName = ds1.Tables[0].Rows[0]["DepartmentName"].ToString();
+                model.DesignationName = ds1.Tables[0].Rows[0]["DesignationName"].ToString();
             }
             #region Gender
             List<SelectListItem> Gender = Common.GenderList();
@@ -500,9 +500,9 @@ namespace AfluexHRMS.Controllers
                 }
                 model.EmployeeID = Session["PK_EmployeeID"].ToString();
                 DataSet ds = model.UpdateProfileDetails();
-                if(ds !=null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    if(ds.Tables[0].Rows[0]["Msg"].ToString() =="1")
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
                     {
                         TempData["Profile"] = "Profile Updated Successfully.";
                         FormName = "MyProfile";
@@ -522,107 +522,16 @@ namespace AfluexHRMS.Controllers
                     Controller = "EmployeeLogin";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["ErrProfile"] = ex.Message;
                 FormName = "MyProfile";
                 Controller = "EmployeeLogin";
             }
-            return RedirectToAction(FormName,Controller);
+            return RedirectToAction(FormName, Controller);
         }
 
         #endregion
-
-       
-        public ActionResult GetEmployeeIDCard(EmployeeLogin model)
-        {
-
-            List<EmployeeLogin> lst = new List<EmployeeLogin>();
-            model.EmployeeCode = Session["LoginID"].ToString();
-            DataSet ds1 = model.GetIDCard();
-            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow r in ds1.Tables[0].Rows)
-                {
-                    EmployeeLogin objM = new EmployeeLogin();
-                    objM.EmployeeID = r["PK_EmployeeID"].ToString();
-                    objM.EmployeeCode = r["LoginID"].ToString();
-                    objM.EmployeeName = r["EmployeeName"].ToString();
-                    objM.CompanyName = r["CompanyName"].ToString();
-                    objM.DepartmentName = r["DepartmentName"].ToString();
-                    objM.DesignationName = r["DesignationName"].ToString();
-                    objM.Gender = r["Gender"].ToString();
-                    objM.Email = r["Email"].ToString();
-                    objM.DateOfJoining = r["DateOfJoining"].ToString();
-                    objM.Contact = r["MobileNo"].ToString();
-                    objM.BloodGroup = r["BloodGroup"].ToString();
-                    objM.CompanyAddress = r["CompanyAddress"].ToString();
-                    objM.CompanyContact = r["CompanyContact"].ToString();
-                    objM.ProfilePic = r["ProfilePic"].ToString();
-                    lst.Add(objM);
-                }
-                model.lstGetIDCard = lst;
-            }
-            return View(model);
-        }
-        public ActionResult MonthlyAttendanceReport()
-        {
-            #region HAlfFullDay
-            List<SelectListItem> AttendType = Common.AttendanceStatus();
-            ViewBag.AttendType = AttendType;
-            #endregion HAlfFullDay
-
-            #region IsFullHalfDay
-            List<SelectListItem> ISHalfFullDay = Common.IsFullHalfDay();
-            ViewBag.ISHalfFullDay = ISHalfFullDay;
-            #endregion IsFullHalfDay
-
-            return View();
-        }
-
-        [HttpPost]
-        [ActionName("MonthlyAttendanceReport")]
-        [OnAction(ButtonName = "Search")]
-        public ActionResult SearchMonthlyAttendanceReport(EmployeeLogin model)
-        {
-
-            List<EmployeeLogin> lst = new List<EmployeeLogin>();
-            model.FromDate = string.IsNullOrEmpty(model.FromDate) ? null : Common.ConvertToSystemDate(model.FromDate, "dd/MM/yyyy");
-            model.ToDate = string.IsNullOrEmpty(model.ToDate) ? null : Common.ConvertToSystemDate(model.ToDate, "dd/MM/yyyy");
-            model.EmployeeLoginId = Session["LoginID"].ToString();
-            DataSet ds1 = model.MonthlyAttendanceReport();
-
-            if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow r in ds1.Tables[0].Rows)
-                {
-                    EmployeeLogin obj = new EmployeeLogin();
-                    obj.EmployeeID = r["FK_EmployeeID"].ToString();
-                    obj.EmployeeName = r["EmployeeName"].ToString();
-                    obj.EmployeeLoginId = r["LoginID"].ToString();
-                    obj.ISHalfDay = r["IsHalfDay"].ToString();
-                    obj.Attendance = r["Status"].ToString();
-                    obj.InTime = r["InTime"].ToString();
-                    obj.OutTime = r["OutTime"].ToString();
-                    obj.TotalHRWork = r["TotalHours"].ToString();
-                    obj.AttendanceDate = r["AttendanceDate"].ToString();
-                    lst.Add(obj);
-                }
-            }
-            model.lstList = lst;
-
-            #region HAlfFullDay
-            List<SelectListItem> AttendType = Common.AttendanceStatus();
-            ViewBag.AttendType = AttendType;
-            #endregion HAlfFullDay
-
-            #region IsFullHalfDay
-            List<SelectListItem> ISHalfFullDay = Common.IsFullHalfDay();
-            ViewBag.ISHalfFullDay = ISHalfFullDay;
-            #endregion IsFullHalfDay
-
-            return View(model);
-        }
 
     }
 }
