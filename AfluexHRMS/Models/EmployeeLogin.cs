@@ -40,6 +40,7 @@ namespace AfluexHRMS.Models
         public string FromDate { get; set; }
         public string ToDate { get; set; }
         public string Remark { get; set; }
+        public string RuleName { get; set; }
         public string Status { get; set; }
         public string LeaveAppID { get; set; }
         public string EmployeeLeaveID { get; set; }

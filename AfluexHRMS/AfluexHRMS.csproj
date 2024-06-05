@@ -1630,6 +1630,7 @@
     <Content Include="Views\EmployeeLogin\MonthlyAttendanceReport.cshtml" />
     <Content Include="Views\Employee\EmployeeFamily.cshtml" />
     <Content Include="Views\Employee\EmployeeDocuments.cshtml" />
+    <Content Include="Views\EmployeeAttendance\AttendanceRule.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -197,7 +197,7 @@
 }
 .tab_wrapper.right_side > ul {
   width: 25%;
-  float: right;
+  float: left;
   border-bottom: 1px solid #f0f0f4;
 }
 .tab_wrapper.right_side > ul li {
@@ -208,7 +208,7 @@
   border-width: 1px;
   border-right: 0;
   border-left: 1px solid #f0f0f4;
-  text-align: right;
+  text-align: left;
 }
 .tab_wrapper.right_side > ul li:after {
   right: 0;
