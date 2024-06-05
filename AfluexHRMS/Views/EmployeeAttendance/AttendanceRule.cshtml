@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Tabs on right side</h3>
+                    <h3 class="card-title">Attendance Rules</h3>
                 </div>
                 <div class="card-body p-6">
                     <div class="tab_wrapper second_tab">
@@ -43,24 +43,82 @@
                                         <div class="panel-body tabs-menu-body">
                                             <div class="tab-content">
                                                 <div class="tab-pane active " id="tab5">
-                                                    <section>
-                                                        <div class="control-group form-group">
-                                                            <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control required" placeholder="Name">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <div class="card shadow-lg" id="showdata">
+                                                            <div class="card-header d-lg-flex justify-content-between">
+                                                                <h4 class="card-title">General Rules</h4>
+                                                                <div class="card-options">
+                                                                    <a><i class="fa fa-pencil" id="respondbutton"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Name</label>
+                                                                             Sarfraz Ahmad
+                                                                    </div>
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Father Name</label>
+                                                                        Abdul Sattar
+                                                                    </div>
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">DOB</label>
+                                                                      20/11/2001
+                                                                    </div>
+                                                                    @*<div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Gender</label>
+                                                                       45664654
+                                                                    </div>*@
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Blood Group</label>
+                                                                        n/a
+                                                                    </div>
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Date Of Joining</label>
+                                                                       20/11/2022
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="control-group form-group">
-                                                            <label class="form-label">Email</label>
-                                                            <input type="email" class="form-control required" placeholder="Email Address">
+                                                        <div class="card shadow-lg" id="Editabledata">
+                                                            <div class="card-header d-lg-flex justify-content-between">
+                                                                <h4 class="card-title">General Rules</h4>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Name</label>
+                                                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Full Name" })
+                                                                        @Html.HiddenFor(m => m.EmployeeID)
+                                                                    </div>
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Father Name</label>
+                                                                        @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name" })
+                                                                    </div>
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">DOB</label>
+                                                                        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @placeholder = "DOB", @readonly = "read" })
+                                                                    </div>
+                                                                    @*<div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Gender</label>
+                                                                        @Html.DropDownListFor(m => m.GenderID, new SelectList(ViewBag.Gender, "Value", "Text"), new { @class = "form-control form-select default-select wide" })
+                                                                    </div>*@
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Blood Group</label>
+                                                                        @Html.TextBoxFor(m => m.BloodGroup, new { @class = "form-control", @placeholder = "Blood Group" })
+                                                                    </div>
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <label class="form-label">Date Of Joining</label>
+                                                                        @Html.TextBoxFor(m => m.DOJ, new { @class = "form-control", @disabled = "disabled" })
+                                                                    </div>
+                                                                    <div class="col-md-6 mt-2">
+                                                                        <input type="submit" class="btn btn-primary" id="profileupdate" name="profileupdate" value="Update" />
+                                                                        <a class="btn btn-danger text-white" onclick="return btnnormal()">Cancel</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="control-group form-group">
-                                                            <label class="form-label">Phone Number</label>
-                                                            <input type="number" class="form-control required" placeholder="Number">
-                                                        </div>
-                                                        <div class="control-group form-group mb-0">
-                                                            <label class="form-label">Address</label>
-                                                            <input type="text" class="form-control required" placeholder="Address">
-                                                        </div>
-                                                    </section>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane " id="tab6">
                                                     <div class="box_body p-2">
@@ -101,15 +159,48 @@
 
 
                             <div class="tab_content">
-                                <p>
-                                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in
-                                    Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
-                                    1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum,
-                                    "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years
-                                    old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
-                                    discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
-                                    very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-                                </p>
+                                <div class="card shadow-lg" id="">
+                                    <div class="card-header d-lg-flex justify-content-between">
+                                        <h4 class="card-title">General Rules</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <div class="col-md-4 mb-3">
+                                                <label class="form-label">Rule Name</label>
+                                                @Html.TextBoxFor(m => m.RuleName, new { @class = "form-control", @placeholder = "Rule Name" })
+                                            </div>
+                                            <div class="col-md-8 mb-5">
+                                                <label class="form-label">Description</label>
+                                                @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", @placeholder = "Description" })
+                                            </div>
+                                            <h5 class="card-title">Shift Timings</h5>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">In Time</label>
+                                                @Html.TextBoxFor(m => m.InTime, new { @type = "time", @class = "form-control", @placeholder = "In Time" })
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Out Time</label>
+                                                @Html.TextBoxFor(m => m.OutTime, new {@type="time", @class = "form-control", @placeholder = "Out Time" })
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="custom-switch">
+                                                    <span class="custom-switch-description">Enable Auto Deduction</span>
+                                                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                                    <span class="custom-switch-indicator m-4"></span>
+                                                    
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Auto Deduction Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31</label>
+                                                
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label class="form-label">&nbsp;</label>
+                                                <input type="submit" class="btn btn-primary" id="btnSave" name="btnSave" value="Save" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -122,8 +213,88 @@
 
 }
 
+<script src="~/assets/js/jquery1-3.4.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
 
 
 
+<script>
+    $(document).ready(function () {
+        debugger;
+        $('#Editabledata').hide();
+        $('#cardhide').hide();
 
+        $('#respondbutton').click(function () {
+            $('#showdata').hide();
+            $('#Editabledata').show();
+        });
+        $('#respondbtn').click(function () {
+            $('#cardhide').show();
+            $('#cardshow').hide();
+        });
+    });
+    function btnnormal() {
+        $('#showdata').show();
+        $('#Editabledata').hide();
+    };
+    function cancelbtn() {
+        $('#cardshow').show();
+        $('#cardhide').hide();
+    };
 
+    $('#DOB').datepicker({
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true
+    });
+
+    function validatePan() {
+        var panVal = $('#PAN').val();
+        var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+
+        if (regpan.test(panVal)) {
+            $("#PAN").removeClass('errortext');
+        } else {
+            alert("Invalid PAN Number");
+            $("#PAN").val('');
+            $("#PAN").addClass('errortext');
+        }
+    };
+
+    function isNumberOrDecimal(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    };
+
+</script>
+
+@if (TempData["Profile"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "Success : @TempData["Profile"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["ErrProfile"] != null)
+{
+
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["ErrProfile"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
+}

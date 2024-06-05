@@ -45,12 +45,12 @@
                     <div class="card shadow">
                         <div class="card-header d-lg-flex justify-content-between">
                             <h4 class="card-title">Quick Email</h4>
-                            <p style="color: #ff0000">
+                            @*<p style="color: #ff0000">
                                 @TempData["SendEmailSuccess"]
                             </p>
                             <p style="color: red">
                                 @TempData["SendEmailError"]
-                            </p>
+                            </p>*@
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
@@ -86,6 +86,31 @@
             </div>
         </div>
     </div>
+}
+
+@if (TempData["SendEmailSuccess"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+               notif({
+                   msg: "Success : @TempData["SendEmailSuccess"]",
+                type: "success"
+            });
+            };
+    </script>
+}
+else if (TempData["SendEmailError"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                notif({
+                    msg: "<b>Oops!</b> @TempData["SendEmailError"]",
+                    type: "error"
+                });
+            };
+
+    </script>
+
 }
 
 <script>

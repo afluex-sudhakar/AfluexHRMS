@@ -33,9 +33,9 @@ namespace AfluexHRMS.Controllers
             {
                 model.AddedBy = Session["PK_EmployeeID"].ToString();
                 DataSet ds = model.SendEmail();
-                if(ds != null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    if(ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
                     {
                         TempData["SendEmailSuccess"] = "Your Data Saved Successfully.";
                     }
@@ -49,7 +49,7 @@ namespace AfluexHRMS.Controllers
                     TempData["SendEmailError"] = ds.Tables[0].Rows[0]["ErrorMessage"].ToString();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["SendEmailError"] = ex.Message;
             }
@@ -459,23 +459,23 @@ namespace AfluexHRMS.Controllers
         public ActionResult MyProfile(EmployeeLogin model)
         {
             model.EmployeeID = Session["PK_EmployeeID"].ToString();
-           DataSet ds1 = model.GetProfileDetails();
+            DataSet ds1 = model.GetProfileDetails();
             if (ds1 != null && ds1.Tables.Count > 0 && ds1.Tables[0].Rows.Count > 0)
             {
-                   model.EmployeeID = ds1.Tables[0].Rows[0]["PK_EmployeeID"].ToString();
-                   model.Name = ds1.Tables[0].Rows[0]["EmployeeName"].ToString();
-                   model.DOB = ds1.Tables[0].Rows[0]["DOB"].ToString();
-                   model.FatherName = ds1.Tables[0].Rows[0]["FatherName"].ToString();
-                   model.GenderID = ds1.Tables[0].Rows[0]["Gender"].ToString();
-                   model.BloodGroup = ds1.Tables[0].Rows[0]["BloodGroup"].ToString();
-                   model.DOJ = ds1.Tables[0].Rows[0]["DOJ"].ToString();
-                   model.Email = ds1.Tables[0].Rows[0]["Email"].ToString();
-                   model.Contact = ds1.Tables[0].Rows[0]["MobileNo"].ToString();
-                   model.PAN = ds1.Tables[0].Rows[0]["PanNo"].ToString();
-                   model.Address = ds1.Tables[0].Rows[0]["FullAddress"].ToString();
-                   model.ProfilePic = ds1.Tables[0].Rows[0]["ProfilePic"].ToString();
-                   model.DepartmentName = ds1.Tables[0].Rows[0]["DepartmentName"].ToString();
-                   model.DesignationName = ds1.Tables[0].Rows[0]["DesignationName"].ToString();
+                model.EmployeeID = ds1.Tables[0].Rows[0]["PK_EmployeeID"].ToString();
+                model.Name = ds1.Tables[0].Rows[0]["EmployeeName"].ToString();
+                model.DOB = ds1.Tables[0].Rows[0]["DOB"].ToString();
+                model.FatherName = ds1.Tables[0].Rows[0]["FatherName"].ToString();
+                model.GenderID = ds1.Tables[0].Rows[0]["Gender"].ToString();
+                model.BloodGroup = ds1.Tables[0].Rows[0]["BloodGroup"].ToString();
+                model.DOJ = ds1.Tables[0].Rows[0]["DOJ"].ToString();
+                model.Email = ds1.Tables[0].Rows[0]["Email"].ToString();
+                model.Contact = ds1.Tables[0].Rows[0]["MobileNo"].ToString();
+                model.PAN = ds1.Tables[0].Rows[0]["PanNo"].ToString();
+                model.Address = ds1.Tables[0].Rows[0]["FullAddress"].ToString();
+                model.ProfilePic = ds1.Tables[0].Rows[0]["ProfilePic"].ToString();
+                model.DepartmentName = ds1.Tables[0].Rows[0]["DepartmentName"].ToString();
+                model.DesignationName = ds1.Tables[0].Rows[0]["DesignationName"].ToString();
             }
             #region Gender
             List<SelectListItem> Gender = Common.GenderList();
@@ -500,9 +500,9 @@ namespace AfluexHRMS.Controllers
                 }
                 model.EmployeeID = Session["PK_EmployeeID"].ToString();
                 DataSet ds = model.UpdateProfileDetails();
-                if(ds !=null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count > 0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    if(ds.Tables[0].Rows[0]["Msg"].ToString() =="1")
+                    if (ds.Tables[0].Rows[0]["Msg"].ToString() == "1")
                     {
                         TempData["Profile"] = "Profile Updated Successfully.";
                         FormName = "MyProfile";
@@ -522,18 +522,17 @@ namespace AfluexHRMS.Controllers
                     Controller = "EmployeeLogin";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["ErrProfile"] = ex.Message;
                 FormName = "MyProfile";
                 Controller = "EmployeeLogin";
             }
-            return RedirectToAction(FormName,Controller);
+            return RedirectToAction(FormName, Controller);
         }
 
         #endregion
 
-       
         public ActionResult GetEmployeeIDCard(EmployeeLogin model)
         {
 
